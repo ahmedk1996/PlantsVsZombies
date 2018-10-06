@@ -29,11 +29,12 @@ public class PlantStore {
 	
 	public int validatePurchase(Plants plant, Game game) {
 		
-		if(((currentBalance - plant.price()) >= 0) && endOfWave(game)) {
-			return currentBalance - plant.price();
+		if(((currentBalance - plant.getCost()) >= 0) && endOfWave(game)) {
+			return currentBalance - plant.getCost();
 		}else {
 			System.err.println("Not enough funds");
 		}
+		return currentBalance;
 	}
 	
 	public boolean endOfWave(Game game) {
