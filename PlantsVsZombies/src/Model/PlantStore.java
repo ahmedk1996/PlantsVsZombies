@@ -4,7 +4,7 @@ public class PlantStore {
 	
 	private Plants price;
 	private int currentBalance;
-	
+
 	
 	public PlantStore(Plants price, int currentBalance) {
 		this.price=price;
@@ -27,15 +27,22 @@ public class PlantStore {
 		this.price = price;
 	}
 	
-	public int validatePurchase(Plants plant) {
+	public int validatePurchase(Plants plant, Game game) {
 		
-		if((currentBalance - plant.price()) >= 0) {
+		if(((currentBalance - plant.price()) >= 0) && endOfWave(game)) {
 			return currentBalance - plant.price();
 		}else {
 			System.err.println("Not enough funds");
 		}
+	}
+	
+	public boolean endOfWave(Game game) {
 		
-		
+		if (game.getCompleteWave() == true) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 
