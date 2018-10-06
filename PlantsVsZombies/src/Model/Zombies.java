@@ -1,5 +1,10 @@
 package Model;
 
-public abstract class Zombies {
-
+public interface Zombies{
+	public String getType();
+	public void attack();
+	public int getSpeed();
+	public int getHealth();
+	public Weapon getWeapon();
+	
 }
