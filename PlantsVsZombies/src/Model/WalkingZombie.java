@@ -9,11 +9,12 @@ public class WalkingZombie extends Zombies{
  *  Weapon = null;
  * 
  */
+	
 	public WalkingZombie() {
+		super.setType("Walking Zombie");
 		super.setSpeed(2);
 		super.setHealth(20);
 		super.setAttackDamage(10);
 		super.setWeapon(null);
 	}
-	
 }
