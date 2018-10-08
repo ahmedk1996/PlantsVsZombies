@@ -1,11 +1,31 @@
 package Model;
 
+import java.util.Scanner;
+
 public class PlantStore {
 	
 	private Plants price;
 	private int currentBalance;
+	private static int sunPoints;
+	private Scanner reader;
+	public static int getSunPoints() {
+		return sunPoints;
+	}
 
-	
+	public static void setSunPoints(int sunPoints) {
+		PlantStore.sunPoints = sunPoints;
+	}
+
+	public int getPeaShooterCost() {
+		return peaShooterCost;
+	}
+
+	public int getSunFlowerCost() {
+		return sunFlowerCost;
+	}
+
+	private final int  peaShooterCost = 100;
+	private final int  sunFlowerCost = 50;
 	public PlantStore(Plants price, int currentBalance) {
 		this.price=price;
 		this.currentBalance=currentBalance;
@@ -44,6 +64,32 @@ public class PlantStore {
 		}else {
 			return false;
 		}
+	}
+	public void storeMenu(int sunPoints) {
+		reader = new Scanner(System.in);  
+		System.out.println("-----------------------------");
+		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
+		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
+		System.out.println("To purchase a PeaShooter Plant, enter 1.");
+		System.out.println("To purchase a SunFlower Plant, enter 2.");
+		
+		if (reader.nextLine() == "1") {
+			
+		}
+		else if (reader.nextLine() == "2") {
+			
+		}
+		
+		
+	}
+
+	public void purchaseStartOfGame() {
+		sunPoints = 50;
+		System.out.println("");
+		System.out.println("You have " + sunPoints + "points.");
+		storeMenu(sunPoints);
+		
+		
 	}
 	
 

@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Game {
 	private Layout layout;
 	private Scanner reader;
+	private PlantStore store;
 	
 	public Game (Layout layout) {
 		this.layout = new Layout();
@@ -15,6 +16,7 @@ public class Game {
 	
 	public void start() {
 		layout.createGrid();
+		store.purchaseStartOfGame();
 	}
 	
 	public void start(int rows, int colomns) {
@@ -38,9 +40,9 @@ public class Game {
 	}
 	
 	public void promptStart() {
-		
+	try {
 		reader = new Scanner(System.in);  
-		System.out.println("Would you like to create a custom grid layout or continue with the default (4x7)? :");
+		System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
 		System.out.println("Enter 1 for custom and any number for defualt");
 		int gridLayout = reader.nextInt(); 
 		
@@ -62,6 +64,10 @@ public class Game {
 		}else {
 			start();
 		}
+	}
+	catch(Exception Ex) {
+		System.out.println(Ex.toString());
+	}
 	}
 	
 	public void placePlant() {

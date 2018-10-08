@@ -1,17 +1,19 @@
 package Model;
-
 import java.util.Arrays;
 
 public class Layout {
+	private static Object[][] gameGrid;
 
 	public void createGrid() {
 		int j = 0;
-		Object[][] gameGrid = new Object [5][7];
-		System.out.print(" 0  1  2  3  4  5  6  ");
+		gameGrid = new Object [5][7];
+		System.out.print("    0        1        2        3        4        5        6  ");
 		for (int i = 0; i < 5; i++) {
+			System.out.println();
+			System.out.println();
 			System.out.println("  ");
 			for (int k = 0; k<7; k++) {
-				System.out.print(" - ");
+				System.out.print("    -    ");
 				if(k == 6) {
 					
 					System.out.print(j++);
@@ -22,9 +24,9 @@ public class Layout {
 	}
 	
 	public void createGrid(int rows, int colomns) {
-		int j = 0;
-		Object[][] gameGrid = new Object [rows][colomns];
 		
+		 gameGrid = new Object [rows][colomns];
+		 int j = 0;
 		for (int num = 0; num < colomns; num++) {
 			System.out.print(" " + num + " ");
 		}
