@@ -11,6 +11,9 @@ public class Sunflower extends Plants {
 		super(health, cost);
 		
 	}
+	public Sunflower(){
+		
+	}
 	
 	private void generateSunPoint(){
 		

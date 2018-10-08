@@ -6,7 +6,7 @@ public abstract class Plants {
 	private int cost;
 	private int xCord;
 	private int yCord;
-	private int turns;
+	private int turns =0 ;
 
 	public int getTurns() {
 		return turns;
@@ -14,6 +14,9 @@ public abstract class Plants {
 
 	public void setTurns(int turns) {
 		this.turns = turns;
+	}
+	public Plants(){
+		
 	}
 
 	public Plants(int health , int cost ){
@@ -44,6 +47,16 @@ public abstract class Plants {
 		int reducedHealth = this.health - hitpoints;
 		setHealth (reducedHealth);
 	}
+	
+	public boolean ismovable() {
+		if (turns == 0) {
+			return false;
+		}
+		if ((turns%speed) == 0)
+			return true;
+		else 
+			return false;
+	};
 
 	
 	

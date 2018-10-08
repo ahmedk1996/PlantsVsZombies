@@ -1,5 +1,11 @@
 package Model;
 
-public class ShootingPlant {
+public class ShootingPlant  extends Plants{
+	
+	public ShootingPlant(){
+		
+		
+	}
+	
 
 }

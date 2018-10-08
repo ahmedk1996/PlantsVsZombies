@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PlantStore {
@@ -8,6 +9,9 @@ public class PlantStore {
 	private int currentBalance;
 	private static int sunPoints;
 	private Scanner reader;
+	private final int  peaShooterCost = 100;
+	private final int  sunFlowerCost = 50;
+	
 	public static int getSunPoints() {
 		return sunPoints;
 	}
@@ -24,10 +28,9 @@ public class PlantStore {
 		return sunFlowerCost;
 	}
 
-	private final int  peaShooterCost = 100;
-	private final int  sunFlowerCost = 50;
-	public PlantStore(Plants price, int currentBalance) {
-		this.price=price;
+	
+	
+	public PlantStore( int currentBalance) {
 		this.currentBalance=currentBalance;
 	}
 	
@@ -47,24 +50,27 @@ public class PlantStore {
 		this.price = price;
 	}
 	
-	public int validatePurchase(Plants plant, Game game) {
+	public boolean validatePurchase(Plants plant , int currentBalance) {
 		
-		if(((currentBalance - plant.getCost()) >= 0) && endOfWave(game)) {
-			return currentBalance - plant.getCost();
+		if((currentBalance - plant.getCost()) >= 0)  {
+			int updatedBalance = currentBalance - plant.getCost();
+			setSunPoints(updatedBalance);
+			return true;
+			 
 		}else {
-			System.err.println("Not enough funds");
+			System.err.println("Not Enough Sun Points!!");
 		}
-		return currentBalance;
+		return false;
 	}
 	
-	public boolean endOfWave(Game game) {
+/*	public boolean endOfWave(Game game) {
 		
 		if (game.getCompleteWave() == true) {
 			return true;
 		}else {
 			return false;
 		}
-	}
+	}*/
 	public void storeMenu(int sunPoints) {
 		reader = new Scanner(System.in);  
 		System.out.println("-----------------------------");
@@ -73,14 +79,22 @@ public class PlantStore {
 		System.out.println("To purchase a PeaShooter Plant, enter 1.");
 		System.out.println("To purchase a SunFlower Plant, enter 2.");
 		
-		if (reader.nextLine() == "1") {
+		try{ 
 			
+		if (reader.nextLine() == "1") {
+			Plants p = new ShootingPlant();
+			validatePurchase(p , sunPoints);
 		}
 		else if (reader.nextLine() == "2") {
-			
+			Plants p = new Sunflower();
+			validatePurchase(p , sunPoints);	
 		}
 		
-		
+		}
+		catch(InputMismatchException e){
+			System.out.println("Invalid Input");
+			
+		}
 	}
 
 	public void purchaseStartOfGame() {
