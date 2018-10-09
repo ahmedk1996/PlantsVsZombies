@@ -6,16 +6,17 @@ import java.util.Scanner;
 
 public class Game {
 	private Layout layout;
-	private Scanner reader;
 	private PlantStore store;
-	
-	public Game (Layout layout) {
+	private Scanner reader;
+	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
+		this.store = new PlantStore();
 
 	}
 	
 	public void start() {
 		layout.createGrid();
+		
 		store.purchaseStartOfGame();
 	}
 	
@@ -87,11 +88,17 @@ public class Game {
 		//if()
 		
 	}
+	public void gameDifficulty() {
+		System.out.println("There are 3 levels of difficulty");
+		System.out.println("1).Easy --- 2).Medium --- 3).Hard");
+		//user input
+	}
 	
 	
 	public static void main(String args[]) {
 		Layout layout = new Layout();
-		Game game = new Game(layout);
+		PlantStore store = new PlantStore();
+		Game game = new Game(layout, store);
 		
 		game.promptStart();
 		

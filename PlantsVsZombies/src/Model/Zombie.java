@@ -1,5 +1,5 @@
 package Model;
 
-public abstract class Zombie implements Zombies {
+public abstract class Zombie {
 
 }

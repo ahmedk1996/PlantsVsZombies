@@ -1,9 +1,10 @@
 package Model;
-import java.util.Arrays;
-
+import java.util.*;
 public class Layout {
 	private static Object[][] gameGrid;
-
+	private Scanner reader;
+	
+	
 	public void createGrid() {
 		int j = 0;
 		gameGrid = new Object [5][7];
@@ -42,6 +43,21 @@ public class Layout {
 				
 			}
 		}
+	}
+	
+	public void placePlantOnGrid(Plants p) {
+		reader = new Scanner(System.in);  
+		
+		if (p instanceof Sunflower) {
+			System.out.println("Enter the row and column to deploy your SunFlower.(Ex. 4 2)");
+			String input = reader.nextLine();
+		}
+		
+		else if (p instanceof ShootingPlant) {
+			System.out.println("Enter the row and column to deploy your ShootingPlant.(Ex. 4 2)");
+			String input = reader.nextLine();
+		}
+		
 	}
 	
 

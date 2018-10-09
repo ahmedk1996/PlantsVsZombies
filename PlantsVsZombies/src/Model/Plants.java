@@ -48,7 +48,7 @@ public abstract class Plants {
 		setHealth (reducedHealth);
 	}
 	
-	public boolean ismovable() {
+/*	public boolean ismovable() {
 		if (turns == 0) {
 			return false;
 		}
@@ -56,7 +56,7 @@ public abstract class Plants {
 			return true;
 		else 
 			return false;
-	};
+	};*/
 
 	
 	
