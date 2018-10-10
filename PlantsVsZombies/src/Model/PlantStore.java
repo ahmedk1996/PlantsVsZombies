@@ -56,7 +56,7 @@ public class PlantStore {
 		if((currentBalance - plant.getCost()) >= 0)  {
 			int updatedBalance = currentBalance - plant.getCost();
 			setSunPoints(updatedBalance);
-			System.out.println("You have " + updatedBalance + " Sun Points.");
+			System.out.println("You have " + updatedBalance + " Sun Points left.");
 			return true;
 			 
 		}else {
@@ -93,7 +93,7 @@ public class PlantStore {
 			}
 			
 		}
-		else if (reader.nextLine() == "2") {
+		else if (reader.nextInt() == 2) {
 			Plants p = new Sunflower();
 			boolean canBuy  = validatePurchase(p , sunPoints);	
 			if (canBuy == true) {
@@ -101,8 +101,17 @@ public class PlantStore {
 				grid.placePlantOnGrid(p);
 			}
 		}
-		
+		System.out.println("You have " + getSunPoints() + " SunPoints.");
 		System.out.println("Would you like to make another purchase?");
+		
+		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
+		int input = reader.nextInt();
+		if (input == 1) {
+			storeMenu(getSunPoints(), false);
+		}
+		else {
+			//start wave
+		}
 		startOfGame = false;
 		
 		}
@@ -114,7 +123,7 @@ public class PlantStore {
 
 	public void purchaseStartOfGame() {
 		hasGameStarted = true;
-		sunPoints = 50;
+		sunPoints = 150;
 		System.out.println("");
 		System.out.println("You have " + sunPoints + " points to start with!.");
 		System.out.println("Spend wisely.....");

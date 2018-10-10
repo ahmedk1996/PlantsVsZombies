@@ -82,6 +82,8 @@ public class Layout {
 	}
 	
 	public void placePlantOnGrid(Plants p) {
+		
+		try {
 		reader = new Scanner(System.in);  
 		System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
 		if (p instanceof ShootingPlant) {
@@ -97,7 +99,10 @@ public class Layout {
 			gameGrid[inputX][inputY] = "F    ";
 			printGrid();
 		}
-		
+		}
+		catch(Exception ex) {
+			ex.getMessage();
+		}
 	}
 
 

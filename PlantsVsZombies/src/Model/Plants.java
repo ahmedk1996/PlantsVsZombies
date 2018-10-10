@@ -4,10 +4,10 @@ public abstract class Plants {
 	
 	private int health;
 	private int cost;
-	private int xCord;
-	private int yCord;
-	private int turns =0 ;
-
+	private static int turns ;
+	private int sunPoints;
+	private enum plants {SHOOTER , SUNFLOWER};
+	
 	public int getTurns() {
 		return turns;
 	}
@@ -15,8 +15,16 @@ public abstract class Plants {
 	public void setTurns(int turns) {
 		this.turns = turns;
 	}
-	public Plants(int cost){
+	public Plants(int cost , int sunPoints , int heath){
 		this.cost = cost;
+		this.sunPoints = sunPoints;
+		this.health = health;
+	
+	}
+	public Plants(int cost , int health){
+		this.cost = cost;
+		this.health = health;
+		
 	}
 
 	public Plants() {
@@ -45,7 +53,7 @@ public abstract class Plants {
 		setHealth (reducedHealth);
 	}
 	
-/*	public boolean ismovable() {
+	public boolean ismovable(int turns , int speed) {
 		if (turns == 0) {
 			return false;
 		}
@@ -53,7 +61,11 @@ public abstract class Plants {
 			return true;
 		else 
 			return false;
-	};*/
+	};
+	
+	private void generateSunPoint(){
+		
+	}
 
 	
 	

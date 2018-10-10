@@ -71,7 +71,7 @@ public class Game {
 	}
 	}
 	
-	public void placePlant() {
+/*	public void placePlant() {
 		
 		reader = new Scanner(System.in);
 	    System.out.println("Enter ");
@@ -87,7 +87,7 @@ public class Game {
 		
 		//if()
 		
-	}
+	}*/
 	public void gameDifficulty() {
 		System.out.println("There are 3 levels of difficulty");
 		System.out.println("1).Easy --- 2).Medium --- 3).Hard");
