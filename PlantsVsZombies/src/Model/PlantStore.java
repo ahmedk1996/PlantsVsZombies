@@ -11,6 +11,7 @@ public class PlantStore {
 	private Scanner reader;
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
+	private boolean hasGameStarted = false;
 	
 	public static int getSunPoints() {
 		return sunPoints;
@@ -72,17 +73,18 @@ public class PlantStore {
 			return false;
 		}
 	}*/
-	public void storeMenu(int sunPoints) {
+	public void storeMenu(int sunPoints , boolean startOfGame) {
 		reader = new Scanner(System.in);  
 		System.out.println("-----------------------------");
 		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
 		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
 		System.out.println("To purchase a PeaShooter Plant, enter 1.");
 		System.out.println("To purchase a SunFlower Plant, enter 2.");
+		System.out.println("-----------------------------");
 		
 		try{ 
 			
-		if (reader.nextLine() == "1") {
+		if (reader.nextInt() == 1) {
 			Plants p = new ShootingPlant();
 			boolean canBuy = validatePurchase(p , sunPoints);
 			if (canBuy == true) {
@@ -95,9 +97,13 @@ public class PlantStore {
 			Plants p = new Sunflower();
 			boolean canBuy  = validatePurchase(p , sunPoints);	
 			if (canBuy == true) {
-				
+				Layout grid = new Layout();
+				grid.placePlantOnGrid(p);
 			}
 		}
+		
+		System.out.println("Would you like to make another purchase?");
+		startOfGame = false;
 		
 		}
 		catch(InputMismatchException e){
@@ -107,11 +113,12 @@ public class PlantStore {
 	}
 
 	public void purchaseStartOfGame() {
+		hasGameStarted = true;
 		sunPoints = 50;
 		System.out.println("");
 		System.out.println("You have " + sunPoints + " points to start with!.");
 		System.out.println("Spend wisely.....");
-		storeMenu(sunPoints);
+		storeMenu(sunPoints , hasGameStarted);
 		
 		
 	}

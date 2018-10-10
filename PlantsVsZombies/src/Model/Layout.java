@@ -3,13 +3,13 @@ import java.util.*;
 public class Layout {
 	private static Object[][] gameGrid;
 	private Scanner reader;
-	
+	public enum plants { S, F, empty , }
 	
 	public void createGrid() {
 		int j = 0;
 		gameGrid = new Object [5][7];
-		System.out.print("    0        1        2        3        4        5        6  ");
-		for (int i = 0; i < 5; i++) {
+		//System.out.print("    0        1        2        3        4        5        6  ");
+		/*for (int i = 0; i < 5; i++) {
 			System.out.println();
 			System.out.println();
 			System.out.println("  ");
@@ -21,7 +21,43 @@ public class Layout {
 				}
 				
 			}
+		}*/
+		for(int row = 0; row < 5; row++)
+		{
+			System.out.print((row % 10) + " ");
+		    for (int column = 0; column < 7; column++)
+		    {
+		    	gameGrid[row][column] = ".    ";
+		        System.out.print(gameGrid[row][column]);
+		       
+		    }
+		    System.out.println();
+		    System.out.println();
 		}
+		System.out.print("  ");
+		for (int column = 0; column < 7; column++)
+			   System.out.print((column % 10 + "    "));
+		System.out.println();
+	}
+	
+	
+	private void printGrid() {
+		for(int row = 0; row < 5; row++)
+		{
+			System.out.print((row % 10) + " ");
+		    for (int column = 0; column < 7; column++)
+		    {
+	    	
+		    	System.out.print(gameGrid[row][column]);
+	       
+		    }
+	    System.out.println();
+	    System.out.println();
+	}
+	System.out.print("  ");
+	for (int column = 0; column < 7; column++)
+		   System.out.print((column % 10 + "    "));
+	System.out.println();
 	}
 	
 	public void createGrid(int rows, int colomns) {
@@ -47,19 +83,24 @@ public class Layout {
 	
 	public void placePlantOnGrid(Plants p) {
 		reader = new Scanner(System.in);  
-		
-		if (p instanceof Sunflower) {
-			System.out.println("Enter the row and column to deploy your SunFlower.(Ex. 4 2)");
-			String input = reader.nextLine();
+		System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
+		if (p instanceof ShootingPlant) {
+			
+			int inputX = reader.nextInt();
+			int inputY = reader.nextInt();
+			gameGrid[inputX][inputY] = "S    ";
+			 printGrid();
 		}
-		
-		else if (p instanceof ShootingPlant) {
-			System.out.println("Enter the row and column to deploy your ShootingPlant.(Ex. 4 2)");
-			String input = reader.nextLine();
+		else if (p instanceof Sunflower) {
+			int inputX = reader.nextInt();
+			int inputY = reader.nextInt();
+			gameGrid[inputX][inputY] = "F    ";
+			printGrid();
 		}
 		
 	}
-	
+
+
 
 	
 //	public static void main (String args[]) {

@@ -15,14 +15,11 @@ public abstract class Plants {
 	public void setTurns(int turns) {
 		this.turns = turns;
 	}
-	public Plants(){
-		
+	public Plants(int cost){
+		this.cost = cost;
 	}
 
-	public Plants(int health , int cost ){
-		this.health = health;
-		this.cost = cost;
-		this.turns = 0;
+	public Plants() {
 		
 	}
 	
