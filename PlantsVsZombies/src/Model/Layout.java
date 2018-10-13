@@ -5,10 +5,9 @@ public class Layout {
 	private Scanner reader;
 	public enum plants { S, F, empty , }
 	
-	
-	public void createGrid() {
-		int j = 0;
-		gameGrid = new Object [5][7];
+	// Creating Grid of [5][7] 
+	public void createGrid(int x, int y) {
+		gameGrid = new Object [x][y];
 		//System.out.print("    0        1        2        3        4        5        6  ");
 		/*for (int i = 0; i < 5; i++) {
 			System.out.println();
@@ -23,10 +22,10 @@ public class Layout {
 				
 			}
 		}*/
-		for(int row = 0; row < 5; row++)
+		for(int row = 0; row < x; row++)
 		{
 			System.out.print((row % 10) + " ");
-		    for (int column = 0; column < 7; column++)
+		    for (int column = 0; column < y; column++)
 		    {
 		    	gameGrid[row][column] = ".    ";
 		        System.out.print(gameGrid[row][column]);
@@ -81,7 +80,7 @@ public class Layout {
 			}
 		}
 	}
-	
+	 
 	public void placeZombieOnGrid(Zombies z, int randRow) {
 	
 		if(gameGrid[randRow][6] == ".    ") {

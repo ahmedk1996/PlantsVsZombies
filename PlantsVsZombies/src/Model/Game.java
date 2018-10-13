@@ -15,11 +15,11 @@ public class Game {
 		this.layout = new Layout();
 		this.store = new PlantStore();
 		this.beginwave = new wave();
-
 	}
 	
 	public void start() {
-		layout.createGrid();
+		//Creating Grid 5x7
+		layout.createGrid(5,7);
 		store.purchaseStartOfGame();
 		beginwave.startWave();
 	}
