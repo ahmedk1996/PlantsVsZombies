@@ -111,8 +111,7 @@ public class PlantStore {
 		}
 		else if (input ==2){
 			//start wave
-			beginWave = new wave();
-			beginWave.startWave();
+			return;
 			
 			
 		}
