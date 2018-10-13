@@ -11,6 +11,7 @@ public class ShootingPlant  extends Plants{
 	}
 	public ShootingPlant(int cost, int health ){
 		super(cost ,health);
+		super.setStringtype("F    ");
 		turns =0;
 	}
 	public int getCost() {

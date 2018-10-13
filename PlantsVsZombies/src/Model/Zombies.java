@@ -4,7 +4,7 @@ public abstract class Zombies{
 	
 	//private enum Type{walkingZombie};
 	
-	private String type;
+	private String stringtype;
 	private int turn = 0;
 	private int resistant=0;	// range of the speed is 1~3, 1 is the fastest,means every turn it moves, and 3 is the slowest, every 3 turns it move one tile.
 	private int speed;
@@ -39,12 +39,12 @@ public abstract class Zombies{
 		this.turn++;
 	}
 	
-	public String getType() {
-		return type;
+	public String getStringtype() {
+		return stringtype;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setStringtype(String type) {
+		this.stringtype = type;
 	}
 
 	public boolean isAlive() {

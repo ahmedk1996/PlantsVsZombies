@@ -2,12 +2,21 @@ package Model;
 
 public abstract class Plants {
 	
+	private String stringtype;
 	private int health;
 	private int cost;
 	private static int turns ;
 	private int sunPoints;
 	private enum plants {SHOOTER , SUNFLOWER};
 	
+	public String getStringtype() {
+		return stringtype;
+	}
+
+	public void setStringtype(String stringtype) {
+		this.stringtype = stringtype;
+	}
+
 	public int getTurns() {
 		return turns;
 	}
