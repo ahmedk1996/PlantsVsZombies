@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -42,6 +43,7 @@ public class Game {
 	
 	public void promptStart() {
 	try {
+		int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
 		System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
 		System.out.println("Enter 1 for custom and any number for defualt");
@@ -62,7 +64,8 @@ public class Game {
 
 			start(x,y);
 			
-		}else {
+		}
+		else {
 			start();
 		}
 	}
@@ -88,14 +91,42 @@ public class Game {
 		//if()
 		
 	}*/
-	public void gameDifficulty() {
-		System.out.println("There are 3 levels of difficulty");
-		System.out.println("1).Easy --- 2).Medium --- 3).Hard");
+	public int gameDifficulty() {
+		try {
+			System.out.println("There are 3 levels of difficulty");
+			System.out.println("1).Easy --- 2).Medium --- 3).Hard");
+			reader = new Scanner(System.in); 
+			int mode = reader.nextInt();
+			if (mode == 1) {
+				System.out.println("Easy mode has been selected...Good Luck!");
+				//set off variable for game difficulty
+				return 1;
+		}
+		else if (mode == 2) {
+			
+			return 2;
+		}
+		
+		else if(mode == 3) {
+			return 3;
+		}
+		else {
+			System.out.println("Please make a selection to proceed.");
+			gameDifficulty();
+		}
+		
+		}
+		catch (InputMismatchException e ) {
+			gameDifficulty();
+		}
 		//user input
+		return 0 ;
 	}
 	
 	
+	
 	public static void main(String args[]) {
+		
 		Layout layout = new Layout();
 		PlantStore store = new PlantStore();
 		Game game = new Game(layout, store);

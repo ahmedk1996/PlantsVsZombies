@@ -12,7 +12,7 @@ public class PlantStore {
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
-	
+	private wave beginWave;
 	public static int getSunPoints() {
 		return sunPoints;
 	}
@@ -111,6 +111,9 @@ public class PlantStore {
 		}
 		else {
 			//start wave
+			beginWave = new wave();
+			
+			
 		}
 		startOfGame = false;
 		
