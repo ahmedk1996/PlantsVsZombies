@@ -8,6 +8,8 @@ public class wave {
 
 	private List zombieList;
 	private Layout layout;
+	 
+	
 	public wave() {
 		zombieList = new ArrayList<Object>();
 		layout =new Layout();
@@ -32,7 +34,7 @@ public class wave {
 		}
 
 		Random r = new Random();
-		return r.nextInt((max - min) + 1) + min;
+		return r.nextInt(max - min) + min;
 	}
 
 
