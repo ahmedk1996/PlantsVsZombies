@@ -124,6 +124,26 @@ public class Layout {
 			ex.getMessage();
 		}
 	}
+	
+	public void reset() {
+		
+		for(int row = 0; row < 5; row++)
+		{
+			System.out.print((row % 10) + " ");
+		    for (int column = 0; column < 7; column++)
+		    {
+		    	gameGrid[row][column] = ".    ";
+		    	System.out.print(gameGrid[row][column]);
+	       
+		    }
+	    System.out.println();
+	    System.out.println();
+	}
+		for (int column = 0; column < 7; column++)
+			   System.out.print((column % 10 + "    "));
+		System.out.println();
+	}
+	
 
 	public Object getGrid() {
 		return gameGrid;
