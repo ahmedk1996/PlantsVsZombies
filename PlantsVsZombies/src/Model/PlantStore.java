@@ -134,6 +134,11 @@ public class PlantStore {
 
 
 		}
+		else if (reader.nextInt() == 2){
+			return;
+			
+			
+		}
 
 
 		startOfGame = false;

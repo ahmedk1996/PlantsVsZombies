@@ -9,17 +9,19 @@ public class Game {
 	private Layout layout;
 	private PlantStore store;
 	private Scanner reader;
+	private wave beginwave;
 	
-	public Game (Layout layout , PlantStore store) {
+	public Game (Layout layout , PlantStore store, wave beginWave) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
+		this.beginwave = new wave();
 
 	}
 	
 	public void start() {
 		layout.createGrid();
-		
 		store.purchaseStartOfGame();
+		beginwave.startWave();
 	}
 	
 	public void start(int rows, int colomns) {
@@ -127,7 +129,8 @@ public class Game {
 		
 		Layout layout = new Layout();
 		PlantStore store = new PlantStore();
-		Game game = new Game(layout, store);
+		wave beginWave = new wave();
+		Game game = new Game(layout, store, beginWave);
 		
 		game.promptStart();
 		
