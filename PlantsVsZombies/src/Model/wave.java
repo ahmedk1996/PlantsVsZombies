@@ -10,24 +10,41 @@ public class wave {
 	private Layout layout;
 	public wave() {
 		zombieList = new ArrayList<Object>();
+		layout =new Layout();
+		
 	}
 	
 	public void startWave() {
 		Zombies walkingZombie = new WalkingZombie();
 		//other type of zombies
-		zombieList.add(walkingZombie);
+		//zombieList.add(walkingZombie);
 		//add other zombies
-		int index = ThreadLocalRandom.current().nextInt(zombieList.size());
+		//int index = ThreadLocalRandom.current().nextInt(zombieList.size());
 		
-		spawnZombies();
+		spawnZombies(walkingZombie);
 		
+	}
+	
+	private static int getRandomNumberInRange(int min, int max) {
+
+		if (min >= max) {
+			throw new IllegalArgumentException("max must be greater than min");
+		}
+
+		Random r = new Random();
+		return r.nextInt((max - min) + 1) + min;
 	}
 
-	private void spawnZombies() {
+
+	private void spawnZombies(Zombies zombie) {
 		
-		if(layout.getGrid()==null) {
-			
-		}
+		int i = getRandomNumberInRange(0,4);
+		layout.placeZombieOnGrid(zombie, i);
+//		if(layout.getGrid().equals(" - ") && layout.getGrid(){
+//		   
+//		}
 		
 	}
+	
+	
 }

@@ -5,6 +5,7 @@ public class Layout {
 	private Scanner reader;
 	public enum plants { S, F, empty , }
 	
+	
 	public void createGrid() {
 		int j = 0;
 		gameGrid = new Object [5][7];
@@ -81,24 +82,43 @@ public class Layout {
 		}
 	}
 	
+	public void placeZombieOnGrid(Zombies z, int randRow) {
+	
+		if(gameGrid[randRow][6] == ".    ") {
+				gameGrid[randRow][6] = "Z    ";
+				 printGrid();
+	}else {
+		 System.out.print("Not empty");
+
+	}
+}
+	
+
+	
 	public void placePlantOnGrid(Plants p) {
 		
 		try {
 		reader = new Scanner(System.in);  
 		System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
+		int inputX = reader.nextInt();
+		int inputY = reader.nextInt();
+		
+		if(gameGrid[inputX][inputY] == ".    ") {
 		if (p instanceof ShootingPlant) {
 			
-			int inputX = reader.nextInt();
-			int inputY = reader.nextInt();
 			gameGrid[inputX][inputY] = "S    ";
 			 printGrid();
 		}
 		else if (p instanceof Sunflower) {
-			int inputX = reader.nextInt();
-			int inputY = reader.nextInt();
+		
 			gameGrid[inputX][inputY] = "F    ";
 			printGrid();
 		}
+		}else {
+			System.out.println("There seems to be an already placed Plant here...");
+			
+		}
+		
 		}
 		catch(Exception ex) {
 			ex.getMessage();
