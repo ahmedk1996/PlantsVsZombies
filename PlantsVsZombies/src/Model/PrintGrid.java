@@ -2,27 +2,29 @@ package Model;
 
 public class PrintGrid {
 
-	Object [][] stringGrid;
+	String [][] stringGrid;
 	int rows;
 	int columns;
+
 	
 	public PrintGrid(Object [][] gameGrid) {
 		rows = gameGrid.length+1;
 		columns = gameGrid[0].length+1;
-		stringGrid = new Object[rows][columns];
+		stringGrid = new String[rows][columns];
 		copy(gameGrid);
 		addingIndicator();
+		printAll();
 	}
 	
 	public void copy(Object [][] gameGrid) {
 		for(int i= 1 ; i < rows; i++) {
-			for(int j=0; j < columns-1 ; j++) {
-				if(gameGrid[i-1][j] instanceof Zombies) {
-					Zombies temp = (Zombies) gameGrid[i-1][j];
+			for(int j=1; j < columns ; j++) {
+				if(gameGrid[i-1][j-1] instanceof Zombies) {
+					Zombies temp = (Zombies) gameGrid[i-1][j-1];
 					stringGrid[i][j] = temp.getStringtype();
 				}
-				else if (gameGrid[i-1][j] instanceof Plants) {
-					Plants temp = (Plants) gameGrid[i-1][j];
+				else if (gameGrid[i-1][j-1] instanceof Plants) {
+					Plants temp = (Plants) gameGrid[i-1][j-1];
 					stringGrid[i][j] = temp.getStringtype();
 				}else stringGrid[i][j] = ".    ";
 				}
@@ -30,14 +32,37 @@ public class PrintGrid {
 	}
 	
 	public void addingIndicator() {
-		for(int row = 0; row < rows; row++)
+		stringGrid[0][0] ="     ";
+		for(int column = 1; column < columns; column++)
 		{
-			stringGrid [0][rows] = row + " "; 
+			stringGrid [0][column] = column + "    "; 
 		}
-		for (int column = 1; column < columns; column++)
+		for (int row = 1; row < rows; row++)
 		{
-		   	stringGrid[column][columns] = (column - 1) + "    ";
+		   	stringGrid[row][0] = (row) + "    ";
 		}
 	}
 	
-}
+	public void printAll() {
+		for(int i =0;i<rows;i++) {
+			for(int j =0;j<columns;j++) {
+				System.out.print(stringGrid[i][j]);
+			}
+			System.out.println("");
+		}
+	}
+	/*
+	public static void main(String args[]) {
+		Object [][] gameGrid = new Object[5][7];
+		
+		gameGrid[1][6] = new WalkingZombie(); 
+		gameGrid[2][6] = new WalkingZombie();
+		
+		gameGrid[2][1] = new ShootingPlant();
+		gameGrid[3][1] = new Sunflower();
+		
+		PrintGrid temp = new PrintGrid(gameGrid);
+	}*/
+	}
+	
+

@@ -7,7 +7,7 @@ public class ShootingPlant  extends Plants{
 	private final int sunPoints = 50;
 	private int turns;
 	public ShootingPlant() {
-		
+		super.setStringtype("F    ");
 	}
 	public ShootingPlant(int cost, int health ){
 		super(cost ,health);
