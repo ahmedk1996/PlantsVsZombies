@@ -19,7 +19,6 @@ public class wave {
 		//add other zombies
 		int index = ThreadLocalRandom.current().nextInt(zombieList.size());
 		
-		//
 		spawnZombies();
 		
 	}

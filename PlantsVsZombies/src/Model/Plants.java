@@ -63,9 +63,7 @@ public abstract class Plants {
 			return false;
 	};
 	
-	private void generateSunPoint(){
-		sunPoints+=50;
-	}
+	
 
 	
 	

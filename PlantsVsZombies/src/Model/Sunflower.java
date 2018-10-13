@@ -22,7 +22,9 @@ public class Sunflower extends Plants {
 		return cost;
 	}
 	
-
+	private void generateSunPoint(){
+		sunPoints+=50;
+	}
 
 
 }

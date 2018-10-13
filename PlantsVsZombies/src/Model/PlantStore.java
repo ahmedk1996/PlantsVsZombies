@@ -32,7 +32,7 @@ public class PlantStore {
 	
 	
 	public PlantStore() {
-		
+		reader = new Scanner(System.in);  
 	}
 	
 	public int getCurrentBalance() {
@@ -74,7 +74,7 @@ public class PlantStore {
 		}
 	}*/
 	public void storeMenu(int sunPoints , boolean startOfGame) {
-		reader = new Scanner(System.in);  
+		
 		System.out.println("-----------------------------");
 		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
 		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
@@ -109,7 +109,7 @@ public class PlantStore {
 		if (input == 1) {
 			storeMenu(getSunPoints(), false);
 		}
-		else {
+		else if (input ==2){
 			//start wave
 			beginWave = new wave();
 			
