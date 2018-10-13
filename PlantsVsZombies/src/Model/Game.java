@@ -46,29 +46,42 @@ public class Game {
 	try {
 		int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
-		System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
-		System.out.println("Enter 1 for custom and any number for defualt");
-		int gridLayout = reader.nextInt(); 
+		System.out.println("Below is a 5x7 grid layout:");
+
+		//System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
+		//System.out.println("Enter 1 for custom and any number for defualt");
+//		int gridLayout = reader.nextInt(); 
 		
-		if(gridLayout == 1) {
-			reader = new Scanner(System.in);
-		    System.out.println("Enter a grid layout for x by y (Ex: 4x4 ): ");
-
-		    String coordinate = reader.nextLine();
-		    String[] parts = coordinate.split("x");
-		    
-		    String x_loc = parts[0].trim();
-		    int x = Integer.parseInt(x_loc);			
-
-		    String y_loc = parts[1].trim();
-		    int y = Integer.parseInt(y_loc);			
-
-			start(x,y);
-			
+//		if(gridLayout == 1) {
+//			reader = new Scanner(System.in);
+//		    System.out.println("Enter a grid layout for x by y (Ex: 4x4 ): ");
+//
+//		    String coordinate = reader.nextLine();
+//		    String[] parts = coordinate.split("x");
+//		    
+//		    String x_loc = parts[0].trim();
+//		    int x = Integer.parseInt(x_loc);			
+//
+//		    String y_loc = parts[1].trim();
+//		    int y = Integer.parseInt(y_loc);			
+//
+//			start(x,y);
+//			
+//		}
+//		else {
+//			start();
+//		}
+		if(gameMode == 1) {
+			System.out.println("Easy mode selected. Zombie types include: Walking Zombie and the Wave #: 3");
+		}else if(gameMode == 2){
+			System.out.println("Medium mode selected. Zombie types include: Walking Zombie and Fat Zombie and the Wave #: 4");
 		}
-		else {
-			start();
+		else if(gameMode==3){
+			System.out.println("Hard mode selected. Zombie types include: Walking Zombie, Fat Zombie and Fast Zombie and the Wave #: 5");
 		}
+		
+		start();
+
 	}
 	catch(Exception Ex) {
 		System.out.println(Ex.toString());
