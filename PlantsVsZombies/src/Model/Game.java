@@ -9,6 +9,7 @@ public class Game {
 	private Layout layout;
 	private PlantStore store;
 	private Scanner reader;
+	
 	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
@@ -74,23 +75,7 @@ public class Game {
 	}
 	}
 	
-/*	public void placePlant() {
-		
-		reader = new Scanner(System.in);
-	    System.out.println("Enter ");
 
-	    String coordinate = reader.nextLine();
-	    String[] parts = coordinate.split("x");
-	    
-	    String x_loc = parts[0].trim();
-	    int x = Integer.parseInt(x_loc);			
-
-	    String y_loc = parts[1].trim();
-	    int y = Integer.parseInt(y_loc);
-		
-		//if()
-		
-	}*/
 	public int gameDifficulty() {
 		try {
 			System.out.println("There are 3 levels of difficulty");

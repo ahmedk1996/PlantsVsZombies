@@ -6,7 +6,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class wave {
 
-	List zombieList;
+	private List zombieList;
+	private Layout layout;
 	public wave() {
 		zombieList = new ArrayList<Object>();
 	}
@@ -24,8 +25,10 @@ public class wave {
 	}
 
 	private void spawnZombies() {
-		// TODO Auto-generated method stub
-		//randomly spawns zombies
+		
+		if(layout.getGrid()==null) {
+			
+		}
 		
 	}
 }

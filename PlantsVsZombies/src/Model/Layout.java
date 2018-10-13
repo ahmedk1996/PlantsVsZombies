@@ -105,24 +105,11 @@ public class Layout {
 		}
 	}
 
+	public Object getGrid() {
+		return gameGrid;
+	}
 
 
 	
-//	public static void main (String args[]) {
-//		Layout layout1 = new Layout();
-//		layout1.createGrid();
-//		
-//		System.out.println("  ");
-//		System.out.println("  ");
-//		
-//		Layout layout2 = new Layout();
-//		layout2.createGrid(5, 7);
-//		
-//		System.out.println("  ");
-//		System.out.println("  ");
-//		
-//		Layout layout3 = new Layout();
-//		layout3.createGrid(7, 8);
-//	}
-//	
+
 }
