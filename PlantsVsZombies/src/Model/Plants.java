@@ -5,7 +5,6 @@ public abstract class Plants {
 	private String stringtype;
 	private int health;
 	private int cost;
-	private static int turns ;
 	private int sunPoints;
 	private enum plants {SHOOTER , SUNFLOWER};
 	
@@ -17,21 +16,15 @@ public abstract class Plants {
 		this.stringtype = stringtype;
 	}
 
-	public int getTurns() {
-		return turns;
-	}
 
-	public void setTurns(int turns) {
-		this.turns = turns;
-	}
+
 	public Plants(int cost , int sunPoints , int heath){
 		this.cost = cost;
 		this.sunPoints = sunPoints;
 		this.health = health;
 	
 	}
-	public Plants(int cost , int health){
-		this.cost = cost;
+	public Plants(int health){
 		this.health = health;
 		
 	}
