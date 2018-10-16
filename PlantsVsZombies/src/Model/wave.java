@@ -28,7 +28,7 @@ public class wave {
 	
 	private static int getRandomNumberInRange(int min, int max) {
 
-		if (min >= max) {
+		if (min > max) {
 			throw new IllegalArgumentException("max must be greater than min");
 		}
 
@@ -39,11 +39,10 @@ public class wave {
 
 	private void spawnZombies(Zombies zombie) {
 		
-		int i = getRandomNumberInRange(0,4);
+		int i = getRandomNumberInRange(1,4);
 		layout.placeZombieOnGrid(zombie, i);
-//		if(layout.getGrid().equals(" - ") && layout.getGrid(){
-//		   
-//		}
+
+
 		
 	}
 	

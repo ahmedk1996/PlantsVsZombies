@@ -10,11 +10,13 @@ public class PlantStore {
 	private int currentBalance;
 	private static int sunPoints;
 	private Scanner reader;
+
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
 	private wave beginWave;
-
+	private boolean valid;
+	private int num;
 	//private Layout grid;
 
 	public static int getSunPoints() {
@@ -36,7 +38,8 @@ public class PlantStore {
 
 
 	public PlantStore() {
-
+		reader = new Scanner(System.in); 
+		
 	}
 
 	public int getCurrentBalance() {
@@ -77,71 +80,65 @@ public class PlantStore {
 			return false;
 		}
 	}*/
-	public void storeMenu(int sunPoints , boolean startOfGame) {
-
-
-
-
+	
+	public void storePrices() {
 		System.out.println("-----------------------------");
 		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
 		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
+
+	}
+	
+	public void storeMenu(int sunPoints , boolean startOfGame) {
+		
+		System.out.println("You have " + getSunPoints() + " SunPoints.");
 		System.out.println("To purchase a PeaShooter Plant, enter 1.");
 		System.out.println("To purchase a SunFlower Plant, enter 2.");
 		System.out.println("-----------------------------");
 
-		reader = new Scanner(System.in); 
-		int num = reader.nextInt();
-		label: try{ 
-
+		storePrices();
+		 num = reader.nextInt();
+		
+		if (getSunPoints()==0) {
+			return;
+		}
 			if (num == 1) {
 				Plants p = new ShootingPlant();
 				boolean canBuy = validatePurchase(p , sunPoints);
 				if (canBuy == true) {
 					Layout grid = new Layout();
-					grid.placePlantOnGrid(p);
-					break label;
+					valid = grid.placePlantOnGrid(p);
+				}
+				else {
+					if (canBuy == false) { //cant buy but can buy another plant
+						storeMenu(getSunPoints(), false);
+					}
 				}
 			}
-
-			if (num == 2) {
+		 
+			else if (num == 2) {
 				Plants p = new Sunflower();
 				boolean canBuy  = validatePurchase(p , sunPoints);	
 				if (canBuy == true) {
 					Layout grid = new Layout();
 					grid.placePlantOnGrid(p);
-					break label;
+				
+				}
+				else {
+					if (canBuy == false) {
+						storeMenu(getSunPoints(), false);
+					}
 				}
 			}
-		}
-		catch(InputMismatchException e){
-			System.out.println("Invalid Input");
-		}
-
-		System.out.println("You have " + getSunPoints() + " SunPoints.");
+		
 		System.out.println("Would you like to make another purchase?");
-
 		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
-
 		if (reader.nextInt() == 1) {
-			if (getSunPoints()<getSunFlowerCost()) {
-				System.out.println("You do not have money to buy any plants");
-				System.out.println("The next wave is on its way!");
-				return ;
-			}else {
-				
-				storeMenu(getSunPoints(), false);
-			}
-
-
+			storeMenu(getSunPoints() , false);
 		}
-		else if (reader.nextInt() == 2){
+		else {
 			return;
-			
-			
 		}
-
-
-		startOfGame = false;
+		
 
 
 

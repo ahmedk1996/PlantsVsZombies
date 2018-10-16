@@ -117,7 +117,7 @@ public class Game {
 		
 		}
 		catch (InputMismatchException e ) {
-			gameDifficulty();
+			
 		}
 		//user input
 		return 0 ;

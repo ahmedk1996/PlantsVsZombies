@@ -1,30 +1,39 @@
 package Model;
 
 public class PrintGrid {
+	
+	static String [][] stringGrid;
+	private int rows;
+	private int columns;
+	
+	public static String[][] getStringGrid() {
+		return stringGrid;
+	}
 
-	String [][] stringGrid;
-	int rows;
-	int columns;
+	public static void setStringGrid(String[][] stringGrid) {
+		PrintGrid.stringGrid = stringGrid;
+	}
 
 	
 	public PrintGrid(Object [][] gameGrid) {
-		rows = gameGrid.length+1;
-		columns = gameGrid[0].length+1;
+		rows = gameGrid.length;
+		columns = gameGrid[0].length;
 		stringGrid = new String[rows][columns];
-		copy(gameGrid);
+		updateGrid(gameGrid);
 		addingIndicator();
 		printAll();
 	}
 	
-	public void copy(Object [][] gameGrid) {
-		for(int i= 1 ; i < rows; i++) {
-			for(int j=1; j < columns ; j++) {
-				if(gameGrid[i-1][j-1] instanceof Zombies) {
-					Zombies temp = (Zombies) gameGrid[i-1][j-1];
+	public void updateGrid(Object [][] gameGrid) {
+		for(int i=0 ; i < rows; i++) {
+			
+			for(int j=0; j < columns ; j++) {
+				if(gameGrid[i][j] instanceof WalkingZombie) {
+					Zombies temp = (Zombies)gameGrid[i][j];
 					stringGrid[i][j] = temp.getStringtype();
 				}
-				else if (gameGrid[i-1][j-1] instanceof Plants) {
-					Plants temp = (Plants) gameGrid[i-1][j-1];
+				else if (gameGrid[i][j] instanceof Plants) {
+					Plants temp =  (Plants) gameGrid[i][j];
 					stringGrid[i][j] = temp.getStringtype();
 				}else stringGrid[i][j] = ".    ";
 				}
@@ -51,8 +60,8 @@ public class PrintGrid {
 			System.out.println("");
 		}
 	}
-	/*
-	public static void main(String args[]) {
+	
+	/*public static void main(String args[]) {
 		Object [][] gameGrid = new Object[5][7];
 		
 		gameGrid[1][6] = new WalkingZombie(); 
