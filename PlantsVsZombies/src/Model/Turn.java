@@ -1,7 +1,7 @@
 package Model;
 
 public class Turn {
-	private static int count = 3;
+	private static int count = 1;
 	private Layout layout;
 
 	public static int getCount() {
@@ -10,6 +10,7 @@ public class Turn {
 
 	public Turn() {
 
+		layout = new Layout();
 	}
 
 	public boolean canZombieMove(Zombies z, int interval) {
@@ -62,7 +63,6 @@ public class Turn {
 
 		if (p instanceof Sunflower) {
 			if (count % interval == 0) {
-
 				Sunflower.generateSunPoint();
 				count++;
 				return true;

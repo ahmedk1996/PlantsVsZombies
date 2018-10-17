@@ -12,7 +12,7 @@ public abstract class Zombies{
 	private int attackDamage;
 	private boolean alive = true;
 	private Weapon weapon = null;
-
+	private Layout layout;
 	
 	public boolean ismovable() {
 		if (turn == 0) {
@@ -98,6 +98,9 @@ public abstract class Zombies{
 
 	public void setResistant(int resistant) {
 		this.resistant = resistant;
+	}
+	public void move(Layout layout) {
+		
 	}
 
 

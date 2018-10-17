@@ -2,10 +2,23 @@ package Model;
 import java.util.*;
 public class Layout {
 	private static Object[][] gameGrid;
+	
+
+
 	private Scanner reader;
 	public enum plants { S, F, empty , }
 	private PrintGrid grid;
 	// Creating Grid of [5][7] 
+	
+	public static Object[][] getGameGrid() {
+		return gameGrid;
+	}
+
+
+	public static void setGameGrid(Object[][] gameGrid) {
+		Layout.gameGrid = gameGrid;
+	}
+
 	public void createGrid(int x, int y) {
 		gameGrid = new Object [x][y];
 
@@ -53,7 +66,8 @@ public class Layout {
 				grid = new PrintGrid(gameGrid);
 		}
 		else {
-				System.out.print("Not empty");
+				grid.moveZombieUpOne(z, gameGrid);
+				
 
 		}
 }
@@ -71,7 +85,7 @@ public class Layout {
 		
 		if(gameGrid[inputX][inputY] == ".    ") {
 		if (p instanceof Plants) {
-			gameGrid[inputX][inputY] = p ;
+			gameGrid[inputX][inputY] = p;
 			grid = new PrintGrid(gameGrid);
 		}
 		else if (p instanceof Sunflower) {
@@ -81,7 +95,9 @@ public class Layout {
 			
 			
 		}
-		}else {
+		}
+		else {
+		
 			System.out.println("There seems to be an already placed Plant here...");
 			return false;
 		}

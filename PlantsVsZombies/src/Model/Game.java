@@ -24,6 +24,7 @@ public class Game {
 		if (gameMode ==1) {
 			beginwave = new wave(4);
 		}
+	
 		
 	}
 	

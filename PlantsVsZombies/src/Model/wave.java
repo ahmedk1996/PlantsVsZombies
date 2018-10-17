@@ -16,18 +16,21 @@ public class wave {
 		layout =new Layout();
 		turn = new Turn();
 		this.numOfZombies = numOfZombies;
-
+		startWave();
 	}
 	
 	public void startWave() {
 		
-		
-		while (numOfZombies!=0) {
 			Zombies walkingZombie = new WalkingZombie();
 			spawnZombies(walkingZombie);
-		}
+			action();
 	}
 	
+	private void action() {
+		Action ac = new Action();
+		
+	}
+
 	private static int getRandomNumberInRange(int min, int max) {
 
 		if (min > max) {
@@ -47,8 +50,9 @@ public class wave {
 		}
 		int i = getRandomNumberInRange(1,4);
 		layout.placeZombieOnGrid(zombie, i);
-		turn = new Turn();
-		turn.canZombieMove(zombie, 3);
+		
+	//	turn = new Turn();
+	//	turn.canZombieMove(zombie, 3);
 
 		
 	}
