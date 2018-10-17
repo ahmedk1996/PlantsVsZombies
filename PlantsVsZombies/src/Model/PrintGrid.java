@@ -62,30 +62,6 @@ public class PrintGrid {
 	}
 
 
-	public void moveZombieUpOne(Zombies z , Object [][] gameGrid) {
-		for(int i=0 ; i <gameGrid.length; i++) {
-			for(int j=0; j < gameGrid[0].length ; j++) {
-				if(gameGrid[i][j] instanceof WalkingZombie) {
-					gameGrid[i][j] = null;
-					Zombies temp = (Zombies)gameGrid[i][j-1];
-					if(gameGrid[i][0] instanceof WalkingZombie) {
-						gameOver();
-					}
-					stringGrid[i][j] =  ".    ";
-					stringGrid[i][j-1] = temp.getStringtype();
-				}
-				else if (gameGrid[i][j] instanceof Plants) {
-					gameGrid[i][j] = null;
-					Plants temp =  (Plants) gameGrid[i][j-1];
-					stringGrid[i][j] =  ".    ";
-					stringGrid[i][j-1] = temp.getStringtype();
-					
-				}
-		
-				}
-			}
-	}
-
 
 	
 	

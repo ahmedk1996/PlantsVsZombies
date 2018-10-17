@@ -19,7 +19,7 @@ public class Turn {
 
 			if (count % interval == 0) {
 				count++;
-				layout.moveZombieUpOne(z);
+			//	layout.moveZombieUpOne(z);
 				return true;
 			}
 			return false;
@@ -35,7 +35,7 @@ public class Turn {
 
 			if (count % interval == 0) {
 
-				layout.moveZombieUpOne(z);
+				//layout.moveZombieUpOne(z);
 				count++;
 				return true;
 			}
@@ -72,3 +72,4 @@ public class Turn {
 		return false;
 	}
 }
+

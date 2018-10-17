@@ -59,17 +59,13 @@ public class Layout {
 	}
 
 	 
-	public void placeZombieOnGrid(Zombies z, int randRow) {
+	public void placeSpawnZombieOnGrid(Zombies z, int randRow) {
 	
 		if(gameGrid[randRow][6] == ".    ") {
 				gameGrid[randRow][6] = z;
 				grid = new PrintGrid(gameGrid);
 		}
-		else {
-				grid.moveZombieUpOne(z, gameGrid);
-				
-
-		}
+		
 }
 	
 
@@ -134,11 +130,7 @@ public class Layout {
 	}
 
 
-	public void moveZombieUpOne(Zombies z) {
-		grid.moveZombieUpOne(z,gameGrid);
-		
-	}
-	
+
 	
 
 

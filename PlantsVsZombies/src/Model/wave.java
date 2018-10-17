@@ -49,7 +49,7 @@ public class wave {
 			numOfZombies=numOfZombies-1;
 		}
 		int i = getRandomNumberInRange(1,4);
-		layout.placeZombieOnGrid(zombie, i);
+		layout.placeSpawnZombieOnGrid(zombie, i);
 		
 	//	turn = new Turn();
 	//	turn.canZombieMove(zombie, 3);
