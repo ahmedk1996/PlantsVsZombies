@@ -28,5 +28,9 @@ public class ShootingPlant  extends Plants{
 	public static void setTurn(int turn) {
 		ShootingPlant.turn = turn;
 	}
+	public static void shooterPlantShoot() {
+		//shoot in the same row
+		
+	}
 
 }

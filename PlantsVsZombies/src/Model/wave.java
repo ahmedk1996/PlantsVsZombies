@@ -1,29 +1,31 @@
 package Model;
 
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 
 public class wave {
 
 	private List zombieList;
 	private Layout layout;
-	 
+	private Turn turn; 
+	private int numOfZombies;
 	
-	public wave() {
+	public wave(int numOfZombies) {
 		zombieList = new ArrayList<Object>();
 		layout =new Layout();
-		
+		turn = new Turn();
+		this.numOfZombies = numOfZombies;
+
 	}
 	
 	public void startWave() {
-		Zombies walkingZombie = new WalkingZombie();
-		//other type of zombies
-		//zombieList.add(walkingZombie);
-		//add other zombies
-		//int index = ThreadLocalRandom.current().nextInt(zombieList.size());
-		spawnZombies(walkingZombie);
 		
+		
+		while (numOfZombies!=0) {
+			Zombies walkingZombie = new WalkingZombie();
+			spawnZombies(walkingZombie);
+		}
 	}
 	
 	private static int getRandomNumberInRange(int min, int max) {
@@ -39,9 +41,14 @@ public class wave {
 
 	private void spawnZombies(Zombies zombie) {
 		
+		boolean spawn = turn.canZombieSpawn(zombie, 3);
+		if (spawn ==true) {
+			numOfZombies=numOfZombies-1;
+		}
 		int i = getRandomNumberInRange(1,4);
 		layout.placeZombieOnGrid(zombie, i);
-
+		turn = new Turn();
+		turn.canZombieMove(zombie, 3);
 
 		
 	}

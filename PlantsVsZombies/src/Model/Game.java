@@ -11,17 +11,20 @@ public class Game {
 	private Scanner reader;
 	private wave beginwave;
 	
-	public Game (Layout layout , PlantStore store, wave beginWave) {
+	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
-		this.beginwave = new wave();
+		
 	}
 	
-	public void start() {
+	public void start(int gameMode) {
 		//Creating Grid 5x7
 		layout.createGrid(5,7);
 		store.purchaseStartOfGame();
-		beginwave.startWave();
+		if (gameMode ==1) {
+			beginwave = new wave(4);
+		}
+		
 	}
 	
 	public void start(int rows, int colomns) {
@@ -82,7 +85,7 @@ public class Game {
 			System.out.println("Hard mode selected. Zombie types include: Walking Zombie, Fat Zombie and Fast Zombie and the Wave #: 5");
 		}
 		
-		start();
+		start(gameMode);
 
 	}
 	catch(Exception Ex) {
@@ -129,8 +132,8 @@ public class Game {
 		
 		Layout layout = new Layout();
 		PlantStore store = new PlantStore();
-		wave beginWave = new wave();
-		Game game = new Game(layout, store, beginWave);
+		//wave beginWave = new wave(1);
+		Game game = new Game(layout, store);
 		
 		game.promptStart();
 		

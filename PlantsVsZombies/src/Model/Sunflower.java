@@ -2,9 +2,8 @@ package Model;
 
 public class Sunflower extends Plants {
 
-	private final int health = 10;
 	private final int cost  = 50;
-	private int sunPoints;
+	private static int sunPoints;
 	private int turns;
 
 	public Sunflower(){
@@ -21,8 +20,8 @@ public class Sunflower extends Plants {
 		return cost;
 	}
 	
-	private void generateSunPoint(){
-		sunPoints+=50;
+	public static void generateSunPoint(){
+		sunPoints= sunPoints+50;
 	}
 
 

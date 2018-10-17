@@ -93,7 +93,7 @@ public class Layout {
 		return true;
 	}
 	
-	public void reset() {
+/*	public void reset() {
 		
 		for(int row = 0; row < 5; row++)
 		{
@@ -110,7 +110,7 @@ public class Layout {
 		for (int column = 0; column < 7; column++)
 			   System.out.print((column % 10 + "    "));
 		System.out.println();
-	}
+	}*/
 	
 
 	public Object getGrid() {
@@ -118,6 +118,15 @@ public class Layout {
 	}
 
 
+	public void moveZombieUpOne(Zombies z) {
+		grid.moveZombieUpOne(z,gameGrid);
+		
+	}
 	
+	
+
+
+
+
 
 }

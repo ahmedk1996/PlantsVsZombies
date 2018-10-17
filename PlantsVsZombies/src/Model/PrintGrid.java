@@ -60,8 +60,41 @@ public class PrintGrid {
 			System.out.println("");
 		}
 	}
+
+
+	public void moveZombieUpOne(Zombies z , Object [][] gameGrid) {
+		for(int i=0 ; i <gameGrid.length; i++) {
+			for(int j=0; j < gameGrid[0].length ; j++) {
+				if(gameGrid[i][j] instanceof WalkingZombie) {
+					gameGrid[i][j] = null;
+					Zombies temp = (Zombies)gameGrid[i][j-1];
+					if(gameGrid[i][0] instanceof WalkingZombie) {
+						gameOver();
+					}
+					stringGrid[i][j] =  ".    ";
+					stringGrid[i][j-1] = temp.getStringtype();
+				}
+				else if (gameGrid[i][j] instanceof Plants) {
+					gameGrid[i][j] = null;
+					Plants temp =  (Plants) gameGrid[i][j-1];
+					stringGrid[i][j] =  ".    ";
+					stringGrid[i][j-1] = temp.getStringtype();
+					
+				}
+		
+				}
+			}
+	}
+
+
 	
-	/*public static void main(String args[]) {
+	
+	private void gameOver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+/*	public static void main(String args[]) {
 		Object [][] gameGrid = new Object[5][7];
 		
 		gameGrid[1][6] = new WalkingZombie(); 

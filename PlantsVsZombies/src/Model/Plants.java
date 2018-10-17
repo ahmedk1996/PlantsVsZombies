@@ -21,7 +21,7 @@ public abstract class Plants {
 	public Plants(int cost , int sunPoints , int heath){
 		this.cost = cost;
 		this.sunPoints = sunPoints;
-		this.health = health;
+		health = 100;
 	
 	}
 	public Plants(int health){
@@ -63,8 +63,9 @@ public abstract class Plants {
 			return true;
 		else 
 			return false;
-	};
-	
+	}
+
+
 	
 
 	
