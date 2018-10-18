@@ -4,7 +4,7 @@ public class Layout {
 	private static Object[][] gameGrid;
 	
 
-
+//
 	private Scanner reader;
 	public enum plants { S, F, empty , }
 	private PrintGrid grid;
