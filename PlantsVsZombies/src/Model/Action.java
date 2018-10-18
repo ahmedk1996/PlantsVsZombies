@@ -42,7 +42,7 @@ public class Action {
 	public void moveZombieUpOne() {
 		for(int i=0 ; i <Layout.getGameGrid().length; i++) {
 			for(int j=0; j < Layout.getGameGrid()[0].length ; j++) {
-				if(Layout.getGameGrid()[i][j] instanceof WalkingZombie) {
+				if(Layout.getGameGrid()[i][j] instanceof WalkingZombie && Layout.getGameGrid()[i][j-1] != null) {
 					Layout.getGameGrid()[i][j] = null;
 					Zombies temp = (Zombies)Layout.getGameGrid()[i][j-1];
 					if(Layout.getGameGrid()[i][0] instanceof WalkingZombie) {
@@ -71,7 +71,7 @@ public class Action {
 					if (Layout.getGameGrid()[i][j-1] instanceof ShootingPlant) {
 						plant = (ShootingPlant)(Layout.getGameGrid()[i][j]);
 						health = plant.getHealth();
-						zombie.setHealth(health - 50);
+						zombie.setHealth(health - 50);//
 						 if (plant.getHealth()<=0) {
 								Layout.getGameGrid()[i][j-1] =null; // plant dead
 								PrintGrid.stringGrid[i][j-1] = ".    ";
@@ -80,7 +80,7 @@ public class Action {
 					else if (Layout.getGameGrid()[i][j+1] instanceof ShootingPlant) {
 						plant = (Sunflower)(Layout.getGameGrid()[i][j-1]);
 						health = plant.getHealth();
-						zombie.setHealth(health - 75);
+						zombie.setHealth(health - 75);//
 						 if (plant.getHealth()<=0) {
 								Layout.getGameGrid()[i][j-1] =null; // plant dead
 								PrintGrid.stringGrid[i][j-1] = ".    ";
