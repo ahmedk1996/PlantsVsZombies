@@ -10,9 +10,11 @@ public class ShootingPlant  extends Plants{
 	
 	public ShootingPlant() {
 		super.setStringtype("F    ");
+		super.setDamage(25);
 	}
 	public ShootingPlant(int health){
 		this.health = health;
+		super.setDamage(25);
 		super.setStringtype("F    ");
 	}
 	public int getCost() {

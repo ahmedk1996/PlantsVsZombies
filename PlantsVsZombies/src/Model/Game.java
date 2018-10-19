@@ -3,29 +3,44 @@ package Model;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
-
 public class Game {
 	private Layout layout;
 	private PlantStore store;
 	private Scanner reader;
 	private wave beginwave;
-	
+	private int gameTurns = 1;
+
 	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
-		
 	}
 	
 	public void start(int gameMode) {
 		//Creating Grid 5x7
-		layout.createGrid(5,7);
-		store.purchaseStartOfGame();
-		if (gameMode ==1) {
-			beginwave = new wave(4);
-		}
-	
+		boolean gamedone = false;
+		//layout.createGrid(5,7);
+		//if (gameMode == 1) {
+		//	beginwave = new wave(4);
+		//}
 		
+		layout.setObject(3, 6, new WalkingZombie());
+		layout.placeObjectOnGrid(3,2,new ShootingPlant());
+		while(!gamedone) {
+			layout.print();
+			//store.purchaseStartOfGame();
+			Action action = new Action();
+			layout.setGameGrid(action.startAction(layout,gameTurns));
+			layout.print();
+			if(isGameOver()) {
+				gamedone = isGameOver();
+				System.out.println("GAME IS OVER!!! LOOSER");
+			}
+			if(gameClear()) {
+				gamedone = gameClear();
+				System.out.println("YOU Cleared STAGE!");
+			}
+			
+		}
 	}
 	
 	public void start(int rows, int colomns) {
@@ -47,9 +62,29 @@ public class Game {
 	public void load() {
 		
 	}
+	public Boolean isGameOver() {
+		for(int i=0 ; i <layout.getGameGrid().length; i++) {
+			if(layout.getObject(i,0) instanceof Zombies) {
+				
+				return true;
+			}
+		}
+		return false;
+	}
+	public Boolean gameClear() {
+		Boolean flag = true;
+		for(int i=0 ; i <layout.getGameGrid().length; i++) {
+			for(int j=0; j < layout.getGameGrid()[0].length ; j++) {
+				if(layout.getObject(i,j) instanceof Zombies) {
+					flag = false;
+				}
+			}
+		}
+		return flag;
+	}
 	
 	public void promptStart() {
-	try {
+	//try {
 		int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
 		System.out.println("Below is a 5x7 grid layout:");
@@ -89,10 +124,10 @@ public class Game {
 		start(gameMode);
 
 	}
-	catch(Exception Ex) {
-		System.out.println(Ex.toString());
-	}
-	}
+//	catch(Exception Ex) {
+//		System.out.println(Ex.toString());
+//	}
+//	}
 	
 
 	public int gameDifficulty() {

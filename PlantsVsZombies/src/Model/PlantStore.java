@@ -65,7 +65,6 @@ public class PlantStore {
 			setSunPoints(updatedBalance);
 			System.out.println("You have " + updatedBalance + " Sun Points left.");
 			return true;
-
 		}else {
 			System.err.println("Not Enough Sun Points!!");
 		}
@@ -136,7 +135,7 @@ public class PlantStore {
 			storeMenu(getSunPoints() , false);
 		}
 		else {
-			return;
+			//return;
 		}
 		
 

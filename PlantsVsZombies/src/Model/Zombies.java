@@ -5,7 +5,7 @@ public abstract class Zombies{
 	//private enum Type{walkingZombie};
 	
 	private String stringtype;
-	private int turn = 0;
+	private int turn; // this is initial turn.
 	private int resistant=0;	// range of the speed is 1~3, 1 is the fastest,means every turn it moves, and 3 is the slowest, every 3 turns it move one tile.
 	private int speed;
 	private int health;
@@ -14,6 +14,7 @@ public abstract class Zombies{
 	private Weapon weapon = null;
 	private Layout layout;
 	
+	/*
 	public boolean ismovable() {
 		if (turn == 0) {
 			return false;
@@ -23,7 +24,7 @@ public abstract class Zombies{
 		else 
 			return false;
 	};
-	
+	*/
 	public int attack() {
 		return this.attackDamage;
 	};

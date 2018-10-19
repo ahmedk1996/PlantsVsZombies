@@ -6,8 +6,17 @@ public abstract class Plants {
 	private int health;
 	private int cost;
 	private int sunPoints;
-	private enum plants {SHOOTER , SUNFLOWER};
+	//private enum plants {SHOOTER , SUNFLOWER};
+	private int damage;
 	
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
+	}
+
 	public String getStringtype() {
 		return stringtype;
 	}
@@ -54,7 +63,10 @@ public abstract class Plants {
 		int reducedHealth = this.health - hitpoints;
 		setHealth (reducedHealth);
 	}
-	
+	public void attacked(int damage) {
+		this.health = health - damage;
+		
+	}
 	public boolean ismovable(int turns , int speed) {
 		if (turns == 0) {
 			return false;

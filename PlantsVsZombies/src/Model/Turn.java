@@ -13,21 +13,16 @@ public class Turn {
 		layout = new Layout();
 	}
 
-	public boolean canZombieMove(Zombies z, int interval) {
-
-		if (z instanceof WalkingZombie) {
-
-			if (count % interval == 0) {
-				count++;
-			//	layout.moveZombieUpOne(z);
+	public boolean canZombieMove(Zombies z, int currentTurn) {
+		if (z instanceof Zombies) {
+			if (currentTurn % z.getSpeed() == 0) {
 				return true;
 			}
 			return false;
 		}
-
 		return false;
-
 	}
+
 
 	public boolean canZombieSpawn(Zombies z, int interval) {
 
