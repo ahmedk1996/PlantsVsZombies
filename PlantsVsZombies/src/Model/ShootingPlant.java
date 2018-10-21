@@ -11,11 +11,14 @@ public class ShootingPlant  extends Plants{
 	public ShootingPlant() {
 		super.setStringtype("F    ");
 		super.setDamage(25);
+		super.setHealth(100);
 	}
 	public ShootingPlant(int health){
 		this.health = health;
 		super.setDamage(25);
 		super.setStringtype("F    ");
+		super.setHealth(100);
+		
 	}
 	public int getCost() {
 		return cost;
@@ -31,8 +34,9 @@ public class ShootingPlant  extends Plants{
 		ShootingPlant.turn = turn;
 	}
 	public static void shooterPlantShoot() {
-		//shoot in the same row
+		// TODO Auto-generated method stub
 		
 	}
+
 
 }

@@ -39,7 +39,7 @@ public class Turn {
 		return false;
 	}
 
-	public boolean canPlantShoot(Plants p, int interval) {
+/*	public boolean canPlantShoot(Plants p, int interval) {
 
 		if (p instanceof ShootingPlant) {
 			if (count % interval == 0) {
@@ -52,7 +52,7 @@ public class Turn {
 		}
 
 		return false;
-	}
+	}*/
 
 	public boolean canSunFlowerGenerate(int count, Plants p, int interval) {
 

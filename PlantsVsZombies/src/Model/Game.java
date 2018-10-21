@@ -16,24 +16,21 @@ public class Game {
 	}
 	
 	public void start(int gameMode) {
-		//Creating Grid 5x7
 		boolean gamedone = false;
-		//layout.createGrid(5,7);
 		//if (gameMode == 1) {
 		//	beginwave = new wave(4);
 		//}
 		
-		layout.setObject(3, 6, new WalkingZombie());
-		layout.placeObjectOnGrid(3,2,new ShootingPlant());
+		layout.setObject(3, 6, new WalkingZombie());		
+		layout.print();
 		while(!gamedone) {
-			layout.print();
-			//store.purchaseStartOfGame();
+			store.purchaseStartOfGame();
 			Action action = new Action();
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 			layout.print();
 			if(isGameOver()) {
 				gamedone = isGameOver();
-				System.out.println("GAME IS OVER!!! LOOSER");
+				System.out.println("GAME IS OVER!!! LOSER");
 			}
 			if(gameClear()) {
 				gamedone = gameClear();
@@ -46,22 +43,7 @@ public class Game {
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
 	}
-	
-	public void redo() {
-		
-	}
-	
-	public void undo() {
-		
-	}
-	
-	public void save() {
-		
-	}
-	
-	public void load() {
-		
-	}
+
 	public Boolean isGameOver() {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			if(layout.getObject(i,0) instanceof Zombies) {
@@ -84,51 +66,24 @@ public class Game {
 	}
 	
 	public void promptStart() {
-	//try {
 		int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
 		System.out.println("Below is a 5x7 grid layout:");
 
-		//System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
-		//System.out.println("Enter 1 for custom and any number for defualt");
-//		int gridLayout = reader.nextInt(); 
-		
-//		if(gridLayout == 1) {
-//			reader = new Scanner(System.in);
-//		    System.out.println("Enter a grid layout for x by y (Ex: 4x4 ): ");
-//
-//		    String coordinate = reader.nextLine();
-//		    String[] parts = coordinate.split("x");
-//		    
-//		    String x_loc = parts[0].trim();
-//		    int x = Integer.parseInt(x_loc);			
-//
-//		    String y_loc = parts[1].trim();
-//		    int y = Integer.parseInt(y_loc);			
-//
-//			start(x,y);
-//			
-//		}
-//		else {
-//			start();
-//		}
+
 		if(gameMode == 1) {
-			System.out.println("Easy mode selected. Zombie types include: Walking Zombie and the Wave #: 3");
+			System.out.println("Easy mode selected. Zombie types include: ");
 		}else if(gameMode == 2){
-			System.out.println("Medium mode selected. Zombie types include: Walking Zombie and Fat Zombie and the Wave #: 4");
+			System.out.println("Medium mode selected. Zombie types include: ");
 		}
 		else if(gameMode==3){
-			System.out.println("Hard mode selected. Zombie types include: Walking Zombie, Fat Zombie and Fast Zombie and the Wave #: 5");
+			System.out.println("Hard mode selected. Zombie types include: ");
 		}
 		
 		start(gameMode);
 
 	}
-//	catch(Exception Ex) {
-//		System.out.println(Ex.toString());
-//	}
-//	}
-	
+
 
 	public int gameDifficulty() {
 		try {
@@ -161,7 +116,21 @@ public class Game {
 		//user input
 		return 0 ;
 	}
+	public void redo() {
+		
+	}
 	
+	public void undo() {
+		
+	}
+	
+	public void save() {
+		
+	}
+	
+	public void load() {
+		
+	}
 	
 	
 	public static void main(String args[]) {
@@ -177,5 +146,27 @@ public class Game {
 		
 
 	}
+	//System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
+	//System.out.println("Enter 1 for custom and any number for defualt");
+//	int gridLayout = reader.nextInt(); 
 	
+//	if(gridLayout == 1) {
+//		reader = new Scanner(System.in);
+//	    System.out.println("Enter a grid layout for x by y (Ex: 4x4 ): ");
+//
+//	    String coordinate = reader.nextLine();
+//	    String[] parts = coordinate.split("x");
+//	    
+//	    String x_loc = parts[0].trim();
+//	    int x = Integer.parseInt(x_loc);			
+//
+//	    String y_loc = parts[1].trim();
+//	    int y = Integer.parseInt(y_loc);			
+//
+//		start(x,y);
+//		
+//	}
+//	else {
+//		start();
+//	}
 }

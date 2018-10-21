@@ -16,7 +16,7 @@ public class Action {
 	public Object[][] startAction(Layout layout,int gameTurn) {
 		this.layout = layout;
 		this.currentTurn = gameTurn;
-		layout.print();
+	//	layout.print();
 		plantShoot();
 		behaveZombie();
 		if(isGameOver()) {
@@ -36,6 +36,8 @@ public class Action {
 							zombie = (Zombies) (layout.getGameGrid()[i][index]); //get instance of zombie
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
+							int healthUpdate = health - attackingPlant.getDamage();
+							System.out.println("Zombie at "+ i + " " + j + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
 								layout.getGameGrid()[i][index] =null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead." );
@@ -63,6 +65,7 @@ public class Action {
 						}
 						else if (layout.getGameGrid()[i][j-1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 							layout.setObject(i, j-1, zombieAttack((Zombies)layout.getGameGrid()[i][j],(Plants)layout.getGameGrid()[i][j-1]));
+							
 						}else {
 							System.out.println("error here");
 						}
@@ -85,11 +88,15 @@ public class Action {
 
 	public Plants zombieAttack(Zombies z, Plants p) {
 		Plants attackedPlant = p;
-		plant.attacked(z.attack()); 
-		if(plant.getHealth() <= 0) {
-			System.out.println(attackedPlant.getStringtype()+" is killed by " + z.getStringtype());
-			return null;
-		}
+			Zombies o = new WalkingZombie();
+			attackedPlant.attacked(o.attack()); 
+			System.out.println("Plant has " + attackedPlant.getHealth() + " health");
+			if(attackedPlant.getHealth() <= 0) {
+				System.out.println(attackedPlant.getStringtype()+" is killed by " + o.getStringtype());
+				return null;
+			}
+		
+		
 		return attackedPlant;
 
 		/** Zombie Attacks(zombie, Plant) - Zombie attacks plant, this function is used in behaveZombie();
@@ -112,8 +119,8 @@ public class Action {
 		}
 		return false;
 	}
-	/*
-	public static void main(String args[]) {
+	
+/*	public static void main(String args[]) {
 		Layout layout = new Layout();
 		WalkingZombie z= new WalkingZombie();
 		Plants p = new ShootingPlant();

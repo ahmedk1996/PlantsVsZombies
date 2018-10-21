@@ -32,43 +32,8 @@ public class Layout {
 		}
 	}
 
-/*	public void placePlantOnGrid(Plants p) {
-		try {
-			reader = new Scanner(System.in);  
-			System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
-			int inputX = reader.nextInt() -1;
-			int inputY = reader.nextInt() -1;
-			
-			if(gameGrid[inputX][inputY] == null) {
-				gameGrid[inputX][inputY] = p;
-				print(gameGrid);
-			}else {
-				System.out.println("There seems to be an already placed Plant here...");
-			}
-		}
-		catch(Exception ex) {
-			ex.getMessage();
-		}
-	} *
-	/*
-	public void reset() {
 
-		for(int row = 0; row < 5; row++)
-		{
 
-		    for (int column = 0; column < 7; column++)
-		    {
-		    	gameGrid[row][column] = ".    ";
-		    	System.out.print(gameGrid[row][column]);
-
-		    }
-	    System.out.println();
-	    System.out.println();
-	}
-		for (int column = 0; column < 7; column++)
-			   System.out.print((column % 10 + "    "));
-		System.out.println();
-	}*/
 	public void reset() {	
 		for(int row = 0; row < 5; row++)
 		{
@@ -96,32 +61,30 @@ public class Layout {
 	
 	public boolean placePlantOnGrid(Plants p) {
 
-		try {
+	
 			reader = new Scanner(System.in);  
 			System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
 			int inputX = reader.nextInt();
 			int inputY = reader.nextInt();
 
 			if(gameGrid[inputX][inputY] == null) {
-				if (p instanceof Plants) {
-					gameGrid[inputX][inputY] = p;
-					grid = new PrintGrid(gameGrid);
+				if (p instanceof ShootingPlant) {
+					placeObjectOnGrid(inputX,inputX,new ShootingPlant());
 				}
 				else if (p instanceof Sunflower) {
-					gameGrid[inputX][inputY] = p;
-					grid  = new PrintGrid(gameGrid);
+					placeObjectOnGrid(inputX,inputX,new Sunflower());
 				}
-			}else {
-				System.out.println("There seems to be an already placed Plant here...");
-				return false;
+				
 			}
-		}
-		catch(Exception ex) {
-			ex.getMessage();
-		}
+			
 		return true;
-	}
+				
+		
+		
+		
 	
+	
+	}
 
 	public Object getGrid() {
 		return gameGrid;

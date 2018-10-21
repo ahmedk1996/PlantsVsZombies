@@ -25,8 +25,6 @@ public abstract class Plants {
 		this.stringtype = stringtype;
 	}
 
-
-
 	public Plants(int cost , int sunPoints , int heath){
 		this.cost = cost;
 		this.sunPoints = sunPoints;
@@ -64,7 +62,7 @@ public abstract class Plants {
 		setHealth (reducedHealth);
 	}
 	public void attacked(int damage) {
-		this.health = health - damage;
+		this.health = this.health - damage;
 		
 	}
 	public boolean ismovable(int turns , int speed) {

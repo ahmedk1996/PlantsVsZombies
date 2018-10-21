@@ -17,6 +17,7 @@ public class PlantStore {
 	private wave beginWave;
 	private boolean valid;
 	private int num;
+	private Layout layout;
 	//private Layout grid;
 
 	public static int getSunPoints() {
@@ -95,17 +96,15 @@ public class PlantStore {
 		System.out.println("-----------------------------");
 
 		storePrices();
-		 num = reader.nextInt();
+		num = reader.nextInt();
 		
-		if (getSunPoints()==0) {
+		if (getSunPoints() == 0) {
 			return;
 		}
 			if (num == 1) {
-				Plants p = new ShootingPlant();
-				boolean canBuy = validatePurchase(p , sunPoints);
-				if (canBuy == true) {
-					Layout grid = new Layout();
-					valid = grid.placePlantOnGrid(p);
+				boolean canBuy = validatePurchase(new ShootingPlant() , sunPoints);
+				if (canBuy == true) {					
+					layout.placePlantOnGrid(new ShootingPlant());
 				}
 				else {
 					if (canBuy == false) { //cant buy but can buy another plant
@@ -115,11 +114,11 @@ public class PlantStore {
 			}
 		 
 			else if (num == 2) {
-				Plants p = new Sunflower();
-				boolean canBuy  = validatePurchase(p , sunPoints);	
+				
+				boolean canBuy  = validatePurchase(new Sunflower() , sunPoints);	
 				if (canBuy == true) {
-					Layout grid = new Layout();
-					grid.placePlantOnGrid(p);
+					
+					layout.placePlantOnGrid(new Sunflower());
 				
 				}
 				else {
@@ -135,7 +134,7 @@ public class PlantStore {
 			storeMenu(getSunPoints() , false);
 		}
 		else {
-			//return;
+			return;
 		}
 		
 
