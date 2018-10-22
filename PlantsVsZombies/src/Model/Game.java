@@ -22,11 +22,11 @@ public class Game {
 		//}
 		
 			
-		
-		layout.setObject(3, 6, new WalkingZombie());	
+		layout.placeObjectOnGrid(3, 6, new WalkingZombie());
+		layout.placeObjectOnGrid(3,2,new ShootingPlant());	
 		layout.print();
 		while(!gamedone) {
-			store.purchaseStartOfGame();
+			//store.purchaseStartOfGame();
 			Action action = new Action();
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 		

@@ -3,7 +3,7 @@ package Model;
 public class Action {
 
 	private Turn turn;
-	private  Layout layout;
+	private   Layout layout;
 	private Zombies zombie;
 	private Plants plant;
 	//private int count;
@@ -24,7 +24,7 @@ public class Action {
 			System.out.println("!!!!!GAME OVER!!!!!");
 			return null;
 		}else
-			return this.layout.getGameGrid();
+			return layout.getGameGrid();
 	}	
 
 	public void plantShoot() {
@@ -77,7 +77,7 @@ public class Action {
 
 		/**behaveZombie - Zombie will move or attack if it is able. 
 		 * Check List
-		 *- check front tile is empty (doesn't matter zombie reaches [i][0] because isgameover() would check everytime)
+		 *- check front tile is empty (doesn't matter zombie reaches [i][0] because isgameovesr() would check everytime)
 		 *		-check Zombie is movable
 		 *			-yes move 
 		 *- check front tile is plant

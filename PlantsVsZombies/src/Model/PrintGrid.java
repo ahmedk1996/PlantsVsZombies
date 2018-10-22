@@ -6,7 +6,7 @@ public class PrintGrid {
 	private int rows;
 	private int columns;
 	
-	public static String[][] getStringGrid() {
+	public String[][] getStringGrid() {
 		return stringGrid;
 	}
 

@@ -17,7 +17,7 @@ public class PlantStore {
 	private wave beginWave;
 	private boolean valid;
 	private int num;
-	private static Layout layout;
+	private  Layout layout;
 	//private Layout grid;
 
 	public  int getSunPoints() {

@@ -1,9 +1,9 @@
 package Model;
 import java.util.*;
 public class Layout {
-	private static Object[][] gameGrid;
+	private  Object[][] gameGrid;
 	private Scanner reader;
-	private  PrintGrid grid;
+	private PrintGrid grid;
 
 
 	// Creating Grid of [5][7] 
@@ -16,7 +16,7 @@ public class Layout {
 	}
 
 	public void setGameGrid(Object[][] gameGrid) {
-		Layout.gameGrid = gameGrid;
+		this.gameGrid = gameGrid;
 	}
 
 	public void createGrid(int x, int y) {
@@ -107,12 +107,14 @@ public class Layout {
 		return gameGrid[row][col];
 	}
 	
-	public void placeObjectOnGrid(int row,int col, Object o) {
+	public boolean placeObjectOnGrid(int row,int col, Object o) {
 		if(this.gameGrid[row][col] != null) {
 			System.out.println("There is an Object");
+			return false;
 		}else {
 			gameGrid[row][col] = o;
 		}
+		return true;
 	}
 
 
