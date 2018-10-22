@@ -101,6 +101,7 @@ public class PlantStore {
 	
 		if (getSunPoints() == 0) {
 			return;
+			
 		}
 			if (num == 1) {
 				Plants sp = new ShootingPlant(); 
