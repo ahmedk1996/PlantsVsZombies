@@ -1,10 +1,10 @@
 package Model;
 import java.util.*;
 public class Layout {
-	private Object[][] gameGrid;
+	private static Object[][] gameGrid;
 	private Scanner reader;
-	private PrintGrid grid;
-	public enum plants { S, F, empty , }
+	private  PrintGrid grid;
+
 
 	// Creating Grid of [5][7] 
 	public Layout() {
@@ -16,7 +16,7 @@ public class Layout {
 	}
 
 	public void setGameGrid(Object[][] gameGrid) {
-		this.gameGrid = gameGrid;
+		Layout.gameGrid = gameGrid;
 	}
 
 	public void createGrid(int x, int y) {
@@ -61,7 +61,7 @@ public class Layout {
 	
 	public boolean placePlantOnGrid(Plants p) {
 
-	
+	try {
 			reader = new Scanner(System.in);  
 			System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
 			int inputX = reader.nextInt();
@@ -69,15 +69,24 @@ public class Layout {
 
 			if(gameGrid[inputX][inputY] == null) {
 				if (p instanceof ShootingPlant) {
-					placeObjectOnGrid(inputX,inputX,new ShootingPlant());
+					placeObjectOnGrid(inputX,inputY,new ShootingPlant());
 				}
 				else if (p instanceof Sunflower) {
-					placeObjectOnGrid(inputX,inputX,new Sunflower());
+					placeObjectOnGrid(inputX,inputY,new Sunflower());
 				}
 				
 			}
+			//grid = new PrintGrid(gameGrid);
+			print();
 			
-		return true;
+	}
+	catch(ArrayIndexOutOfBoundsException exception) {
+		System.out.println("Can't place on the grid");
+
+		
+	}
+	return true;
+
 				
 		
 		

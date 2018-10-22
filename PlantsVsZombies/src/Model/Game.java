@@ -21,13 +21,15 @@ public class Game {
 		//	beginwave = new wave(4);
 		//}
 		
-		layout.setObject(3, 6, new WalkingZombie());		
+			
+		
+		layout.setObject(3, 6, new WalkingZombie());	
 		layout.print();
 		while(!gamedone) {
 			store.purchaseStartOfGame();
 			Action action = new Action();
 			layout.setGameGrid(action.startAction(layout,gameTurns));
-			layout.print();
+		
 			if(isGameOver()) {
 				gamedone = isGameOver();
 				System.out.println("GAME IS OVER!!! LOSER");
@@ -36,7 +38,7 @@ public class Game {
 				gamedone = gameClear();
 				System.out.println("YOU Cleared STAGE!");
 			}
-			
+			layout.print();
 		}
 	}
 	

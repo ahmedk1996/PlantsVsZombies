@@ -3,7 +3,7 @@ package Model;
 public class Action {
 
 	private Turn turn;
-	private Layout layout;
+	private  Layout layout;
 	private Zombies zombie;
 	private Plants plant;
 	//private int count;
@@ -19,6 +19,7 @@ public class Action {
 	//	layout.print();
 		plantShoot();
 		behaveZombie();
+		layout.print();
 		if(isGameOver()) {
 			System.out.println("!!!!!GAME OVER!!!!!");
 			return null;
@@ -37,7 +38,7 @@ public class Action {
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
 							int healthUpdate = health - attackingPlant.getDamage();
-							System.out.println("Zombie at "+ i + " " + j + " " + "has " + healthUpdate + " health");
+							System.out.println("Plant at "+ i + " " + j + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
 								layout.getGameGrid()[i][index] =null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead." );

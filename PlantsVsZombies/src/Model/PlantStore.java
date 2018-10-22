@@ -8,7 +8,7 @@ public class PlantStore {
 
 	private Plants price;
 	private int currentBalance;
-	private static int sunPoints;
+	private  int sunPoints;
 	private Scanner reader;
 
 	private final int  peaShooterCost = 100;
@@ -17,15 +17,15 @@ public class PlantStore {
 	private wave beginWave;
 	private boolean valid;
 	private int num;
-	private Layout layout;
+	private static Layout layout;
 	//private Layout grid;
 
-	public static int getSunPoints() {
+	public  int getSunPoints() {
 		return sunPoints;
 	}
 
-	public static void setSunPoints(int sunPoints) {
-		PlantStore.sunPoints = sunPoints;
+	public  void setSunPoints(int sunPoints) {
+		this.sunPoints = sunPoints;
 	}
 
 	public int getPeaShooterCost() {
@@ -40,7 +40,7 @@ public class PlantStore {
 
 	public PlantStore() {
 		reader = new Scanner(System.in); 
-		
+		layout = new Layout();
 	}
 
 	public int getCurrentBalance() {
@@ -97,16 +97,25 @@ public class PlantStore {
 
 		storePrices();
 		num = reader.nextInt();
-		
+	
 		if (getSunPoints() == 0) {
 			return;
 		}
 			if (num == 1) {
-				boolean canBuy = validatePurchase(new ShootingPlant() , sunPoints);
-				if (canBuy == true) {					
-					layout.placePlantOnGrid(new ShootingPlant());
+				Plants sp = new ShootingPlant(); 
+				boolean canBuy = validatePurchase(sp , sunPoints);
+				
+				if (canBuy == true) {	
+					
+					layout.placePlantOnGrid(sp);
 				}
 				else {
+					System.out.println("To Start the wave, enter 0");
+					System.out.println();
+					num = reader.nextInt();
+					if (num== 0) {
+						return;
+					}
 					if (canBuy == false) { //cant buy but can buy another plant
 						storeMenu(getSunPoints(), false);
 					}
@@ -114,19 +123,27 @@ public class PlantStore {
 			}
 		 
 			else if (num == 2) {
-				
-				boolean canBuy  = validatePurchase(new Sunflower() , sunPoints);	
+				Plants sf = new Sunflower();
+				boolean canBuy  = validatePurchase(sf , sunPoints);	
 				if (canBuy == true) {
 					
-					layout.placePlantOnGrid(new Sunflower());
+					layout.placePlantOnGrid(sf);
+					
 				
 				}
 				else {
 					if (canBuy == false) {
+						System.out.println("To Start the wave, enter 0 ");
+						System.out.println();
+						num = reader.nextInt();
+						if (num== 0) {
+							return;
+						}
 						storeMenu(getSunPoints(), false);
 					}
 				}
 			}
+
 		
 		System.out.println("Would you like to make another purchase?");
 		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
