@@ -6,6 +6,7 @@ public abstract class Plants {
 	private int health;
 	private int cost;
 	private int sunPoints;
+	private int speed;
 	//private enum plants {SHOOTER , SUNFLOWER};
 	private int damage;
 	
@@ -75,6 +76,12 @@ public abstract class Plants {
 			return false;
 	}
 
+	public int getSpeed() {
+		return speed;
+	}
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
 
 	
 

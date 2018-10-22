@@ -17,7 +17,7 @@ public class PlantStore {
 	private wave beginWave;
 	private boolean valid;
 	private int num;
-	private  Layout layout;
+
 	//private Layout grid;
 
 	public  int getSunPoints() {
@@ -40,7 +40,7 @@ public class PlantStore {
 
 	public PlantStore() {
 		reader = new Scanner(System.in); 
-		layout = new Layout();
+	
 	}
 
 	public int getCurrentBalance() {
@@ -67,7 +67,7 @@ public class PlantStore {
 			System.out.println("You have " + updatedBalance + " Sun Points left.");
 			return true;
 		}else {
-			System.err.println("Not Enough Sun Points!!");
+			System.out.println("Not Enough Sun Points!!");
 		}
 		return false;
 	}
@@ -88,11 +88,12 @@ public class PlantStore {
 
 	}
 	
-	public void storeMenu(int sunPoints , boolean startOfGame) {
+	public void storeMenu(int sunPoints , boolean startOfGame , Layout layout) {
 		
 		System.out.println("You have " + getSunPoints() + " SunPoints.");
 		System.out.println("To purchase a PeaShooter Plant, enter 1.");
 		System.out.println("To purchase a SunFlower Plant, enter 2.");
+		System.out.println("To Continue the wave, enter 0");
 		System.out.println("-----------------------------");
 
 		storePrices();
@@ -110,14 +111,14 @@ public class PlantStore {
 					layout.placePlantOnGrid(sp);
 				}
 				else {
-					System.out.println("To Start the wave, enter 0");
+					System.out.println("To Start the wave, enter 0.");
 					System.out.println();
 					num = reader.nextInt();
 					if (num== 0) {
 						return;
 					}
 					if (canBuy == false) { //cant buy but can buy another plant
-						storeMenu(getSunPoints(), false);
+						storeMenu(getSunPoints(), false , layout);
 					}
 				}
 			}
@@ -131,24 +132,20 @@ public class PlantStore {
 					
 				
 				}
-				else {
-					if (canBuy == false) {
-						System.out.println("To Start the wave, enter 0 ");
-						System.out.println();
-						num = reader.nextInt();
-						if (num== 0) {
-							return;
-						}
-						storeMenu(getSunPoints(), false);
-					}
+				else if (num ==0) {
+					return;
 				}
 			}
-
+			
+			if (getSunPoints() == 0) {
+				return;
+			}
+			// error handling
 		
 		System.out.println("Would you like to make another purchase?");
 		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
 		if (reader.nextInt() == 1) {
-			storeMenu(getSunPoints() , false);
+			storeMenu(getSunPoints() , false , layout);
 		}
 		else {
 			return;
@@ -160,14 +157,21 @@ public class PlantStore {
 	}
 
 
-	public void purchaseStartOfGame() {
-		hasGameStarted = true;
-		sunPoints = 150;
-		System.out.println("");
-		System.out.println("You have " + sunPoints + " points to start with!.");
-		System.out.println("Spend wisely.....");
-		storeMenu(sunPoints , hasGameStarted);
-
+	public void purchaseStartOfGame(Layout layout , boolean start) {
+		if (start == true) {
+			hasGameStarted = true;
+			sunPoints = 150;
+			System.out.println("");
+			System.out.println("You have " + sunPoints + " points to start with!");
+			System.out.println("Spend wisely.....");
+			storeMenu(sunPoints , hasGameStarted , layout);
+		}
+		else {
+			storeMenu(getSunPoints() , hasGameStarted , layout);
+		}
+		
+	
+		
 
 	}
 

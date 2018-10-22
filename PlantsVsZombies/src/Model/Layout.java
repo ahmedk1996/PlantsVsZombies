@@ -1,5 +1,7 @@
 package Model;
 import java.util.*;
+import java.util.Random;
+
 public class Layout {
 	private  Object[][] gameGrid;
 	private Scanner reader;
@@ -50,16 +52,18 @@ public class Layout {
 		grid = new PrintGrid(gameGrid);
 	}
 	 
-	public void placeSpawnZombieOnGrid(Zombies z, int randRow) {
-		if(gameGrid[randRow][6] == null) {
-				gameGrid[randRow][6] = z;
-				grid = new PrintGrid(gameGrid);
-		}	
+	public void placeSpawnZombieOnGrid(Layout layout) {
+		int random = (int)(Math.random() * 4 + 1);
+		if (layout.gameGrid[random][6] == null) {
+			placeObjectOnGrid(random, 6, new WalkingZombie());
+		}
+		return;
+		
 	}
 	
 
 	
-	public boolean placePlantOnGrid(Plants p) {
+	public boolean placePlantOnGrid(Plants p ) {
 
 	try {
 			reader = new Scanner(System.in);  
@@ -69,15 +73,14 @@ public class Layout {
 
 			if(gameGrid[inputX][inputY] == null) {
 				if (p instanceof ShootingPlant) {
-					placeObjectOnGrid(inputX,inputY,new ShootingPlant());
+					placeObjectOnGrid(inputX , inputY, new ShootingPlant());
 				}
 				else if (p instanceof Sunflower) {
-					placeObjectOnGrid(inputX,inputY,new Sunflower());
+					placeObjectOnGrid(inputX, inputY, new Sunflower());
 				}
 				
 			}
-			//grid = new PrintGrid(gameGrid);
-			print();
+			this.print();
 			
 	}
 	catch(ArrayIndexOutOfBoundsException exception) {

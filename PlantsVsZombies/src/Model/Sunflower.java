@@ -9,6 +9,7 @@ public class Sunflower extends Plants {
 	public Sunflower(){
 		super.setStringtype("S    ");
 		super.setHealth(100);
+		super.setSpeed(1);
 	}
 	public Sunflower(int cost , int sunPoints, int health ){
 		super(cost, sunPoints, health);

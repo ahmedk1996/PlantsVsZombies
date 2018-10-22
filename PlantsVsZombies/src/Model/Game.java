@@ -9,24 +9,26 @@ public class Game {
 	private Scanner reader;
 	private wave beginwave;
 	private int gameTurns = 1;
+	private int zombieCounter;
 
 	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
+		zombieCounter = 0;
 	}
 	
 	public void start(int gameMode) {
+	
 		boolean gamedone = false;
-		//if (gameMode == 1) {
-		//	beginwave = new wave(4);
-		//}
-		
-			
-		layout.placeObjectOnGrid(3, 6, new WalkingZombie());
-		layout.placeObjectOnGrid(3,2,new ShootingPlant());	
+		layout.placeSpawnZombieOnGrid(layout);
 		layout.print();
-		while(!gamedone) {
-			//store.purchaseStartOfGame();
+		store.purchaseStartOfGame(layout , true);
+		
+		while(!gamedone && zombieCounter!=1) {
+			layout.placeSpawnZombieOnGrid(layout);
+			zombieCounter--;
+			layout.print();
+			store.purchaseStartOfGame(layout , false);
 			Action action = new Action();
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 		
@@ -42,6 +44,8 @@ public class Game {
 		}
 	}
 	
+	
+
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
 	}
@@ -49,7 +53,6 @@ public class Game {
 	public Boolean isGameOver() {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			if(layout.getObject(i,0) instanceof Zombies) {
-				
 				return true;
 			}
 		}
@@ -74,16 +77,18 @@ public class Game {
 
 
 		if(gameMode == 1) {
-			System.out.println("Easy mode selected. Zombie types include: ");
+			System.out.println("Easy mode selected. Zombie types include: Walking Zombies. Move up 1 tile each time ");
+			zombieCounter = 4;
 		}else if(gameMode == 2){
 			System.out.println("Medium mode selected. Zombie types include: ");
+			zombieCounter =6;
 		}
 		else if(gameMode==3){
 			System.out.println("Hard mode selected. Zombie types include: ");
+			zombieCounter = 8;
 		}
 		
 		start(gameMode);
-
 	}
 
 
