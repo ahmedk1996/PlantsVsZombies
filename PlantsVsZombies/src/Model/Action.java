@@ -6,11 +6,12 @@ public class Action {
 	private Layout layout;
 	private Zombies zombie;
 	private Plants plant;
-	//private int count;
 	private int health;
 	private int currentTurn;
+	private PlantStore store;
 
-	public Action() {
+	public Action(PlantStore store) {
+		this.store = store;
 	}
 
 	public Object[][] startAction(Layout layout,int gameTurn) {
@@ -29,31 +30,36 @@ public class Action {
 	}	
 
 	public void plantShoot() {
+		turn = new Turn();
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			for(int j=0; j < layout.getGameGrid()[0].length ; j++) {
-				if(layout.getGameGrid()[i][j] instanceof ShootingPlant) { //search if plant is a shooter
-					for (int index =0 ; index<layout.getGameGrid()[i].length; index++) { // iterate through that plant shooter's row to find a zombie
-						if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
-							ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the attack damage of the plant
-							zombie = (Zombies) (layout.getGameGrid()[i][index]); //get instance of zombie
-							health = zombie.getHealth();
-							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
-							int healthUpdate = health - attackingPlant.getDamage();
-							System.out.println("Zombie at "+ i + " " + j + " " + "has " + healthUpdate + " health");
-							if (zombie.getHealth() <= 0) {
-								layout.getGameGrid()[i][index] =null; // zombie dead
-								System.out.println(zombie.getStringtype() + "is dead." );
+				if (layout.getGameGrid()[i][j] instanceof Sunflower) {
+					Plants temp = (Plants)layout.getGameGrid()[i][j];
+					turn.canSunFlowerGenerate(currentTurn, temp , store);
+					if(layout.getGameGrid()[i][j] instanceof ShootingPlant) { //search if plant is a shooter
+						for (int index =0 ; index<layout.getGameGrid()[i].length; index++) { // iterate through that plant shooter's row to find a zombie
+							if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
+								ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the attack damage of the plant
+								zombie = (Zombies) (layout.getGameGrid()[i][index]); //get instance of zombie
+								health = zombie.getHealth();
+								zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
+								int healthUpdate = health - attackingPlant.getDamage();
+								System.out.println("Zombie at "+ i + " " + j + " " + "has " + healthUpdate + " health");
+								if (zombie.getHealth() <= 0) {
+									layout.getGameGrid()[i][index] =null; // zombie dead
+									System.out.println(zombie.getStringtype() + "is dead." );
+								}
 							}
-						}
-					}						 
-				}
+						}						 
+					}
+				}	
 			}
 		}
 	}
 
 
 	public void behaveZombie() {
-		Turn turn = new Turn();
+		turn = new Turn();
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			for(int j=1; j < layout.getGameGrid()[0].length ; j++) { // J starts at 1 because if it is 0, it will get error. 
 				if(layout.getGameGrid()[i][j] instanceof Zombies){ // checking that is Zombie class

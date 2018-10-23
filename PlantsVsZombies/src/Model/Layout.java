@@ -6,6 +6,8 @@ public class Layout {
 	private  Object[][] gameGrid;
 	private Scanner reader;
 	private PrintGrid grid;
+	private int max;
+	private int min;
 
 
 	// Creating Grid of [5][7] 
@@ -58,7 +60,6 @@ public class Layout {
 			placeObjectOnGrid(random, 6, new WalkingZombie());
 		}
 		return;
-		
 	}
 	
 

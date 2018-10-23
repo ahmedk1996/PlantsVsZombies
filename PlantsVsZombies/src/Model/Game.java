@@ -24,12 +24,12 @@ public class Game {
 		layout.print();
 		store.purchaseStartOfGame(layout , true);
 		
-		while(!gamedone && zombieCounter!=1) {
+		while(gamedone == false) {
 			layout.placeSpawnZombieOnGrid(layout);
 			zombieCounter--;
 			layout.print();
 			store.purchaseStartOfGame(layout , false);
-			Action action = new Action();
+			Action action = new Action(store);
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 		
 			if(isGameOver()) {
@@ -44,8 +44,6 @@ public class Game {
 		}
 	}
 	
-	
-
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
 	}

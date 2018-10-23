@@ -1,24 +1,18 @@
 package Model;
 
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
+
+
 import java.util.Scanner;
 
 public class PlantStore {
 
 	private Plants price;
-	private int currentBalance;
 	private  int sunPoints;
 	private Scanner reader;
-
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
-	private wave beginWave;
-	private boolean valid;
 	private int num;
-
-	//private Layout grid;
 
 	public  int getSunPoints() {
 		return sunPoints;
@@ -36,19 +30,15 @@ public class PlantStore {
 		return sunFlowerCost;
 	}
 
+	public void incrementSunPoints() {
 
+		sunPoints = sunPoints+50;
+		setSunPoints(sunPoints);
+	}
 
 	public PlantStore() {
 		reader = new Scanner(System.in); 
 	
-	}
-
-	public int getCurrentBalance() {
-		return currentBalance;
-	}
-
-	public void setCurrentBalance(int currentBalance) {
-		this.currentBalance = currentBalance;
 	}
 
 	public Plants getPrice() {
@@ -64,7 +54,7 @@ public class PlantStore {
 		if((currentBalance - plant.getCost()) >= 0)  {
 			int updatedBalance = currentBalance - plant.getCost();
 			setSunPoints(updatedBalance);
-			System.out.println("You have " + updatedBalance + " Sun Points left.");
+			System.out.println("Sun Points: " + updatedBalance);
 			return true;
 		}else {
 			System.out.println("Not Enough Sun Points!!");
@@ -72,56 +62,38 @@ public class PlantStore {
 		return false;
 	}
 
-	/*	public boolean endOfWave(Game game) {
-
-		if (game.getCompleteWave() == true) {
-			return true;
-		}else {
-			return false;
-		}
-	}*/
 	
 	public void storePrices() {
 		System.out.println("-----------------------------");
 		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
 		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
+		System.out.println("To purchase a PeaShooter Plant, enter 1.");
+		System.out.println("To purchase a SunFlower Plant, enter 2.");
+		System.out.println("To Continue the wave, enter 0.");
+		System.out.println("-----------------------------");
 
 	}
 	
 	public void storeMenu(int sunPoints , boolean startOfGame , Layout layout) {
 		
 		System.out.println("You have " + getSunPoints() + " SunPoints.");
-		System.out.println("To purchase a PeaShooter Plant, enter 1.");
-		System.out.println("To purchase a SunFlower Plant, enter 2.");
-		System.out.println("To Continue the wave, enter 0");
-		System.out.println("-----------------------------");
-
-		storePrices();
-		num = reader.nextInt();
-	
 		if (getSunPoints() == 0) {
 			return;
-			
 		}
+	
+		storePrices();
+		num = reader.nextInt();
 			if (num == 1) {
 				Plants sp = new ShootingPlant(); 
 				boolean canBuy = validatePurchase(sp , sunPoints);
-				
 				if (canBuy == true) {	
 					
 					layout.placePlantOnGrid(sp);
 				}
-				else {
-					System.out.println("To Start the wave, enter 0.");
-					System.out.println();
-					num = reader.nextInt();
-					if (num== 0) {
-						return;
-					}
-					if (canBuy == false) { //cant buy but can buy another plant
+				else if (canBuy == false) { //cant buy but can buy another plant
 						storeMenu(getSunPoints(), false , layout);
-					}
 				}
+				
 			}
 		 
 			else if (num == 2) {
@@ -130,17 +102,13 @@ public class PlantStore {
 				if (canBuy == true) {
 					
 					layout.placePlantOnGrid(sf);
-					
-				
 				}
-				else if (num ==0) {
-					return;
-				}
+		
 			}
-			
-			if (getSunPoints() == 0) {
+			else if (num ==0) {
 				return;
 			}
+			
 			// error handling
 		
 		System.out.println("Would you like to make another purchase?");
