@@ -17,10 +17,6 @@ public class wave {
 	
 	public Layout startWave() {
 		Zombies walkingZombie = new WalkingZombie();
-		//other type of zombies
-		//zombieList.add(walkingZombie);
-		//add other zombies
-		//int index = ThreadLocalRandom.current().nextInt(zombieList.size());
 		spawnZombies(walkingZombie);
 		return layout;
 	}

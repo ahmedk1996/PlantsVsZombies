@@ -121,6 +121,7 @@ public class PlantStore {
 		if (reader.nextInt() == 1) {
 			storeMenu(getSunPoints() , false , layout);
 		}
+		
 		else {
 			return;
 		}
