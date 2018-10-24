@@ -7,7 +7,6 @@ public class Game {
 	private Layout layout;
 	private PlantStore store;
 	private Scanner reader;
-	private wave beginwave;
 	private int gameTurns = 1;
 	private int zombieCounter;
 
@@ -36,14 +35,12 @@ public class Game {
 			Action action = new Action(store);
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 		
-			if(isGameOver()) {
-				gamedone = isGameOver();
+			/*if(action.isGameOver(layout)) {
 				System.out.println("GAME IS OVER!!! LOSER");
-			}
-			if(gameClear()) {
-				gamedone = gameClear();
+			}*/
+			/*if(gameClear(layout)) {
 				System.out.println("YOU Cleared STAGE!");
-			}
+			}*/
 			layout.print();
 		}
 	}
@@ -52,15 +49,21 @@ public class Game {
 		layout.createGrid(rows, colomns);
 	}
 
-	public Boolean isGameOver() {
+	/*public Boolean isGameOver(Layout layout) {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			if(layout.getObject(i,0) instanceof Zombies) {
 				return true;
 			}
+		for(int i=0 ; i <layout.getGameGrid().length; i++) {
+			if (layout.getObject(i,1) instanceof Zombies ) {
+				return true;
+			}
 		}
+	
+		
 		return false;
-	}
-	public Boolean gameClear() {
+	}*/
+	public Boolean gameClear(Layout layout) {
 		Boolean flag = true;
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
 			for(int j=0; j < layout.getGameGrid()[0].length ; j++) {

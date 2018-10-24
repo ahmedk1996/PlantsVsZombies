@@ -24,15 +24,18 @@ public class Action {
 	public Object[][] startAction(Layout layout,int gameTurn) {
 		this.layout = layout;
 		this.currentTurn = gameTurn;
-		behaveZombie();
 		plantShoot();
-		
+		behaveZombie();
 		layout.print();
-		if(isGameOver()) {
+		if(isGameOver(layout)) {
 			System.out.println("!!!!!GAME OVER!!!!!");
-			return null;
-		}else
+			System.exit(0);
 			return layout.getGameGrid();
+		}
+			
+		else {
+			return layout.getGameGrid();
+		}
 	}	
 
 	/**
@@ -48,6 +51,7 @@ public class Action {
 				if (layout.getGameGrid()[i][j] instanceof Sunflower) {
 					Plants temp = (Plants)layout.getGameGrid()[i][j];
 					turn.canSunFlowerGenerate(currentTurn, temp , store);
+				}
 					if(layout.getGameGrid()[i][j] instanceof ShootingPlant) { //search if plant is a shooter
 						for (int index =0 ; index<layout.getGameGrid()[i].length; index++) { // iterate through that plant shooter's row to find a zombie
 							if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
@@ -64,7 +68,7 @@ public class Action {
 							}
 						}						 
 					}
-				}	
+					
 			}
 		}
 	}
@@ -157,9 +161,9 @@ public class Action {
 	 * @param  None
 	 * @return  Boolean
 	 */
-	public Boolean isGameOver() {
+	public Boolean isGameOver(Layout layout) {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			if(layout.getObject(i,1) instanceof Zombies) {
+			if(layout.getObject(i,0) instanceof Zombies) {
 				return true;
 			}
 		}
