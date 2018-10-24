@@ -109,7 +109,12 @@ public class PlantStore {
 				return;
 			}
 			
-			// error handling
+			else if( num < 0 || num > 2) {
+				System.out.println("Sorry but the value you entered was invalid");
+
+			}
+			
+			
 		
 		System.out.println("Would you like to make another purchase?");
 		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");

@@ -20,12 +20,16 @@ public class Game {
 	public void start(int gameMode) {
 	
 		boolean gamedone = false;
+		if(!(zombieCounter <=1)) {
 		layout.placeSpawnZombieOnGrid(layout);
+		}
 		layout.print();
 		store.purchaseStartOfGame(layout , true);
 		
 		while(gamedone == false) {
-			layout.placeSpawnZombieOnGrid(layout);
+			if(!(zombieCounter <= 1)) {
+				layout.placeSpawnZombieOnGrid(layout);
+				}
 			zombieCounter--;
 			layout.print();
 			store.purchaseStartOfGame(layout , false);
@@ -86,6 +90,7 @@ public class Game {
 			zombieCounter = 8;
 		}
 		
+		
 		start(gameMode);
 	}
 
@@ -109,10 +114,12 @@ public class Game {
 		else if(mode == 3) {
 			return 3;
 		}
+
 		else {
 			System.out.println("Please make a selection to proceed.");
 			gameDifficulty();
 		}
+		
 		
 		}
 		catch (InputMismatchException e ) {
@@ -142,36 +149,11 @@ public class Game {
 		
 		Layout layout = new Layout();
 		PlantStore store = new PlantStore();
-		//wave beginWave = new wave(1);
+		// We will test wave by after using beginWave = new wave(1);
 		Game game = new Game(layout, store);
 		
 		game.promptStart();
-		
-
-		
 
 	}
-	//System.out.println("Would you like to create a custom grid layout or continue with the default (5x7)? :");
-	//System.out.println("Enter 1 for custom and any number for defualt");
-//	int gridLayout = reader.nextInt(); 
-	
-//	if(gridLayout == 1) {
-//		reader = new Scanner(System.in);
-//	    System.out.println("Enter a grid layout for x by y (Ex: 4x4 ): ");
-//
-//	    String coordinate = reader.nextLine();
-//	    String[] parts = coordinate.split("x");
-//	    
-//	    String x_loc = parts[0].trim();
-//	    int x = Integer.parseInt(x_loc);			
-//
-//	    String y_loc = parts[1].trim();
-//	    int y = Integer.parseInt(y_loc);			
-//
-//		start(x,y);
-//		
-//	}
-//	else {
-//		start();
-//	}
+
 }

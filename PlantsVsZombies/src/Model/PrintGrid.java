@@ -62,25 +62,6 @@ public class PrintGrid {
 	}
 
 
-
-	
-	
-	private void gameOver() {
-		// TODO Auto-generated method stub
-		
-	}
-
-/*	public static void main(String args[]) {
-		Object [][] gameGrid = new Object[5][7];
-		
-		gameGrid[1][6] = new WalkingZombie(); 
-		gameGrid[2][6] = new WalkingZombie();
-		
-		gameGrid[2][1] = new ShootingPlant();
-		gameGrid[3][1] = new Sunflower();
-		
-		PrintGrid temp = new PrintGrid(gameGrid);
-	}*/
 	}
 	
 

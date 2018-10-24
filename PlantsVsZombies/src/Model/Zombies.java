@@ -2,7 +2,6 @@ package Model;
 
 public abstract class Zombies{
 	
-	//private enum Type{walkingZombie};
 	
 	private String stringtype;
 	private int turn; // this is initial turn.
@@ -12,19 +11,8 @@ public abstract class Zombies{
 	private int attackDamage;
 	private boolean alive = true;
 	private Weapon weapon = null;
-	private Layout layout;
 	
-	/*
-	public boolean ismovable() {
-		if (turn == 0) {
-			return false;
-		}
-		if ((turn%speed) == 0)
-			return true;
-		else 
-			return false;
-	};
-	*/
+	
 	public int attack() {
 		return this.attackDamage;
 	};

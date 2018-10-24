@@ -7,7 +7,6 @@ public abstract class Plants {
 	private int cost;
 	private int sunPoints;
 	private int speed;
-	//private enum plants {SHOOTER , SUNFLOWER};
 	private int damage;
 	
 	public int getDamage() {

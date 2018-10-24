@@ -13,11 +13,18 @@ public class Action {
 	public Action(PlantStore store) {
 		this.store = store;
 	}
-
+	
+	
+	/**
+	 * startAction which handles results of the plants, zombies and game.
+	 *
+	 * @param  layout  layout of the game
+	 * @param  gameTurn the current turn
+	 * @return      result of the game
+	 */
 	public Object[][] startAction(Layout layout,int gameTurn) {
 		this.layout = layout;
 		this.currentTurn = gameTurn;
-	//	layout.print();
 		behaveZombie();
 		plantShoot();
 		
@@ -29,6 +36,12 @@ public class Action {
 			return layout.getGameGrid();
 	}	
 
+	/**
+	 * plantShoot which handles the shooting plants abilities.
+	 *
+	 * @param None
+	 * @return None
+	 */
 	public void plantShoot() {
 		turn = new Turn();
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
@@ -58,6 +71,19 @@ public class Action {
 	}
 
 
+	/** behaveZombie - Zombie will move or attack if it is able. 
+	* Check List
+	*- check front tile is empty (doesn't matter zombie reaches [i][0] because isgameovesr() would check everytime)
+	*		-check Zombie is movable
+	*			-yes move 
+	*- check front tile is plant
+	*		-check Zombie is movable
+	*			-yes attack 
+ 	*				- invoke ZombieAttack(), replace Plant object to returned plant 	 *
+ 	* @param  None
+ 	* @return None
+ 	* 
+ 	*/
 	public void behaveZombie() {
 		turn = new Turn();
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
@@ -69,7 +95,7 @@ public class Action {
 							layout.setObject(i, j, null); // empty the previous spot
 							layout.placeObjectOnGrid(i, j-1, temp);	//place zombie
 						}else if (layout.getGameGrid()[i][j-1] instanceof Zombies) { // later we can pile up 2 zombies
-							System.out.print("There is a Zombie in front of");
+							System.out.println("There is a Zombie in front of");
 						}
 						else if (layout.getGameGrid()[i][j-1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 							layout.setObject(i, j-1, zombieAttack((Zombies)layout.getGameGrid()[i][j],(Plants)layout.getGameGrid()[i][j-1]));
@@ -82,18 +108,23 @@ public class Action {
 			}
 		}
 
-		/**behaveZombie - Zombie will move or attack if it is able. 
-		 * Check List
-		 *- check front tile is empty (doesn't matter zombie reaches [i][0] because isgameovesr() would check everytime)
-		 *		-check Zombie is movable
-		 *			-yes move 
-		 *- check front tile is plant
-		 *		-check Zombie is movable
-		 *			-yes attack 
-		 *				- invoke ZombieAttack(), replace Plant object to returned plant 
-		 */
+
+	
 	}
 
+	
+	
+	/** Zombie Attacks(zombie, Plant) - Zombie attacks plant, this function is used in behaveZombie();
+		 * - zombie Attack p
+		 * - check Plant health <= 0 
+		 * 		- yes; return null; 
+		 * 		- no ; return attackedplant;
+	 *
+	 * @param  z  an absolute URL giving the base location of the image
+	 * @param  p the location of the image, relative to the url argument
+	 * @return      the image at the specified URL
+	 * @see         Image
+	 */
 	public Plants zombieAttack(Zombies z, Plants p) {
 		Plants attackedPlant = p;
 			Zombies o = new WalkingZombie();
@@ -106,36 +137,54 @@ public class Action {
 		
 		
 		return attackedPlant;
-
-		/** Zombie Attacks(zombie, Plant) - Zombie attacks plant, this function is used in behaveZombie();
-		 * - zombie Attack p
-		 * - check Plant health <= 0 
-		 * 		- yes; return null; 
-		 * 		- no ; return attackedplant;
-		 */
 	}
 
+	
+	
+	/**
+	 * Returns an Image object that can then be painted on the screen. 
+	 * The url argument must specify an absolute {@link URL}. The name
+	 * argument is a specifier that is relative to the url argument. 
+	 * <p>
+	 * This method always returns immediately, whether or not the 
+	 * image exists. When this applet attempts to draw the image on
+	 * the screen, the data will be loaded. The graphics primitives 
+	 * that draw the image will incrementally paint on the screen. 
+	 *
+	 * @param  url  an absolute URL giving the base location of the image
+	 * @param  name the location of the image, relative to the url argument
+	 * @return      the image at the specified URL
+	 * @see         Image
+	 */
 	public void increamentTurn() {
 		this.currentTurn++;
 	}
 
+	
+	
+	/**
+	 * Returns an Image object that can then be painted on the screen. 
+	 * The url argument must specify an absolute {@link URL}. The name
+	 * argument is a specifier that is relative to the url argument. 
+	 * <p>
+	 * This method always returns immediately, whether or not the 
+	 * image exists. When this applet attempts to draw the image on
+	 * the screen, the data will be loaded. The graphics primitives 
+	 * that draw the image will incrementally paint on the screen. 
+	 *
+	 * @param  url  an absolute URL giving the base location of the image
+	 * @param  name the location of the image, relative to the url argument
+	 * @return      the image at the specified URL
+	 * @see         Image
+	 */
 	public Boolean isGameOver() {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			if(layout.getObject(i,0) instanceof Zombies) {
+			if(layout.getObject(i,1) instanceof Zombies) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-/*	public static void main(String args[]) {
-		Layout layout = new Layout();
-		WalkingZombie z= new WalkingZombie();
-		Plants p = new ShootingPlant();
-		layout.placeObjectOnGrid(3, 6, z);
-		layout.placeObjectOnGrid(3, 1, p);
-		Action ac = new Action();
-		layout = ac.startAction(layout, 0);
-		
-	}*/
+
 }

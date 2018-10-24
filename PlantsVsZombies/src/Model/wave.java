@@ -5,7 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class wave {
-
+	private int count = 0;
 	private ArrayList<Zombies> zombieList;
 	int place;
 	private Layout layout;
@@ -45,8 +45,6 @@ public class wave {
 		
 		place = getRandomNumberInRange(0,4);
 		layout.placeZombieOnGrid(zombie, place);
-//		if(layout.getGrid().equals(" - ") && layout.getGrid(){
-//		}
 	}
 	
 	
