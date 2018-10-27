@@ -1,5 +1,7 @@
 Plants vs Zombies: The Puzzle!
+
 SYSC 3110 - Project Iteration 1
+
 Version: 1.0
 
 Author(s) 
