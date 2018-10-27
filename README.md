@@ -4,7 +4,7 @@ SYSC 3110 - Project Iteration 1
 
 Version: 1.0
 
-Author(s) 
+Author(s):
 - Aly Khan Barolia
 - Ahmed Khattab
 - Hun Ho
@@ -29,7 +29,7 @@ Included Files:
 - wave.java
 - Complete UML diagram (Image file)
 
-Execution/Termination Instructions
+Execution/Termination Instructions:
 Create a project on a desired IDE and import the project. Go to Game.java and select dropdown menu near the run icon. Then choose Run as Java Application and follow the prompts on the console.
  
 	
