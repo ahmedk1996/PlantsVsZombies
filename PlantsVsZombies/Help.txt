@@ -1,0 +1,27 @@
+		Help - How to play Plants Vs Zombies.
+ 
+--------------------------------------------------------------------
+	The goal of this game is to defense from the zombies.
+
+Each Difficulty contains different numbers and type of zombies 
+
+Sun-point is the virtual Money to purchase the plants in the store. 
+
+
+Each wave, 
+One Zombie is randomly spawned in the board.
+The user purchases the plants according to your own Strategies.
+
+
+The user gets 50 Sun-points. 
+
+
+Once the user purchases the plants, 
+
+the user can place the plants on the board by typing row and column.
+
+
+
+			Good Luck!! 
+
+--------------------------------------------------------------------
