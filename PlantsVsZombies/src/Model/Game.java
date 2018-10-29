@@ -94,11 +94,7 @@ public class Game {
 			System.out.println("Hard mode selected. Zombie types include: ");
 			zombieCounter = 8;
 		}
-
-		if(gameMode == 9) {
-
-
-		}
+		
 		start(gameMode);
 	}
 
@@ -121,7 +117,7 @@ public class Game {
 			System.out.println("1).Easy --- 2).Medium --- 3).Hard --- 9) Help");
 			reader = new Scanner(System.in); 
 			int mode = reader.nextInt();
-			if(mode == 9) {
+			/*if(mode == 9) {
 				try {
 					loadHelptxt();
 				} catch (FileNotFoundException e) {
@@ -129,7 +125,7 @@ public class Game {
 					e.printStackTrace();
 				}
 				return gameDifficulty();
-			}
+			}*/
 			
 			if (mode == 1) {
 				System.out.println("Easy mode has been selected...Good Luck!");
