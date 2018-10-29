@@ -31,9 +31,12 @@ public class Action {
 			System.out.println("!!!!!GAME OVER!!!!!");
 			System.exit(0);
 			return layout.getGameGrid();
-		}
-			
-		else {
+		}else if(gameClear(layout)) {
+			System.out.println("-------YOU Cleared the GAME------");
+			System.out.println("-------GOOD JOB------");
+			System.exit(0);
+			return layout.getGameGrid();
+		}else {
 			return layout.getGameGrid();
 		}
 	}	
@@ -168,6 +171,17 @@ public class Action {
 			}
 		}
 		return false;
+	}
+	public Boolean gameClear(Layout layout) {
+		Boolean flag = true;
+		for(int i=0 ; i <layout.getGameGrid().length; i++) {
+			for(int j=0; j < layout.getGameGrid()[0].length ; j++) {
+				if(layout.getObject(i,j) instanceof Zombies) {
+					flag = false;
+				}
+			}
+		}
+		return flag;
 	}
 	
 

@@ -37,44 +37,13 @@ public class Game {
 			Action action = new Action(store);
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 
-			/*if(action.isGameOver(layout)) {
-				System.out.println("GAME IS OVER!!! LOSER");
-			}*/
-			/*if(gameClear(layout)) {
-				System.out.println("YOU Cleared STAGE!");
-			}*/
+			
 			layout.print();
 		}
 	}
 
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
-	}
-
-	/*public Boolean isGameOver(Layout layout) {
-		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			if(layout.getObject(i,0) instanceof Zombies) {
-				return true;
-			}
-		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			if (layout.getObject(i,1) instanceof Zombies ) {
-				return true;
-			}
-		}
-
-
-		return false;
-	}*/
-	public Boolean gameClear(Layout layout) {
-		Boolean flag = true;
-		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			for(int j=0; j < layout.getGameGrid()[0].length ; j++) {
-				if(layout.getObject(i,j) instanceof Zombies) {
-					flag = false;
-				}
-			}
-		}
-		return flag;
 	}
 
 	public void promptStart(){
