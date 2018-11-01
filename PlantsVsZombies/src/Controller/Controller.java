@@ -3,7 +3,7 @@ import java.awt.event.*;
 
 import Model.Game;
 import Model.Layout;
-import Model.PlantStore;
+import Plant.PlantStore;
 import View.View;
 
 public class Controller implements ActionListener {

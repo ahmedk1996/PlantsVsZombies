@@ -2,6 +2,12 @@ package Model;
 import java.util.*;
 import java.util.Random;
 
+import Plant.Plants;
+import Plant.ShootingPlant;
+import Plant.Sunflower;
+import Zombie.WalkingZombie;
+import Zombie.Zombies;
+
 public class Layout {
 	private  Object[][] gameGrid;
 	private Scanner reader;

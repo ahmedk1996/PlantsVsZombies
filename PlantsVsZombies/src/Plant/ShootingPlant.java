@@ -1,4 +1,4 @@
-package Model;
+package Plant;
 
 public class ShootingPlant  extends Plants{
 	

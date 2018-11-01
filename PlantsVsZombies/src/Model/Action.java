@@ -1,5 +1,12 @@
 package Model;
 
+import Plant.PlantStore;
+import Plant.Plants;
+import Plant.ShootingPlant;
+import Plant.Sunflower;
+import Zombie.WalkingZombie;
+import Zombie.Zombies;
+
 public class Action {
 
 	private Turn turn;

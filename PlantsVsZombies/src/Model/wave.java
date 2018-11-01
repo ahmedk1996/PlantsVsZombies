@@ -3,6 +3,9 @@ package Model;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
+import Zombie.WalkingZombie;
+import Zombie.Zombies;
+
 
 public class wave {
 	private int count = 0;

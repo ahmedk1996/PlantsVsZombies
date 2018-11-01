@@ -1,5 +1,4 @@
-package Model;
-
+package Zombie;
 
 public class WalkingZombie extends Zombies{
 /*Initial Status for WalkingZombie

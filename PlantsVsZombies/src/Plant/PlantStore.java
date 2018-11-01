@@ -1,8 +1,10 @@
-package Model;
+package Plant;
 
 
 
 import java.util.Scanner;
+
+import Model.Layout;
 
 public class PlantStore {
 

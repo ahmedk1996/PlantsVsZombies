@@ -1,5 +1,9 @@
 package Model;
 
+import Plant.Plants;
+import Zombie.WalkingZombie;
+import Zombie.Zombies;
+
 public class PrintGrid {
 	
 	static String [][] stringGrid;

@@ -5,7 +5,7 @@ import javax.swing.*;
 import Controller.Controller;
 import Model.Game;
 import Model.Layout;
-import Model.PlantStore;
+import Plant.PlantStore;
 
 public class View extends JFrame{
 	
