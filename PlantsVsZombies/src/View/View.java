@@ -25,6 +25,9 @@ public class View extends JFrame{
 	private JMenuItem quit;
 	private JMenuItem undo;
 	private JMenuItem redo;
+	private JButton gameDiffuclty;
+	private JPanel selectButtonsPanel;
+	
 	
 	
 	public View() {
@@ -33,15 +36,19 @@ public class View extends JFrame{
 		layout = new Layout();
 		game = new Game(layout, plantStore);
 		control = new Controller(game,this);
+		selectButtonsPanel = new JPanel();
 		
+		this.add( selectButtonsPanel);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(300, 300);
+		this.setSize(800, 800);
 
 		menuBar = new JMenuBar();
 		this.setJMenuBar(menuBar);
 		
 		gameMenu = new JMenu("Game");
+		gameMenu.setEnabled(false);
 		menu = new JMenu("Menu");
+		
 		
 		menuBar.add(menu);
 		menuBar.add(gameMenu);
@@ -58,18 +65,25 @@ public class View extends JFrame{
 		redo = new JMenuItem ("redo");
 		redo.addActionListener(control);
 		
+		gameDiffuclty =  new JButton ("Select Game Difficulty");
+		gameDiffuclty.addActionListener(control);
+	
+		
 		menu.add(newGame);
 		menu.add(quit);
 		gameMenu.add(redo);
 		gameMenu.add(undo);
-
-
+		selectButtonsPanel.add(gameDiffuclty);
 		
 		
 	
 		this.setVisible(true);
 		
 		
+	}
+	
+	public JMenu getGameMenu() {
+		return gameMenu;
 	}
 	
 	public static void main(String[] args)

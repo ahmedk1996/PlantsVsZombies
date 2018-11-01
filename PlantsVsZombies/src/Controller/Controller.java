@@ -24,6 +24,7 @@ public class Controller implements ActionListener {
 		if(e.getSource().equals("newGame")){
 			
 			 layout = new Layout();
+			 
 			 store = new PlantStore();
 			 // We will test wave by after using beginWave = new wave(1);
 		     game = new Game(layout, store);
