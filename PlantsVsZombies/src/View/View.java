@@ -1,6 +1,11 @@
-package Model;
+package View;
 
 import javax.swing.*;
+
+import Controller.Controller;
+import Model.Game;
+import Model.Layout;
+import Model.PlantStore;
 
 public class View extends JFrame{
 	
