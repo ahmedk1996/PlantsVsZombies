@@ -1,5 +1,8 @@
 package View;
 
+import java.awt.Component;
+import java.awt.Font;
+
 import javax.swing.*;
 
 import Controller.Controller;
@@ -13,11 +16,8 @@ public class View extends JFrame{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	private JFrame frame;
 	private Controller control;
-	private Game game;
-	private Layout layout;
-	private PlantStore plantStore;
 	private JMenuBar menuBar;
 	private JMenu gameMenu;
 	private JMenu menu;
@@ -27,61 +27,96 @@ public class View extends JFrame{
 	private JMenuItem redo;
 	private JButton gameDiffuclty;
 	private JPanel selectButtonsPanel;
-	
-	
-	
+	private JLabel levelLabel;
+	private JRadioButton easyButton;
+	private JRadioButton mediumButton;
+	private JRadioButton hardButton;
+	private ButtonGroup group;
 	public View() {
-		
-		plantStore = new PlantStore();
-		layout = new Layout();
-		game = new Game(layout, plantStore);
-		control = new Controller(game,this);
-		selectButtonsPanel = new JPanel();
-		
-		this.add( selectButtonsPanel);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(800, 800);
+		initalizeComponents();
 
+	}
+	public JMenuItem getNewGame() {
+		return newGame;
+	}
+
+	public void setNewGame(JMenuItem newGame) {
+		this.newGame = newGame;
+	}
+
+	public JMenuItem getQuit() {
+		return quit;
+	}
+
+	public void setQuit(JMenuItem quit) {
+		this.quit = quit;
+	}
+
+	public JMenuItem getUndo() {
+		return undo;
+	}
+
+	public void setUndo(JMenuItem undo) {
+		this.undo = undo;
+	}
+
+	public JMenuItem getRedo() {
+		return redo;
+	}
+
+	public void setRedo(JMenuItem redo) {
+		this.redo = redo;
+	}
+
+	public JButton getGameDiffuclty() {
+		return gameDiffuclty;
+	}
+
+	public void setGameDiffuclty(JButton gameDiffuclty) {
+		this.gameDiffuclty = gameDiffuclty;
+	}
+
+	public JPanel getSelectButtonsPanel() {
+		return selectButtonsPanel;
+	}
+
+	public void setSelectButtonsPanel(JPanel selectButtonsPanel) {
+		this.selectButtonsPanel = selectButtonsPanel;
+	}
+	
+	private void initalizeComponents() {
+		frame = new JFrame ("Plants Vs. Zombies");
+		frame.setSize(500, 500);
 		menuBar = new JMenuBar();
-		this.setJMenuBar(menuBar);
-		
+		frame.setJMenuBar(menuBar);
 		gameMenu = new JMenu("Game");
 		gameMenu.setEnabled(false);
+		selectButtonsPanel = new JPanel();
+		frame.add(selectButtonsPanel);
+		selectButtonsPanel.setLayout(null);
 		menu = new JMenu("Menu");
-		
-		
 		menuBar.add(menu);
 		menuBar.add(gameMenu);
-		
-		newGame = new JMenuItem ("newGame");
-		newGame.addActionListener(control);
-		
-		quit = new JMenuItem ("quit");
-		quit.addActionListener(control);
-		
-		undo = new JMenuItem ("undo");
-		undo.addActionListener(control);
-		
-		redo = new JMenuItem ("redo");
-		redo.addActionListener(control);
-		
-		gameDiffuclty =  new JButton ("Select Game Difficulty");
-		gameDiffuclty.addActionListener(control);
-	
-		
+		quit = new JMenuItem ("Quit");
+		undo = new JMenuItem ("Undo");
+		redo = new JMenuItem ("Redo");
+		newGame = new JMenuItem ("New Game");
 		menu.add(newGame);
 		menu.add(quit);
 		gameMenu.add(redo);
 		gameMenu.add(undo);
-		selectButtonsPanel.add(gameDiffuclty);
-		
-		
-	
-		this.setVisible(true);
-		
+		gameDiffuclty =  new JButton ("Select");
+		levelLabel = new JLabel("Select Difficulty: ");
+		levelLabel.setFont(new Font("Comic Sans", Font.BOLD, 14));
+		levelLabel.setBounds(175,10, 250, 100);
+		selectButtonsPanel.add(levelLabel);
+
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 		
 	}
-	
+
 	public JMenu getGameMenu() {
 		return gameMenu;
 	}
