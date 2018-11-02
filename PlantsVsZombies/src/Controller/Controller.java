@@ -1,4 +1,4 @@
-package Controller;
+/*package Controller;
 import java.awt.event.*;
 
 import Model.Game;
@@ -56,3 +56,4 @@ public class Controller implements ActionListener {
 	}
 
 }
+*/

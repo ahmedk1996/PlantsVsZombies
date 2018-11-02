@@ -14,7 +14,7 @@ public class Layout {
 	private PrintGrid grid;
 	private int max;
 	private int min;
-
+	private boolean valid;
 
 	// Creating Grid of [5][7] 
 	public Layout() {
@@ -71,22 +71,27 @@ public class Layout {
 
 	
 	public boolean placePlantOnGrid(Plants p ) {
-
+		
 	try {
+		
 			reader = new Scanner(System.in);  
 			System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
 			int inputX = reader.nextInt();
 			int inputY = reader.nextInt();
 
-			if(gameGrid[inputX][inputY] == null) {
+			
 				if (p instanceof ShootingPlant) {
-					placeObjectOnGrid(inputX , inputY, new ShootingPlant());
+					valid = placeObjectOnGrid(inputX , inputY, new ShootingPlant());
 				}
 				else if (p instanceof Sunflower) {
-					placeObjectOnGrid(inputX, inputY, new Sunflower());
+					valid = placeObjectOnGrid(inputX, inputY, new Sunflower());
 				}
 				
-			}
+				if (valid == false) {
+					System.out.println("Please re-type the row and column");
+					placePlantOnGrid(p);
+				}
+			
 			this.print();
 			
 	}
@@ -119,7 +124,7 @@ public class Layout {
 	
 	public boolean placeObjectOnGrid(int row,int col, Object o) {
 		if(this.gameGrid[row][col] != null) {
-			System.out.println("There is an Object");
+			System.out.println("You can't place your plant here.");
 			return false;
 		}else {
 			gameGrid[row][col] = o;

@@ -15,6 +15,7 @@ public class PlantStore {
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
 	private int num;
+	private Plants previousPlant;
 
 	public  int getSunPoints() {
 		return sunPoints;
@@ -76,36 +77,52 @@ public class PlantStore {
 
 	}
 	
-	public void storeMenu(int sunPoints , boolean startOfGame , Layout layout) {
+	public void storeMenu(int sunPoints  , Layout layout) {
 		
 		System.out.println("You have " + getSunPoints() + " SunPoints.");
 		if (getSunPoints() == 0) {
+			System.out.println("You can't buy anything");
 			return;
 		}
 	
 		storePrices();
-		num = reader.nextInt();
+		int num = reader.nextInt();
 			if (num == 1) {
 				Plants sp = new ShootingPlant(); 
-				boolean canBuy = validatePurchase(sp , sunPoints);
-				if (canBuy == true) {	
+				if (previousPlant ==null || previousPlant instanceof ShootingPlant == false) {
+					boolean canBuy = validatePurchase(sp , sunPoints);
+					if (canBuy == true) {	
+						layout.placePlantOnGrid(sp);
+					}
+					else if (canBuy == false) { //cant buy but can buy another plant
+							storeMenu(getSunPoints() , layout);
+					}
 					
-					layout.placePlantOnGrid(sp);
-				}
-				else if (canBuy == false) { //cant buy but can buy another plant
-						storeMenu(getSunPoints(), false , layout);
 				}
 				
-			}
+				else {
+					System.out.print("Can't Purchase! The cool down to place a Shooting Plant ends next turn.");
+					storeMenu(sunPoints , layout);
+				}
+				previousPlant = sp;
+		}
 		 
 			else if (num == 2) {
 				Plants sf = new Sunflower();
-				boolean canBuy  = validatePurchase(sf , sunPoints);	
-				if (canBuy == true) {
+				if (previousPlant ==null || previousPlant instanceof Sunflower == false) {
 					
-					layout.placePlantOnGrid(sf);
+				
+					boolean canBuy  = validatePurchase(sf , sunPoints);	
+					if (canBuy == true) {
+	
+						layout.placePlantOnGrid(sf);
+					}
+					
 				}
-		
+				else {
+					System.out.print("Can't Purchase! The cool down to place a Sun Flower Plant ends next turn.");
+				}
+				previousPlant = sf;
 			}
 			else if (num ==0) {
 				return;
@@ -121,7 +138,7 @@ public class PlantStore {
 		System.out.println("Would you like to make another purchase?");
 		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
 		if (reader.nextInt() == 1) {
-			storeMenu(getSunPoints() , false , layout);
+			storeMenu(getSunPoints()  , layout);
 		}
 		
 		else {
@@ -136,15 +153,15 @@ public class PlantStore {
 
 	public void purchaseStartOfGame(Layout layout , boolean start) {
 		if (start == true) {
-			hasGameStarted = true;
+		
 			sunPoints = 150;
 			System.out.println("");
 			System.out.println("You have " + sunPoints + " points to start with!");
 			System.out.println("Spend wisely.....");
-			storeMenu(sunPoints , hasGameStarted , layout);
+			storeMenu(sunPoints  , layout);
 		}
 		else {
-			storeMenu(getSunPoints() , hasGameStarted , layout);
+			storeMenu(getSunPoints()  , layout);
 		}
 		
 	

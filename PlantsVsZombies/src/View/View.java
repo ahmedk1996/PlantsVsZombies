@@ -1,4 +1,4 @@
-package View;
+/*package View;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -12,9 +12,9 @@ import Plant.PlantStore;
 
 public class View extends JFrame{
 	
-	/**
+	*//**
 	 * 
-	 */
+	 *//*
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private Controller control;
@@ -129,3 +129,4 @@ public class View extends JFrame{
 	
 
 }
+*/
