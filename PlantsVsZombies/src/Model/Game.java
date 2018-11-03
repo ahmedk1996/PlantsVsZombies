@@ -21,6 +21,12 @@ public class Game {
 		zombieCounter = 0;
 	}
 
+	/**
+	 * start which handles starting the initial game..
+	 *
+	 * @param gameMode the current game mode
+	 * @return      void
+	 */
 	public void start(int gameMode) {
 
 		boolean gamedone = false;
@@ -44,11 +50,25 @@ public class Game {
 			layout.print();
 		}
 	}
-
+	
+	/**
+	 * start which creates a custom layout of the grid
+	 *
+	 * @param  row  row number
+	 * @param  column  column number
+	 * @return  void
+	 */
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
 	}
 
+	
+	/**
+	 * promptStart which asks the user for the input required for the game difficulty
+	 * 
+	 * @return  int response of game difficulty. 1 for easy, 2 for medium and 3 for hard.
+
+	 */
 	public void promptStart(){
 		int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
@@ -70,6 +90,11 @@ public class Game {
 		start(gameMode);
 	}
 
+	/**
+	 * loadHelptxt tells the user instructions about the game when required
+	 *
+	 * @return  void
+	 */
 	public void loadHelptxt() throws FileNotFoundException {
 		String toString = "";
 		try{
@@ -83,6 +108,11 @@ public class Game {
 		}
 	}
 
+	/**
+	 * gameDifficulty lets the user select the difficulty mode
+	 * 
+	 * @return int response of game difficulty. 1 for easy, 2 for medium and 3 for hard and 9 help.
+	 */
 	public int gameDifficulty() {
 		try {
 			System.out.println("There are 3 levels of difficulty");
@@ -125,18 +155,47 @@ public class Game {
 		//user input
 		return 0 ;
 	}
+	
+	/**
+	 * redo which re-does the users command that he had just made.
+	 *
+	 * @param  unknown
+	 * @param  unknown
+	 * @return  void
+	 */
 	public void redo() {
 
 	}
 
+	/**
+	 * undo which which returns the previous game board layout
+	 *
+	 * @param  unknown
+	 * @param  unknown
+	 * @return  void
+	 */
 	public void undo() {
 
 	}
 
+	/**
+	 * save which saves the custom layout of the grid with all the instances saved
+	 *
+	 * @param  unknown
+	 * @param  unknown
+	 * @return  void
+	 */
 	public void save() {
 
 	}
 
+	/**
+	 * load which loads the custom grid saved initially
+	 *
+	 * @param  unknown
+	 * @param  unknown
+	 * @return  void
+	 */
 	public void load() {
 
 	}
