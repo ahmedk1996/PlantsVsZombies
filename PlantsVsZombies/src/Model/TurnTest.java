@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TurnTest {
+import junit.framework.TestCase;
+
+public class TurnTest extends TestCase{
 
 	@Test
 	public void test() {

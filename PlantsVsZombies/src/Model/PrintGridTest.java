@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class PrintGridTest {
+import junit.framework.TestCase;
+
+public class PrintGridTest extends TestCase {
 
 	@Test
 	public void test() {

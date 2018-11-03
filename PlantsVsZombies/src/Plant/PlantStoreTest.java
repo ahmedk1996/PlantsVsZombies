@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class PlantStoreTest {
+import junit.framework.TestCase;
+
+public class PlantStoreTest extends TestCase{
 
 	@Test
 	public void test() {

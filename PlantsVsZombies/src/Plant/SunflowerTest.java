@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SunflowerTest {
+import junit.framework.TestCase;
+
+public class SunflowerTest extends TestCase{
 
 	@Test
 	public void test() {

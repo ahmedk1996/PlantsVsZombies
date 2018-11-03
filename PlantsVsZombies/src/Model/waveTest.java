@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class waveTest {
+import junit.framework.TestCase;
+
+public class waveTest extends TestCase{
 
 	@Test
 	public void test() {

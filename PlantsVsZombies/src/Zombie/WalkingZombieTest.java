@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class WalkingZombieTest {
+import junit.framework.TestCase;
+
+public class WalkingZombieTest extends TestCase {
 
 	@Test
 	public void test() {
