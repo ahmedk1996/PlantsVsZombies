@@ -51,9 +51,29 @@ public class View extends JFrame{
 	private JFrame gameFrame;
 	private Controller controller;
 	private JLabel points;
-	private JRadioButton buyShooterPlant;
-	private JRadioButton buySunflower;
 	private JButton purchase; 
+	
+	private JRadioButton buyShooterPlant;
+	public JRadioButton getBuyShooterPlant() {
+		return buyShooterPlant;
+	}
+	public void setBuyShooterPlant(JRadioButton buyShooterPlant) {
+		this.buyShooterPlant = buyShooterPlant;
+	}
+	public void setBuySunflower(JRadioButton buySunflower) {
+		this.buySunflower = buySunflower;
+	}
+
+
+	private JRadioButton buySunflower;
+	public JButton getPurchase() {
+		return purchase;
+	}
+	public void setPurchase(JButton purchase) {
+		this.purchase = purchase;
+	}
+	
+
 	private JLabel menu1;
 	private JPanel store;
 	private JPanel board;
@@ -123,9 +143,6 @@ public class View extends JFrame{
 		return  buySunflower;
 	}
 	
-	public JButton getPurchase() {
-		return purchase;
-	}
 
 	public void setNewGame(JMenuItem newGame) {
 		this.newGame = newGame;
@@ -271,7 +288,7 @@ public class View extends JFrame{
 			store.add(sunFlowerCost);
 			buySunflower = new JRadioButton();
 			store.add(buySunflower);
-			Shooter = new JLabel("Purchase SunFlower Plant");
+			Shooter = new JLabel("Purchase Shooter Plant");
 			store.add(Shooter);
 			peaShooter = new JLabel("100 Sun Points");
 			store.add(peaShooter);
@@ -279,11 +296,12 @@ public class View extends JFrame{
 			store.add(buyShooterPlant);
 			purchase = new JButton("Purchase");
 			store.add(purchase);
-			waveContinue = new JButton("Continue Wave");
+			purchase.setEnabled(false);
+				waveContinue = new JButton("Continue Wave");
 			store.add(waveContinue);
-			
 			group.add(buyShooterPlant);
 			group.add(buySunflower);
+			
 	}
 	public void helpPrompt() {
 		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 

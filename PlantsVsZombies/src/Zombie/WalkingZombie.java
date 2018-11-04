@@ -9,6 +9,7 @@
  */
 package Zombie;
 public class WalkingZombie extends Zombies{
+	
 /*Initial Status for WalkingZombie
  *  speed = 1 tile for 2 turns,
  *  health = 20

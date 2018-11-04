@@ -10,6 +10,9 @@
 package Controller;
 import java.awt.event.*;
 
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import Model.Game;
 import Model.Layout;
 import Plant.PlantStore;
@@ -19,7 +22,7 @@ public class Controller implements ActionListener {
 	
 	private Game game;
 	private View view;
-
+	private Integer row=0;
 	public Controller(Game game, View view) {
 		this.game=game;
 		this.view=view;
@@ -48,8 +51,17 @@ public class Controller implements ActionListener {
 		view.getMed().setActionCommand("med");
 		view.getHard().addActionListener(this);
 		view.getHard().setActionCommand("Hard");
-		//view.getPurchase().addActionListener(this);
-		//view.getPurchase().setActionCommand("Purchase");
+	
+
+	}
+	
+	public void initalizePlay() {
+		view.getPurchase().addActionListener(this);
+		view.getPurchase().setActionCommand("Purchase");
+		view.getBuyPeaShooter().addActionListener(this);
+		view.getBuyPeaShooter().setActionCommand("buyShooterPlant");
+		view.getBuySunflower().addActionListener(this);
+		view.getBuySunflower().setActionCommand("buySunflower");
 	}
 
 	@Override
@@ -62,11 +74,11 @@ public class Controller implements ActionListener {
 			System.exit(0);
 		}
 		else if (e.getActionCommand().equals("Play")) {
-		
+			
 			view.playPrompt();
 			//view.zombieInfo(); remove AFTER !?
 			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
-		
+			initalizePlay();
 		}
 		else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
@@ -74,8 +86,30 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("easy") ||e.getActionCommand().equals("med") ||e.getActionCommand().equals("Hard") ) {
 			view.getPlay().setEnabled(true);
 			
+		}else if(e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") ) {
+			view.getPurchase().setEnabled(true);
+			
 		}else if(e.getActionCommand().equals("Purchase")) {
-			System.out.println("q");
+			
+		
+			boolean isValidNumber = false;
+			try {
+				 row = Integer.parseInt(JOptionPane.showInputDialog(null, "What row number would you like to place the plant?", "Plant Placement", JOptionPane.QUESTION_MESSAGE));
+			    isValidNumber  = true;
+			} catch (NumberFormatException e1) {
+			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			if(row instanceof Integer) {
+			boolean isValidNumber1 = false;
+			try {
+				int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
+			    isValidNumber1  = true;
+			} catch (NumberFormatException e1) {
+			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			}
+			
 			
 		}
 		
