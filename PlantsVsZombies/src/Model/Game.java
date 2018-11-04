@@ -1,5 +1,11 @@
-package Model;
+/**
+ * The Game is a class contains
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+package Model;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

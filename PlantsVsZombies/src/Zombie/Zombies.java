@@ -1,5 +1,14 @@
-package Zombie;
+/**
+ * The Plant is an abstract class which contains all the methods common between all the plants
+ * be it their health or the damage they give for example.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+
+
+package Zombie;
 import Model.Layout;
 import Model.Weapon;
 
@@ -20,6 +29,7 @@ public abstract class Zombies{
 		return this.attackDamage;
 	};
 
+	
 	public void damaged(int attackDamage) {
 		if (attackDamage >= this.health){
 			this.health = 0;

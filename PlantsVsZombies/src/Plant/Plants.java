@@ -1,5 +1,13 @@
-package Plant;
+/**
+ * The Plant is an abstract class which contains all the methods common between all the plants
+ * be it their health or the damage they give for example.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+
+package Plant;
 public abstract class Plants {
 	
 	private String stringtype;
@@ -61,6 +69,7 @@ public abstract class Plants {
 		int reducedHealth = this.health - hitpoints;
 		setHealth (reducedHealth);
 	}
+	
 	public void attacked(int damage) {
 		this.health = this.health - damage;
 		

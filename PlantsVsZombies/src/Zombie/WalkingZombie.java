@@ -1,5 +1,13 @@
-package Zombie;
+/**
+ * The WalkingZombie is a class which extends Zombies and uses the methods from zombies. 
+ * This type of zombie walks at a slow pace hence the name.
+ * Setting an abstract class for both Plants and Zombies allows for high cohesion.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+package Zombie;
 public class WalkingZombie extends Zombies{
 /*Initial Status for WalkingZombie
  *  speed = 1 tile for 2 turns,

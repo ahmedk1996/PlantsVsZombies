@@ -1,3 +1,13 @@
+/**
+ * The 	View is a class which extends JFrame and includes getters 
+ * and setters for the different types of buttons and menu objects 
+ * used to be called in the Controller class.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
+
 package View;
 
 import java.awt.Color;

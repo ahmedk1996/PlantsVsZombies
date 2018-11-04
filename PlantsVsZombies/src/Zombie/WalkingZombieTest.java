@@ -1,5 +1,6 @@
-package Zombie;
 
+
+package Zombie;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
