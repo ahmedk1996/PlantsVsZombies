@@ -1,4 +1,4 @@
-package Plant;
+package Tests;
 
 import static org.junit.Assert.*;
 
