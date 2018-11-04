@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import Plant.PlantStore;
@@ -11,6 +12,7 @@ import junit.framework.TestCase;
 
 public class PlantStoreTest extends TestCase{
 	
+
 	
 	@Test
 	public void test() { //this test checks current balance for SunPoints
