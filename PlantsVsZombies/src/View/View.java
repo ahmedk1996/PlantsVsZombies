@@ -1,7 +1,9 @@
-/*package View;
+package View;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.nio.file.Files;
 
 import javax.swing.*;
 
@@ -12,9 +14,9 @@ import Plant.PlantStore;
 
 public class View extends JFrame{
 	
-	*//**
+	/**
 	 * 
-	 *//*
+	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private Controller control;
@@ -28,10 +30,31 @@ public class View extends JFrame{
 	private JButton gameDiffuclty;
 	private JPanel selectButtonsPanel;
 	private JLabel levelLabel;
-	private JRadioButton easyButton;
-	private JRadioButton mediumButton;
-	private JRadioButton hardButton;
 	private ButtonGroup group;
+	private JCheckBox easy;
+	private JCheckBox med;
+	private JCheckBox hard;
+	private JButton play;
+	private JButton help;
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+	public JButton getHelp() {
+		return help;
+	}
+	public void setHelp(JButton help) {
+		this.help = help;
+	}
+	public JButton getPlay() {
+		return play;
+	}
+	public void setPlay(JButton play) {
+		this.play = play;
+	}
 	public View() {
 		initalizeComponents();
 
@@ -86,14 +109,14 @@ public class View extends JFrame{
 	
 	private void initalizeComponents() {
 		frame = new JFrame ("Plants Vs. Zombies");
-		frame.setSize(500, 500);
+		frame.setSize(450, 300);
 		menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		gameMenu = new JMenu("Game");
 		gameMenu.setEnabled(false);
 		selectButtonsPanel = new JPanel();
 		frame.add(selectButtonsPanel);
-		selectButtonsPanel.setLayout(null);
+		
 		menu = new JMenu("Menu");
 		menuBar.add(menu);
 		menuBar.add(gameMenu);
@@ -107,11 +130,29 @@ public class View extends JFrame{
 		gameMenu.add(undo);
 		gameDiffuclty =  new JButton ("Select");
 		levelLabel = new JLabel("Select Difficulty: ");
-		levelLabel.setFont(new Font("Comic Sans", Font.BOLD, 14));
+		levelLabel.setFont(new Font("Comic Sans", Font.BOLD, 15));
+	
 		levelLabel.setBounds(175,10, 250, 100);
 		selectButtonsPanel.add(levelLabel);
-
-
+		
+		easy= new JCheckBox("Easy");
+		med = new JCheckBox("Medium");
+		hard = new JCheckBox("Hard");
+		group = new ButtonGroup();
+		selectButtonsPanel.add(easy);
+		selectButtonsPanel.add(med);
+		selectButtonsPanel.add(hard);
+		
+		group.add(easy);
+		group.add(med);
+		group.add(hard);
+		
+		play = new JButton();
+		play.setText("Start");
+		help = new JButton();
+		help.setText("Help");
+		selectButtonsPanel.add(play);
+		selectButtonsPanel.add(help);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
@@ -121,12 +162,44 @@ public class View extends JFrame{
 		return gameMenu;
 	}
 	
-	public static void main(String[] args)
-	{
-		new View();
+
+	public void playPrompt() {
+		
+		
+	}
+	public void helpPrompt() {
+		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 
+				" \r\n" + 
+				"--------------------------------------------------------------------\r\n" + 
+				"	The goal of this game is to defense from the zombies.\r\n" + 
+				"\r\n" + 
+				"Each Difficulty contains different numbers and type of zombies. \r\n" + 
+				"\r\n" + 
+				"Sun-point is the virtual Money to purchase the plants in the store. \r\n" + 
+				"PeaShooter Plant - PeaShooter attacks zombie in the same row.\r\n" + 
+				"Sun-flower - The user can get 50 Sun-points on each wave. \r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"Each wave, \r\n" + 
+				"One zombie is randomly spawned in the board.\r\n" + 
+				"The user purchases the plants according to your own Strategies.\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"Once the user purchases the plants, \r\n" + 
+				"\r\n" + 
+				"the user can place the plants on the board by typing row and column.\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"\r\n" + 
+				"			Good Luck!! \r\n" + 
+				"\r\n" + 
+				"--------------------------------------------------------------------";
+		JOptionPane.showMessageDialog(frame, helpText);
+		
 	}
 
 	
 
 }
-*/

@@ -1,4 +1,4 @@
-/*package Controller;
+package Controller;
 import java.awt.event.*;
 
 import Model.Game;
@@ -10,9 +10,7 @@ public class Controller implements ActionListener {
 	
 	private Game game;
 	private View view;
-	private Layout layout;
-	private PlantStore store;
-	
+
 	public Controller(Game game, View view) {
 		this.game=game;
 		this.view=view;
@@ -31,23 +29,27 @@ public class Controller implements ActionListener {
 		view.getRedo().setActionCommand("Redo");
 		view.getGameDiffuclty().addActionListener(this);
 		view.getGameDiffuclty().setActionCommand("Diff");
-	
+		view.getPlay().addActionListener(this);
+		view.getPlay().setActionCommand("Play");
+		view.getHelp().setActionCommand("Help");
+		view.getHelp().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource().equals("NewGame")){
+		if(e.getActionCommand().equals("NewGame")){
 			
-			 layout = new Layout();
-			 
-			 store = new PlantStore();
-			 // We will test wave by after using beginWave = new wave(1);
-		     game = new Game(layout, store);
-			 game.promptStart();
 			
-		}else if(e.getSource().equals("Quit")) {
+			
+		}else if(e.getActionCommand().equals("Quit")) {
 			System.exit(0);
+		}
+		else if (e.getActionCommand().equals("Play")) {
+			view.playPrompt();
+		}
+		else if (e.getActionCommand().equals("Help")) {
+			view.helpPrompt();
 		}
 		
 		
@@ -56,4 +58,3 @@ public class Controller implements ActionListener {
 	}
 
 }
-*/

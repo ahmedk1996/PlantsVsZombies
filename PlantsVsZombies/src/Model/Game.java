@@ -45,8 +45,6 @@ public class Game {
 			store.purchaseStartOfGame(layout , false);
 			Action action = new Action(store);
 			layout.setGameGrid(action.startAction(layout,gameTurns));
-
-			
 			layout.print();
 		}
 	}
@@ -207,7 +205,6 @@ public class Game {
 		PlantStore store = new PlantStore();
 		// We will test wave by after using beginWave = new wave(1);
 		Game game = new Game(layout, store);
-
 		game.promptStart();
 
 	}
