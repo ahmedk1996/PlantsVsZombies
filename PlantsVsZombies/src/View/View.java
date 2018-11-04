@@ -1,5 +1,5 @@
 /**
- * The 	View is a class which extends JFrame and includes getters
+ * The 	View is a class which extends JFrame and includes getters 
  * and setters for the different types of buttons and menu objects 
  * used to be called in the Controller class.
  * 
@@ -51,6 +51,21 @@ public class View extends JFrame{
 	private JFrame gameFrame;
 	private Controller controller;
 	private JLabel points;
+	private JRadioButton buyShooterPlant;
+	private JRadioButton buySunflower;
+	private JButton purchase; 
+	private JLabel menu1;
+	private JPanel store;
+	private JPanel board;
+	private JSplitPane splitPane;
+	private JLabel msg;
+	private JLabel sunFlower;
+	private JLabel sunFlowerCost;
+	private JLabel Shooter;
+	private JButton waveContinue;
+	private JLabel peaShooter;
+	private JButton b1;
+	
 	public JLabel getPoints() {
 		return points;
 	}
@@ -98,6 +113,18 @@ public class View extends JFrame{
 	}
 	public JMenuItem getNewGame() {
 		return newGame;
+	}
+	
+	public JRadioButton getBuyPeaShooter() {
+		return  buyShooterPlant;
+	}
+	
+	public JRadioButton getBuySunflower() {
+		return  buySunflower;
+	}
+	
+	public JButton getPurchase() {
+		return purchase;
 	}
 
 	public void setNewGame(JMenuItem newGame) {
@@ -214,47 +241,49 @@ public class View extends JFrame{
 		gameFrame.setSize(750, 750);
 		gameFrame.setTitle("Game In Progress");
 		
-		JPanel store = new JPanel();
-		JPanel board = new JPanel();
+		 store = new JPanel();
+		 board = new JPanel();
 	
-		 JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, store, board);
+		 splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, store, board);
 		 splitPane.setDividerLocation(350);
 		 splitPane.setOneTouchExpandable(true);
 	     gameFrame.getContentPane().add(splitPane);
 	     board.setLayout(new GridLayout(5,7));
 	
 	     	for (int i =0 ; i<35 ; i++) {
-	     		JButton b1 = new JButton();
+	     		b1 = new JButton();
 	     		b1.addActionListener(controller);
 	     		b1.setActionCommand(String.valueOf(i));
 	     		board.add(b1);
 	     	}
 			
 			gameFrame.setVisible(true);
-			store.setLayout(new GridLayout(3,3));
-			JLabel menu = new JLabel("Welcome to the PVZ Store");
-			store.add(menu);
+			store.setLayout(new GridLayout(4,2));
+			menu1 = new JLabel("Welcome to the PVZ Store");
+			store.add(menu1);
 			points = new JLabel();
 			store.add(points);
-			JLabel msg = new JLabel("");
+			msg = new JLabel("");
 			store.add(msg);
-			JLabel msg1 = new JLabel("");
-			store.add(msg1);
-			JLabel sunFlower = new JLabel("Purchase SunFlower Plant");
+			sunFlower = new JLabel("Purchase SunFlower Plant");
 			store.add(sunFlower);
-			JLabel sunFlowerCost = new JLabel("50 Sun Points");
+			sunFlowerCost = new JLabel("50 Sun Points");
 			store.add(sunFlowerCost);
-			JRadioButton buySunflower = new JRadioButton();
+			buySunflower = new JRadioButton();
 			store.add(buySunflower);
-			JLabel Shooter = new JLabel("Purchase SunFlower Plant");
+			Shooter = new JLabel("Purchase SunFlower Plant");
 			store.add(Shooter);
-			JLabel peaShooter = new JLabel("100 Sun Points");
+			peaShooter = new JLabel("100 Sun Points");
 			store.add(peaShooter);
-			JButton purchase = new JButton("Purchase");
+			buyShooterPlant = new JRadioButton();
+			store.add(buyShooterPlant);
+			purchase = new JButton("Purchase");
 			store.add(purchase);
-			JButton waveContinue = new JButton("Continue Wave");
+			waveContinue = new JButton("Continue Wave");
 			store.add(waveContinue);
 			
+			group.add(buyShooterPlant);
+			group.add(buySunflower);
 	}
 	public void helpPrompt() {
 		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 

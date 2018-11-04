@@ -6,13 +6,16 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Zombie.WalkingZombie;
 import junit.framework.TestCase;
 
 public class WalkingZombieTest extends TestCase {
 
+	WalkingZombie walkingZ;
+	
 	@Before
 	public void setUp() {
-		 //zombie = new Zombies();
+		walkingZ = new WalkingZombie();
 	}
 	
 	

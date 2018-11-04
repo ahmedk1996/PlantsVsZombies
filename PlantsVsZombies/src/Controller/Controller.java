@@ -48,6 +48,8 @@ public class Controller implements ActionListener {
 		view.getMed().setActionCommand("med");
 		view.getHard().addActionListener(this);
 		view.getHard().setActionCommand("Hard");
+		//view.getPurchase().addActionListener(this);
+		//view.getPurchase().setActionCommand("Purchase");
 	}
 
 	@Override
@@ -71,6 +73,9 @@ public class Controller implements ActionListener {
 		}
 		else if (e.getActionCommand().equals("easy") ||e.getActionCommand().equals("med") ||e.getActionCommand().equals("Hard") ) {
 			view.getPlay().setEnabled(true);
+			
+		}else if(e.getActionCommand().equals("Purchase")) {
+			System.out.println("q");
 			
 		}
 		

@@ -16,7 +16,6 @@ public class AllTests extends TestCase {
  suite.addTest(new TestSuite(GameTest.class));
  suite.addTest(new TestSuite(LayoutTest.class));
  suite.addTest(new TestSuite(PlantStoreTest.class));
- suite.addTest(new TestSuite(PrintGridTest.class));
  suite.addTest(new TestSuite(ShootingPlantTest.class));
  suite.addTest(new TestSuite(SunflowerTest.class));
  suite.addTest(new TestSuite(TurnTest.class));

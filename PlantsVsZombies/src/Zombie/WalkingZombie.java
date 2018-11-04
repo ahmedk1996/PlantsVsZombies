@@ -1,5 +1,5 @@
 /**
- * The WalkingZombie is a class which extends Zombies and uses the methods from zombies. 
+ * The WalkingZombie is a class which extends Zombies and uses the methods from zombies.  
  * This type of zombie walks at a slow pace hence the name.
  * Setting an abstract class for both Plants and Zombies allows for high cohesion.
  * 
