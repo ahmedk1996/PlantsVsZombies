@@ -41,7 +41,7 @@ public class PlantStore {
 
 	public PlantStore() {
 		reader = new Scanner(System.in); 
-	
+		sunPoints = 150;
 	}
 
 	public Plants getPrice() {
@@ -154,9 +154,6 @@ public class PlantStore {
 	public void purchaseStartOfGame(Layout layout , boolean start) {
 		if (start == true) {
 		
-			sunPoints = 150;
-			System.out.println("");
-			System.out.println("You have " + sunPoints + " points to start with!");
 			System.out.println("Spend wisely.....");
 			storeMenu(sunPoints  , layout);
 		}

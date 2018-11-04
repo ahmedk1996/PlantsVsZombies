@@ -33,23 +33,36 @@ public class Controller implements ActionListener {
 		view.getPlay().setActionCommand("Play");
 		view.getHelp().setActionCommand("Help");
 		view.getHelp().addActionListener(this);
+		view.getEasy().addActionListener(this);
+		view.getEasy().setActionCommand("easy");
+		view.getMed().addActionListener(this);
+		view.getMed().setActionCommand("med");
+		view.getHard().addActionListener(this);
+		view.getHard().setActionCommand("Hard");
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		
 		if(e.getActionCommand().equals("NewGame")){
-			
-			
 			
 		}else if(e.getActionCommand().equals("Quit")) {
 			System.exit(0);
 		}
 		else if (e.getActionCommand().equals("Play")) {
+		
 			view.playPrompt();
+			//view.zombieInfo(); remove AFTER !?
+			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
+		
 		}
 		else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
+		}
+		else if (e.getActionCommand().equals("easy") ||e.getActionCommand().equals("med") ||e.getActionCommand().equals("Hard") ) {
+			view.getPlay().setEnabled(true);
+			
 		}
 		
 		

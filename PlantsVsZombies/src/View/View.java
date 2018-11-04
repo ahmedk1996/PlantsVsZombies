@@ -1,8 +1,11 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.nio.file.Files;
 
 import javax.swing.*;
@@ -36,9 +39,35 @@ public class View extends JFrame{
 	private JCheckBox hard;
 	private JButton play;
 	private JButton help;
-	
+	private JFrame gameFrame;
+	private Controller controller;
+	private JLabel points;
+	public JLabel getPoints() {
+		return points;
+	}
+	public void setPoints(JLabel points) {
+		this.points = points;
+	}
 	public JFrame getFrame() {
 		return frame;
+	}
+	public JCheckBox getEasy() {
+		return easy;
+	}
+	public void setEasy(JCheckBox easy) {
+		this.easy = easy;
+	}
+	public JCheckBox getMed() {
+		return med;
+	}
+	public void setMed(JCheckBox med) {
+		this.med = med;
+	}
+	public JCheckBox getHard() {
+		return hard;
+	}
+	public void setHard(JCheckBox hard) {
+		this.hard = hard;
 	}
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
@@ -57,7 +86,6 @@ public class View extends JFrame{
 	}
 	public View() {
 		initalizeComponents();
-
 	}
 	public JMenuItem getNewGame() {
 		return newGame;
@@ -142,12 +170,14 @@ public class View extends JFrame{
 		selectButtonsPanel.add(easy);
 		selectButtonsPanel.add(med);
 		selectButtonsPanel.add(hard);
-		
+		med.setEnabled(false);
+		hard.setEnabled(false);
 		group.add(easy);
 		group.add(med);
 		group.add(hard);
 		
 		play = new JButton();
+		play.setEnabled(false);
 		play.setText("Start");
 		help = new JButton();
 		help.setText("Help");
@@ -164,8 +194,58 @@ public class View extends JFrame{
 	
 
 	public void playPrompt() {
+	
+		initalizePlay();
 		
+	}
+	
+	public void initalizePlay() {
+		play.setEnabled(false);
+		gameFrame = new JFrame();
+		gameFrame.setSize(750, 750);
+		gameFrame.setTitle("Game In Progress");
 		
+		JPanel store = new JPanel();
+		JPanel board = new JPanel();
+	
+		 JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, store, board);
+		 splitPane.setDividerLocation(350);
+		 splitPane.setOneTouchExpandable(true);
+	     gameFrame.getContentPane().add(splitPane);
+	     board.setLayout(new GridLayout(5,7));
+	
+	     	for (int i =0 ; i<35 ; i++) {
+	     		JButton b1 = new JButton();
+	     		b1.addActionListener(controller);
+	     		b1.setActionCommand(String.valueOf(i));
+	     		board.add(b1);
+	     	}
+			
+			gameFrame.setVisible(true);
+			store.setLayout(new GridLayout(3,3));
+			JLabel menu = new JLabel("Welcome to the PVZ Store");
+			store.add(menu);
+			points = new JLabel();
+			store.add(points);
+			JLabel msg = new JLabel("");
+			store.add(msg);
+			JLabel msg1 = new JLabel("");
+			store.add(msg1);
+			JLabel sunFlower = new JLabel("Purchase SunFlower Plant");
+			store.add(sunFlower);
+			JLabel sunFlowerCost = new JLabel("50 Sun Points");
+			store.add(sunFlowerCost);
+			JRadioButton buySunflower = new JRadioButton();
+			store.add(buySunflower);
+			JLabel Shooter = new JLabel("Purchase SunFlower Plant");
+			store.add(Shooter);
+			JLabel peaShooter = new JLabel("100 Sun Points");
+			store.add(peaShooter);
+			JButton purchase = new JButton("Purchase");
+			store.add(purchase);
+			JButton waveContinue = new JButton("Continue Wave");
+			store.add(waveContinue);
+			
 	}
 	public void helpPrompt() {
 		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 
@@ -198,6 +278,10 @@ public class View extends JFrame{
 				"--------------------------------------------------------------------";
 		JOptionPane.showMessageDialog(frame, helpText);
 		
+	}
+	public void zombieInfo() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(gameFrame,"Walking Zombies will spawn!","Spawners", JOptionPane.WARNING_MESSAGE, null);
 	}
 
 	

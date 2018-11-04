@@ -10,6 +10,15 @@ import java.io.*;
 
 public class Game {
 	private Layout layout;
+	public PlantStore getStore() {
+		return store;
+	}
+
+	public void setStore(PlantStore store) {
+		this.store = store;
+	}
+
+
 	private PlantStore store;
 	private Scanner reader;
 	private int gameTurns = 1;
