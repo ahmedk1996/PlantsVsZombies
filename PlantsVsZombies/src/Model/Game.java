@@ -1,5 +1,6 @@
 /**
- * The Game is a class contains
+ * The Game is a class contains the methods regarding starting the game. This includes the setup for it 
+ * an example of this would be selecting the game difficulty.
  * 
  * @author Group 1
  * @since November 4,2018

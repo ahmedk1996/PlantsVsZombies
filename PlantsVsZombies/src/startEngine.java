@@ -1,3 +1,12 @@
+/**
+ * The startEngine is a class contains the main method for initializing the game.
+ * This was made in order to maintain high cohesion throughout our project.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
+
 import Controller.Controller;
 import Model.Game;
 import Model.Layout;

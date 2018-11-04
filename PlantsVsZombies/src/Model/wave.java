@@ -1,5 +1,13 @@
-package Model;
+/**
+ * The Game is a class contains the methods regarding starting the game. This includes the setup for it 
+ * an example of this would be selecting the game difficulty.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+
+package Model;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 

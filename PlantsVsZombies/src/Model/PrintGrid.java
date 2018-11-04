@@ -1,5 +1,12 @@
-package Model;
+/**
+ * The PrintGrid is a class contains the methods regarding printing the grid and updating it.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+
+package Model;
 import Plant.Plants;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;

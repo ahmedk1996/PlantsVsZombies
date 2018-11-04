@@ -1,5 +1,5 @@
 /**
- * The 	View is a class which extends JFrame and includes getters 
+ * The 	View is a class which extends JFrame and includes getters
  * and setters for the different types of buttons and menu objects 
  * used to be called in the Controller class.
  * 
@@ -9,7 +9,6 @@
  */
 
 package View;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
