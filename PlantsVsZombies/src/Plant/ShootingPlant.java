@@ -26,14 +26,10 @@ public class ShootingPlant  extends Plants{
 		this.health = health;
 		super.setDamage(25);
 		super.setStringtype("F    ");
-		super.setHealth(100);
 		
 	}
 	public int getCost() {
 		return cost;
-	}
-	public static void turnOver() {
-		turn++;
 	}
 	
 	public static int getTurn() {
