@@ -1,5 +1,14 @@
-package Plant;
+/**
+ * The ShootingPlant is a class which extends Plants and uses the methods from plants. 
+ * ShootingPlant is a type of plant which shoots zombies which are in its row and cause them to lose health.
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
+
+
+package Plant;
 public class ShootingPlant  extends Plants{
 	
 

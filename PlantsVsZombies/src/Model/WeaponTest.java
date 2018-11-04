@@ -8,14 +8,18 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 public class WeaponTest extends TestCase {
+	
+	private Weapon weapon;
 
 	@Before
 	public void setUp() {
+		//weapon = new Weapon();
 		
 	}
 	
 	@Test
 	public void testgetName() {
+	
 	}
 
 	@Test
