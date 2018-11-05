@@ -52,6 +52,7 @@ public class View extends JFrame{
 	private Controller controller;
 	private JLabel points;
 	private JButton purchase; 
+	private Layout layout;
 	
 	private JRadioButton buyShooterPlant;
 	public JRadioButton getBuyShooterPlant() {
@@ -253,6 +254,7 @@ public class View extends JFrame{
 	}
 	
 	public void initalizePlay() {
+		layout = new Layout();
 		play.setEnabled(false);
 		gameFrame = new JFrame();
 		gameFrame.setSize(750, 750);
@@ -266,14 +268,15 @@ public class View extends JFrame{
 		 splitPane.setOneTouchExpandable(true);
 	     gameFrame.getContentPane().add(splitPane);
 	     board.setLayout(new GridLayout(5,7));
-	
-	     	for (int i =0 ; i<35 ; i++) {
-	     		b1 = new JButton();
-	     		b1.addActionListener(controller);
-	     		b1.setActionCommand(String.valueOf(i));
-	     		board.add(b1);
-	     	}
-			
+	     for (int i =0; i< layout.getGameGrid().length ; i++) {
+		     for (int j =0; j< layout.getGameGrid()[0].length ; j++) {
+
+		     		b1 = new JButton();
+		     		b1.setActionCommand("(" + i + ", " + j + ")");
+		     		board.add(b1);
+		     }
+	     }
+	     	
 			gameFrame.setVisible(true);
 			store.setLayout(new GridLayout(4,2));
 			menu1 = new JLabel("Welcome to the PVZ Store");
@@ -338,6 +341,12 @@ public class View extends JFrame{
 	public void zombieInfo() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(gameFrame,"Walking Zombies will spawn!","Spawners", JOptionPane.WARNING_MESSAGE, null);
+	}
+	public void setZombieOnBoard(int randRow, int i) {
+		// TODO Auto-generated method stub
+		
+		
+		
 	}
 
 	

@@ -28,6 +28,9 @@ public class Controller implements ActionListener {
 		this.view=view;
 		initalizeComponents();
 	}
+	public Controller() {
+		
+	}
 
 	private void initalizeComponents() {
 		
@@ -79,6 +82,10 @@ public class Controller implements ActionListener {
 			//view.zombieInfo(); remove AFTER !?
 			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
 			initalizePlay();
+			game.setZombieCounter(4); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
+			//game.start();
+			
+			
 		}
 		else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
@@ -86,10 +93,12 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("easy") ||e.getActionCommand().equals("med") ||e.getActionCommand().equals("Hard") ) {
 			view.getPlay().setEnabled(true);
 			
-		}else if(e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") ) {
+		}
+		else if(e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") ) {
 			view.getPurchase().setEnabled(true);
 			
-		}else if(e.getActionCommand().equals("Purchase")) {
+		}
+		else if(e.getActionCommand().equals("Purchase")) {
 			
 		
 			boolean isValidNumber = false;
@@ -101,13 +110,13 @@ public class Controller implements ActionListener {
 			}
 			
 			if(row instanceof Integer) {
-			boolean isValidNumber1 = false;
-			try {
-				int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
-			    isValidNumber1  = true;
-			} catch (NumberFormatException e1) {
-			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+				boolean isValidNumber1 = false;
+				try {
+					int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
+				    isValidNumber1  = true;
+				} catch (NumberFormatException e1) {
+				    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 			
 			
@@ -115,6 +124,11 @@ public class Controller implements ActionListener {
 		
 		
 	
+		
+	}
+	public void addZombie(int randRow, int i) {
+		// TODO Auto-generated method stub
+		view.setZombieOnBoard(randRow , i);
 		
 	}
 

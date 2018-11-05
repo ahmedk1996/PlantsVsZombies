@@ -31,6 +31,14 @@ public class Game {
 	private int gameTurns = 1;
 	private int zombieCounter;
 
+	public int getZombieCounter() {
+		return zombieCounter;
+	}
+
+	public void setZombieCounter(int zombieCounter) {
+		this.zombieCounter = zombieCounter;
+	}
+
 	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
 		this.store = new PlantStore();
@@ -43,7 +51,7 @@ public class Game {
 	 * @param gameMode the current game mode
 	 * @return      void
 	 */
-	public void start(int gameMode) {
+	public void start() {
 
 		boolean gamedone = false;
 		if(!(zombieCounter <=1)) {
@@ -55,6 +63,7 @@ public class Game {
 		while(gamedone == false) {
 			if(!(zombieCounter <= 1)) {
 				layout.placeSpawnZombieOnGrid(layout);
+				
 			}
 			zombieCounter--;
 			layout.print();
@@ -84,9 +93,9 @@ public class Game {
 
 	 */
 	public void promptStart(){
-		int gameMode = gameDifficulty();
+	/*	int gameMode = gameDifficulty();
 		reader = new Scanner(System.in);  
-		System.out.println("Below is a 5x7 grid layout:");
+		//System.out.println("Below is a 5x7 grid layout:");
 
 
 		if(gameMode == 1) {
@@ -99,9 +108,9 @@ public class Game {
 		else if(gameMode==3){
 			System.out.println("Hard mode selected. Zombie types include: ");
 			zombieCounter = 8;
-		}
+		}*/
 		
-		start(gameMode);
+		//start();
 	}
 
 	/**

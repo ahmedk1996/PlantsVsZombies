@@ -11,6 +11,7 @@ package Model;
 import java.util.*;
 import java.util.Random;
 
+import Controller.Controller;
 import Plant.Plants;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
@@ -24,7 +25,7 @@ public class Layout {
 	private int max;
 	private int min;
 	private boolean valid;
-
+	private Controller con;
 	// Creating Grid of [5][7] 
 	public Layout() {
 		gameGrid = new Object[5][7];
@@ -45,6 +46,7 @@ public class Layout {
 	public void placeZombieOnGrid(Zombies z, int randRow) {
 		if(gameGrid[randRow][6] == null) {
 			gameGrid[randRow][6] = z;
+			con.addZombie(randRow , 6);
 			print(gameGrid);
 		}else {
 			System.out.print("Not empty");
@@ -73,6 +75,7 @@ public class Layout {
 		int random = (int)(Math.random() * 4 + 1);
 		if (layout.gameGrid[random][6] == null) {
 			placeObjectOnGrid(random, 6, new WalkingZombie());
+			
 		}
 		return;
 	}
