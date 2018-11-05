@@ -83,7 +83,7 @@ public class Controller implements ActionListener {
 			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
 			initalizePlay();
 			game.setZombieCounter(4); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
-			//game.start();
+			game.start();
 			
 			
 		}
