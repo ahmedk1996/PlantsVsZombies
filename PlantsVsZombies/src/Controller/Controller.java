@@ -118,14 +118,15 @@ public class Controller implements ActionListener {
 			
 		}
 		else if(e.getActionCommand().equals("Purchase")) {
-			
+			if(ps.getSunPoints()!=0) {
 			purchasePlant();
 			view.getCoordinates();
+			
 			if(e.getActionCommand().equals("buyShooterPlant"))
 				view.setSunFlowerOnBoard();
 			if(e.getActionCommand().equals("buySunflower"))
 				view.setShooterOnBoard();
-
+			}
 		}
 
 		
