@@ -77,6 +77,7 @@ public class Controller implements ActionListener {
 		view.getBuySunflower().setActionCommand("buySunflower");
 		view.getWaveContinue().addActionListener(this);
 		view.getWaveContinue().setActionCommand("simulate");
+		
 	}
 
 	public void actionButton(JButton b) {
@@ -119,23 +120,8 @@ public class Controller implements ActionListener {
 		else if(e.getActionCommand().equals("Purchase")) {
 			
 			purchasePlant();
-		/*	boolean isValidNumber = false;
-			try {
-				 row = Integer.parseInt(JOptionPane.showInputDialog(null, "What row number would you like to place the plant?", "Plant Placement", JOptionPane.QUESTION_MESSAGE));
-			    isValidNumber  = true;
-			} catch (NumberFormatException e1) {
-			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			
-			if(row instanceof Integer) {
-				boolean isValidNumber1 = false;
-				try {
-					int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
-				    isValidNumber1  = true;
-				} catch (NumberFormatException e1) {
-				    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}*/
+			view.getCoordinates();
+			view.setPlantOnBoard();
 			
 			
 		}

@@ -59,6 +59,9 @@ public class View extends JFrame{
 	private JButton waveContinue;
 	private JLabel peaShooter;
 	private JRadioButton buySunflower;
+	private Integer column=0;
+	private Integer row=0;
+	private JButton b;
 	
 	public JRadioButton getBuyShooterPlant() {
 		return buyShooterPlant;
@@ -273,7 +276,7 @@ public class View extends JFrame{
 	     buttonArray = new JButton[5][7];
 	     for (int i =0; i< buttonArray.length ; i++) {
 		     for (int j =0; j< buttonArray[0].length ; j++) {
-		    	 	JButton b = new JButton();
+		    	 	b = new JButton();
 		     		buttonArray[i][j] = b;
 		     		board.add(b);
 		     		controller.actionButton(b);
@@ -348,6 +351,37 @@ public class View extends JFrame{
 	public void zombieInfo() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(gameFrame,"Walking Zombies will spawn!","Spawners", JOptionPane.WARNING_MESSAGE, null);
+	}
+	
+	public void getCoordinates() {
+		boolean isValidNumber = false;
+		try {
+			 row = Integer.parseInt(JOptionPane.showInputDialog(null, "What row number would you like to place the plant?", "Plant Placement", JOptionPane.QUESTION_MESSAGE));
+		    isValidNumber  = true;
+		} catch (NumberFormatException e1) {
+		    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		if(row instanceof Integer) {
+			boolean isValidNumber1 = false;
+			try {
+				int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
+			    isValidNumber1  = true;
+			} catch (NumberFormatException e1) {
+			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+		}
+	}
+	public void setPlantOnBoard() {
+		  for (int i =0; i< buttonArray.length ; i++) {
+			     for (int j =0; j< buttonArray[0].length ; j++) {
+
+		    	 if(i == row && j == column) {
+		     		buttonArray[i][j].setText("P");
+		     		buttonArray[i][j].setEnabled(false);
+		    	 }
+		     }
+	     }
 	}
 	public void setZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
