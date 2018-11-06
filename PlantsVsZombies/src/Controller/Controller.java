@@ -121,9 +121,11 @@ public class Controller implements ActionListener {
 			
 			purchasePlant();
 			view.getCoordinates();
-			view.setPlantOnBoard();
-			
-			
+			if(e.getActionCommand().equals("buyShooterPlant"))
+				view.setSunFlowerOnBoard();
+			if(e.getActionCommand().equals("buySunflower"))
+				view.setShooterOnBoard();
+
 		}
 
 		

@@ -372,12 +372,27 @@ public class View extends JFrame{
 			}
 		}
 	}
-	public void setPlantOnBoard() {
+	
+	public void setShooterOnBoard() {
 		  for (int i =0; i< buttonArray.length ; i++) {
 			     for (int j =0; j< buttonArray[0].length ; j++) {
 
 		    	 if(i == row && j == column) {
-		     		buttonArray[i][j].setText("P");
+		     		buttonArray[i][j].setText("Shooter");
+		     		buttonArray[i][j].setEnabled(false);
+		    	 }
+		     }
+	     }
+	}
+	
+	
+	
+	public void setSunFlowerOnBoard() {
+		  for (int i =0; i< buttonArray.length ; i++) {
+			     for (int j =0; j< buttonArray[0].length ; j++) {
+
+		    	 if(i == row && j == column) {
+		     		buttonArray[i][j].setText("Sunflower");
 		     		buttonArray[i][j].setEnabled(false);
 		    	 }
 		     }
