@@ -52,17 +52,19 @@ public class PlantStore {
 		this.price = price;
 	}
 
-	public boolean validatePurchase(Plants plant , int currentBalance) {
+	public int validatePurchase(Plants plant , int currentBalance) {
 
 		if((currentBalance - plant.getCost()) >= 0)  {
-			int updatedBalance = currentBalance - plant.getCost();
+			int updatedBalance = getSunPoints() - plant.getCost();
 			setSunPoints(updatedBalance);
 			System.out.println("Sun Points: " + updatedBalance);
-			return true;
+			return updatedBalance;
 		}else {
-			System.out.println("Not Enough Sun Points!!");
+			currentBalance = -1;
+			//System.out.println("Not Enough Sun Points!!");
+			
 		}
-		return false;
+		return currentBalance;
 	}
 
 	
@@ -90,13 +92,13 @@ public class PlantStore {
 			if (num == 1) {
 				Plants sp = new ShootingPlant(); 
 				if (previousPlant ==null || previousPlant instanceof ShootingPlant == false) {
-					boolean canBuy = validatePurchase(sp , sunPoints);
-					if (canBuy == true) {	
-						layout.placePlantOnGrid(sp);
-					}
-					else if (canBuy == false) { //cant buy but can buy another plant
-							storeMenu(getSunPoints() , layout);
-					}
+				//	boolean canBuy = validatePurchase(sp , sunPoints);
+//					if (canBuy == true) {	
+//						layout.placePlantOnGrid(sp);
+//					}
+//					else if (canBuy == false) { //cant buy but can buy another plant
+//							storeMenu(getSunPoints() , layout);
+//					}
 					
 				}
 				
@@ -111,12 +113,12 @@ public class PlantStore {
 				Plants sf = new Sunflower();
 				if (previousPlant ==null || previousPlant instanceof Sunflower == false) {
 					
-				
-					boolean canBuy  = validatePurchase(sf , sunPoints);	
-					if (canBuy == true) {
-	
-						layout.placePlantOnGrid(sf);
-					}
+//				
+//					boolean canBuy  = validatePurchase(sf , sunPoints);	
+//					if (canBuy == true) {
+//	
+//						layout.placePlantOnGrid(sf);
+//					}
 					
 				}
 				else {

@@ -54,18 +54,18 @@ public class PlantStoreTest extends TestCase{
 		assertEquals ("This should return 350 after the increment", 350, ps.getSunPoints());
 	}
 
-	@Test
+/*	@Test
 	public void test6() { //this test is for validate purchase for a successful case
 		PlantStore ps = new PlantStore();
 		ShootingPlant p1 = new ShootingPlant();
 		assertTrue ("Should return true because current balance is 150 and shooting plant cost 100", ps.validatePurchase(p1, ps.getSunPoints()));
-	}
+	}*/
 	
-	@Test
+	/*@Test
 	public void test7() { //this test is for validate purchase for a unsuccessful case
 		PlantStore ps = new PlantStore();
 		ps.setSunPoints(50);
 		ShootingPlant p1 = new ShootingPlant();
 		assertFalse ("Should return false because current balance is 150 and shooting plant cost 100", ps.validatePurchase(p1, ps.getSunPoints()));
-	}
+	}*/
 }

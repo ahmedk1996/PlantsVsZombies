@@ -55,9 +55,9 @@ public class Game {
 
 		boolean gamedone = false;
 		if(!(zombieCounter <=1)) {
-			layout.placeSpawnZombieOnGrid(layout);
+			//layout.placeSpawnZombieOnGrid(layout);
 		}
-		layout.print();
+	/*	
 		store.purchaseStartOfGame(layout , true);
 
 		while(gamedone == false) {
@@ -71,7 +71,7 @@ public class Game {
 			Action action = new Action(store);
 			layout.setGameGrid(action.startAction(layout,gameTurns));
 			layout.print();
-		}
+		}*/
 	}
 	
 	/**

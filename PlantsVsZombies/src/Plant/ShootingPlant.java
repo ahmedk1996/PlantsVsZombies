@@ -21,6 +21,7 @@ public class ShootingPlant  extends Plants{
 		super.setStringtype("F    ");
 		super.setDamage(25);
 		super.setHealth(100);
+		super.setCost(cost);
 	}
 	public ShootingPlant(int health){
 		this.health = health;

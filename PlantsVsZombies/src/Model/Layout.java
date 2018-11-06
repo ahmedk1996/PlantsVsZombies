@@ -25,7 +25,7 @@ public class Layout {
 	private int max;
 	private int min;
 	private boolean valid;
-	private Controller con;
+
 	// Creating Grid of [5][7] 
 	public Layout() {
 		gameGrid = new Object[5][7];
@@ -46,7 +46,6 @@ public class Layout {
 	public void placeZombieOnGrid(Zombies z, int randRow) {
 		if(gameGrid[randRow][6] == null) {
 			gameGrid[randRow][6] = z;
-			con.addZombie(randRow , 6);
 			print(gameGrid);
 		}else {
 			System.out.print("Not empty");
@@ -71,13 +70,13 @@ public class Layout {
 		grid = new PrintGrid(gameGrid);
 	}
 	 
-	public void placeSpawnZombieOnGrid(Layout layout) {
-		int random = (int)(Math.random() * 4 + 1);
-		if (layout.gameGrid[random][6] == null) {
-			placeObjectOnGrid(random, 6, new WalkingZombie());
+	public int placeSpawnZombieOnGrid(/*Layout layout*/) {
+		int random = (int)(Math.random() * 5 + 0);
+		//if (layout.gameGrid[random][6] == null) {
+		//	placeObjectOnGrid(random, 6, new WalkingZombie());
 			
-		}
-		return;
+	//	}
+		return random;
 	}
 	
 

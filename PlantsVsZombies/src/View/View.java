@@ -9,21 +9,12 @@
  */
 
 package View;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.nio.file.Files;
-
 import javax.swing.*;
-
 import Controller.Controller;
-import Model.Game;
 import Model.Layout;
-import Plant.PlantStore;
-
 public class View extends JFrame{
 	
 	/**
@@ -53,28 +44,10 @@ public class View extends JFrame{
 	private JLabel points;
 	private JButton purchase; 
 	private Layout layout;
+	private JButton [][] buttonArray;
+	private JLabel status;
 	
 	private JRadioButton buyShooterPlant;
-	public JRadioButton getBuyShooterPlant() {
-		return buyShooterPlant;
-	}
-	public void setBuyShooterPlant(JRadioButton buyShooterPlant) {
-		this.buyShooterPlant = buyShooterPlant;
-	}
-	public void setBuySunflower(JRadioButton buySunflower) {
-		this.buySunflower = buySunflower;
-	}
-
-
-	private JRadioButton buySunflower;
-	public JButton getPurchase() {
-		return purchase;
-	}
-	public void setPurchase(JButton purchase) {
-		this.purchase = purchase;
-	}
-	
-
 	private JLabel menu1;
 	private JPanel store;
 	private JPanel board;
@@ -85,7 +58,37 @@ public class View extends JFrame{
 	private JLabel Shooter;
 	private JButton waveContinue;
 	private JLabel peaShooter;
-	private JButton b1;
+	private JRadioButton buySunflower;
+	
+	public JRadioButton getBuyShooterPlant() {
+		return buyShooterPlant;
+	}
+	public void setBuyShooterPlant(JRadioButton buyShooterPlant) {
+		this.buyShooterPlant = buyShooterPlant;
+	}
+	public void setBuySunflower(JRadioButton buySunflower) {
+		this.buySunflower = buySunflower;
+	}
+	public ButtonGroup getGroup() {
+		return group;
+	}
+	public void setGroup(ButtonGroup group) {
+		this.group = group;
+	}
+	
+	public JButton getPurchase() {
+		return purchase;
+	}
+	public void setPurchase(JButton purchase) {
+		this.purchase = purchase;
+	}
+	public JButton getWaveContinue() {
+		return waveContinue;
+	}
+	public void setWaveContinue(JButton waveContinue) {
+		this.waveContinue = waveContinue;
+	}
+
 	
 	public JLabel getPoints() {
 		return points;
@@ -143,7 +146,6 @@ public class View extends JFrame{
 	public JRadioButton getBuySunflower() {
 		return  buySunflower;
 	}
-	
 
 	public void setNewGame(JMenuItem newGame) {
 		this.newGame = newGame;
@@ -239,7 +241,6 @@ public class View extends JFrame{
 		selectButtonsPanel.add(help);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
 	}
 
 	public JMenu getGameMenu() {
@@ -262,18 +263,20 @@ public class View extends JFrame{
 		
 		 store = new JPanel();
 		 board = new JPanel();
-	
+		 controller = new Controller();
 		 splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, store, board);
 		 splitPane.setDividerLocation(350);
 		 splitPane.setOneTouchExpandable(true);
 	     gameFrame.getContentPane().add(splitPane);
 	     board.setLayout(new GridLayout(5,7));
-	     for (int i =0; i< layout.getGameGrid().length ; i++) {
-		     for (int j =0; j< layout.getGameGrid()[0].length ; j++) {
-
-		     		b1 = new JButton();
-		     		b1.setActionCommand("(" + i + ", " + j + ")");
-		     		board.add(b1);
+	  
+	     buttonArray = new JButton[5][7];
+	     for (int i =0; i< buttonArray.length ; i++) {
+		     for (int j =0; j< buttonArray[0].length ; j++) {
+		    	 	JButton b = new JButton();
+		     		buttonArray[i][j] = b;
+		     		board.add(b);
+		     		controller.actionButton(b);
 		     }
 	     }
 	     	
@@ -300,12 +303,16 @@ public class View extends JFrame{
 			purchase = new JButton("Purchase");
 			store.add(purchase);
 			purchase.setEnabled(false);
-				waveContinue = new JButton("Continue Wave");
+			waveContinue = new JButton("Simulate Wave");
 			store.add(waveContinue);
+			status = new JLabel("Happy Spending!");
+			store.add(status);
+			status.setForeground(Color.RED);
 			group.add(buyShooterPlant);
 			group.add(buySunflower);
 			
 	}
+	
 	public void helpPrompt() {
 		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 
 				" \r\n" + 
@@ -342,10 +349,18 @@ public class View extends JFrame{
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(gameFrame,"Walking Zombies will spawn!","Spawners", JOptionPane.WARNING_MESSAGE, null);
 	}
-	public void setZombieOnBoard(int randRow, int i) {
+	public void setZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
+		buttonArray[randRow][6].setText("Z");
+		buttonArray[randRow][6].setEnabled(false);
+	}
+	public void updateStatusText(String text) {
+		// TODO Auto-generated method stub
+		status.setText(text);
 		
-		
+	}
+	public void updatePointsText(String updatePoints) {
+		points.setText(String.valueOf(updatePoints) + " Points");
 		
 	}
 
