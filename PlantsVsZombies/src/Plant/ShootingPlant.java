@@ -22,12 +22,13 @@ public class ShootingPlant  extends Plants{
 		super.setDamage(25);
 		super.setHealth(100);
 		super.setCost(cost);
+		super.setName("ShootingPlant");
 	}
 	public ShootingPlant(int health){
 		this.health = health;
 		super.setDamage(25);
 		super.setStringtype("F    ");
-		
+		super.setName("ShootingPlant");
 	}
 	public int getCost() {
 		return cost;

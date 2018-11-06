@@ -18,6 +18,7 @@ public class Sunflower extends Plants {
 		super.setStringtype("S    ");
 		super.setHealth(100);
 		super.setSpeed(1);
+		super.setName("Sunflower");
 	}
 
 	public int getCost() {

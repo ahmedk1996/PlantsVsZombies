@@ -16,9 +16,19 @@ public abstract class Plants {
 	private int sunPoints;
 	private int speed;
 	private int damage;
+	private String name;
+	private int cooldown = 1; //defalut Cooldown takes 1 turns
 	
 	public int getDamage() {
 		return damage;
+	}
+
+	public int getCooldown() {
+		return cooldown;
+	}
+
+	public void setCooldown(int cooldown) {
+		this.cooldown = cooldown;
 	}
 
 	public void setDamage(int damage) {
@@ -91,7 +101,12 @@ public abstract class Plants {
 		this.speed = speed;
 	}
 
-	
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	
 	
