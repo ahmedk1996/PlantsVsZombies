@@ -1,35 +1,36 @@
 package Model;
 
-import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 import Plant.Plants;
-import Plant.ShootingPlant;
 
 public class CoolDownQueue implements Observer{
 	String name;
-	Queue<Plants> queue; 
-	
-	
-	public CoolDownQueue() {
-		
+	PriorityQueue<Plants> queue; 
+	public CoolDownQueue(Plants plant) {
+		queue = new PriorityQueue<Plants>();
+		this.name = plant.getName();
+		addCooldown(plant);
 	}
 	/**
-	 * .
-	 *
-	 * @param  Plant
-	 * 	 * @return      result of the game
+	 * depends on the type of the plant, it checks the cool-down of the plants
+	 * and add it to the queue.
+	 * 
+	 * @param plant
 	 */
-	public void createCoolDown(Plants plant) {
-		queue = new LinkedList<>();
-		this.name = plant.getName();
+	public void addCooldown(Plants plant) {
+		for(int i=0;i<plant.getCooldown();i++) {
+			queue.add(plant);
+		}
+		System.out.println(plant.getName() + "'s Cool Down : " + getRemaining());
 	}
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
 		
 	}
 	public String getName() {
@@ -41,7 +42,7 @@ public class CoolDownQueue implements Observer{
 	public Queue<Plants> getQueue() {
 		return queue;
 	}
-	public void setQueue(Queue<Plants> queue) {
+	public void setQueue(PriorityQueue<Plants> queue) {
 		this.queue = queue;
 	}
 
@@ -53,7 +54,9 @@ public class CoolDownQueue implements Observer{
 		return this.queue.isEmpty();
 	}
 	
-	public void addCooldown() {
-		
+	public void removeCooldown() {
+		queue.remove();
 	}
+	
+	
 }
