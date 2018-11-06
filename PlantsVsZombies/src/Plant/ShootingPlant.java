@@ -39,10 +39,7 @@ public class ShootingPlant  extends Plants{
 	public static void setTurn(int turn) {
 		ShootingPlant.turn = turn;
 	}
-	public static void shooterPlantShoot() {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 
 }
