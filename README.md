@@ -19,6 +19,9 @@ The goal of this milestone is to create a base skeletal version of a typical Pla
 Change Log: 
 Milestone 2: Implemented the plantsvszombies project using the MVC design pattern. This also included creating a test package which retains all the tests for our model side.
 
+Next Steps:
+The next steps for this project is to add more plants for the user to choose from, along with other types of zombies that have different attack speed, damage, movement speed, etc. In addition, to adding more Plants and Zombies to the board, we will also be implementing a undo/redo method option for the user to click an infinite number of times.
+
 Included Files:
 Default Package:
 - startEngine.java
@@ -61,5 +64,6 @@ Execution/Termination Instructions
 Create a project on a desired IDE and import the project. Go to startEngine.java and select dropdown menu near the run icon. Then choose Run as Java Application and follow the prompts on the console.
 After running the java file the user is prompted with a level choosing option in which, for now, they can only select easy option which involves only 4 walking zombies during a wave. The higher the level of difficulty is the more zombies introduced to the game there are.
 After selecting the level of difficulty the user is introduced to a new panel in which they have the game board on the bottom and the upper is where the user has control over what plants he'd like to purchase and when to simulate the new wave. In order to purchase a plant the user must firstly have enough points for the certain plant unless their purchase button will not function. Once the user has a sufficient amount of sun points for their plant they must select the plant, press purchase and click on the grid below to place the plant. Once the user is ready they may press the simulate wave button in order to start the game.
+To run the tests, open the java class labeled AllTests.java. Once the file is open, click the drop down arrow beside the green Run button and choose "Run as JUnit test". We have created a test suite that will run all the test cases for you.
  
-Known issues that were fixed: Missing documentation was updated and each class was given its own description swell as method documentation. Sequence diagram which was missing from the first milestone was created. A new class named CoolDown was created in order to keep the plants from being placed straight away after being purchased.	
+Known issues that were fixed: Missing documentation was updated and each class was given its own description aswell as method documentation. Sequence diagram which was missing from the first milestone was created. A new class named CoolDown.java was created in order to keep the plants from being placed straight away after being purchased.	
