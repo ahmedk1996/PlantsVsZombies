@@ -4,6 +4,7 @@ package Plant;
 
 import java.util.Scanner;
 
+import Model.CoolDown;
 import Model.Layout;
 
 public class PlantStore {
@@ -15,8 +16,7 @@ public class PlantStore {
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
 	private int num;
-	private Plants previousPlant;
-
+	
 	public  int getSunPoints() {
 		return sunPoints;
 	}
@@ -54,7 +54,7 @@ public class PlantStore {
 
 	public int validatePurchase(Plants plant , int currentBalance) {
 
-		if((currentBalance - plant.getCost()) >= 0)  {
+		if((currentBalance - plant.getCost()) >= 0){
 			int updatedBalance = getSunPoints() - plant.getCost();
 			setSunPoints(updatedBalance);
 			System.out.println("Sun Points: " + updatedBalance);
@@ -79,19 +79,20 @@ public class PlantStore {
 
 	}
 	
-	public void storeMenu(int sunPoints  , Layout layout) {
+	public void storeMenu(int sunPoints, Layout layout) {
 		
 		System.out.println("You have " + getSunPoints() + " SunPoints.");
+		
 		if (getSunPoints() == 0) {
 			System.out.println("You can't buy anything");
-			return;
+			return ;
 		}
 	
 		storePrices();
 		int num = reader.nextInt();
 			if (num == 1) {
-				Plants sp = new ShootingPlant(); 
-				if (previousPlant ==null || previousPlant instanceof ShootingPlant == false) {
+				//Plants sp = new ShootingPlant(); 
+				//if (queue.) {
 				//	boolean canBuy = validatePurchase(sp , sunPoints);
 //					if (canBuy == true) {	
 //						layout.placePlantOnGrid(sp);
@@ -106,7 +107,7 @@ public class PlantStore {
 					System.out.print("Can't Purchase! The cool down to place a Shooting Plant ends next turn.");
 					storeMenu(sunPoints , layout);
 				}
-				previousPlant = sp;
+				//previousPlant = sp;
 		}
 		 
 			else if (num == 2) {
@@ -151,7 +152,6 @@ public class PlantStore {
 
 
 	}
-
 
 	public void purchaseStartOfGame(Layout layout , boolean start) {
 		if (start == true) {

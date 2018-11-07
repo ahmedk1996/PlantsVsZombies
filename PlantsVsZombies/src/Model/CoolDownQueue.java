@@ -4,12 +4,12 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.PriorityQueue;
 import java.util.Queue;
-
 import Plant.Plants;
 
 public class CoolDownQueue implements Observer{
 	String name;
 	PriorityQueue<Plants> queue; 
+	
 	public CoolDownQueue(Plants plant) {
 		queue = new PriorityQueue<Plants>();
 		this.name = plant.getName();
@@ -21,6 +21,7 @@ public class CoolDownQueue implements Observer{
 	 * 
 	 * @param plant
 	 */
+	
 	public void addCooldown(Plants plant) {
 		for(int i=0;i<plant.getCooldown();i++) {
 			queue.add(plant);
@@ -31,6 +32,7 @@ public class CoolDownQueue implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
+		queue.remove();
 		
 	}
 	public String getName() {
