@@ -19,6 +19,9 @@ The goal of this milestone is to create a base skeletal version of a typical Pla
 Change Log: 
 Milestone 2: Implemented the plantsvszombies project using the MVC design pattern. This also included creating a test package which retains all the tests for our model side.
 
+Next Steps:
+The next steps for this project is to add more plants for the user to choose from, along with other types of zombies that have different attack speed, damage, movement speed, etc. In addition, to adding more Plants and Zombies to the board, we will also be implementing a undo/redo method option for the user to click an infinite number of times.
+
 Included Files:
 Default Package:
 - startEngine.java
