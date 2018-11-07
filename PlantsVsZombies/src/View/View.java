@@ -51,6 +51,7 @@ public class View extends JFrame{
 	private List<JButton> button;
 	private JButton [][] buttonArray;
 	private int buttIndex = -1;
+	
 	public JLabel getStatus() {
 		return status;
 	}
@@ -113,7 +114,6 @@ public class View extends JFrame{
 		this.waveContinue = waveContinue;
 	}
 
-	
 	public JLabel getPoints() {
 		return points;
 	}

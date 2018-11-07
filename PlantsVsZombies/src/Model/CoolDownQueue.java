@@ -61,7 +61,6 @@ public class CoolDownQueue implements Observer{
 	public void removeCooldown() {
 		queue.remove();
 	}
-	
-	
+
 }
 

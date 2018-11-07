@@ -87,7 +87,6 @@ public class Controller implements ActionListener {
 		game.setZombieCounter(5); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
 		
 	}
-
 	public void actionButton(JButton b) {
 	
 		b.addActionListener(this);
@@ -141,6 +140,7 @@ public class Controller implements ActionListener {
 				view.placePrompt();
 				
 			}
+			
 		}
 		
 		else if (e.getActionCommand().equals("simulate")) {

@@ -17,7 +17,7 @@ public abstract class Plants {
 	private int speed;
 	private int damage;
 	private String name;
-	private int cooldown = 1; //defalut Cooldown takes 1 turns
+	private int cooldown = 2; //defalut Cooldown takes 1 turns
 	
 	public int getDamage() {
 		return damage;

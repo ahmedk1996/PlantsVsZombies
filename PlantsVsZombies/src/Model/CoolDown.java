@@ -73,11 +73,14 @@ public class CoolDown extends Observable{
 	 * @param plant
 	 */
 	public void purchasedPlant(Plants plant) {
-		if (checkingQueue(plant)){
-			getPlantQueue(plant).addCooldown(plant);
-		}else {
+		if(!checkingQueue(plant)) {
 			this.queueList.add(new CoolDownQueue(plant));
+		}else {
+			if(getPlantQueue(plant).isEmpty()) {
+				getPlantQueue(plant).addCooldown(plant);
+			}else
+				System.out.println("CoolDown Remaining : " + getPlantQueue(plant).getRemaining());
+			}
 		}
 	}
-	
-}
+
