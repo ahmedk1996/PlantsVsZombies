@@ -69,7 +69,8 @@ public class Controller implements ActionListener {
 		
 
 	}
-
+	
+	
 	
 	
 	public void initalizePlay() {
@@ -94,9 +95,9 @@ public class Controller implements ActionListener {
 		
 	}
 	public void setZombies() {
-		zombieMove();
+		zombieMove(action , layout);
 		if(!(game.getZombieCounter() <=1)) {
-			int row = layout.placeSpawnZombieOnGrid();
+			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
 			view.setZombieOnBoard(row);
 			game.setZombieCounter(game.getZombieCounter()-1);
 		}
@@ -148,13 +149,17 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("button")) {
 			
 			JButton b = (JButton) e.getSource();
+			  System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 				b.setText("PS");
 				view.setEnabledButtons(false);	
+				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new Sunflower() , layout.getGameGrid());
+				
 			}
 			else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 				b.setText("SF");
 				view.setEnabledButtons(false);	
+				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new ShootingPlant() , layout.getGameGrid());
 			}
 			view.getWaveContinue().setEnabled(true);
 			b.setEnabled(false);
@@ -167,8 +172,10 @@ public class Controller implements ActionListener {
 		     for (int j =0; j< view.getButtonArray()[0].length ; j++) {
 		    	 	JButton b = new JButton();
 		    	 	view.getButtonArray()[i][j] = b;
+		    	 	view.getButtonArray()[i][j].putClientProperty("column", i);
+		    	 	view.getButtonArray()[i][j].putClientProperty("row", j);
+		    		b.addActionListener(this);
 		     		view.getBoard().add(b);
-		     		b.addActionListener(this);
 		     		b.setActionCommand("button");
 		     		view.getButton().add(b);
 		     		b.setEnabled(false);
@@ -208,8 +215,8 @@ public class Controller implements ActionListener {
 		
 	}
 	
-	public void zombieMove() {
-		view.updateZombie();
+	public void zombieMove(Action ac , Layout layout) {
+		view.updateZombie(ac , layout.getGameGrid(), layout);
 	}
 }
 	

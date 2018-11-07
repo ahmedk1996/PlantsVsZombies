@@ -10,7 +10,7 @@
 package Model;
 import java.util.List;
 
-import javax.swing.JButton;
+
 
 import Plant.PlantStore;
 import Plant.Plants;
@@ -27,7 +27,7 @@ public class Action {
 	private int health;
 	private int currentTurn;
 	private PlantStore store;
-
+	
 	public Action(PlantStore store) {
 		this.store = store;
 	}
@@ -46,7 +46,7 @@ public class Action {
 		this.layout = layout;
 		this.currentTurn = gameTurn;
 		plantShoot();
-		behaveZombie();
+		//behaveZombie();
 		layout.print();
 		if(isGameOver(layout)) {
 			System.out.println("!!!!!GAME OVER!!!!!");
@@ -106,26 +106,27 @@ public class Action {
 	*- check front tile is plant
 	*		-check Zombie is movable
 	*			-yes attack 
- 	*				- invoke ZombieAttack(), replace Plant object to returned plant 	 *
+ 	*				- invoke ZombieAttack(), replace Plant object to returned plant 	 
+	 * @param gameGrid *
  	* @param  None
  	* @return None
  	* 
  	*/
-	public void behaveZombie() {
+	public void behaveZombie(Object[][] gameGrid, Layout layout) {
 		turn = new Turn();
-		for(int i=0 ; i <layout.getGameGrid().length; i++) {
-			for(int j=1; j < layout.getGameGrid()[0].length ; j++) { // J starts at 1 because if it is 0, it will get error. 
-				if(layout.getGameGrid()[i][j] instanceof Zombies){ // checking that is Zombie class
-					Zombies temp = (Zombies)layout.getGameGrid()[i][j]; // Copying the zombie object
+		for(int i=0 ; i <gameGrid.length; i++) {
+			for(int j=1; j < gameGrid[0].length ; j++) { // J starts at 1 because if it is 0, it will get error. 
+				if(gameGrid[i][j] instanceof Zombies){ // checking that is Zombie class
+					Zombies temp = (Zombies)gameGrid[i][j]; // Copying the zombie object
 					if(turn.canZombieMove(temp,currentTurn)){ // checking the Zombie Object is movable.
-						if(layout.getGameGrid()[i][j-1] == null) {
+						if(gameGrid[i][j-1] == null) {
 							layout.setObject(i, j, null); // empty the previous spot
-							layout.placeObjectOnGrid(i, j-1, temp);	//place zombie
-						}else if (layout.getGameGrid()[i][j-1] instanceof Zombies) { // later we can pile up 2 zombies
+							layout.placeObjectOnGrid(i, j-1, temp, gameGrid);	//place zombie
+						}else if (gameGrid[i][j-1] instanceof Zombies) { // later we can pile up 2 zombies
 							System.out.println("There is a Zombie in front of");
 						}
-						else if (layout.getGameGrid()[i][j-1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
-							layout.setObject(i, j-1, zombieAttack((Zombies)layout.getGameGrid()[i][j],(Plants)layout.getGameGrid()[i][j-1]));
+						else if (gameGrid[i][j-1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
+							layout.setObject(i, j-1, zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1]));
 							
 						}else {
 							System.out.println("error here");

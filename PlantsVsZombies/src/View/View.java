@@ -17,6 +17,7 @@ import java.util.List;
 
 import javax.swing.*;
 import Controller.Controller;
+import Model.Action;
 import Model.Layout;
 public class View extends JFrame{
 	
@@ -409,7 +410,7 @@ public class View extends JFrame{
 		JOptionPane.showMessageDialog(gameFrame, "Deploy your Plant in the garden", "Deploy", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	public void updateZombie() {
+	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout) {
 	
 		for(JButton butt : button) {
 			if (butt.getText().equals("Z")) {
@@ -423,6 +424,8 @@ public class View extends JFrame{
 				buttIndex = button.indexOf(butt);
 				buttIndex--;
 				button.get(buttIndex).setText("Z");
+				
+				ac.behaveZombie(gameGrid, layout);
 				
 			}
 		}

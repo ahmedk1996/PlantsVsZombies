@@ -42,27 +42,7 @@ public class Layout {
 	public void createGrid(int x, int y) {
 		gameGrid = new Object [x][y];		
 	}
-	
-	public void placeZombieOnGrid(Zombies z, int randRow) {
-		if(gameGrid[randRow][6] == null) {
-			gameGrid[randRow][6] = z;
-			print(gameGrid);
-		}else {
-			System.out.print("Not empty");
-		}
-	}
 
-
-
-	public void reset() {	
-		for(int row = 0; row < 5; row++)
-		{
-			for (int column = 0; column < 7; column++)
-			{
-				gameGrid[row][column] = null;
-			}
-		}
-	}
 	public void print() {
 		grid = new PrintGrid(gameGrid);
 	}
@@ -70,9 +50,9 @@ public class Layout {
 		grid = new PrintGrid(gameGrid);
 	}
 	 
-	public int placeSpawnZombieOnGrid() {
+	public int placeSpawnZombieOnGrid(Object[][] gameGrid) {
 		int random = (int)(Math.random() * 5 + 0);
-		//placeObjectOnGrid(random, 6, new WalkingZombie());
+		placeObjectOnGrid(random, 6, new WalkingZombie() , gameGrid);
 		return random;
 	}
 	
@@ -84,17 +64,13 @@ public class Layout {
 				else if (p instanceof Sunflower) {
 					valid = placeObjectOnGrid(inputX, inputY, new Sunflower());
 				}
-				
-
 					return true;
-
-
 	}*/
 
 	public Object getGrid() {
 		return gameGrid;
 	}
-
+ 
 	public void setObject(int row,int col, Object o) {
 		gameGrid[row][col] = o;
 	}
@@ -103,17 +79,26 @@ public class Layout {
 		return gameGrid[row][col];
 	}
 	
-	public boolean placeObjectOnGrid(int row,int col, Object o) {
-		if(this.gameGrid[row][col] != null) {
-			System.out.println("You can't place your plant here.");
-			return false;
+	
+	
+	public boolean placeObjectOnGrid(int row,int col, Object o, Object[][] gameGrid) {
+		if(gameGrid[row][col] != null) {
+			placeSpawnZombieOnGrid(gameGrid);
+			
 		}else {
 			gameGrid[row][col] = o;
 		}
 		return true;
 	}
 
-
+	public void placePlantOnGrid(int row , int col , Plants p ,Object[][] gameGrid ) {
+		if(gameGrid[row][col] != null) {
+			
+		}
+		else {
+			gameGrid[row][col] = p;
+		}
+	}
 
 
 
