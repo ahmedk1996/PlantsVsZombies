@@ -20,7 +20,6 @@ public class AllTests extends TestCase {
  suite.addTest(new TestSuite(SunflowerTest.class));
  suite.addTest(new TestSuite(TurnTest.class));
  suite.addTest(new TestSuite(WalkingZombieTest.class));
- suite.addTest(new TestSuite(waveTest.class));
  return suite;
  }
 }

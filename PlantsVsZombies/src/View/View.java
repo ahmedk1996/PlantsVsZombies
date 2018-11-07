@@ -429,9 +429,13 @@ public class View extends JFrame{
 		if (buttIndex== -1) {
 			return;
 		}
-	
-			
-		
-
 	}
+	
+	public void updatePlants() {
+		for(JButton butt : button) {
+			if (butt.getText().equals("SP") || butt.getText().equals("SF")) {
+				
+			}
+	}
+}
 }
