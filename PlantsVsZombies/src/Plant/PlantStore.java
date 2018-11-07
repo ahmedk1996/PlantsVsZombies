@@ -4,6 +4,7 @@ package Plant;
 
 import java.util.Scanner;
 
+import Model.CoolDown;
 import Model.Layout;
 
 public class PlantStore {
@@ -15,8 +16,7 @@ public class PlantStore {
 	private final int  sunFlowerCost = 50;
 	private boolean hasGameStarted = false;
 	private int num;
-	private Plants previousPlant;
-
+	
 	public  int getSunPoints() {
 		return sunPoints;
 	}
@@ -54,7 +54,7 @@ public class PlantStore {
 
 	public int validatePurchase(Plants plant , int currentBalance) {
 
-		if((currentBalance - plant.getCost()) >= 0)  {
+		if((currentBalance - plant.getCost()) >= 0){
 			int updatedBalance = getSunPoints() - plant.getCost();
 			setSunPoints(updatedBalance);
 			System.out.println("Sun Points: " + updatedBalance);
@@ -66,32 +66,37 @@ public class PlantStore {
 		}
 		return currentBalance;
 	}
-
+}
+/*
 	
-	public void storePrices() {
-		System.out.println("-----------------------------");
-		System.out.println("PeaShooter Plant : " + peaShooterCost + " Points. (1)");
-		System.out.println("SunFlower Plant : " + sunFlowerCost + " Points. (2)");
-		System.out.println("To purchase a PeaShooter Plant, enter 1.");
-		System.out.println("To purchase a SunFlower Plant, enter 2.");
-		System.out.println("To Continue the wave, enter 0.");
-		System.out.println("-----------------------------");
-
-	}
-	
+<<<<<<< HEAD
 	public void storeMenu(int sunPoints  , Layout layout) {
+
+				Plants sp = new ShootingPlant(); 
+				if (previousPlant ==null || previousPlant instanceof ShootingPlant == false) {
+			
+						layout.placePlantOnGrid(sp);		
+				}
+				
+	
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> ef6e5997d55035f383b16bec5ddb15008fa121cd
+	public void storeMenu(int sunPoints, Layout layout) {
 		
 		System.out.println("You have " + getSunPoints() + " SunPoints.");
+		
 		if (getSunPoints() == 0) {
 			System.out.println("You can't buy anything");
-			return;
+			return ;
 		}
 	
 		storePrices();
 		int num = reader.nextInt();
 			if (num == 1) {
-				Plants sp = new ShootingPlant(); 
-				if (previousPlant ==null || previousPlant instanceof ShootingPlant == false) {
+				//Plants sp = new ShootingPlant(); 
+				//if (queue.) {
 				//	boolean canBuy = validatePurchase(sp , sunPoints);
 //					if (canBuy == true) {	
 //						layout.placePlantOnGrid(sp);
@@ -106,53 +111,26 @@ public class PlantStore {
 					System.out.print("Can't Purchase! The cool down to place a Shooting Plant ends next turn.");
 					storeMenu(sunPoints , layout);
 				}
-				previousPlant = sp;
+				//previousPlant = sp;
 		}
 		 
 			else if (num == 2) {
+>>>>>>> ef6e5997d55035f383b16bec5ddb15008fa121cd
 				Plants sf = new Sunflower();
 				if (previousPlant ==null || previousPlant instanceof Sunflower == false) {
 					
-//				
-//					boolean canBuy  = validatePurchase(sf , sunPoints);	
-//					if (canBuy == true) {
-//	
-//						layout.placePlantOnGrid(sf);
-//					}
+						layout.placePlantOnGrid(sf);
+					}
 					
 				}
-				else {
-					System.out.print("Can't Purchase! The cool down to place a Sun Flower Plant ends next turn.");
-				}
-				previousPlant = sf;
-			}
-			else if (num ==0) {
-				return;
-			}
-			
-			else if( num < 0 || num > 2) {
-				System.out.println("Sorry but the value you entered was invalid");
 
-			}
-			
-			
-		
-		System.out.println("Would you like to make another purchase?");
-		System.out.println("Type (1) to make another purchase. Type (2) to start the new Wave");
-		if (reader.nextInt() == 1) {
-			storeMenu(getSunPoints()  , layout);
-		}
-		
-		else {
-			return;
-		}
-		
+<<<<<<< HEAD
+<<<<<<< HEAD
 
-
-
-	}
-
-
+}*/
+=======
+=======
+>>>>>>> ef6e5997d55035f383b16bec5ddb15008fa121cd
 	public void purchaseStartOfGame(Layout layout , boolean start) {
 		if (start == true) {
 		
@@ -170,3 +148,4 @@ public class PlantStore {
 
 
 }
+>>>>>>> ef6e5997d55035f383b16bec5ddb15008fa121cd
