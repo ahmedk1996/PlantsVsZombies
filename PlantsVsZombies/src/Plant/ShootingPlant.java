@@ -41,6 +41,4 @@ public class ShootingPlant  extends Plants{
 		ShootingPlant.turn = turn;
 	}
 
-
-
 }
