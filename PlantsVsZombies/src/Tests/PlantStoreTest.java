@@ -12,7 +12,6 @@ import junit.framework.TestCase;
 
 public class PlantStoreTest extends TestCase{
 	
-
 	
 	@Test
 	public void test() { //this test checks current balance for SunPoints
