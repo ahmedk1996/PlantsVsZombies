@@ -38,9 +38,7 @@ public abstract class Zombies{
 			this.health -= attackDamage;
 		}
 	};
-	public void turnOver() {
-		this.turn++;
-	}
+	
 	
 	public String getStringtype() {
 		return stringtype;
@@ -101,9 +99,7 @@ public abstract class Zombies{
 	public void setResistant(int resistant) {
 		this.resistant = resistant;
 	}
-	public void move(Layout layout) {
-		
-	}
+
 
 
 	
