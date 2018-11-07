@@ -12,6 +12,9 @@ package View;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 import Controller.Controller;
 import Model.Layout;
@@ -44,7 +47,16 @@ public class View extends JFrame{
 	private JLabel points;
 	private JButton purchase; 
 	private Layout layout;
+	private List<JButton> button;
 	private JButton [][] buttonArray;
+	private int buttIndex = -1;
+	public JLabel getStatus() {
+		return status;
+	}
+
+	public void setStatus(JLabel status) {
+		this.status = status;
+	}
 	private JLabel status;
 	
 	private JRadioButton buyShooterPlant;
@@ -59,10 +71,18 @@ public class View extends JFrame{
 	private JButton waveContinue;
 	private JLabel peaShooter;
 	private JRadioButton buySunflower;
-	private Integer column=0;
-	private Integer row=0;
 	private JButton b;
 	
+	public View (int test) {
+		
+	}
+
+	public JButton[][] getButtonArray() {
+		return buttonArray;
+	}
+	public void setButtonArray(JButton[][] buttonArray) {
+		this.buttonArray = buttonArray;
+	}
 	public JRadioButton getBuyShooterPlant() {
 		return buyShooterPlant;
 	}
@@ -266,22 +286,15 @@ public class View extends JFrame{
 		
 		 store = new JPanel();
 		 board = new JPanel();
-		 controller = new Controller();
+	
 		 splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, true, store, board);
 		 splitPane.setDividerLocation(350);
 		 splitPane.setOneTouchExpandable(true);
 	     gameFrame.getContentPane().add(splitPane);
 	     board.setLayout(new GridLayout(5,7));
-	  
+	     button = new ArrayList<JButton>();
 	     buttonArray = new JButton[5][7];
-	     for (int i =0; i< buttonArray.length ; i++) {
-		     for (int j =0; j< buttonArray[0].length ; j++) {
-		    	 	b = new JButton();
-		     		buttonArray[i][j] = b;
-		     		board.add(b);
-		     		controller.actionButton(b);
-		     }
-	     }
+	    
 	     	
 			gameFrame.setVisible(true);
 			store.setLayout(new GridLayout(4,2));
@@ -316,6 +329,22 @@ public class View extends JFrame{
 			
 	}
 	
+	public List<JButton> getButton() {
+		return button;
+	}
+
+	public void setButton(List<JButton> button) {
+		this.button = button;
+	}
+
+	public JPanel getBoard() {
+		return board;
+	}
+
+	public void setBoard(JPanel board) {
+		this.board = board;
+	}
+
 	public void helpPrompt() {
 		String helpText= "	Help - How to play Plants Vs Zombies.\r\n" + 
 				" \r\n" + 
@@ -353,51 +382,14 @@ public class View extends JFrame{
 		JOptionPane.showMessageDialog(gameFrame,"Walking Zombies will spawn!","Spawners", JOptionPane.WARNING_MESSAGE, null);
 	}
 	
-	public void getCoordinates() {
-		boolean isValidNumber = false;
-		try {
-			 row = Integer.parseInt(JOptionPane.showInputDialog(null, "What row number would you like to place the plant?", "Plant Placement", JOptionPane.QUESTION_MESSAGE));
-		    isValidNumber  = true;
-		} catch (NumberFormatException e1) {
-		    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		
-		if(row instanceof Integer) {
-			boolean isValidNumber1 = false;
-			try {
-				int column = Integer.parseInt(JOptionPane.showInputDialog(null, "What column number would you like to place the plant? ", "Plant Placement ", JOptionPane.QUESTION_MESSAGE));
-			    isValidNumber1  = true;
-			} catch (NumberFormatException e1) {
-			    JOptionPane.showMessageDialog(new JPanel(), "Invalid number", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+
+	public void setEnabledButtons(boolean b) {
+		for(JButton c : button) {
+			c.setEnabled(b);
 		}
 	}
 	
-	public void setShooterOnBoard() {
-		  for (int i =0; i< buttonArray.length ; i++) {
-			     for (int j =0; j< buttonArray[0].length ; j++) {
 
-		    	 if(i == row && j == column) {
-		     		buttonArray[i][j].setText("Shooter");
-		     		buttonArray[i][j].setEnabled(false);
-		    	 }
-		     }
-	     }
-	}
-	
-	
-	
-	public void setSunFlowerOnBoard() {
-		  for (int i =0; i< buttonArray.length ; i++) {
-			     for (int j =0; j< buttonArray[0].length ; j++) {
-
-		    	 if(i == row && j == column) {
-		     		buttonArray[i][j].setText("Sunflower");
-		     		buttonArray[i][j].setEnabled(false);
-		    	 }
-		     }
-	     }
-	}
 	public void setZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
 		buttonArray[randRow][6].setText("Z");
@@ -412,7 +404,34 @@ public class View extends JFrame{
 		points.setText(String.valueOf(updatePoints) + " Points");
 		
 	}
-
+	public void placePrompt() {
+		
+		JOptionPane.showMessageDialog(gameFrame, "Deploy your Plant in the garden", "Deploy", JOptionPane.INFORMATION_MESSAGE);
+	}
 	
+	public void updateZombie() {
+	
+		for(JButton butt : button) {
+			if (butt.getText().equals("Z")) {
+				int update = button.indexOf(butt);
+				buttIndex = update;
+				if (buttIndex %7 ==0) {
+					System.out.println("Game Over");
+					return;
+				}
+				butt.setText("");
+				buttIndex = button.indexOf(butt);
+				buttIndex--;
+				button.get(buttIndex).setText("Z");
+				
+			}
+		}
+		if (buttIndex== -1) {
+			return;
+		}
+	
+			
+		
 
+	}
 }

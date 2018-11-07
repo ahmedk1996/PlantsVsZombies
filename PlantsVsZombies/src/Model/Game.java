@@ -54,9 +54,9 @@ public class Game {
 	public void start() {
 
 		boolean gamedone = false;
-		if(!(zombieCounter <=1)) {
+		//if(!(zombieCounter <=1)) {
 			//layout.placeSpawnZombieOnGrid(layout);
-		}
+		//}
 	/*	
 		store.purchaseStartOfGame(layout , true);
 

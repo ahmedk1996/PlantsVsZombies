@@ -8,6 +8,10 @@
  */
 
 package Model;
+import java.util.List;
+
+import javax.swing.JButton;
+
 import Plant.PlantStore;
 import Plant.Plants;
 import Plant.ShootingPlant;
@@ -28,7 +32,9 @@ public class Action {
 		this.store = store;
 	}
 	
-	
+	public Action() {
+		
+	}
 	/**
 	 * startAction which handles results of the plants, zombies and game.
 	 *
@@ -198,6 +204,5 @@ public class Action {
 		}
 		return flag;
 	}
-	
 
 }

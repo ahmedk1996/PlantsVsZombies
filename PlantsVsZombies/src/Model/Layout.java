@@ -70,26 +70,14 @@ public class Layout {
 		grid = new PrintGrid(gameGrid);
 	}
 	 
-	public int placeSpawnZombieOnGrid(/*Layout layout*/) {
+	public int placeSpawnZombieOnGrid() {
 		int random = (int)(Math.random() * 5 + 0);
-		//if (layout.gameGrid[random][6] == null) {
-		//	placeObjectOnGrid(random, 6, new WalkingZombie());
-			
-	//	}
+		//placeObjectOnGrid(random, 6, new WalkingZombie());
 		return random;
 	}
 	
 
-	public boolean placePlantOnGrid(Plants p ) {
-		
-	try {
-		
-			reader = new Scanner(System.in);  
-			System.out.println("Enter the row and column to deploy your Plant.(Ex. 4 2)");
-			int inputX = reader.nextInt();
-			int inputY = reader.nextInt();
-
-			
+/*	public boolean placePlantOnGrid(Plants p ) {
 				if (p instanceof ShootingPlant) {
 					valid = placeObjectOnGrid(inputX , inputY, new ShootingPlant());
 				}
@@ -97,28 +85,11 @@ public class Layout {
 					valid = placeObjectOnGrid(inputX, inputY, new Sunflower());
 				}
 				
-				if (valid == false) {
-					System.out.println("Please re-type the row and column");
-					placePlantOnGrid(p);
-				}
-			
-			this.print();
-			
-	}
-	catch(ArrayIndexOutOfBoundsException exception) {
-		System.out.println("Can't place on the grid");
 
-		
-	}
-	return true;
+					return true;
 
-				
-		
-		
-		
-	
-	
-	}
+
+	}*/
 
 	public Object getGrid() {
 		return gameGrid;
