@@ -145,19 +145,21 @@ public class Controller implements ActionListener {
 		
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();		
+			view.getPoints().setText(String.valueOf(ps.getSunPoints()));
+
 		}
 		else if (e.getActionCommand().equals("button")) {
 			
 			JButton b = (JButton) e.getSource();
 			  System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
-				b.setText("PS");
+				b.setText("SF");
 				view.setEnabledButtons(false);	
 				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new Sunflower() , layout.getGameGrid());
 				
 			}
 			else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
-				b.setText("SF");
+				b.setText("PS");
 				view.setEnabledButtons(false);	
 				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new ShootingPlant() , layout.getGameGrid());
 			}

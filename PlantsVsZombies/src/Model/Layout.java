@@ -93,7 +93,7 @@ public class Layout {
 
 	public void placePlantOnGrid(int row , int col , Plants p ,Object[][] gameGrid ) {
 		if(gameGrid[row][col] != null) {
-			
+			System.out.println("Not Empty");
 		}
 		else {
 			gameGrid[row][col] = p;
