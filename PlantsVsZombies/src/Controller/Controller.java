@@ -219,6 +219,7 @@ public class Controller implements ActionListener {
 	
 	public void zombieMove(Action ac , Layout layout) {
 		view.updateZombie(ac , layout.getGameGrid(), layout);
+		
 	}
 }
 	

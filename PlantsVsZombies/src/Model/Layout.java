@@ -78,7 +78,9 @@ public class Layout {
 	public Object getObject(int row,int col) {
 		return gameGrid[row][col];
 	}
-	
+	public void moveZombieUpOne(int row,int col, Object o, Object[][] gameGrid) {
+		gameGrid[row][col] = o;
+	}
 	
 	
 	public boolean placeObjectOnGrid(int row,int col, Object o, Object[][] gameGrid) {

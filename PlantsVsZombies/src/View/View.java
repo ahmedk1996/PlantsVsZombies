@@ -416,6 +416,9 @@ public class View extends JFrame{
 			if (butt.getText().equals("Z")) {
 				int update = button.indexOf(butt);
 				buttIndex = update;
+				if (buttIndex== -1) {
+					return;
+				}
 				if (buttIndex %7 ==0) {
 					System.out.println("Game Over");
 					return;
@@ -424,17 +427,14 @@ public class View extends JFrame{
 				buttIndex = button.indexOf(butt);
 				buttIndex--;
 				button.get(buttIndex).setText("Z");
-				
-				ac.behaveZombie(gameGrid, layout);
-				
 			}
 		}
-		if (buttIndex== -1) {
-			return;
-		}
-	
-			
 		
+		ac.plantShoot(gameGrid, layout);
+		ac.behaveZombie(gameGrid, layout);	
+		if(ac.isGameOver(layout)) {
+			System.out.println("!!!!!GAME OVER!!!!!");	
+		}
 
 	}
 }
