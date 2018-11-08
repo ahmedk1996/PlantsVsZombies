@@ -432,9 +432,15 @@ public class View extends JFrame{
 		
 		ac.plantShoot(gameGrid, layout);
 		ac.behaveZombie(gameGrid, layout);	
+		
 		if(ac.isGameOver(layout)) {
 			System.out.println("!!!!!GAME OVER!!!!!");	
 		}
 
+	}
+
+	public void updateDeadZombie(int row, int col) {
+		// TODO Auto-generated method stub
+		
 	}
 }

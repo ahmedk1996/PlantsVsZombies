@@ -15,6 +15,7 @@ import Controller.Controller;
 import Plant.Plants;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
+import View.View;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;
 
@@ -25,6 +26,24 @@ public class Layout {
 	private int max;
 	private int min;
 	private boolean valid;
+	public int getZombieDeadRow() {
+		return ZombieDeadRow;
+	}
+
+	public void setZombieDeadRow(int zombieDeadRow) {
+		ZombieDeadRow = zombieDeadRow;
+	}
+
+	public int getZombieDeadCol() {
+		return ZombieDeadCol;
+	}
+
+	public void setZombieDeadCol(int zombieDeadCol) {
+		ZombieDeadCol = zombieDeadCol;
+	}
+
+	private int ZombieDeadRow;
+	private int ZombieDeadCol;
 
 	// Creating Grid of [5][7] 
 	public Layout() {
@@ -102,6 +121,13 @@ public class Layout {
 		}
 	}
 
+	public void ZombieDead(int row , int column ){
+		ZombieDeadRow = row;
+		ZombieDeadCol = column;
+		View v = new View(0);
+		v.updateDeadZombie(ZombieDeadRow , ZombieDeadCol);
+		
+	}
 
 
 }

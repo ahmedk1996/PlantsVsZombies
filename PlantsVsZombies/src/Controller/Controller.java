@@ -217,8 +217,16 @@ public class Controller implements ActionListener {
 		
 	}
 	
+	public  void ZombieDead(int row, int col , int count){
+		System.out.println(count);
+	}
+	
 	public void zombieMove(Action ac , Layout layout) {
 		view.updateZombie(ac , layout.getGameGrid(), layout);
+		
+	}
+	public void updateZombieDeadGrid(int row, int col){
+		view.updateDeadZombie(row , col);
 		
 	}
 }

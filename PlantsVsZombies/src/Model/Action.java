@@ -71,32 +71,37 @@ public class Action {
 	public void plantShoot(Object[][] gameGrid, Layout layout) {
 		PlantStore store = new PlantStore();
 		turn = new Turn();
+		
 		for(int i=0 ; i <gameGrid.length; i++) {
 			for(int j=0; j < gameGrid[0].length ; j++) {
+				
 				if (gameGrid[i][j] instanceof Sunflower) {
 					Plants temp = (Plants)layout.getGameGrid()[i][j];
 					turn.canSunFlowerGenerate(currentTurn, temp , store);
 				}
-					if(gameGrid[i][j] instanceof ShootingPlant) { //search if plant is a shooter
-						for (int index =0 ; index<gameGrid[i].length; index++) { // iterate through that plant shooter's row to find a zombie
-							if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
-								ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the attack damage of the plant
-								zombie = (Zombies) (gameGrid[i][index]); //get instance of zombie
-								health = zombie.getHealth();
-								zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
-								int healthUpdate = health - attackingPlant.getDamage();
-								System.out.println("Zombie at "+ i + " " + index + " " + "has " + healthUpdate + " health");
-								if (zombie.getHealth() <= 0) {
-									gameGrid[i][index] =null; // zombie dead
-									System.out.println(zombie.getStringtype() + "is dead." );
+				if(gameGrid[i][j] instanceof ShootingPlant) { //search if plant is a shooter
+					for (int index =0 ; index<gameGrid[i].length; index++) { // iterate through that plant shooter's row to find a zombie
+						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
+							ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the attack damage of the plant
+							
+							zombie = (Zombies) (gameGrid[i][index]); //get instance of zombie
+							health = zombie.getHealth();
+							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health 
+							int healthUpdate = health - attackingPlant.getDamage();
+							System.out.println("Zombie at "+ i + " " + index + " " + "has " + healthUpdate + " health");
+							if (zombie.getHealth() <= 0) {
+								
+								layout.ZombieDead(i, index);
+								gameGrid[i][index] =null; // zombie dead
+								System.out.println(zombie.getStringtype() + "is dead." );
+									}
 								}
-							}
-						}						 
-					}
+							}						 
+						}
 					
+				}
 			}
 		}
-	}
 
 
 	/** behaveZombie - Zombie will move or attack if it is able. 
@@ -143,7 +148,6 @@ public class Action {
 
 	
 	//}
-
 	
 	
 	/** Zombie Attacks(zombie, Plant) - Zombie attacks plant, this function is used in behaveZombie();
