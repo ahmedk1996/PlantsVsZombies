@@ -102,7 +102,7 @@ public class Action {
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
 							}
-							
+							break;
 						}
 
 					}
