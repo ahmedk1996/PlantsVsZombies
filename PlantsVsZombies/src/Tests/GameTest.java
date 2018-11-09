@@ -2,22 +2,39 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import Model.Game;
+import Model.Layout;
+import Plant.PlantStore;
 import junit.framework.TestCase;
 
 public class GameTest extends TestCase {
+	private Game game;
+	private Layout layout;
+	private PlantStore ps;
+	@Before
+	public void setUp() {
+		layout = new Layout();
+		ps = new PlantStore();
+		game = new Game(layout,ps);
+	}
 
 	@Test
-	public void testNotNullGameGrid() {
-		assertNotNull("The layout class is not null");
+	public void testNotNull() {
+		assertNotNull("The game class is not null", game);
 	}
 	
-//Testing both getting and setting an Object onto the game grid. These objects can be of any type of Plant or Zombie.
-	@Test
-	public void testSetObject() {
 
+	@Test
+	public void testSetZombieCounter() {
+		game.setZombieCounter(3);
+		assertEquals("Zombie counter is 3",3,game.getZombieCounter());
+		assertNotEquals("Zombie counter and value are not equal",4,game.getZombieCounter());
 	}
+	
+
 	
 
 }
