@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Model.Action;
+import Model.CoolDown;
 import Model.Game;
 import Model.Layout;
 import Plant.PlantStore;
@@ -33,6 +34,7 @@ public class Controller implements ActionListener {
 	private PlantStore ps;
 	private Action action;
 	private View v;
+	private CoolDown coolDownList;
 	public Controller(Game game, View view) {
 		this.game=game;
 		this.view=view;
@@ -85,7 +87,7 @@ public class Controller implements ActionListener {
 		view.getWaveContinue().setEnabled(false);
 		view.setEnabledButtons(false);
 		game.setZombieCounter(5); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
-		
+		coolDownList = new CoolDown();
 	}
 	public void actionButton(JButton b) {
 	
@@ -114,7 +116,7 @@ public class Controller implements ActionListener {
 			initalizePlay();
 			//view.zombieInfo(); remove AFTER !?
 			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
-	
+			
 			buttonsInit();
 			
 		}
@@ -144,7 +146,8 @@ public class Controller implements ActionListener {
 		}
 		
 		else if (e.getActionCommand().equals("simulate")) {
-			setZombies();		
+			setZombies();	
+			coolDownList.turnOver();
 			view.getPoints().setText(String.valueOf(ps.getSunPoints()));
 
 		}
@@ -197,24 +200,40 @@ public class Controller implements ActionListener {
 			if (updatePoints == -1) {
 				view.getStatus().setText("Not Enough Sun Points");
 				return 0;
+			}else {
+				if(coolDownList.validatePurchase(sp)) {
+					ps.purchase(sp, ps.getSunPoints());
+					coolDownList.purchasePlant(sp);
+					
+					view.updatePointsText(String.valueOf(updatePoints));
+					view.getPurchase().setEnabled(false);
+				}else {
+					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sp).getRemaining());
+					return 0;
+				}
 			}
-			
-			view.updatePointsText(String.valueOf(updatePoints));
+			//view.updatePointsText(String.valueOf(updatePoints));
 		}
 		else if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 			Plants sf = new Sunflower(); 
 			int updatePoints = ps.validatePurchase(sf, ps.getSunPoints());
 			if (updatePoints == -1) {
 				view.getStatus().setText("Not Enough Sun Points");
-				
 				return 0;
+			}else {
+				if(coolDownList.validatePurchase(sf)) {
+					ps.purchase(sf, ps.getSunPoints());
+					coolDownList.purchasePlant(sf);
+					view.updatePointsText(String.valueOf(updatePoints));
+					view.getPurchase().setEnabled(false);
+				}else {
+					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sf).getRemaining());
+					return 0;
+				}
 			}
-			view.updatePointsText(String.valueOf(updatePoints));
 		}
-		view.getPurchase().setEnabled(false);
-		return 1;
-	
 		
+		return 1;
 	}
 	
 	public  void ZombieDead(int row, int col , int count){
