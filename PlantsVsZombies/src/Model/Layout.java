@@ -6,8 +6,9 @@
  * @since November 4,2018
 
  */
- 
+
 package Model;
+
 import java.util.*;
 import java.util.Random;
 
@@ -20,12 +21,13 @@ import Zombie.WalkingZombie;
 import Zombie.Zombies;
 
 public class Layout {
-	private  Object[][] gameGrid;
+	private Object[][] gameGrid;
 	private Scanner reader;
 	private PrintGrid grid;
 	private int max;
 	private int min;
 	private boolean valid;
+
 	public int getZombieDeadRow() {
 		return ZombieDeadRow;
 	}
@@ -45,11 +47,11 @@ public class Layout {
 	private int ZombieDeadRow;
 	private int ZombieDeadCol;
 
-	// Creating Grid of [5][7] 
+	// Creating Grid of [5][7]
 	public Layout() {
 		gameGrid = new Object[5][7];
 	}
-	
+
 	public Object[][] getGameGrid() {
 		return gameGrid;
 	}
@@ -59,75 +61,61 @@ public class Layout {
 	}
 
 	public void createGrid(int x, int y) {
-		gameGrid = new Object [x][y];		
+		gameGrid = new Object[x][y];
 	}
 
 	public void print() {
 		grid = new PrintGrid(gameGrid);
 	}
+
 	public void print(Object[][] gameGrid) {
 		grid = new PrintGrid(gameGrid);
 	}
-	 
+
 	public int placeSpawnZombieOnGrid(Object[][] gameGrid) {
-		int random = (int)(Math.random() * 5 + 0);
-		placeObjectOnGrid(random, 6, new WalkingZombie() , gameGrid);
+		int random = (int) (Math.random() * 5 + 0);
+		placeObjectOnGrid(random, 6, new WalkingZombie(), gameGrid);
 		return random;
 	}
-	
-
-/*	public boolean placePlantOnGrid(Plants p ) {
-				if (p instanceof ShootingPlant) {
-					valid = placeObjectOnGrid(inputX , inputY, new ShootingPlant());
-				}
-				else if (p instanceof Sunflower) {
-					valid = placeObjectOnGrid(inputX, inputY, new Sunflower());
-				}
-					return true;
-	}*/
 
 	public Object getGrid() {
 		return gameGrid;
 	}
- 
-	public void setObject(int row,int col, Object o) {
+
+	public void setObject(int row, int col, Object o) {
 		gameGrid[row][col] = o;
 	}
-	
-	public Object getObject(int row,int col) {
+
+	public Object getObject(int row, int col) {
 		return gameGrid[row][col];
 	}
-	public void moveZombieUpOne(int row,int col, Object o, Object[][] gameGrid) {
+
+	public void moveZombieUpOne(int row, int col, Object o, Object[][] gameGrid) {
 		gameGrid[row][col] = o;
 	}
-	
-	
-	public boolean placeObjectOnGrid(int row,int col, Object o, Object[][] gameGrid) {
-		if(gameGrid[row][col] != null) {
+
+	public boolean placeObjectOnGrid(int row, int col, Object o, Object[][] gameGrid) {
+		if (gameGrid[row][col] != null) {
 			placeSpawnZombieOnGrid(gameGrid);
-			
-		}else {
+
+		} else {
 			gameGrid[row][col] = o;
 		}
 		return true;
 	}
 
-	public void placePlantOnGrid(int row , int col , Plants p ,Object[][] gameGrid ) {
-		if(gameGrid[row][col] != null) {
+	public void placePlantOnGrid(int row, int col, Plants p, Object[][] gameGrid) {
+		if (gameGrid[row][col] != null) {
 			System.out.println("Not Empty");
-		}
-		else {
+		} else {
 			gameGrid[row][col] = p;
 		}
 	}
 
-	public void ZombieDead(int row , int column ){
+	public void ZombieDead(int row, int column) {
 		ZombieDeadRow = row;
 		ZombieDeadCol = column;
-		View v = new View(0);
-		v.updateDeadZombie(ZombieDeadRow , ZombieDeadCol);
-		
-	}
 
+	}
 
 }
