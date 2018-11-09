@@ -10,7 +10,6 @@ import junit.framework.TestCase;
 
 public class LayoutTest extends TestCase {
 
-	private Object[][] gameGrid;
 	private Layout layout;
 	private int row;
 	private int col;
@@ -18,14 +17,12 @@ public class LayoutTest extends TestCase {
 	
 	@Before
 	public void setUp() {
-		gameGrid = new Object[5][7];
 		layout = new Layout();
 
 	}
 	@Test
 	public void testNotNullGameGrid() {
-		layout.setGameGrid(gameGrid);
-		assertNotNull("The game is not null",layout);
+		assertNotNull("The layout class is not null",layout);
 	}
 	
 //Testing both getting and setting an Object onto the game grid. These objects can be of any type of Plant or Zombie.
