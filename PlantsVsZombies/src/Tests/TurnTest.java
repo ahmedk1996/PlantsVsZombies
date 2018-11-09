@@ -16,6 +16,7 @@ public class TurnTest extends TestCase{
 	private WalkingZombie z;
 	private Sunflower p;
 	private PlantStore s;
+	
 	@Before
 	public void setUp() {
 		
