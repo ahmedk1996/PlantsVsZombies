@@ -244,9 +244,6 @@ public class Controller implements ActionListener {
 		view.updateZombie(ac , layout.getGameGrid(), layout);
 		
 	}
-	public void updateZombieDeadGrid(int row, int col){
-		view.updateDeadZombie(row , col);
-		
-	}
+
 }
 	

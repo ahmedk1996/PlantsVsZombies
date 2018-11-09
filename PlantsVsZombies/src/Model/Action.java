@@ -102,7 +102,7 @@ public class Action {
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
 							}
-							break;
+							
 						}
 
 					}
@@ -130,26 +130,23 @@ public class Action {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.
 				if (gameGrid[i][j] instanceof Zombies) { // checking that is Zombie class
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
-					// if(turn.canZombieMove(temp,currentTurn)){ // checking the Zombie Object is
-					// movable.
-					if (gameGrid[i][j] instanceof Zombies) {
-						if (j-1 ==-1) {
-							return 0;
-						}
-						layout.setObject(i, j, null); // empty the previous spot
-						layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
+							layout.setObject(i, j, null); // empty the previous spot
+							if (j-1 <=-1) {
+								return 0;
+							}
+							layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
+						
+
 						if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
-							Plants p = zombieAttack((Zombies) gameGrid[i][j], (Plants) gameGrid[i][j - 1]);
-							layout.setObject(i, j - 1, p);
+							layout.setObject(i, j-1, zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1]));
+							
+							
 						} 
 					}
 				}
 			}
-
-		}
+		
 		return 1;
-
-
 	}
 
 	/**
