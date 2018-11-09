@@ -394,6 +394,15 @@ public class View extends JFrame {
 		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
 				null);
 	}
+	
+	
+	public void passedStage() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(gameFrame, "You have cleared the stage!", "Stage", JOptionPane.WARNING_MESSAGE);
+
+	}
+	
+
 
 	public void setEnabledButtons(boolean b) {
 		for (JButton c : button) {

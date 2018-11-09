@@ -19,6 +19,7 @@ import Model.Action;
 import Model.CoolDown;
 import Model.Game;
 import Model.Layout;
+import Model.Turn;
 import Plant.PlantStore;
 import Plant.Plants;
 import Plant.ShootingPlant;
@@ -33,14 +34,17 @@ public class Controller implements ActionListener {
 	private Layout layout;
 	private PlantStore ps;
 	private Action action;
+	public Turn turn;
 	private View v;
 	private CoolDown coolDownList;
+	private int stageNum=0;
 	public Controller(Game game, View view) {
 		this.game=game;
 		this.view=view;
 		action = new Action();
 		layout = new Layout();
 		ps = new PlantStore();
+		turn = new Turn();
 		initalizeComponents();
 		
 	}
@@ -148,7 +152,13 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();	
 			coolDownList.turnOver();
-			view.getPoints().setText(String.valueOf(ps.getSunPoints()));
+			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
+			
+			if(game.getZombieCounter() == 0 && stageNum<=1) {
+				view.passedStage();
+				game.setZombieCounter(4);
+				stageNum++;
+			}
 
 		}
 		else if (e.getActionCommand().equals("button")) {
