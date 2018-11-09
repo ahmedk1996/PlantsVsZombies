@@ -440,25 +440,27 @@ public class View extends JFrame {
 		
 		
 	int returnval =  ac.behaveZombie(gameGrid, layout );
-	if (returnval ==0) {
+/*	if (returnval ==0) {
 		JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
 				"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
+	}*/
+	 if (returnval == -1) {
+		return;
 	}
-		/*if (returnVal == -1) {
-			return;
-		}
-		else if (returnVal ==0) {
-			JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
-					"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
-		}*/
+	
 
+	 	moveZombieTextUpOne();
+		ac.plantShoot(gameGrid, layout, buttonArray);
+		}
+
+	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
 				if (buttonArray[i][j].getText().equals("Z")) {
 					if (buttonArray[i][0].getText().equals("Z") ) {
-						/*System.out.println("Game Over");
+						System.out.println("Game Over");
 						JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.","Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
-						waveContinue.setEnabled(false);*/
+						waveContinue.setEnabled(false);
 						return;
 					}  
 						buttonArray[i][j].setText("");
@@ -469,9 +471,7 @@ public class View extends JFrame {
 				}
 
 			}
-		ac.plantShoot(gameGrid, layout, buttonArray);
-		}
-
+	}
 	
 
 	

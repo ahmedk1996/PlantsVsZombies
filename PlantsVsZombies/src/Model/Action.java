@@ -130,18 +130,28 @@ public class Action {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.
 				if (gameGrid[i][j] instanceof Zombies) { // checking that is Zombie class
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
-							layout.setObject(i, j, null); // empty the previous spot
-							if (j-1 <=-1) {
-								return 0;
-							}
-							layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
 						
+							int k = j-1;
+							
+							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
+								
+								layout.setObject(i, j-1, zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1));
+								
+								if (((Plants)gameGrid[i][j-1]).getHealth()>0) {
+									return -1;
+								}
+								if (k==0) {
+								
+									return 0;
+								}
+								break;
+							} 
+							
+							else {
+								layout.setObject(i, j, null); // empty the previous spot
+								layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
+							}
 
-						if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
-							layout.setObject(i, j-1, zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1]));
-							
-							
-						} 
 					}
 				}
 			}
@@ -159,14 +169,14 @@ public class Action {
 	 * @return the image at the specified URL
 	 * @see Image
 	 */
-	public Plants zombieAttack(Zombies z, Plants p) {
+	public Plants zombieAttack(Zombies z, Plants p, Object[][] gameGrid, int row , int col) {
 		Plants attackedPlant = p;
 		Zombies o = new WalkingZombie();
 		attackedPlant.attacked(o.attack());
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() <= 0) {
 			System.out.println(attackedPlant.getStringtype() + " is killed by " + o.getStringtype());
-
+			gameGrid[row][col] = null;
 		}
 
 		return attackedPlant;
