@@ -25,7 +25,6 @@ public class Game {
 		this.store = store;
 	}
 
-
 	private PlantStore store;
 	private Scanner reader;
 	private int gameTurns = 1;
