@@ -18,7 +18,7 @@ public class startEngine {
 	{
 		View view = new View();
 		Layout layout = new Layout();
-		PlantStore store = new PlantStore();
+		PlantStore store = new PlantStore(true);
 		Game game = new Game(layout, store); // aka model
 		Controller controller = new Controller(game , view );
 	}

@@ -7,12 +7,9 @@
 
  */
 package Model;
-import java.util.InputMismatchException;
+
 import java.util.Scanner;
-
 import Plant.PlantStore;
-
-import java.util.*;
 import java.io.*;  
 
 public class Game {
@@ -26,8 +23,7 @@ public class Game {
 	}
 
 	private PlantStore store;
-	private Scanner reader;
-	private int gameTurns = 1;
+
 	private int zombieCounter;
 
 	public int getZombieCounter() {
@@ -40,7 +36,8 @@ public class Game {
 
 	public Game (Layout layout , PlantStore store) {
 		this.layout = new Layout();
-		this.store = new PlantStore();
+		this.store = new PlantStore(true);
+		store.setSunPoints(150);
 		zombieCounter = 0;
 	}
 
@@ -52,25 +49,6 @@ public class Game {
 	 */
 	public void start() {
 
-		boolean gamedone = false;
-		//if(!(zombieCounter <=1)) {
-			//layout.placeSpawnZombieOnGrid(layout);
-		//}
-	/*	
-		store.purchaseStartOfGame(layout , true);
-
-		while(gamedone == false) {
-			if(!(zombieCounter <= 1)) {
-				layout.placeSpawnZombieOnGrid(layout);
-				
-			}
-			zombieCounter--;
-			layout.print();
-			store.purchaseStartOfGame(layout , false);
-			Action action = new Action(store);
-			layout.setGameGrid(action.startAction(layout,gameTurns));
-			layout.print();
-		}*/
 	}
 	
 	/**
@@ -85,33 +63,6 @@ public class Game {
 	}
 
 	
-	/**
-	 * promptStart which asks the user for the input required for the game difficulty
-	 * 
-	 * @return  int response of game difficulty. 1 for easy, 2 for medium and 3 for hard.
-
-	 */
-	public void promptStart(){
-	/*	int gameMode = gameDifficulty();
-		reader = new Scanner(System.in);  
-		//System.out.println("Below is a 5x7 grid layout:");
-
-
-		if(gameMode == 1) {
-			System.out.println("Easy mode selected. Zombie types include: Walking Zombies. Move up 1 tile each time ");
-			zombieCounter = 4;
-		}else if(gameMode == 2){
-			System.out.println("Medium mode selected. Zombie types include: ");
-			zombieCounter =6;
-		}
-		else if(gameMode==3){
-			System.out.println("Hard mode selected. Zombie types include: ");
-			zombieCounter = 8;
-		}*/
-		
-		//start();
-	}
-
 	/**
 	 * loadHelptxt tells the user instructions about the game when required
 	 *
@@ -130,53 +81,7 @@ public class Game {
 		}
 	}
 
-	/**
-	 * gameDifficulty lets the user select the difficulty mode
-	 * 
-	 * @return int response of game difficulty. 1 for easy, 2 for medium and 3 for hard and 9 help.
-	 */
-	public int gameDifficulty() {
-		try {
-			System.out.println("There are 3 levels of difficulty");
-			System.out.println("1).Easy --- 2).Medium --- 3).Hard --- 9) Help");
-			reader = new Scanner(System.in); 
-			int mode = reader.nextInt();
-			if(mode == 9) {
-				try {
-					loadHelptxt();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return gameDifficulty();
-			}
-			
-			if (mode == 1) {
-				System.out.println("Easy mode has been selected...Good Luck!");
-				//set off variable for game difficulty
-				return 1;
-			}
-			else if (mode == 2) {
 
-				return 2;
-			}
-
-			else if(mode == 3) {
-				return 3;
-			}
-			else {
-				System.out.println("Please make a selection to proceed.");
-				gameDifficulty();
-			}
-
-
-		}
-		catch (InputMismatchException e ) {
-
-		}
-		//user input
-		return 0 ;
-	}
 	
 	/**
 	 * redo which re-does the users command that he had just made.
@@ -223,14 +128,6 @@ public class Game {
 	}
 
 
-	public static void main(String args[]) {
-
-		Layout layout = new Layout();
-		PlantStore store = new PlantStore();
-		// We will test wave by after using beginWave = new wave(1);
-		Game game = new Game(layout, store);
-		game.promptStart();
-
-	}
+	
 
 }

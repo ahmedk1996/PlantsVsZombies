@@ -11,6 +11,7 @@ public class PlantStore {
 
 	private Plants price;
 	private  int sunPoints;
+	private int startPoints;
 	private Scanner reader;
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
@@ -39,9 +40,14 @@ public class PlantStore {
 		setSunPoints(sunPoints);
 	}
 
-	public PlantStore() {
-		reader = new Scanner(System.in); 
-		sunPoints = 150;
+	public PlantStore(boolean startOfGame) {
+		if (startOfGame == true) {
+			sunPoints = 150;
+		}
+		else {
+			sunPoints = getSunPoints();
+		}
+		
 	}
 
 	public Plants getPrice() {

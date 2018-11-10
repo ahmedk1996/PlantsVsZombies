@@ -43,7 +43,7 @@ public class Controller implements ActionListener {
 		this.view=view;
 		action = new Action();
 		layout = new Layout();
-		ps = new PlantStore();
+		ps = new PlantStore(false);
 		turn = new Turn();
 		initalizeComponents();
 		
@@ -110,6 +110,7 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("NewGame")){
+			view.getGameFrame().dispose();
 			
 		}else if(e.getActionCommand().equals("Quit")) {
 			System.exit(0);

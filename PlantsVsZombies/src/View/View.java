@@ -355,6 +355,14 @@ public class View extends JFrame {
 
 	}
 
+	public JFrame getGameFrame() {
+		return gameFrame;
+	}
+
+	public void setGameFrame(JFrame gameFrame) {
+		this.gameFrame = gameFrame;
+	}
+
 	public List<JButton> getButton() {
 		return button;
 	}

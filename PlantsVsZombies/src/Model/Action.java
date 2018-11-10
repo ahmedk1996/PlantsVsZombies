@@ -38,33 +38,6 @@ public class Action {
 	}
 
 	/**
-	 * startAction which handles results of the plants, zombies and game.
-	 *
-	 * @param layout   layout of the game
-	 * @param gameTurn the current turn
-	 * @return result of the game
-	 */
-	public Object[][] startAction(Layout layout, int gameTurn) {
-		this.layout = layout;
-		this.currentTurn = gameTurn;
-		// plantShoot();
-		// behaveZombie();
-		layout.print();
-		if (isGameOver(layout)) {
-			System.out.println("!!!!!GAME OVER!!!!!");
-			System.exit(0);
-			return layout.getGameGrid();
-		} else if (gameClear(layout)) {
-			System.out.println("-------YOU Cleared the GAME------");
-			System.out.println("-------GOOD JOB------");
-			System.exit(0);
-			return layout.getGameGrid();
-		} else {
-			return layout.getGameGrid();
-		}
-	}
-
-	/**
 	 * plantShoot which handles the shooting plants abilities.
 	 * 
 	 * @param buttonArray
@@ -73,12 +46,12 @@ public class Action {
 	 * @return None
 	 */
 	public void plantShoot(Object[][] gameGrid, Layout layout, JButton[][] buttonArray) {
-		PlantStore store = new PlantStore();
+		PlantStore store = new PlantStore(false);
 		turn = new Turn();
-
+		currentTurn++;
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) {
-
+			
 				if (gameGrid[i][j] instanceof Sunflower) {
 					Plants temp = (Plants) layout.getGameGrid()[i][j];
 					turn.canSunFlowerGenerate(currentTurn, temp, store);
@@ -88,16 +61,13 @@ public class Action {
 																				// row to find a zombie
 						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
 							ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the
-																				// attack damage of the plant
-
+																				
 							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 							int healthUpdate = health - attackingPlant.getDamage();
-							System.out
-									.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
+							System.out.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
-
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
