@@ -56,6 +56,7 @@ public class Turn {
 	public boolean canSunFlowerGenerate(int currentTurn , Plants p, PlantStore store) {
 		if (p instanceof Sunflower) {
 				if (currentTurn % p.getSpeed() == 0) {
+					
 					store.incrementSunPoints();
 					return true;
 				}

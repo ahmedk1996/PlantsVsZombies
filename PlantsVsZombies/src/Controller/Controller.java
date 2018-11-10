@@ -38,12 +38,13 @@ public class Controller implements ActionListener {
 	private View v;
 	private CoolDown coolDownList;
 	private int stageNum=0;
-	public Controller(Game game, View view) {
+	public Controller(Game game, View view, PlantStore ps) {
 		this.game=game;
 		this.view=view;
+
+		this.ps = ps;
 		action = new Action();
 		layout = new Layout();
-		ps = new PlantStore(false);
 		turn = new Turn();
 		initalizeComponents();
 		
@@ -100,7 +101,7 @@ public class Controller implements ActionListener {
 		
 	}
 	public void setZombies() {
-		zombieMove(action , layout);
+		zombieMove(action , layout, ps);
 		if(!(game.getZombieCounter() <=1)) {
 			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
 			view.setZombieOnBoard(row);
@@ -120,8 +121,7 @@ public class Controller implements ActionListener {
 			view.playPrompt();
 			initalizePlay();
 			//view.zombieInfo(); remove AFTER !?
-			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
-			
+			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
 			
 		}
@@ -153,7 +153,7 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();	
 			coolDownList.turnOver();
-			view.getPoints().setText("Points : " + game.getStore().getSunPoints());
+			view.getPoints().setText("Points : " + ps.getSunPoints());
 			
 			if(game.getZombieCounter() == 0 && stageNum<=1) {
 				view.passedStage();
@@ -165,7 +165,7 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("button")) {
 			
 			JButton b = (JButton) e.getSource();
-			  System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
+			System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 				b.setText("SF");
 				view.setEnabledButtons(false);	
@@ -208,6 +208,7 @@ public class Controller implements ActionListener {
 		else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 			Plants sp = new ShootingPlant(); 
 			int updatePoints = ps.validatePurchase(sp, ps.getSunPoints());
+		
 			if (updatePoints == -1) {
 				view.getStatus().setText("Not Enough Sun Points");
 				return 0;
@@ -216,7 +217,7 @@ public class Controller implements ActionListener {
 					ps.purchase(sp, ps.getSunPoints());
 					coolDownList.purchasePlant(sp);
 					
-					view.updatePointsText(String.valueOf(updatePoints));
+					view.updatePointsText(String.valueOf(ps.getSunPoints()));
 					view.getPurchase().setEnabled(false);
 				}else {
 					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sp).getRemaining());
@@ -235,7 +236,7 @@ public class Controller implements ActionListener {
 				if(coolDownList.validatePurchase(sf)) {
 					ps.purchase(sf, ps.getSunPoints());
 					coolDownList.purchasePlant(sf);
-					view.updatePointsText(String.valueOf(updatePoints));
+					view.updatePointsText(String.valueOf(ps.getSunPoints()));
 					view.getPurchase().setEnabled(false);
 				}else {
 					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sf).getRemaining());
@@ -251,8 +252,8 @@ public class Controller implements ActionListener {
 		System.out.println(count);
 	}
 	
-	public void zombieMove(Action ac , Layout layout) {
-		view.updateZombie(ac , layout.getGameGrid(), layout);
+	public void zombieMove(Action ac , Layout layout, PlantStore ps) {
+		view.updateZombie(ac , layout.getGameGrid(), layout , ps);
 		
 	}
 

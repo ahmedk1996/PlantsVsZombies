@@ -29,9 +29,6 @@ public class Action {
 	private int currentTurn;
 	private PlantStore store;
 
-	public Action(PlantStore store) {
-		this.store = store;
-	}
 
 	public Action() {
 
@@ -41,12 +38,13 @@ public class Action {
 	 * plantShoot which handles the shooting plants abilities.
 	 * 
 	 * @param buttonArray
+	 * @param ps 
 	 *
 	 * @param None
 	 * @return None
 	 */
-	public void plantShoot(Object[][] gameGrid, Layout layout, JButton[][] buttonArray) {
-		PlantStore store = new PlantStore(false);
+	public void plantShoot(Object[][] gameGrid, Layout layout, JButton[][] buttonArray, PlantStore ps) {
+
 		turn = new Turn();
 		currentTurn++;
 		for (int i = 0; i < gameGrid.length; i++) {
@@ -54,7 +52,8 @@ public class Action {
 			
 				if (gameGrid[i][j] instanceof Sunflower) {
 					Plants temp = (Plants) layout.getGameGrid()[i][j];
-					turn.canSunFlowerGenerate(currentTurn, temp, store);
+					
+					turn.canSunFlowerGenerate(currentTurn, temp, ps);
 				}
 				if (gameGrid[i][j] instanceof ShootingPlant) { // search if plant is a shooter
 					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant shooter's
@@ -94,7 +93,7 @@ public class Action {
 	 * @return None
 	 * 
 	 */
-	public int behaveZombie(Object[][] gameGrid, Layout layout) {
+	public int behaveZombie(Object[][] gameGrid, Layout layout ) {
 		turn = new Turn();
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.

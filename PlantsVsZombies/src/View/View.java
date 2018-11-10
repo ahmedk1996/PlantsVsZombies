@@ -20,6 +20,7 @@ import javax.swing.*;
 import Controller.Controller;
 import Model.Action;
 import Model.Layout;
+import Plant.PlantStore;
 
 public class View extends JFrame {
 
@@ -441,24 +442,19 @@ public class View extends JFrame {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout) {
+	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
 		
 
 		
-		
-		
 	int returnval =  ac.behaveZombie(gameGrid, layout );
-/*	if (returnval ==0) {
-		JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
-				"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
-	}*/
+
 	 if (returnval == -1) {
 		return;
 	}
 	
 
 	 	moveZombieTextUpOne();
-		ac.plantShoot(gameGrid, layout, buttonArray);
+		ac.plantShoot(gameGrid, layout, buttonArray , ps);
 		}
 
 	public void moveZombieTextUpOne() {

@@ -37,16 +37,14 @@ public class PlantStore {
 	public void incrementSunPoints() {
 
 		sunPoints = sunPoints+50;
-		setSunPoints(sunPoints);
 	}
 
 	public PlantStore(boolean startOfGame) {
-		if (startOfGame == true) {
-			sunPoints = 150;
-		}
-		else {
-			sunPoints = getSunPoints();
-		}
+
+		sunPoints = getSunPoints();
+	
+			
+		
 		
 	}
 
@@ -61,13 +59,11 @@ public class PlantStore {
 	public int validatePurchase(Plants plant , int currentBalance) {
 
 		if((currentBalance - plant.getCost()) >= 0){
-		/*	int updatedBalance = getSunPoints() - plant.getCost();
-			setSunPoints(updatedBalance);
-			System.out.println("Sun Points: " + updatedBalance); */
+
 			return currentBalance;
 		}else {
 			currentBalance = -1;
-			//System.out.println("Not Enough Sun Points!!");
+			
 			
 		}
 		return currentBalance;
