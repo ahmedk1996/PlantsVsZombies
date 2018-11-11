@@ -415,7 +415,10 @@ public class View extends JFrame {
 
 	public void setEnabledButtons(boolean b) {
 		for (JButton c : button) {
-			c.setEnabled(b);
+			if (c.getText() !="Z") {
+				c.setEnabled(b);
+			}
+			
 		}
 	}
 

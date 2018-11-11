@@ -120,7 +120,7 @@ public class Controller implements ActionListener {
 		
 			view.playPrompt();
 			initalizePlay();
-			//view.zombieInfo(); remove AFTER !?
+			view.zombieInfo(); 
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
 			
