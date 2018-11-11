@@ -104,8 +104,11 @@ public class Action {
 							
 							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 								
-								layout.setObject(i, j-1, zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1));
-								
+								zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1);
+								if ((Plants)gameGrid[i][j-1] == null) {
+									return -1;
+									
+								}
 								if (((Plants)gameGrid[i][j-1]).getHealth()>0) {
 									return -1;
 								}
@@ -143,9 +146,10 @@ public class Action {
 		Zombies o = new WalkingZombie();
 		attackedPlant.attacked(o.attack());
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
-		if (attackedPlant.getHealth() <= 0) {
+		if (attackedPlant.getHealth() == 0) {
 			System.out.println(attackedPlant.getStringtype() + " is killed by " + o.getStringtype());
 			gameGrid[row][col] = null;
+			
 		}
 
 		return attackedPlant;

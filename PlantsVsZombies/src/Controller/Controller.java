@@ -89,7 +89,7 @@ public class Controller implements ActionListener {
 		view.getBuySunflower().setActionCommand("buySunflower");
 		view.getWaveContinue().addActionListener(this);
 		view.getWaveContinue().setActionCommand("simulate");
-		view.getWaveContinue().setEnabled(false);
+		view.getWaveContinue().setEnabled(true);
 		view.setEnabledButtons(false);
 		game.setZombieCounter(5); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
 		coolDownList = new CoolDown();
