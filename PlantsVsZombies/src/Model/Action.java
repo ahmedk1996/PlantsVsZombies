@@ -101,7 +101,9 @@ public class Action {
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
 						
 							int k = j-1;
-							
+							if (i>=0 && j ==0) {
+								return 0;
+							}
 							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 								
 								zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1);

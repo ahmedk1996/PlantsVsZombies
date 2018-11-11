@@ -73,13 +73,9 @@ public class Controller implements ActionListener {
 		view.getMed().setActionCommand("med");
 		view.getHard().addActionListener(this);
 		view.getHard().setActionCommand("Hard");
-		
-
+	
 	}
-	
-	
-	
-	
+
 	public void initalizePlay() {
 		view.getPurchase().addActionListener(this);
 		view.getPurchase().setActionCommand("Purchase");
@@ -90,7 +86,6 @@ public class Controller implements ActionListener {
 		view.getWaveContinue().addActionListener(this);
 		view.getWaveContinue().setActionCommand("simulate");
 		view.getWaveContinue().setEnabled(true);
-		view.setEnabledButtons(false);
 		game.setZombieCounter(5); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
 		coolDownList = new CoolDown();
 	}
@@ -137,16 +132,17 @@ public class Controller implements ActionListener {
 			
 		}
 		else if(e.getActionCommand().equals("Purchase")) {
-			view.setEnabledButtons(true);	
+		
 			if(ps.getSunPoints()>=0) {
 				int returnVal = purchasePlant();
 				if (returnVal ==0) {
-					view.setEnabledButtons(false);
+					view.setEnabledButtons();
 					return;
 				}
 				view.placePrompt();
 				
 			}
+			view.setEnabledButtons();	
 			
 		}
 		
@@ -160,6 +156,8 @@ public class Controller implements ActionListener {
 				game.setZombieCounter(4);
 				stageNum++;
 			}
+			view.setEnabledButtons();
+		
 
 		}
 		else if (e.getActionCommand().equals("button")) {
@@ -168,13 +166,13 @@ public class Controller implements ActionListener {
 			System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 				b.setText("SF");
-				view.setEnabledButtons(false);	
+				view.setEnabledButtons();	
 				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new Sunflower() , layout.getGameGrid());
 				
 			}
 			else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 				b.setText("PS");
-				view.setEnabledButtons(false);	
+				view.setEnabledButtons();	
 				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new ShootingPlant() , layout.getGameGrid());
 			}
 			view.getWaveContinue().setEnabled(true);

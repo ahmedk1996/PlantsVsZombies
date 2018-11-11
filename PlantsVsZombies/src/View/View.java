@@ -403,22 +403,23 @@ public class View extends JFrame {
 		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
 				null);
 	}
-	
-	
+
 	public void passedStage() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(gameFrame, "You have cleared the stage!", "Stage", JOptionPane.WARNING_MESSAGE);
 
 	}
-	
 
+	public void setEnabledButtons() {
+		for (int i = 0; i < buttonArray.length; i++) {
+			for (int j = 0; j < buttonArray[0].length; j++) {
+				if (buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"|| buttonArray[i][j].getText() == "SF") {
+					buttonArray[i][j].setEnabled(false);
+				} else {
+					buttonArray[i][j].setEnabled(true);
+				}
 
-	public void setEnabledButtons(boolean b) {
-		for (JButton c : button) {
-			if (c.getText() !="Z") {
-				c.setEnabled(b);
 			}
-			
 		}
 	}
 
@@ -446,41 +447,35 @@ public class View extends JFrame {
 	}
 
 	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
-		
 
-		
-	int returnval =  ac.behaveZombie(gameGrid, layout );
+		int returnval = ac.behaveZombie(gameGrid, layout);
 
-	 if (returnval == -1) {
-		return;
-	}
-	
-
-	 	moveZombieTextUpOne();
-		ac.plantShoot(gameGrid, layout, buttonArray , ps);
+		if (returnval == -1) {
+			return;
 		}
+
+		moveZombieTextUpOne();
+		ac.plantShoot(gameGrid, layout, buttonArray, ps);
+	}
 
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
 				if (buttonArray[i][j].getText().equals("Z")) {
-					if (buttonArray[i][0].getText().equals("Z") ) {
-						System.out.println("Game Over");
-						JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.","Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
+					if (buttonArray[i][0].getText().equals("Z")) {
+						JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
+								"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
 						waveContinue.setEnabled(false);
 						return;
-					}  
-						buttonArray[i][j].setText("");
-						buttonArray[i][j - 1].setText("Z");
-					
 					}
+					buttonArray[i][j].setText("");
+					buttonArray[i][j - 1].setText("Z");
 
 				}
 
 			}
-	}
-	
 
-	
+		}
+	}
 
 }
