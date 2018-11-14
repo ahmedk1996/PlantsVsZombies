@@ -21,6 +21,8 @@ import Controller.Controller;
 import Model.Action;
 import Model.Layout;
 import Plant.PlantStore;
+import Plant.Plants;
+import Zombie.Zombies;
 
 public class View extends JFrame {
 
@@ -453,10 +455,13 @@ public class View extends JFrame {
 		if (returnval == -1) {
 			return;
 		}
+	
 
 		moveZombieTextUpOne();
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 	}
+
+
 
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
@@ -468,13 +473,14 @@ public class View extends JFrame {
 						waveContinue.setEnabled(false);
 						return;
 					}
-					buttonArray[i][j].setText("");
-					buttonArray[i][j - 1].setText("Z");
-
+					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF") {
+						continue;
+					} else {
+						buttonArray[i][j].setText("");
+						buttonArray[i][j - 1].setText("Z");
+					}
 				}
-
 			}
-
 		}
 	}
 	public void setAllEnabledFalse() {

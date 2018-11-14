@@ -86,7 +86,7 @@ public class Controller implements ActionListener {
 		view.getWaveContinue().addActionListener(this);
 		view.getWaveContinue().setActionCommand("simulate");
 		view.getWaveContinue().setEnabled(true);
-		game.setZombieCounter(5); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
+		game.setZombieCounter(4); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
 		coolDownList = new CoolDown();
 	}
 	public void actionButton(JButton b) {
@@ -143,6 +143,7 @@ public class Controller implements ActionListener {
 				
 			}
 			view.setEnabledButtons();	
+			view.getWaveContinue().setEnabled(false);
 			
 		}
 		
@@ -153,7 +154,7 @@ public class Controller implements ActionListener {
 			
 			if(game.getZombieCounter() == 0 && stageNum<=1) {
 				view.passedStage();
-				game.setZombieCounter(4);
+				game.setZombieCounter(3);
 				stageNum++;
 			}
 	

@@ -107,7 +107,7 @@ public class Action {
 							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 								
 								zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1);
-								if ((Plants)gameGrid[i][j-1] == null) {
+								/*if ((Plants)gameGrid[i][j-1] == null) {
 									return -1;
 									
 								}
@@ -118,7 +118,7 @@ public class Action {
 								
 									return 0;
 								}
-								break;
+								break;*/
 							} 
 							
 							else {
