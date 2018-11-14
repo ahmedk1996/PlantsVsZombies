@@ -31,21 +31,9 @@ public class CoolDownQueue implements Observer{
 		
 		for(int i=0; i<plant.getCooldown(); i++) {
 			queue.add(plant);
-		}
-		
-		/**
-		if(plant instanceof ShootingPlant) {
-			for(int i=0; i<plant.getCooldown(); i++) {
-				queue.add(new ShootingPlant());
-			}
-		}else {
-			for(int i=0; i<plant.getCooldown(); i++) {
-				queue.add(new Sunflower());
-			}
-		}**/
-		
-		
-		System.out.println(plant.getName() + "'s Cool Down : " + getRemaining());
+		}		
+
+		System.out.println(plant.getName() + "'s Cool Down : " + (getRemaining()-1) +"turns.");
 	}
 	
 	@Override

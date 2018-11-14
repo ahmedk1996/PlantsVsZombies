@@ -24,30 +24,15 @@ public class CoolDown extends Observable{
 		queueList=new ArrayList<CoolDownQueue>(); 
 	}
 
+	public ArrayList<CoolDownQueue> getQueueList() {
+		return queueList;
+	}
+
 	public void turnOver(){
 		setChanged();
 		notifyObservers();
 	}
 
-	/**
-	 * checkingQueue checks there is queue for the plants.
-	 * @param plant
-	 * @return boolean
-	 */
-
-	public boolean checkingQueue(Plants plant) {
-		if(queueList.isEmpty()) {	
-			return true;
-		}else {
-			for(CoolDownQueue queue : queueList) {
-				if(queue.name.equals(plant.getName())) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-	}
 	/**
 	 * It return the number of for cooldown of the given plants the turns the queue and return how many turns is remaining.
 	 * @param plant
@@ -62,6 +47,7 @@ public class CoolDown extends Observable{
 		}
 		return null; // In case of error
 	}
+	
 	public int cooldownRemaining(Plants plant) {
 		for(CoolDownQueue queue : queueList) {
 			if(queue.name.equals(plant.getName())) {
@@ -70,6 +56,7 @@ public class CoolDown extends Observable{
 		}
 		return -1; // error if there isn't queue;
 	}
+	
 	public String getString() {
 		return status;
 	}
@@ -117,16 +104,6 @@ public class CoolDown extends Observable{
 				//this.queueList.add(new CoolDownQueue(plant));
 				status = "You bought" + plant.getName() + "CoolDown :" + (plant.getCooldown() -1) ;
 			}
-			
-			/**
-			 * 
-			 * if(getPlantQueue(plant).getQueue().isEmpty()){
-				getPlantQueue(plant).addCooldown(plant);
-				status = "You bought" + plant.getName() + "CoolDown :" + (plant.getCooldown() -1);
-				}else
-				System.out.println("CoolDown Remaining : " + getPlantQueue(plant).getRemaining());
-			 */
-			
 		}
 	}
 }
