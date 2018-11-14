@@ -156,7 +156,7 @@ public class Controller implements ActionListener {
 				game.setZombieCounter(4);
 				stageNum++;
 			}
-			view.setEnabledButtons();
+	
 		
 
 		}
@@ -176,7 +176,7 @@ public class Controller implements ActionListener {
 				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new ShootingPlant() , layout.getGameGrid());
 			}
 			view.getWaveContinue().setEnabled(true);
-			b.setEnabled(false);
+			view.setAllEnabledFalse();
 			view.getGroup().clearSelection();
 		}
 				  

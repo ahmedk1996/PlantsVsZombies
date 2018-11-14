@@ -477,5 +477,13 @@ public class View extends JFrame {
 
 		}
 	}
+	public void setAllEnabledFalse() {
+		for (int i = 0; i < buttonArray.length; i++) {
+			for (int j = 0; j < buttonArray[0].length; j++) {
+				buttonArray[i][j].setEnabled(false);
+				
+			}
+		}
+	}
 
 }
