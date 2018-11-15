@@ -34,7 +34,7 @@ public class PlantStore {
 		sunPoints = sunPoints+50;
 	}
 
-	public PlantStore(boolean startOfGame) {
+	public PlantStore() {
 
 		sunPoints = getSunPoints();
 	}

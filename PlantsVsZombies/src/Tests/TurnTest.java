@@ -21,7 +21,7 @@ public class TurnTest extends TestCase{
 	public void setUp() {
 		
 		turn = new Turn();
-		s = new PlantStore(true);
+		s = new PlantStore();
 		z = new WalkingZombie();
 		p = new Sunflower();
 	}

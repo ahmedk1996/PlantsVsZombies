@@ -23,7 +23,6 @@ import Model.Layout;
 import Plant.PlantStore;
 import Plant.Plants;
 
-
 public class View extends JFrame {
 
 	/**
@@ -34,7 +33,6 @@ public class View extends JFrame {
 	private JMenuBar menuBar;
 	private JMenu gameMenu;
 	private JMenu menu;
-	private JMenuItem newGame;
 	private JMenuItem quit;
 	private JMenuItem undo;
 	private JMenuItem redo;
@@ -76,7 +74,6 @@ public class View extends JFrame {
 	private JButton waveContinue;
 	private JLabel peaShooter;
 	private JRadioButton buySunflower;
-
 
 	public View(int test) {
 
@@ -186,9 +183,6 @@ public class View extends JFrame {
 		initalizeComponents();
 	}
 
-	public JMenuItem getNewGame() {
-		return newGame;
-	}
 
 	public JRadioButton getBuyPeaShooter() {
 		return buyShooterPlant;
@@ -198,9 +192,7 @@ public class View extends JFrame {
 		return buySunflower;
 	}
 
-	public void setNewGame(JMenuItem newGame) {
-		this.newGame = newGame;
-	}
+
 
 	public JMenuItem getQuit() {
 		return quit;
@@ -258,8 +250,7 @@ public class View extends JFrame {
 		quit = new JMenuItem("Quit");
 		undo = new JMenuItem("Undo");
 		redo = new JMenuItem("Redo");
-		newGame = new JMenuItem("New Game");
-		menu.add(newGame);
+
 		menu.add(quit);
 		gameMenu.add(redo);
 		gameMenu.add(undo);
@@ -305,7 +296,7 @@ public class View extends JFrame {
 	}
 
 	public void initalizePlay() {
-	
+
 		play.setEnabled(false);
 		gameFrame = new JFrame();
 		gameFrame.setSize(750, 750);
@@ -404,8 +395,9 @@ public class View extends JFrame {
 	}
 
 	public void passedStage() {
-		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(gameFrame, "You have cleared the Wave!", "Wave Completed", JOptionPane.WARNING_MESSAGE);
+	
+		JOptionPane.showMessageDialog(gameFrame, "You have cleared the Wave!", "Wave Completed",
+				JOptionPane.WARNING_MESSAGE);
 
 	}
 
@@ -456,7 +448,27 @@ public class View extends JFrame {
 
 		iterateGameGrd(gameGrid, buttonArray);
 		moveZombieTextUpOne();
+		checkAllZombiesDead();
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
+	
+	}
+
+	private boolean checkAllZombiesDead() {
+		for (int i = 0; i < buttonArray.length; i++) {
+			for (int j = 0; j < buttonArray[0].length; j++) {
+				if (buttonArray[i][j].getText().equals("Z")) {
+					return true;
+				}
+				else {
+					return false;
+				}
+
+			}
+			
+		}
+		return false;
+		
+
 	}
 
 	private void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray2) {
@@ -483,7 +495,7 @@ public class View extends JFrame {
 						return;
 					}
 
-					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF") {
+					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="Z" ) {
 						continue;
 					} else {
 						buttonArray[i][j].setText("");
@@ -504,8 +516,9 @@ public class View extends JFrame {
 	}
 
 	public void gameWon() {
-		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!","Winner!", JOptionPane.INFORMATION_MESSAGE);
-		
+		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!", "Winner!",
+				JOptionPane.INFORMATION_MESSAGE);
+
 	}
 
 }

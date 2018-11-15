@@ -10,10 +10,11 @@ package Model;
 
 import java.util.Scanner;
 import Plant.PlantStore;
-import java.io.*;  
+import java.io.*;
 
 public class Game {
 	private Layout layout;
+
 	public PlantStore getStore() {
 		return store;
 	}
@@ -34,10 +35,10 @@ public class Game {
 		this.zombieCounter = zombieCounter;
 	}
 
-	public Game (Layout layout , PlantStore store) {
+	public Game(Layout layout, PlantStore store) {
 		this.layout = new Layout();
-		this.store = new PlantStore(true);
-		store.setSunPoints(150);
+		this.store = new PlantStore();
+
 		zombieCounter = 0;
 	}
 
@@ -45,50 +46,47 @@ public class Game {
 	 * start which handles starting the initial game..
 	 *
 	 * @param gameMode the current game mode
-	 * @return      void
+	 * @return void
 	 */
 	public void start() {
 
 	}
-	
+
 	/**
 	 * start which creates a custom layout of the grid
 	 *
-	 * @param  row  row number
-	 * @param  column  column number
-	 * @return  void
+	 * @param row    row number
+	 * @param column column number
+	 * @return void
 	 */
 	public void start(int rows, int colomns) {
 		layout.createGrid(rows, colomns);
 	}
 
-	
 	/**
 	 * loadHelptxt tells the user instructions about the game when required
 	 *
-	 * @return  void
+	 * @return void
 	 */
 	public void loadHelptxt() throws FileNotFoundException {
 		String toString = "";
-		try{
-			Scanner txtFile	= new Scanner(new FileReader("Help.txt"));
-			 while(txtFile.hasNextLine()) {
-		            toString= toString+ txtFile.nextLine() + "\n";     
-			 }
-			 System.out.println(toString);
-		}catch(FileNotFoundException e){
+		try {
+			Scanner txtFile = new Scanner(new FileReader("Help.txt"));
+			while (txtFile.hasNextLine()) {
+				toString = toString + txtFile.nextLine() + "\n";
+			}
+			System.out.println(toString);
+		} catch (FileNotFoundException e) {
 			System.out.println("Help File Doesn't Exist");
 		}
 	}
 
-
-	
 	/**
 	 * redo which re-does the users command that he had just made.
 	 *
-	 * @param  unknown
-	 * @param  unknown
-	 * @return  void
+	 * @param unknown
+	 * @param unknown
+	 * @return void
 	 */
 	public void redo() {
 
@@ -97,9 +95,9 @@ public class Game {
 	/**
 	 * undo which which returns the previous game board layout
 	 *
-	 * @param  unknown
-	 * @param  unknown
-	 * @return  void
+	 * @param unknown
+	 * @param unknown
+	 * @return void
 	 */
 	public void undo() {
 
@@ -108,9 +106,9 @@ public class Game {
 	/**
 	 * save which saves the custom layout of the grid with all the instances saved
 	 *
-	 * @param  unknown
-	 * @param  unknown
-	 * @return  void
+	 * @param unknown
+	 * @param unknown
+	 * @return void
 	 */
 	public void save() {
 
@@ -119,15 +117,12 @@ public class Game {
 	/**
 	 * load which loads the custom grid saved initially
 	 *
-	 * @param  unknown
-	 * @param  unknown
-	 * @return  void
+	 * @param unknown
+	 * @param unknown
+	 * @return void
 	 */
 	public void load() {
 
 	}
-
-
-	
 
 }

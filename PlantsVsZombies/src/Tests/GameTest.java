@@ -17,7 +17,7 @@ public class GameTest extends TestCase {
 	@Before
 	public void setUp() {
 		layout = new Layout();
-		ps = new PlantStore(true);
+		ps = new PlantStore();
 		game = new Game(layout,ps);
 	}
 

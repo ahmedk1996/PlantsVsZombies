@@ -25,7 +25,6 @@ public class Action {
 	private int health;
 	private int currentTurn;
 
-
 	public Action() {
 
 	}
@@ -34,7 +33,7 @@ public class Action {
 	 * plantShoot which handles the shooting plants abilities.
 	 * 
 	 * @param buttonArray
-	 * @param ps 
+	 * @param ps
 	 *
 	 * @param None
 	 * @return None
@@ -45,10 +44,10 @@ public class Action {
 		currentTurn++;
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) {
-			
+
 				if (gameGrid[i][j] instanceof Sunflower) {
 					Plants temp = (Plants) layout.getGameGrid()[i][j];
-					
+
 					turn.canSunFlowerGenerate(currentTurn, temp, ps);
 				}
 				if (gameGrid[i][j] instanceof ShootingPlant) { // search if plant is a shooter
@@ -56,14 +55,15 @@ public class Action {
 																				// row to find a zombie
 						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
 							ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the
-																				
+
 							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 							int healthUpdate = health - attackingPlant.getDamage();
-							System.out.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
+							System.out
+									.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
-								
+
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
@@ -90,45 +90,31 @@ public class Action {
 	 * @return None
 	 * 
 	 */
-	public int behaveZombie(Object[][] gameGrid, Layout layout ) {
+	public int behaveZombie(Object[][] gameGrid, Layout layout) {
 		turn = new Turn();
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.
 				if (gameGrid[i][j] instanceof Zombies) { // checking that is Zombie class
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
-					
-							if (i>=0 && j ==0) {
-								return 0;
-							}
-							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
-								
-								zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1);
-								/*if (((Plants)gameGrid[i][j-1]).getHealth()==0){
-									
-								}*/
-								/*if ((Plants)gameGrid[i][j-1] == null) {
-									return -1;
-									
-								}
-								if (((Plants)gameGrid[i][j-1]).getHealth()>0) {
-									return -1;
-								}
-								if (k==0) {
-								
-									return 0;
-								}
-								break;*/
-							} 
-							
-							else {
-								layout.setObject(i, j, null); // empty the previous spot
-								layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
-							}
+
+					if (i >= 0 && j == 0) {
+						return 0;
+					}
+					if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
+
+						zombieAttack((Zombies) gameGrid[i][j], (Plants) gameGrid[i][j - 1], gameGrid, i, j - 1);
 
 					}
+
+					else {
+						layout.setObject(i, j, null); // empty the previous spot
+						layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
+					}
+
 				}
 			}
-		
+		}
+
 		return 1;
 	}
 
@@ -142,15 +128,14 @@ public class Action {
 	 * @return the image at the specified URL
 	 * @see Image
 	 */
-	public Plants zombieAttack(Zombies z, Plants p, Object[][] gameGrid, int row , int col) {
+	public Plants zombieAttack(Zombies z, Plants p, Object[][] gameGrid, int row, int col) {
 		Plants attackedPlant = p;
 		Zombies o = new WalkingZombie();
 		attackedPlant.attacked(o.attack());
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() == 0) {
 			System.out.println(attackedPlant.getStringtype() + " is killed by " + o.getStringtype());
-		
-			
+
 		}
 
 		return attackedPlant;
@@ -169,7 +154,7 @@ public class Action {
 	/**
 	 * isGameOver Returns true or false depending on whether the game is over or not
 	 *
-	 * @param None
+	 * @param layout which passes in the gameGrid instance
 	 * @return Boolean
 	 */
 	public Boolean isGameOver(Layout layout) {
@@ -181,6 +166,12 @@ public class Action {
 		return false;
 	}
 
+	/**
+	 * gameclear Returns false if there is a zombie on the gameGrid
+	 *
+	 * @param layout which passes in the gameGrid instance
+	 * @return Boolean
+	 */
 	public Boolean gameClear(Layout layout) {
 		Boolean flag = true;
 		for (int i = 0; i < layout.getGameGrid().length; i++) {

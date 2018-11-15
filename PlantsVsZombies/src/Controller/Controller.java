@@ -40,12 +40,13 @@ public class Controller implements ActionListener {
 	private int stageNum = 0;
 
 	public Controller(Game game, View view, PlantStore ps) {
-		this.game = game;
+		
 		this.view = view;
-
+		this.game = game;
 		this.ps = ps;
 		action = new Action();
 		layout = new Layout();
+		
 		turn = new Turn();
 		initalizeComponents();
 
@@ -53,8 +54,7 @@ public class Controller implements ActionListener {
 
 	public void initalizeComponents() {
 
-		view.getNewGame().addActionListener(this);
-		view.getNewGame().setActionCommand("NewGame");
+
 		view.getQuit().addActionListener(this);
 		view.getQuit().setActionCommand("Quit");
 		view.getUndo().addActionListener(this);
@@ -91,7 +91,7 @@ public class Controller implements ActionListener {
 	}
 
 	public void waves() {
-		if (game.getZombieCounter() == 0 && stageNum < 2) {
+		
 			view.passedStage();
 			stageNum++;
 
@@ -99,8 +99,11 @@ public class Controller implements ActionListener {
 				view.gameWon();
 				return;
 			}
+			else {
+				stageNum++;
+			}
 
-		}
+		
 	}
 
 	public void actionButton(JButton b) {
@@ -116,24 +119,37 @@ public class Controller implements ActionListener {
 			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
 			view.setZombieOnBoard(row);
 			game.setZombieCounter(game.getZombieCounter() - 1);
-			waves();
+		
 		}
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("NewGame")) {
-			view.getGameFrame().dispose();
-
+	
+			view.getGroup().clearSelection();
+			view.getPlay().setEnabled(false);
+		
 		} else if (e.getActionCommand().equals("Quit")) {
 			System.exit(0);
 		} else if (e.getActionCommand().equals("Play")) {
-
+			game = null;
+			ps = null;
+			layout = null;
+			
+			this.layout = new Layout();
+			this.ps = new PlantStore();
+			this.game = new Game(layout, ps);
+		
+			view.getPlay().setEnabled(false);
+			view.getGroup().clearSelection();
 			view.playPrompt();
 			initalizePlay();
 			view.zombieInfo();
+			ps.setSunPoints(150);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
+			
 
 		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
@@ -164,6 +180,7 @@ public class Controller implements ActionListener {
 			setZombies();
 			coolDownList.turnOver();
 			view.getPoints().setText("Points : " + ps.getSunPoints());
+			
 
 		} else if (e.getActionCommand().equals("button")) {
 
