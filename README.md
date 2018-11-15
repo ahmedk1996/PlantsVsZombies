@@ -11,16 +11,16 @@ Author(s):
 
 - Rohan Katkar: (Tests: GameTest and ActionTest)(UML:contributed in design)(Contributed to functionality, fixes and MVC)
 
-Regarding group work distribution, in order to keep the workload distributed evenly, each member was assigned a section of the tests (2-3 test classes each), UML, new milestone implementation (GUI-based game) and fixes to previous milestone. 
+Regarding group work distribution, in order to keep the workload distributed evenly, each member was assigned a section of the tests (2-3 test classes each), UML, new milestone implementation (GUI-based game) and fixes to previous milestone. The fixes that were made from the previous milestone had to do with how the game works. For example, cool down for purchases, output of zombie moves, can't place a zombie if its already there is a plant/zombie at the location.
 
 Introduction:
-The goal of this milestone is to create a base skeletal version of a typical Plants vs Zombies game. In this milestone we were required to create 1 level of the game allowing the user to but plants from the shop and place them on the board. The desired pattern used is the MVC model.
+The goal of this milestone is to create a base skeletal version of a typical Plants vs Zombies game. In this milestone we were required to create 1 level of the game allowing the user to but plants from the shop and place them on the board. The desired pattern used is the MVC model. 
 
 Change Log: 
-Milestone 2: Implemented the plantsvszombies project using the MVC design pattern. This also included creating a test package which retains all the tests for our model side.
+Milestone 2: Implemented the plantsvszombies project using the MVC design pattern (GUI). This also included creating a test package which retains all the tests for our model side.
 
 Next Steps:
-The next steps for this project is to add more plants for the user to choose from, along with other types of zombies that have different attack speed, damage, movement speed, etc. In addition, to adding more Plants and Zombies to the board, we will also be implementing a undo/redo method option for the user to click an infinite number of times.
+The next steps for this project is to add more plants for the user to choose from, along with other types of zombies that have different attack speed, damage, movement speed, etc. In addition, to adding more Plants and Zombies to the board, we will also be implementing a undo/redo method option for the user to click an infinite number of times. So far we have test the program throughly and do not see any issues currently.
 
 Included Files:
 Default Package:
