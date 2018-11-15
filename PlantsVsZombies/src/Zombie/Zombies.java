@@ -10,7 +10,6 @@
 
 
 package Zombie;
-import Model.Layout;
 import Model.Weapon;
 
 public abstract class Zombies{

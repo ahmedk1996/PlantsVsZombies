@@ -17,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
-import Controller.Controller;
+
 import Model.Action;
 import Model.Layout;
 import Plant.PlantStore;
 import Plant.Plants;
-import Zombie.Zombies;
+
 
 public class View extends JFrame {
 
@@ -31,7 +31,6 @@ public class View extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private Controller control;
 	private JMenuBar menuBar;
 	private JMenu gameMenu;
 	private JMenu menu;
@@ -49,13 +48,11 @@ public class View extends JFrame {
 	private JButton play;
 	private JButton help;
 	private JFrame gameFrame;
-	private Controller controller;
 	private JLabel points;
 	private JButton purchase;
-	private Layout layout;
+
 	private List<JButton> button;
 	private JButton[][] buttonArray;
-	private int buttIndex = -1;
 
 	public JLabel getStatus() {
 		return status;
@@ -79,7 +76,7 @@ public class View extends JFrame {
 	private JButton waveContinue;
 	private JLabel peaShooter;
 	private JRadioButton buySunflower;
-	private JButton b;
+
 
 	public View(int test) {
 
@@ -308,7 +305,7 @@ public class View extends JFrame {
 	}
 
 	public void initalizePlay() {
-		layout = new Layout();
+	
 		play.setEnabled(false);
 		gameFrame = new JFrame();
 		gameFrame.setSize(750, 750);
@@ -408,14 +405,15 @@ public class View extends JFrame {
 
 	public void passedStage() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(gameFrame, "You have cleared the stage!", "Stage", JOptionPane.WARNING_MESSAGE);
+		JOptionPane.showMessageDialog(gameFrame, "You have cleared the Wave!", "Wave Completed", JOptionPane.WARNING_MESSAGE);
 
 	}
 
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"|| buttonArray[i][j].getText() == "SF") {
+				if (buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"
+						|| buttonArray[i][j].getText() == "SF") {
 					buttonArray[i][j].setEnabled(false);
 				} else {
 					buttonArray[i][j].setEnabled(true);
@@ -455,13 +453,24 @@ public class View extends JFrame {
 		if (returnval == -1) {
 			return;
 		}
-	
 
+		iterateGameGrd(gameGrid, buttonArray);
 		moveZombieTextUpOne();
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 	}
 
-
+	private void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray2) {
+		for (int i = 0; i < gameGrid.length; i++) {
+			for (int j = 0; j < gameGrid[0].length; j++) {
+				if (gameGrid[i][j] instanceof Plants) {
+					if (((Plants) gameGrid[i][j]).getHealth() == 0) {
+						gameGrid[i][j] = null;
+						buttonArray[i][j].setText("");
+					}
+				}
+			}
+		}
+	}
 
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
@@ -473,6 +482,7 @@ public class View extends JFrame {
 						waveContinue.setEnabled(false);
 						return;
 					}
+
 					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF") {
 						continue;
 					} else {
@@ -483,13 +493,19 @@ public class View extends JFrame {
 			}
 		}
 	}
+
 	public void setAllEnabledFalse() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
 				buttonArray[i][j].setEnabled(false);
-				
+
 			}
 		}
+	}
+
+	public void gameWon() {
+		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!","Winner!", JOptionPane.INFORMATION_MESSAGE);
+		
 	}
 
 }

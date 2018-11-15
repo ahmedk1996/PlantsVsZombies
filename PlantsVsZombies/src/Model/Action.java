@@ -9,8 +9,6 @@
 
 package Model;
 
-import java.util.List;
-
 import javax.swing.JButton;
 
 import Plant.PlantStore;
@@ -23,11 +21,9 @@ import Zombie.Zombies;
 public class Action {
 
 	private Turn turn;
-	private Layout layout;
 	private Zombies zombie;
 	private int health;
 	private int currentTurn;
-	private PlantStore store;
 
 
 	public Action() {
@@ -67,6 +63,7 @@ public class Action {
 							int healthUpdate = health - attackingPlant.getDamage();
 							System.out.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
+								
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
@@ -99,14 +96,16 @@ public class Action {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.
 				if (gameGrid[i][j] instanceof Zombies) { // checking that is Zombie class
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
-						
-							int k = j-1;
+					
 							if (i>=0 && j ==0) {
 								return 0;
 							}
 							if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 								
 								zombieAttack((Zombies)gameGrid[i][j],(Plants)gameGrid[i][j-1], gameGrid, i ,j-1);
+								/*if (((Plants)gameGrid[i][j-1]).getHealth()==0){
+									
+								}*/
 								/*if ((Plants)gameGrid[i][j-1] == null) {
 									return -1;
 									
@@ -150,7 +149,7 @@ public class Action {
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() == 0) {
 			System.out.println(attackedPlant.getStringtype() + " is killed by " + o.getStringtype());
-			gameGrid[row][col] = null;
+		
 			
 		}
 

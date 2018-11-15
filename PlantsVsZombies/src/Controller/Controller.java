@@ -8,6 +8,7 @@
  */
 
 package Controller;
+
 import java.awt.event.*;
 import java.util.List;
 
@@ -27,7 +28,7 @@ import Plant.Sunflower;
 import View.View;
 
 public class Controller implements ActionListener {
-	
+
 	private Game game;
 	private View view;
 
@@ -35,24 +36,23 @@ public class Controller implements ActionListener {
 	private PlantStore ps;
 	private Action action;
 	public Turn turn;
-	private View v;
 	private CoolDown coolDownList;
-	private int stageNum=0;
+	private int stageNum = 0;
+
 	public Controller(Game game, View view, PlantStore ps) {
-		this.game=game;
-		this.view=view;
+		this.game = game;
+		this.view = view;
 
 		this.ps = ps;
 		action = new Action();
 		layout = new Layout();
 		turn = new Turn();
 		initalizeComponents();
-		
+
 	}
 
-
 	public void initalizeComponents() {
-		
+
 		view.getNewGame().addActionListener(this);
 		view.getNewGame().setActionCommand("NewGame");
 		view.getQuit().addActionListener(this);
@@ -73,7 +73,7 @@ public class Controller implements ActionListener {
 		view.getMed().setActionCommand("med");
 		view.getHard().addActionListener(this);
 		view.getHard().setActionCommand("Hard");
-	
+
 	}
 
 	public void initalizePlay() {
@@ -89,172 +89,181 @@ public class Controller implements ActionListener {
 		game.setZombieCounter(4); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
 		coolDownList = new CoolDown();
 	}
+
+	public void waves() {
+		if (game.getZombieCounter() == 0 && stageNum < 2) {
+			view.passedStage();
+			stageNum++;
+
+			if (stageNum == 2) {
+				view.gameWon();
+				return;
+			}
+
+		}
+	}
+
 	public void actionButton(JButton b) {
-	
+
 		b.addActionListener(this);
 		b.setActionCommand("button");
-		
+
 	}
+
 	public void setZombies() {
-		zombieMove(action , layout, ps);
-		if(!(game.getZombieCounter() <=1)) {
+		zombieMove(action, layout, ps);
+		if (!(game.getZombieCounter() <= 1)) {
 			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
 			view.setZombieOnBoard(row);
-			game.setZombieCounter(game.getZombieCounter()-1);
+			game.setZombieCounter(game.getZombieCounter() - 1);
+			waves();
 		}
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("NewGame")){
+		if (e.getActionCommand().equals("NewGame")) {
 			view.getGameFrame().dispose();
-			
-		}else if(e.getActionCommand().equals("Quit")) {
+
+		} else if (e.getActionCommand().equals("Quit")) {
 			System.exit(0);
-		}
-		else if (e.getActionCommand().equals("Play")) {
-		
+		} else if (e.getActionCommand().equals("Play")) {
+
 			view.playPrompt();
 			initalizePlay();
-			view.zombieInfo(); 
+			view.zombieInfo();
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
-			
-		}
-		else if (e.getActionCommand().equals("Help")) {
+
+		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
-		}
-		else if (e.getActionCommand().equals("easy") ||e.getActionCommand().equals("med") ||e.getActionCommand().equals("Hard") ) {
+		} else if (e.getActionCommand().equals("easy") || e.getActionCommand().equals("med")
+				|| e.getActionCommand().equals("Hard")) {
 			view.getPlay().setEnabled(true);
-			
-		}
-		else if(e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") ) {
+
+		} else if (e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower")) {
 			view.getPurchase().setEnabled(true);
-			
-		}
-		else if(e.getActionCommand().equals("Purchase")) {
-		
-			if(ps.getSunPoints()>=0) {
+
+		} else if (e.getActionCommand().equals("Purchase")) {
+
+			if (ps.getSunPoints() >= 0) {
 				int returnVal = purchasePlant();
-				if (returnVal ==0) {
-					view.setEnabledButtons();
+				if (returnVal == 0) {
+					view.setAllEnabledFalse();
 					return;
 				}
 				view.placePrompt();
-				
+
 			}
-			view.setEnabledButtons();	
+			view.setEnabledButtons();
 			view.getWaveContinue().setEnabled(false);
-			
-		}
-		
-		else if (e.getActionCommand().equals("simulate")) {
-			setZombies();	
-			coolDownList.turnOver();
-			view.getPoints().setText("Points : " + ps.getSunPoints());
-			
-			if(game.getZombieCounter() == 0 && stageNum<=1) {
-				view.passedStage();
-				game.setZombieCounter(3);
-				stageNum++;
-			}
-	
-		
 
 		}
-		else if (e.getActionCommand().equals("button")) {
-			
+
+		else if (e.getActionCommand().equals("simulate")) {
+			setZombies();
+			coolDownList.turnOver();
+			view.getPoints().setText("Points : " + ps.getSunPoints());
+
+		} else if (e.getActionCommand().equals("button")) {
+
 			JButton b = (JButton) e.getSource();
-			System.out.println("clicked column " + b.getClientProperty("column")+ ", row " + b.getClientProperty("row"));
+			System.out
+					.println("clicked column " + b.getClientProperty("column") + ", row " + b.getClientProperty("row"));
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 				b.setText("SF");
-				view.setEnabledButtons();	
-				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new Sunflower() , layout.getGameGrid());
-				
-			}
-			else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
+				view.setEnabledButtons();
+				layout.placePlantOnGrid((int) (b.getClientProperty("column")), (int) b.getClientProperty("row"),
+						new Sunflower(), layout.getGameGrid());
+
+			} else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 				b.setText("PS");
-				view.setEnabledButtons();	
-				layout.placePlantOnGrid((int)(b.getClientProperty("column")), (int)b.getClientProperty("row"), new ShootingPlant() , layout.getGameGrid());
+				view.setEnabledButtons();
+				layout.placePlantOnGrid((int) (b.getClientProperty("column")), (int) b.getClientProperty("row"),
+						new ShootingPlant(), layout.getGameGrid());
 			}
 			view.getWaveContinue().setEnabled(true);
 			view.setAllEnabledFalse();
 			view.getGroup().clearSelection();
 		}
-				  
+
 	}
+
 	private void buttonsInit() {
-		 for (int i =0; i< view.getButtonArray().length ; i++) {
-		     for (int j =0; j< view.getButtonArray()[0].length ; j++) {
-		    	 	JButton b = new JButton();
-		    	 	view.getButtonArray()[i][j] = b;
-		    	 	view.getButtonArray()[i][j].putClientProperty("column", i);
-		    	 	view.getButtonArray()[i][j].putClientProperty("row", j);
-		    		b.addActionListener(this);
-		     		view.getBoard().add(b);
-		     		b.setActionCommand("button");
-		     		view.getButton().add(b);
-		     		b.setEnabled(false);
-		     }
-	     }
+		for (int i = 0; i < view.getButtonArray().length; i++) {
+			for (int j = 0; j < view.getButtonArray()[0].length; j++) {
+				JButton b = new JButton();
+				view.getButtonArray()[i][j] = b;
+				view.getButtonArray()[i][j].putClientProperty("column", i);
+				view.getButtonArray()[i][j].putClientProperty("row", j);
+				b.addActionListener(this);
+				view.getBoard().add(b);
+				b.setActionCommand("button");
+				view.getButton().add(b);
+				b.setEnabled(false);
+			}
+		}
 	}
+
 	private int purchasePlant() {
-		if (ps.getSunPoints()==0) {
+		if (ps.getSunPoints() == 0) {
 			view.updateStatusText("Not Enough Sun Points.");
 			view.setEnabled(false);
-			return 0 ;
+			return 0;
 		}
-		
+
 		else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
-			Plants sp = new ShootingPlant(); 
+			Plants sp = new ShootingPlant();
 			int updatePoints = ps.validatePurchase(sp, ps.getSunPoints());
-		
+
 			if (updatePoints == -1) {
 				view.getStatus().setText("Not Enough Sun Points");
+				view.setAllEnabledFalse();
 				return 0;
-			}else {
-				if(coolDownList.validatePurchase(sp)) {
+			} else {
+				if (coolDownList.validatePurchase(sp)) {
 					ps.purchase(sp, ps.getSunPoints());
 					coolDownList.purchasePlant(sp);
-					
+
 					view.updatePointsText(String.valueOf(ps.getSunPoints()));
 					view.getPurchase().setEnabled(false);
-				}else {
-					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sp).getRemaining());
+				} else {
+					view.getStatus().setText(
+							"CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sp).getRemaining());
 					return 0;
 				}
 			}
-			//view.updatePointsText(String.valueOf(updatePoints));
-		}
-		else if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
-			Plants sf = new Sunflower(); 
+
+		} else if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
+			Plants sf = new Sunflower();
 			int updatePoints = ps.validatePurchase(sf, ps.getSunPoints());
 			if (updatePoints == -1) {
 				view.getStatus().setText("Not Enough Sun Points");
 				return 0;
-			}else {
-				if(coolDownList.validatePurchase(sf)) {
+			} else {
+				if (coolDownList.validatePurchase(sf)) {
 					ps.purchase(sf, ps.getSunPoints());
 					coolDownList.purchasePlant(sf);
 					view.updatePointsText(String.valueOf(ps.getSunPoints()));
 					view.getPurchase().setEnabled(false);
-				}else {
-					view.getStatus().setText("CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sf).getRemaining());
+				} else {
+					view.getStatus().setText(
+							"CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(sf).getRemaining());
 					return 0;
 				}
 			}
 		}
-		
+
 		return 1;
 	}
-	
-	public  void ZombieDead(int row, int col , int count){
+
+	public void ZombieDead(int row, int col, int count) {
 		System.out.println(count);
 	}
-	
-	public void zombieMove(Action ac , Layout layout, PlantStore ps) {
-		view.updateZombie(ac , layout.getGameGrid(), layout , ps);
-		
+
+	public void zombieMove(Action ac, Layout layout, PlantStore ps) {
+		view.updateZombie(ac, layout.getGameGrid(), layout, ps);
+
 	}
 
 }
-	

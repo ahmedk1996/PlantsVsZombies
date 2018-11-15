@@ -2,21 +2,16 @@ package Plant;
 
 
 
-import java.util.Scanner;
-
-import Model.CoolDown;
-import Model.Layout;
 
 public class PlantStore {
 
 	private Plants price;
 	private  int sunPoints;
-	private int startPoints;
-	private Scanner reader;
+	
 	private final int  peaShooterCost = 100;
 	private final int  sunFlowerCost = 50;
-	private boolean hasGameStarted = false;
-	private int num;
+
+
 	
 	public  int getSunPoints() {
 		return sunPoints;
@@ -42,10 +37,6 @@ public class PlantStore {
 	public PlantStore(boolean startOfGame) {
 
 		sunPoints = getSunPoints();
-	
-			
-		
-		
 	}
 
 	public Plants getPrice() {

@@ -11,9 +11,6 @@ package Plant;
 public class Sunflower extends Plants {
 
 	private final int cost  = 50;
-	private static int sunPoints;
-	private int turns;
-
 	public Sunflower(){
 		super.setStringtype("S    ");
 		super.setHealth(100);

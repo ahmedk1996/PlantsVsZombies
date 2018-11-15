@@ -9,24 +9,15 @@
 
 package Model;
 
-import java.util.*;
-import java.util.Random;
 
-import Controller.Controller;
+
 import Plant.Plants;
-import Plant.ShootingPlant;
-import Plant.Sunflower;
-import View.View;
 import Zombie.WalkingZombie;
-import Zombie.Zombies;
+
 
 public class Layout {
 	private Object[][] gameGrid;
-	private Scanner reader;
-	private PrintGrid grid;
-	private int max;
-	private int min;
-	private boolean valid;
+
 
 	public int getZombieDeadRow() {
 		return ZombieDeadRow;
@@ -64,13 +55,6 @@ public class Layout {
 		gameGrid = new Object[x][y];
 	}
 
-	public void print() {
-		grid = new PrintGrid(gameGrid);
-	}
-
-	public void print(Object[][] gameGrid) {
-		grid = new PrintGrid(gameGrid);
-	}
 
 	public int placeSpawnZombieOnGrid(Object[][] gameGrid) {
 		int random = (int) (Math.random() * 5 + 0);
