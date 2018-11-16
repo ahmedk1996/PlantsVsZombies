@@ -1,16 +1,17 @@
 
+
+package Zombie;
+import Model.Weapon;
+
+
 /**
- * The Plant is an abstract class which contains all the methods common between all the plants
+ * The Zombie is an abstract class which contains all the methods common between all the zombies
  * be it their health or the damage they give for example.
  * 
  * @author Group 1
  * @since November 4,2018
 
  */
-
-
-package Zombie;
-import Model.Weapon;
 
 public abstract class Zombies{
 	

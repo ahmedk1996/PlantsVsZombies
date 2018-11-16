@@ -2,7 +2,15 @@ package Plant;
 
 
 
+/**
+ *  The PlantStore is a class which contains all the methods common between all the plant
+ *  purchases and handling the costs on the plants and stores the sun points.
+ * 
+ * 
+ * @author Group 1
+ * @since November 4,2018
 
+ */
 public class PlantStore {
 
 	private Plants price;

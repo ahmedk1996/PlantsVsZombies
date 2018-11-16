@@ -11,6 +11,14 @@ import Plant.Plants;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
 
+/**
+ * 
+ * This Class is CoolDownQueue for Storing, checking the plants cool-down for each plants.
+ * We decided to use queue to store, trace, and validate each plant's cool-down for further extension.
+ * Queue data-structure is first in and first out. 
+ * 
+ * We are using Observe pattern to notify every plant CoolDown queue to reduce the cool-down.
+ */
 public class CoolDownQueue implements Observer{
 	String name;
 	Queue<Plants> queue; 

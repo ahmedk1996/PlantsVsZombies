@@ -1,13 +1,14 @@
+
+
+package Plant;
 /**
- * The Sunflower is a class which extends Zombies and uses the methods from zombies. 
+ *  The Sunflower is a class which extends Zombies and uses the methods from zombies. 
  * This allows for high cohesion.
  * 
  * @author Group 1
  * @since November 4,2018
 
  */
-
-package Plant;
 public class Sunflower extends Plants {
 
 	private final int cost  = 50;

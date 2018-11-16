@@ -1,13 +1,14 @@
+
+
+package Model;
 /**
- * The Weapon  is the weapon for the attacking zombies. It contains the underlying 
+ *  The Weapon  is the weapon for the attacking zombies. It contains the underlying 
  * model of the weapons health,speed etc. 
  * 
  * @author Group 1
  * @since November 4,2018
 
  */
-
-package Model;
 public abstract class Weapon {
 	private String name;
 	private int weaponSpeed;

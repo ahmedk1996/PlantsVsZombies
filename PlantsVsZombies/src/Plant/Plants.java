@@ -1,5 +1,7 @@
+
+package Plant;
 /**
- * The Plant is an abstract class which contains all the methods common between all the plants
+ *  The Plant is an abstract class which contains all the methods common between all the plants
  * be it their health or the damage they give for example.
  * 
  * @author Group 1
@@ -7,7 +9,6 @@
 
  */
 
-package Plant;
 public abstract class Plants {
 	
 	private String stringtype;

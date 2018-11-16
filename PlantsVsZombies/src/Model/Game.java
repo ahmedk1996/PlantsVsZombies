@@ -1,3 +1,9 @@
+
+package Model;
+
+import java.util.Scanner;
+import Plant.PlantStore;
+import java.io.*;
 /**
  * The Game is a class contains the methods regarding starting the game. This includes the setup for it  
  * an example of this would be selecting the game difficulty.
@@ -6,12 +12,6 @@
  * @since November 4,2018
 
  */
-package Model;
-
-import java.util.Scanner;
-import Plant.PlantStore;
-import java.io.*;
-
 public class Game {
 	private Layout layout;
 

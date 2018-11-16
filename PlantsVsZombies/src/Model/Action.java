@@ -1,11 +1,3 @@
-/**
- * The ShootingPlant is a class which contains all the actions used throughout the 
- * game this includes starting and ending the game.
- * 
- * @author Group 1
- * @since November 4,2018
-
- */
 
 package Model;
 
@@ -17,6 +9,14 @@ import Plant.ShootingPlant;
 import Plant.Sunflower;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;
+/**
+ *  The ShootingPlant is a class which contains all the actions used throughout the 
+ * game this includes starting and ending the game.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
 
 public class Action {
 

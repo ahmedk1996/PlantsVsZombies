@@ -1,11 +1,3 @@
-/**
- * The Controller is a class used in the MVC pattern which 
- * will call both game and view in order to update them by the actions from the user.
- * 
- * @author Group 1
- * @since November 4,2018
-
- */
 
 package Controller;
 
@@ -23,6 +15,14 @@ import Plant.Plants;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
 import View.View;
+/**
+ * The Controller is a class used in the MVC pattern which
+ * will call both game and view in order to update them by the actions from the user.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
 
 public class Controller implements ActionListener {
 

@@ -1,20 +1,16 @@
-/**
- * The Layout is a class that contains the methods regarding layout of the game. This includes the setup  
- * so the grid layout.
- * 
- * @author Group 1
- * @since November 4,2018
-
- */
-
 package Model;
-
-
 
 import Plant.Plants;
 import Zombie.WalkingZombie;
 
+/**
+ * The Layout is a class that contains the methods regarding layout of the game. This includes the setup  
+* so the grid layout.
+* 
+* @author Group 1
+* @since November 4,2018
 
+*/
 public class Layout {
 	private Object[][] gameGrid;
 
