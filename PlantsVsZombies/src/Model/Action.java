@@ -24,11 +24,18 @@ public class Action {
 	private Zombies zombie;
 	private int health;
 	private int currentTurn;
-
+	private int zombieDeadCounter;
 	public Action() {
-
+	
 	}
 
+	public int getZombieDeadCounter() {
+		return zombieDeadCounter;
+	}
+
+	public void setZombieDeadCounter(int zombieDeadCounter) {
+		this.zombieDeadCounter = zombieDeadCounter;
+	}
 	/**
 	 * plantShoot which handles the shooting plants abilities.
 	 * 
@@ -63,7 +70,7 @@ public class Action {
 							System.out
 									.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
 							if (zombie.getHealth() <= 0) {
-
+								zombieDeadCounter++;
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
@@ -134,6 +141,7 @@ public class Action {
 		attackedPlant.attacked(o.attack());
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() == 0) {
+			zombieDeadCounter++;
 			System.out.println(attackedPlant.getStringtype() + " is killed by " + o.getStringtype());
 
 		}

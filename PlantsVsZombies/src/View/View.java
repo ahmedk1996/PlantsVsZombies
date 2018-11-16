@@ -402,7 +402,7 @@ public class View extends JFrame {
 
 	public void passedStage() {
 	
-		JOptionPane.showMessageDialog(gameFrame, "You have cleared the Wave!", "Wave Completed",
+		JOptionPane.showMessageDialog(gameFrame, "Wave Cleared! Incoming Wave...", "Wave Completed",
 				JOptionPane.WARNING_MESSAGE);
 
 	}
@@ -478,7 +478,7 @@ public class View extends JFrame {
 	 * 	@return None
 	 */
 	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
-
+		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 		int returnval = ac.behaveZombie(gameGrid, layout);
 
 		if (returnval == -1) {
@@ -488,14 +488,14 @@ public class View extends JFrame {
 		iterateGameGrd(gameGrid, buttonArray);
 		moveZombieTextUpOne();
 		checkAllZombiesDead();
-		ac.plantShoot(gameGrid, layout, buttonArray, ps);
+		
 	
 	}
 	/**
 	 * 	Checks if all zombies are dead, reading the text of the 
 	 * 	@return boolean, true if Zombies are on grid. False, if no zombies are on board.
 	 */
-	private boolean checkAllZombiesDead() {
+	public boolean checkAllZombiesDead() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
 				if (buttonArray[i][j].getText().equals("Z")) {
@@ -517,7 +517,7 @@ public class View extends JFrame {
 	 * 	@param buttonArray2
 	 * 	@return none
 	 */
-	private void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray) {
+	public void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray) {
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) {
 				if (gameGrid[i][j] instanceof Plants) {
@@ -578,6 +578,11 @@ public class View extends JFrame {
 	public void gameWon() {
 		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!", "Winner!",
 				JOptionPane.INFORMATION_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(gameFrame, "Would you like to quit the game?" , "Quit" , JOptionPane.OK_CANCEL_OPTION);
+		if (result == 0){
+			System.exit(0);
+		}
+			
 
 	}
 

@@ -34,9 +34,19 @@ public class Controller implements ActionListener {
 	private Action action;
 	public Turn turn;
 	private CoolDown coolDownList;
-	private int stageNum = 0;
+	private int stageNum;
 
 	
+	public int getStageNum() {
+		return stageNum;
+	}
+
+
+	public void setStageNum(int stageNum) {
+		this.stageNum = stageNum;
+	}
+
+
 	public Controller(Game game, View view, PlantStore ps) {
 		
 		this.view = view;
@@ -44,7 +54,7 @@ public class Controller implements ActionListener {
 		this.ps = ps;
 		action = new Action();
 		layout = new Layout();
-		
+		action.setZombieDeadCounter(0);
 		turn = new Turn();
 		initalizeComponents();
 
@@ -107,20 +117,16 @@ public class Controller implements ActionListener {
 	 * 	Implementing the waves of zombies in the game.
 	 * 
 	 * 	@param None
-	 * @return None
+	 * 	@return None
 	 */
-	public void waves() {
-		
-			view.passedStage();
-			stageNum++;
-
-			if (stageNum == 2) {
-				view.gameWon();
-				return;
-			}
-			else {
-				stageNum++;
-			}
+	public boolean waves() {
+		if (action.getZombieDeadCounter() == 3 && stageNum ==0){
+			stageNum ++;
+			action.setZombieDeadCounter(0);
+			game.setZombieCounter(4);
+			return true;
+		}
+		return false;
 	}
 
 	public void actionButton(JButton b) {
@@ -137,13 +143,22 @@ public class Controller implements ActionListener {
 	 * @return None
 	 */
 	public void setZombies() {
+		boolean nextWave = waves();
+		if (nextWave == true){
+			view.passedStage();
+		}
+		
 		zombieMove(action, layout, ps);
 		if (!(game.getZombieCounter() <= 1)) {
 			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
 			view.setZombieOnBoard(row);
 			game.setZombieCounter(game.getZombieCounter() - 1);
-		
 		}
+		if (view.checkAllZombiesDead() == false && stageNum ==1 && action.getZombieDeadCounter() == 3){
+			view.gameWon();
+			return;
+		}
+		
 	}
 
 	/**
@@ -211,6 +226,7 @@ public class Controller implements ActionListener {
 			setZombies();
 			coolDownList.turnOver();
 			view.getPoints().setText("Points : " + ps.getSunPoints());
+		
 			
 
 		} else if (e.getActionCommand().equals("button")) {
