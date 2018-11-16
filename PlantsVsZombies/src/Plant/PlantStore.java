@@ -55,6 +55,12 @@ public class PlantStore {
 		this.price = price;
 	}
 
+	/**
+	 * 	validatePurchase, makes sure you can purchase the plant with sufficent SunPoints
+	 * 	@plant- which plant you are buying
+	 * 	@currentBalnce - the number of currentBalance currently have
+	 * 	@return none
+	 */
 	public int validatePurchase(Plants plant , int currentBalance) {
 
 		if((currentBalance - plant.getCost()) >= 0){
@@ -67,6 +73,14 @@ public class PlantStore {
 		}
 		return currentBalance;
 	}
+	
+	/**
+	 * purchase method, updates the balance of the amount of sunpoints, depending
+	 * on which plant has been purchased
+	 * 	@param plant - the type of plant that has been bought
+	 * 	@param currentBalance - number of sun points the user currently has
+	 * 	@return none
+	 */
 	public void purchase(Plants plant , int currentBalance) {
 		int updatedBalance = getSunPoints() - plant.getCost();
 		setSunPoints(updatedBalance);

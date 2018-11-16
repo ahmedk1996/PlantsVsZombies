@@ -51,6 +51,12 @@ public class Controller implements ActionListener {
 	}
 
 	
+	/**
+	 * 	Initialize the components by adding the respective actionlistners/actioncommands to each action used.
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	//Initialize the components by adding the respective actionlistners/actioncommands to each action used.
 	public void initalizeComponents() {
 
@@ -76,7 +82,13 @@ public class Controller implements ActionListener {
 
 	}
 
-	//Initialize the play components by adding the respective actionlistners/actioncommands to each action used.
+	/**
+	 * 	Initialize the play components by adding the respective actionlistners/actioncommands to each action used.
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
+	
 	public void initalizePlay() {
 		view.getPurchase().addActionListener(this);
 		view.getPurchase().setActionCommand("Purchase");
@@ -91,7 +103,12 @@ public class Controller implements ActionListener {
 		coolDownList = new CoolDown();
 	}
 
-	//Implementing the waves of zombies in the game.
+	/**
+	 * 	Implementing the waves of zombies in the game.
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void waves() {
 		
 			view.passedStage();
@@ -104,8 +121,6 @@ public class Controller implements ActionListener {
 			else {
 				stageNum++;
 			}
-
-		
 	}
 
 	public void actionButton(JButton b) {
@@ -115,6 +130,12 @@ public class Controller implements ActionListener {
 
 	}
 
+	/**
+	 * 	sets the zombies on the model gameGrid
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void setZombies() {
 		zombieMove(action, layout, ps);
 		if (!(game.getZombieCounter() <= 1)) {
@@ -125,6 +146,12 @@ public class Controller implements ActionListener {
 		}
 	}
 
+	/**
+	 * 	Action Performed based on the action event pressed on the frame
+	 * 
+	 * 	@param ActionEvent e - Jbutton or radio button or menuItem
+	 * @return None
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("NewGame")) {
@@ -210,7 +237,10 @@ public class Controller implements ActionListener {
 
 	}
 
-	//Initializing the buttons on the board
+	/**
+	 * 	@param ActionEvent e - 	Initializing the buttons on the board
+	 * 	@return None
+	 */
 	private void buttonsInit() {
 		for (int i = 0; i < view.getButtonArray().length; i++) {
 			for (int j = 0; j < view.getButtonArray()[0].length; j++) {
@@ -227,6 +257,11 @@ public class Controller implements ActionListener {
 		}
 	}
 
+	/**
+	 * PurchasePlant runs all the processes of attacking, buying , generating 
+	 * Sun points
+	 * 	@return int 0, when there are no sun plants, else 1
+	 */
 	private int purchasePlant() {
 		if (ps.getSunPoints() == 0) {
 			view.updateStatusText("Not Enough Sun Points.");

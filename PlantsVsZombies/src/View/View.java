@@ -25,9 +25,6 @@ import Plant.Plants;
 
 public class View extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JMenuBar menuBar;
@@ -233,7 +230,11 @@ public class View extends JFrame {
 	public void setSelectButtonsPanel(JPanel selectButtonsPanel) {
 		this.selectButtonsPanel = selectButtonsPanel;
 	}
-
+	/**
+	 *  Intializes all the contents of the View GUI Frame
+	 * 	@param None
+	 * 	@return None
+	 */
 	private void initalizeComponents() {
 		frame = new JFrame("Plants Vs. Zombies");
 		frame.setSize(450, 300);
@@ -295,6 +296,11 @@ public class View extends JFrame {
 
 	}
 
+	/**
+	 *  Intializes all the contents of the play GUI Frame
+	 * 	@param None
+	 * 	@return None
+	 */
 	public void initalizePlay() {
 
 		play.setEnabled(false);
@@ -401,6 +407,11 @@ public class View extends JFrame {
 
 	}
 
+	/**
+	 *  Set all buttons on the grid to false/true based on the plant or zombie on the grid
+	 * 	@param None
+	 * 	@return None
+	 */
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -415,29 +426,57 @@ public class View extends JFrame {
 		}
 	}
 
+	/**
+	 * 	Set the text and enabled false of the random zombie spawned
+	 * 	@param None
+	 * 	@return None
+	 */
 	public void setZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
 		buttonArray[randRow][6].setText("Z");
 		buttonArray[randRow][6].setEnabled(false);
 	}
-
+	/**
+	 * 	set the text of the JButton passed from the controller when clicked
+	 * 	@param None
+	 * 	@return None
+	 */
 	public void updateStatusText(String text) {
 		// TODO Auto-generated method stub
 		status.setText(text);
 
 	}
 
+	/**
+	 * 	Update the Points Text JLabel
+	 * 	@param updatePoints:String
+	 * 	@return None
+	 */
 	public void updatePointsText(String updatePoints) {
 		points.setText(String.valueOf(updatePoints) + " Points");
 
 	}
 
+	/**
+	 * 	JOptionPane displayed on the gui frame to deploy plant
+	 * 	@param None
+	 * 	@return None
+	 */
 	public void placePrompt() {
 
 		JOptionPane.showMessageDialog(gameFrame, "Deploy your Plant in the garden", "Deploy",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 * 	Once the simulate button has been pressed, this is the series of actions, the JButton grid 
+	 * Array updates
+	 * 	@param Action ac 
+	 * 	@param gameGrid instance of the model gameGrid passed
+	 * 	@param layout Layout 
+	 *  @param ps PlantStore
+	 * 	@return None
+	 */
 	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
 
 		int returnval = ac.behaveZombie(gameGrid, layout);
@@ -452,7 +491,10 @@ public class View extends JFrame {
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 	
 	}
-
+	/**
+	 * 	Checks if all zombies are dead, reading the text of the 
+	 * 	@return boolean, true if Zombies are on grid. False, if no zombies are on board.
+	 */
 	private boolean checkAllZombiesDead() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -467,11 +509,15 @@ public class View extends JFrame {
 			
 		}
 		return false;
-		
-
 	}
 
-	private void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray2) {
+	/**
+	 * 	If the instance is a plant on the grid, set the cell to null, and empty text
+	 * 	@param gameGrid
+	 * 	@param buttonArray2
+	 * 	@return none
+	 */
+	private void iterateGameGrd(Object[][] gameGrid, JButton[][] buttonArray) {
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) {
 				if (gameGrid[i][j] instanceof Plants) {
@@ -483,7 +529,12 @@ public class View extends JFrame {
 			}
 		}
 	}
-
+	/**
+	 * 	Checks if the zombie has reached the end of the grid, places the zombie text up one
+	 * 	when there are no objects in front
+	 * 	
+	 * 	@return none
+	 */
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -505,7 +556,12 @@ public class View extends JFrame {
 			}
 		}
 	}
-
+	/**
+	 * 	
+	 * 	sets all JButton arrays as false
+	 * 	
+	 * 	@return none
+	 */
 	public void setAllEnabledFalse() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -514,7 +570,11 @@ public class View extends JFrame {
 			}
 		}
 	}
-
+	/**
+	 * 	Prompts user they have won the game
+	 * 	
+	 * 	@return none
+	 */
 	public void gameWon() {
 		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!", "Winner!",
 				JOptionPane.INFORMATION_MESSAGE);
