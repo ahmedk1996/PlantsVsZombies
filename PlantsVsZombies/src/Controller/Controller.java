@@ -10,11 +10,8 @@
 package Controller;
 
 import java.awt.event.*;
-import java.util.List;
-
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
 
 import Model.Action;
 import Model.CoolDown;
@@ -39,6 +36,7 @@ public class Controller implements ActionListener {
 	private CoolDown coolDownList;
 	private int stageNum = 0;
 
+	
 	public Controller(Game game, View view, PlantStore ps) {
 		
 		this.view = view;
@@ -52,6 +50,8 @@ public class Controller implements ActionListener {
 
 	}
 
+	
+	//Initialize the components by adding the respective actionlistners/actioncommands to each action used.
 	public void initalizeComponents() {
 
 
@@ -76,6 +76,7 @@ public class Controller implements ActionListener {
 
 	}
 
+	//Initialize the play components by adding the respective actionlistners/actioncommands to each action used.
 	public void initalizePlay() {
 		view.getPurchase().addActionListener(this);
 		view.getPurchase().setActionCommand("Purchase");
@@ -90,6 +91,7 @@ public class Controller implements ActionListener {
 		coolDownList = new CoolDown();
 	}
 
+	//Implementing the waves of zombies in the game.
 	public void waves() {
 		
 			view.passedStage();
@@ -131,8 +133,10 @@ public class Controller implements ActionListener {
 			view.getPlay().setEnabled(false);
 		
 		} else if (e.getActionCommand().equals("Quit")) {
+			//Will look for a better way to exit the program
 			System.exit(0);
 		} else if (e.getActionCommand().equals("Play")) {
+			//Start the game
 			game = null;
 			ps = null;
 			layout = null;
@@ -206,6 +210,7 @@ public class Controller implements ActionListener {
 
 	}
 
+	//Initializing the buttons on the board
 	private void buttonsInit() {
 		for (int i = 0; i < view.getButtonArray().length; i++) {
 			for (int j = 0; j < view.getButtonArray()[0].length; j++) {
