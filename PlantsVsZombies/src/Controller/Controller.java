@@ -2,6 +2,8 @@
 package Controller;
 
 import java.awt.event.*;
+import java.io.IOException;
+
 import javax.swing.JButton;
 
 
@@ -94,12 +96,7 @@ public class Controller implements ActionListener {
 	public void initalizeComponents() {
 
 
-		view.getQuit().addActionListener(this);
-		view.getQuit().setActionCommand("Quit");
-		view.getUndo().addActionListener(this);
-		view.getUndo().setActionCommand("Undo");
-		view.getRedo().addActionListener(this);
-		view.getRedo().setActionCommand("Redo");
+		
 		view.getGameDiffuclty().addActionListener(this);
 		view.getGameDiffuclty().setActionCommand("Diff");
 		view.getPlay().addActionListener(this);
@@ -133,6 +130,12 @@ public class Controller implements ActionListener {
 		view.getWaveContinue().setActionCommand("simulate");
 		view.getWaveContinue().setEnabled(true);
 		game.setZombieCounter(4); // Easy Mode, once other modes are implemented, spawn zombies based on game mode
+		view.getQuit().addActionListener(this);
+		view.getQuit().setActionCommand("Quit");
+		view.getUndo().addActionListener(this);
+		view.getUndo().setActionCommand("Undo");
+		view.getRedo().addActionListener(this);
+		view.getRedo().setActionCommand("Redo");
 		coolDownList = new CoolDown();
 	}
 
@@ -212,7 +215,12 @@ public class Controller implements ActionListener {
 		
 			view.getPlay().setEnabled(false);
 			view.getGroup().clearSelection();
-			view.playPrompt();
+			try {
+				view.playPrompt();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			initalizePlay();
 			view.zombieInfo();
 			ps.setSunPoints(150);
