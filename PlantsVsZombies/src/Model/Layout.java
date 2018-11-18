@@ -135,5 +135,9 @@ public class Layout {
 		ZombieDeadCol = column;
 
 	}
+	
+	public Layout getLayoutObject() {
+		return this;
+	}
 
 }

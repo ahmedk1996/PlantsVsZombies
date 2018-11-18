@@ -62,9 +62,10 @@ public class Controller implements ActionListener {
 
 	}
 
-	public Controller(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag) {
+	public Controller(Game game, View view,Layout layout,PlantStore ps, Action action, Turn turn, CoolDown c,int stag) {
 		this.game = game;
 		this.view = view;
+		this.layout = layout;
 		this.ps = ps;
 		this.action = action;
 		this.turn = turn;
@@ -72,9 +73,10 @@ public class Controller implements ActionListener {
 		this.stageNum = stag;
 	}
 	
-	public void load(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag){
+	public void load(Game game, View view,Layout layout, PlantStore ps, Action action, Turn turn, CoolDown c,int stag){
 		this.game = game;
 		this.view = view;
+		this.layout = layout;
 		this.ps = ps;
 		this.action = action;
 		this.turn = turn;
@@ -83,7 +85,8 @@ public class Controller implements ActionListener {
 	}
 	
 	public Controller timeStamp() {
-		return new Controller(this.game,this.view,this.ps,this.action,this.turn,this.coolDownList,this.stageNum);
+		
+		return new Controller(this.game.getGameObject(),this.view,this.layout.getLayoutObject(),this.ps,this.action,this.turn,this.coolDownList,this.stageNum);
 	}
 	
 	/**
@@ -250,8 +253,7 @@ public class Controller implements ActionListener {
 			ps.setSunPoints(150);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
-			
-
+			timeLine.addNext(timeStamp());	
 		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
 		} else if (e.getActionCommand().equals("easy")) {
@@ -274,6 +276,7 @@ public class Controller implements ActionListener {
 				int returnVal = purchasePlant();
 				if (returnVal == 0) {
 					view.setAllEnabledFalse();
+					
 					return;
 				}
 				view.placePrompt();
@@ -281,13 +284,13 @@ public class Controller implements ActionListener {
 			}
 			view.setEnabledButtons();
 			view.getWaveContinue().setEnabled(false);
-
+			timeLine.addNext(timeStamp());
 		}
 
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();
 			coolDownList.turnOver();
-			timeLine.addNext(this);
+			timeLine.addNext(timeStamp());
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			
 		} else if (e.getActionCommand().equals("button")) {
@@ -309,10 +312,11 @@ public class Controller implements ActionListener {
 			view.getWaveContinue().setEnabled(true);
 			view.setAllEnabledFalse();
 			view.getGroup().clearSelection();
+			timeLine.addNext(timeStamp());
 		}else if (e.getActionCommand().equals("Undo")) {
 			// load(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag
 			Controller temp = timeLine.Undo();
-			this.load(temp.getGame(),temp.getView(),temp.getPs(),temp.getAction(),temp.getTurn(),temp.getCoolDownList(),temp.getStageNum());
+			this.load(temp.getGame(),temp.getView(),temp.getLayout(),temp.getPs(),temp.getAction(),temp.getTurn(),temp.getCoolDownList(),temp.getStageNum());
 		}else if (e.getActionCommand().equals("Redo")) {
 			
 		}

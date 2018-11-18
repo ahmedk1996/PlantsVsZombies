@@ -124,5 +124,7 @@ public class Game {
 	public void load() {
 
 	}
-
+	public Game getGameObject() {
+		return new Game(this.layout,this.store);
+	}
 }
