@@ -24,7 +24,7 @@ public class TimeLine {
 			timeStore.set(currenti, controller);
 			currenti ++;
 		}else{ 
-			timeStore.set(currenti, controller);
+			timeStore.add(controller);
 			currenti ++;
 		}
 	}
@@ -39,8 +39,13 @@ public class TimeLine {
 			return false;
 	}
 	
-	public Controller undo() {
-		return timeStore.get(currenti);
+	public Controller Undo() {
+		if(currenti <= 0) {
+			return timeStore.get(currenti);
+		}else {
+			currenti--;
+			return timeStore.get(currenti);
+		}
 	}
 	
 	public Controller redo() {

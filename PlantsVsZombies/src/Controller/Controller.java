@@ -37,7 +37,7 @@ public class Controller implements ActionListener {
 	public Turn turn;
 	private CoolDown coolDownList;
 	private int stageNum;
-	private TimeLine timecapsule;
+	private TimeLine timeLine;
 	
 	public int getStageNum() {
 		return stageNum;
@@ -58,7 +58,7 @@ public class Controller implements ActionListener {
 		action.setZombieDeadCounter(0);
 		turn = new Turn();
 		initalizeComponents();
-		timecapsule = new TimeLine();
+		timeLine = new TimeLine();
 
 	}
 
@@ -256,6 +256,7 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();
 			coolDownList.turnOver();
+			timeLine.addNext(this);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			
 		} else if (e.getActionCommand().equals("button")) {
@@ -277,9 +278,17 @@ public class Controller implements ActionListener {
 			view.getWaveContinue().setEnabled(true);
 			view.setAllEnabledFalse();
 			view.getGroup().clearSelection();
+		}else if (e.getActionCommand().equals("Undo")) {
+			// load(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag
+			Controller temp = timeLine.Undo();
+			this.load(temp.getGame(),temp.getView(),temp.getPs(),temp.getAction(),temp.getTurn(),temp.getCoolDownList(),temp.getStageNum());
+		}else if (e.getActionCommand().equals("Redo")) {
+			
 		}
+		
 
 	}
+
 
 	/**
 	 * 	@param ActionEvent e - 	Initializing the buttons on the board
@@ -365,6 +374,45 @@ public class Controller implements ActionListener {
 	public void zombieMove(Action ac, Layout layout, PlantStore ps) {
 		view.updateZombie(ac, layout.getGameGrid(), layout, ps);
 
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+
+	public View getView() {
+		return view;
+	}
+
+
+	public Layout getLayout() {
+		return layout;
+	}
+
+
+	public PlantStore getPs() {
+		return ps;
+	}
+
+
+	public Action getAction() {
+		return action;
+	}
+
+
+	public Turn getTurn() {
+		return turn;
+	}
+
+
+	public CoolDown getCoolDownList() {
+		return coolDownList;
+	}
+
+
+	public TimeLine getTimeLine() {
+		return timeLine;
 	}
 
 }
