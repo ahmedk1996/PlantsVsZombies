@@ -120,8 +120,8 @@ public class View extends JFrame {
 		selectButtonsPanel.add(easy);
 		selectButtonsPanel.add(med);
 		selectButtonsPanel.add(hard);
-		med.setEnabled(false);
-		hard.setEnabled(false);
+		//med.setEnabled(false);
+		//hard.setEnabled(false);
 		group.add(easy);
 		group.add(med);
 		group.add(hard);
@@ -268,11 +268,24 @@ public class View extends JFrame {
 
 	}
 
-	public void zombieInfo() {
+	public void level1ZombieInfo() {
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
 				null);
 	}
+	
+	public void level2ZombieInfo() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies and Sprint Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
+				null);
+	}
+	
+	public void level3ZombieInfo() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(gameFrame, "Walking, Sprint and Rugby Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
+				null);
+	}
+
 
 	public void passedStage() {
 	
@@ -289,7 +302,7 @@ public class View extends JFrame {
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"
+				if (buttonArray[i][j].getText() == "RZ"||buttonArray[i][j].getText() == "SZ"||buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"
 						|| buttonArray[i][j].getText() == "SF") {
 					buttonArray[i][j].setEnabled(false);
 				} else {
@@ -305,9 +318,29 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
-	public void setZombieOnBoard(int randRow) {
+	public void setWalkingZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
 		buttonArray[randRow][6].setText("Z");
+		buttonArray[randRow][6].setEnabled(false);
+	}
+	/**
+	 * 	Set the text and enabled false of the random zombie spawned
+	 * 	@param None
+	 * 	@return None
+	 */
+	public void setRugbyZombieOnBoard(int randRow) {
+		// TODO Auto-generated method stub
+		buttonArray[randRow][6].setText("RZ");
+		buttonArray[randRow][6].setEnabled(false);
+	}
+	/**
+	 * 	Set the text and enabled false of the random zombie spawned
+	 * 	@param None
+	 * 	@return None
+	 */
+	public void setSprintZombieOnBoard(int randRow) {
+		// TODO Auto-generated method stub
+		buttonArray[randRow][6].setText("SZ");
 		buttonArray[randRow][6].setEnabled(false);
 	}
 	/**
@@ -412,8 +445,8 @@ public class View extends JFrame {
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().equals("Z")) {
-					if (buttonArray[i][0].getText().equals("Z")) {
+				if (buttonArray[i][j].getText().equals("Z") || buttonArray[i][j].getText().equals("SZ") || buttonArray[i][j].getText().equals("RZ")) {
+					if (buttonArray[i][0].getText().equals("Z") || buttonArray[i][0].getText().equals("RZ") || buttonArray[i][0].getText().equals("SZ")) {
 						JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
 								"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
 						waveContinue.setEnabled(false);
@@ -425,6 +458,18 @@ public class View extends JFrame {
 					} else {
 						buttonArray[i][j].setText("");
 						buttonArray[i][j - 1].setText("Z");
+					}
+					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="SZ" ) {
+						continue;
+					} else {
+						buttonArray[i][j].setText("");
+						buttonArray[i][j - 1].setText("SZ");
+					}
+					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="RZ" ) {
+						continue;
+					} else {
+						buttonArray[i][j].setText("");
+						buttonArray[i][j - 1].setText("RZ");
 					}
 				}
 			}

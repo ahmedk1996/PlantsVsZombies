@@ -38,7 +38,7 @@ public class Controller implements ActionListener {
 	private CoolDown coolDownList;
 	private int stageNum;
 	private TimeLine timeLine;
-	
+	private int level=0;
 	public int getStageNum() {
 		return stageNum;
 	}
@@ -108,7 +108,7 @@ public class Controller implements ActionListener {
 		view.getMed().addActionListener(this);
 		view.getMed().setActionCommand("med");
 		view.getHard().addActionListener(this);
-		view.getHard().setActionCommand("Hard");
+		view.getHard().setActionCommand("hard");
 
 	}
 
@@ -175,9 +175,25 @@ public class Controller implements ActionListener {
 		}
 		
 		zombieMove(action, layout, ps);
-		if (!(game.getZombieCounter() <= 1)) {
-			int row = layout.placeSpawnZombieOnGrid(layout.getGameGrid());
-			view.setZombieOnBoard(row);
+		if (!(game.getZombieCounter() <= 1) && level == 1) {
+			int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+			view.setWalkingZombieOnBoard(row);
+			game.setZombieCounter(game.getZombieCounter() - 1);
+		}
+		else if (!(game.getZombieCounter() <= 1) && level == 2) {
+			int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+			int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
+			view.setWalkingZombieOnBoard(row);
+			view.setSprintZombieOnBoard(row2);
+			game.setZombieCounter(game.getZombieCounter() - 1);
+		}
+		else if (!(game.getZombieCounter() <= 1) && level == 3) {
+			int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+			int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
+			int row3 = layout.placeSpawnRugbyZombieOnGrid(layout.getGameGrid());
+			view.setWalkingZombieOnBoard(row);
+			view.setSprintZombieOnBoard(row2);
+			view.setRugbyZombieOnBoard(row3);
 			game.setZombieCounter(game.getZombieCounter() - 1);
 		}
 		if (view.checkAllZombiesDead() == false && stageNum ==1 && action.getZombieDeadCounter() == 3){
@@ -186,6 +202,8 @@ public class Controller implements ActionListener {
 		}
 		
 	}
+
+
 
 	/**
 	 * 	Action Performed based on the action event pressed on the frame
@@ -222,7 +240,13 @@ public class Controller implements ActionListener {
 				e1.printStackTrace();
 			}
 			initalizePlay();
-			view.zombieInfo();
+			if(level == 1){
+				view.level1ZombieInfo();
+			}else if(level==2){
+				view.level2ZombieInfo();
+			}else if(level == 3){
+				view.level3ZombieInfo();
+			}
 			ps.setSunPoints(150);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
@@ -230,10 +254,17 @@ public class Controller implements ActionListener {
 
 		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
-		} else if (e.getActionCommand().equals("easy") || e.getActionCommand().equals("med")
-				|| e.getActionCommand().equals("Hard")) {
+		} else if (e.getActionCommand().equals("easy")) {
 			view.getPlay().setEnabled(true);
-
+			level =1;
+		} else if (e.getActionCommand().equals("med")) {
+			view.getPlay().setEnabled(true);
+			level =2;
+			
+		} else if (e.getActionCommand().equals("hard")) {
+			view.getPlay().setEnabled(true);
+			level = 3;
+			
 		} else if (e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower")) {
 			view.getPurchase().setEnabled(true);
 
