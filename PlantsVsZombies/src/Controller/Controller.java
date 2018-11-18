@@ -25,7 +25,7 @@ import View.View;
  */
 
 public class Controller implements ActionListener {
-
+	
 	private Game game;
 	private View view;
 
@@ -35,7 +35,7 @@ public class Controller implements ActionListener {
 	public Turn turn;
 	private CoolDown coolDownList;
 	private int stageNum;
-
+	private TimeLine timecapsule;
 	
 	public int getStageNum() {
 		return stageNum;
@@ -48,7 +48,6 @@ public class Controller implements ActionListener {
 
 
 	public Controller(Game game, View view, PlantStore ps) {
-		
 		this.view = view;
 		this.game = game;
 		this.ps = ps;
@@ -57,9 +56,33 @@ public class Controller implements ActionListener {
 		action.setZombieDeadCounter(0);
 		turn = new Turn();
 		initalizeComponents();
+		timecapsule = new TimeLine();
 
 	}
 
+	public Controller(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag) {
+		this.game = game;
+		this.view = view;
+		this.ps = ps;
+		this.action = action;
+		this.turn = turn;
+		this.coolDownList = c;
+		this.stageNum = stag;
+	}
+	
+	public void load(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag){
+		this.game = game;
+		this.view = view;
+		this.ps = ps;
+		this.action = action;
+		this.turn = turn;
+		this.coolDownList = c;
+		this.stageNum = stag;
+	}
+	
+	public Controller timeStamp() {
+		return new Controller(this.game,this.view,this.ps,this.action,this.turn,this.coolDownList,this.stageNum);
+	}
 	
 	/**
 	 * 	Initialize the components by adding the respective actionlistners/actioncommands to each action used.
@@ -226,11 +249,8 @@ public class Controller implements ActionListener {
 			setZombies();
 			coolDownList.turnOver();
 			view.getPoints().setText("Points : " + ps.getSunPoints());
-		
 			
-
 		} else if (e.getActionCommand().equals("button")) {
-
 			JButton b = (JButton) e.getSource();
 			System.out
 					.println("clicked column " + b.getClientProperty("column") + ", row " + b.getClientProperty("row"));

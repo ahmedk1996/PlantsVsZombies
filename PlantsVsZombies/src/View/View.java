@@ -28,8 +28,10 @@ public class View extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JFrame frame;
 	private JMenuBar menuBar;
+	private JMenuBar playMenuBar;
 	private JMenu gameMenu;
 	private JMenu menu;
+	private JMenu playMenu;
 	private JMenuItem quit;
 	private JMenuItem undo;
 	private JMenuItem redo;
@@ -307,7 +309,11 @@ public class View extends JFrame {
 		gameFrame = new JFrame();
 		gameFrame.setSize(750, 750);
 		gameFrame.setTitle("Game In Progress");
-
+		playMenuBar = new JMenuBar();
+		playMenu = new JMenu("Play");
+		undo = new JMenuItem("undo");
+		redo = new JMenuItem("redo");
+		
 		store = new JPanel();
 		board = new JPanel();
 
@@ -351,6 +357,10 @@ public class View extends JFrame {
 		group.add(buySunflower);
 
 	}
+	public void importView() {
+		
+	}
+	
 
 	public JFrame getGameFrame() {
 		return gameFrame;
@@ -563,18 +573,20 @@ public class View extends JFrame {
 	 * 	@return none
 	 */
 	public void setAllEnabledFalse() {
-		for (int i = 0; i < buttonArray.length; i++) {
+		for (int i = 0;	 i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
 				buttonArray[i][j].setEnabled(false);
 
 			}
 		}
 	}
+	
 	/**
 	 * 	Prompts user they have won the game
 	 * 	
 	 * 	@return none
 	 */
+	
 	public void gameWon() {
 		JOptionPane.showMessageDialog(gameFrame, "Congratulations. You beat the Zombies!", "Winner!",
 				JOptionPane.INFORMATION_MESSAGE);
