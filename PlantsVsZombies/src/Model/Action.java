@@ -7,6 +7,8 @@ import Plant.PlantStore;
 import Plant.Plants;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
+import Zombie.RugbyZombie;
+import Zombie.SprintZombie;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;
 /**
@@ -138,7 +140,11 @@ public class Action {
 	public Plants zombieAttack(Zombies z, Plants p, Object[][] gameGrid, int row, int col) {
 		Plants attackedPlant = p;
 		Zombies o = new WalkingZombie();
+		Zombies g = new SprintZombie();
+		Zombies r = new RugbyZombie();
 		attackedPlant.attacked(o.attack());
+		attackedPlant.attacked(g.attack());
+		attackedPlant.attacked(r.attack());
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() == 0) {
 			zombieDeadCounter++;

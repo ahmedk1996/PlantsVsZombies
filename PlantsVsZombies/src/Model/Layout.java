@@ -1,6 +1,9 @@
+
 package Model;
 
 import Plant.Plants;
+import Zombie.RugbyZombie;
+import Zombie.SprintZombie;
 import Zombie.WalkingZombie;
 
 /**
@@ -52,11 +55,26 @@ public class Layout {
 	}
 
 
-	public int placeSpawnZombieOnGrid(Object[][] gameGrid) {
+	public int placeSpawnWalkingZombieOnGrid(Object[][] gameGrid) {
 		int random = (int) (Math.random() * 5 + 0);
-		placeObjectOnGrid(random, 6, new WalkingZombie(), gameGrid);
+		placeWalkingZombieOnGrid(random, 6, new WalkingZombie(), gameGrid);
 		return random;
 	}
+	
+	public int placeSpawnSprintZombieOnGrid(Object[][] gameGrid) {
+		int random = (int) (Math.random() * 5 + 0);
+		placeSprintZombieOnGrid(random, 6, new SprintZombie(), gameGrid);
+		return random;
+	}
+	
+	public int placeSpawnRugbyZombieOnGrid(Object[][] gameGrid) {
+		int random = (int) (Math.random() * 5 + 0);
+		placeRugbyZombieOnGrid(random, 6, new RugbyZombie(), gameGrid);
+		return random;
+	}
+	
+	
+	
 
 	public Object getGrid() {
 		return gameGrid;
@@ -74,9 +92,29 @@ public class Layout {
 		gameGrid[row][col] = o;
 	}
 
-	public boolean placeObjectOnGrid(int row, int col, Object o, Object[][] gameGrid) {
+	public boolean placeWalkingZombieOnGrid(int row, int col, Object o, Object[][] gameGrid) {
 		if (gameGrid[row][col] != null) {
-			placeSpawnZombieOnGrid(gameGrid);
+			placeSpawnWalkingZombieOnGrid(gameGrid);
+
+		} else {
+			gameGrid[row][col] = o;
+		}
+		return true;
+	}
+	
+	public boolean placeSprintZombieOnGrid(int row, int col, Object o, Object[][] gameGrid) {
+		if (gameGrid[row][col] != null) {
+			placeSpawnSprintZombieOnGrid(gameGrid);
+
+		} else {
+			gameGrid[row][col] = o;
+		}
+		return true;
+	}
+	
+	public boolean placeRugbyZombieOnGrid(int row, int col, Object o, Object[][] gameGrid) {
+		if (gameGrid[row][col] != null) {
+			placeSpawnRugbyZombieOnGrid(gameGrid);
 
 		} else {
 			gameGrid[row][col] = o;
