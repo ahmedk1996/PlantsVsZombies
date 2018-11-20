@@ -36,20 +36,13 @@ public class View extends JFrame {
 	private JMenu gameMenu;
 	private JMenu menu;
 	private JMenu playMenu;
-	private JMenuItem quit;
-	private JMenuItem undo;
-	private JMenuItem redo;
-	private JMenuItem save;
-	private JMenuItem load;
+	private JMenuItem quit,undo,redo,save,load;
 	private JButton gameDiffuclty;
 	private JPanel selectButtonsPanel;
 	private JLabel levelLabel;
 	private ButtonGroup group;
-	private JCheckBox easy;
-	private JCheckBox med;
-	private JCheckBox hard;
-	private JButton play;
-	private JButton help;
+	private JCheckBox easy,med,hard;
+	private JButton play,help;
 	private JFrame gameFrame;
 	private JLabel points;
 	private JButton purchase;
@@ -326,6 +319,7 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
+	
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -378,7 +372,6 @@ public class View extends JFrame {
 	public void updateStatusText(String text) {
 		// TODO Auto-generated method stub
 		status.setText(text);
-
 	}
 
 	/**
@@ -397,7 +390,6 @@ public class View extends JFrame {
 	 * 	@return None
 	 */
 	public void placePrompt() {
-
 		JOptionPane.showMessageDialog(gameFrame, "Deploy your Plant in the garden", "Deploy",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -414,16 +406,12 @@ public class View extends JFrame {
 	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 		int returnval = ac.behaveZombie(gameGrid, layout);
-
 		if (returnval == -1) {
 			return;
 		}
-
 		iterateGameGrd(gameGrid, buttonArray);
 		moveZombieTextUpOne();
-		checkAllZombiesDead();
-		
-	
+		checkAllZombiesDead();	
 	}
 	/**
 	 * 	Checks if all zombies are dead, reading the text of the 
