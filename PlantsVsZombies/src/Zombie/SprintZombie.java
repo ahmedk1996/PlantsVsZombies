@@ -20,6 +20,7 @@ public class SprintZombie extends Zombies{
  */
 	
 	public SprintZombie() {
+		super.setName("SprintZombie");
 		super.setStringtype("SZ   ");
 		super.setSpeed(5);
 		super.setHealth(100);

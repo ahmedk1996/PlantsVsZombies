@@ -17,6 +17,15 @@ public abstract class Zombies{
 	
 	
 	private String stringtype;
+	private String Name;
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
 	private int turn; // this is initial turn.
 	private int resistant=0;	// range of the speed is 1~3, 1 is the fastest,means every turn it moves, and 3 is the slowest, every 3 turns it move one tile.
 	private int speed;

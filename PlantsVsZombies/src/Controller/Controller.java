@@ -400,6 +400,29 @@ public class Controller implements ActionListener {
 			}
 
 		}
+		else if (view.getGroup().getSelection().getActionCommand().equals("buyChomper")) {
+			Plants ch = new Chomper();
+			int updatePoints = ps.validatePurchase(ch, ps.getSunPoints());
+
+			if (updatePoints == -1) {
+				view.getStatus().setText("Not Enough Sun Points");
+				view.setAllEnabledFalse();
+				return 0;
+			} else {
+				if (coolDownList.validatePurchase(ch)) {
+					ps.purchase(ch, ps.getSunPoints());
+					coolDownList.purchasePlant(ch);
+
+					view.updatePointsText(String.valueOf(ps.getSunPoints()));
+					view.getPurchase().setEnabled(false);
+				} else {
+					view.getStatus().setText(
+							"CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(ch).getRemaining());
+					return 0;
+				}
+			}
+
+		}
 		else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 			Plants sp = new ShootingPlant();
 			int updatePoints = ps.validatePurchase(sp, ps.getSunPoints());

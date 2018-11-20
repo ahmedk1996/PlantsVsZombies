@@ -20,6 +20,7 @@ public class WalkingZombie extends Zombies{
  */
 	
 	public WalkingZombie() {
+		super.setName("WalkingZombie");
 		super.setStringtype("WK   ");
 		super.setSpeed(1);
 		super.setHealth(100);
