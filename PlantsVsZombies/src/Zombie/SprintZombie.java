@@ -20,12 +20,12 @@ public class SprintZombie extends Zombies{
  */
 	
 	public SprintZombie() {
-<<<<<<< HEAD
+
 		super.setName("SprintZombie");
 		super.setStringtype("SZ   ");
-=======
+
 		super.setStringtype("SZ");
->>>>>>> branch 'master' of https://github.com/ahmedk1996/PlantsVsZombies
+
 		super.setSpeed(5);
 		super.setHealth(100);
 		super.setAttackDamage(50);

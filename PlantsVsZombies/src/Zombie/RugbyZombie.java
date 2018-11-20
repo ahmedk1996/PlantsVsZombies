@@ -20,12 +20,12 @@ public class RugbyZombie extends Zombies{
  */
 	
 	public RugbyZombie() {
-<<<<<<< HEAD
+
 		super.setName("RugbyZombie");
 		super.setStringtype("RZ   ");
-=======
+
 		super.setStringtype("RZ");
->>>>>>> branch 'master' of https://github.com/ahmedk1996/PlantsVsZombies
+
 		super.setSpeed(1);
 		super.setHealth(150);
 		super.setAttackDamage(80);
