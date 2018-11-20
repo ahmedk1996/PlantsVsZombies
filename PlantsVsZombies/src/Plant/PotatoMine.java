@@ -7,7 +7,7 @@ public class PotatoMine extends Plants{
 	private static int turn;
 	
 	public PotatoMine() {
-		super.setStringtype("M    ");
+		super.setStringtype("PM    ");
 		super.setDamage(1000);
 		super.setHealth(health);
 		super.setCost(cost);
@@ -16,7 +16,7 @@ public class PotatoMine extends Plants{
 	public PotatoMine(int health){
 		this.health = health;
 		super.setDamage(25);
-		super.setStringtype("M    ");
+		super.setStringtype("PM    ");
 		super.setName("PotatoeMine");
 	}
 	public int getCost() {
