@@ -15,6 +15,7 @@ import Model.Action;
 import Model.Layout;
 import Plant.PlantStore;
 import Plant.Plants;
+import Zombie.Zombies;
 /**
  *  The View is a class which extends JFrame and includes getters 
  * and setters for the different types of buttons and menu objects 
@@ -36,20 +37,13 @@ public class View extends JFrame {
 	private JMenu gameMenu;
 	private JMenu menu;
 	private JMenu playMenu;
-	private JMenuItem quit;
-	private JMenuItem undo;
-	private JMenuItem redo;
-	private JMenuItem save;
-	private JMenuItem load;
+	private JMenuItem quit,undo,redo,save,load;
 	private JButton gameDiffuclty;
 	private JPanel selectButtonsPanel;
 	private JLabel levelLabel;
 	private ButtonGroup group;
-	private JCheckBox easy;
-	private JCheckBox med;
-	private JCheckBox hard;
-	private JButton play;
-	private JButton help;
+	private JCheckBox easy,med,hard;
+	private JButton play,help;
 	private JFrame gameFrame;
 	private JLabel points;
 	private JButton purchase;
@@ -68,28 +62,13 @@ public class View extends JFrame {
 	private JLabel status;
 
 	private JRadioButton buyShooterPlant;
-	private JLabel menu1;
+	private JLabel menu1,msg,sunFlower,sunFlowerCost,Shooter,peaShooter,potatoMine,potatoMineCost,chomper,chomperCost;
 	private JPanel store;
 	private JPanel board;
 	private JSplitPane splitPane;
-	private JLabel msg;
-	private JLabel sunFlower;
-	private JLabel sunFlowerCost;
-	private JLabel Shooter;
 	private JButton waveContinue;
-	private JLabel peaShooter;
-	private JRadioButton buySunflower;
-	private JLabel potatoMine;
-	private JLabel potatoMineCost;
-	private JRadioButton buyPotatoMine;
-	private JLabel chomper;
-	private JLabel chomperCost;
-	private JRadioButton buyChomper;
-
-	public View(int test) {
-
-	}
-
+	private JRadioButton buySunflower,buyPotatoMine,buyChomper;
+	
 	
 	/**
 	 *  Intializes all the contents of the View GUI Frame
@@ -326,6 +305,7 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
+	
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
@@ -345,6 +325,11 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
+	public void setZombieOnBoard(int randRow,Zombies zombie) {
+		// TODO Auto-generated method stub
+		buttonArray[randRow][6].setText(zombie.getStringtype());
+		buttonArray[randRow][6].setEnabled(false);
+	}
 	public void setWalkingZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
 		buttonArray[randRow][6].setText("Z");
@@ -378,7 +363,6 @@ public class View extends JFrame {
 	public void updateStatusText(String text) {
 		// TODO Auto-generated method stub
 		status.setText(text);
-
 	}
 
 	/**
@@ -397,7 +381,6 @@ public class View extends JFrame {
 	 * 	@return None
 	 */
 	public void placePrompt() {
-
 		JOptionPane.showMessageDialog(gameFrame, "Deploy your Plant in the garden", "Deploy",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -414,16 +397,12 @@ public class View extends JFrame {
 	public void updateZombie(Action ac, Object[][] gameGrid, Layout layout, PlantStore ps) {
 		ac.plantShoot(gameGrid, layout, buttonArray, ps);
 		int returnval = ac.behaveZombie(gameGrid, layout);
-
 		if (returnval == -1) {
 			return;
 		}
-
 		iterateGameGrd(gameGrid, buttonArray);
 		moveZombieTextUpOne();
-		checkAllZombiesDead();
-		
-	
+		checkAllZombiesDead();	
 	}
 	/**
 	 * 	Checks if all zombies are dead, reading the text of the 
@@ -432,7 +411,7 @@ public class View extends JFrame {
 	public boolean checkAllZombiesDead() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().equals("Z")) {
+				if (buttonArray[i][j].getText().equals("Z")||buttonArray[i][j].getText().equals("SZ")||buttonArray[i][j].getText().equals("RZ")) {
 					return true;
 				}
 				else {

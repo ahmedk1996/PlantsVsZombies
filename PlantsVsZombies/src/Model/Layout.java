@@ -54,7 +54,6 @@ public class Layout {
 		gameGrid = new Object[x][y];
 	}
 
-
 	public int placeSpawnWalkingZombieOnGrid(Object[][] gameGrid) {
 		int random = (int) (Math.random() * 5 + 0);
 		placeWalkingZombieOnGrid(random, 6, new WalkingZombie(), gameGrid);
