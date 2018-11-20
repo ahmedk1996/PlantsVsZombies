@@ -58,15 +58,23 @@ public class Action {
 
 				if (gameGrid[i][j] instanceof Sunflower) {
 					Plants temp = (Plants) layout.getGameGrid()[i][j];
-
+					Plants standingPlant = new Sunflower();
+					standingPlant = (Sunflower) (gameGrid[i][j]);
+					if (standingPlant.getHealth() <= 0) {
+						buttonArray[i][j].setText("");
+						gameGrid[i][j] = null;
+						break;
+					}
 					turn.canSunFlowerGenerate(currentTurn, temp, ps);
+					
+					
 				}
 				if (gameGrid[i][j] instanceof ShootingPlant) { // search if plant is a shooter
 					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant shooter's
 																				// row to find a zombie
 						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
 							ShootingPlant attackingPlant = new ShootingPlant(); // making instance to figure out the
-
+							attackingPlant = (ShootingPlant) (gameGrid[i][j]);
 							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
@@ -75,9 +83,9 @@ public class Action {
 							
 							if (attackingPlant.getHealth() <= 0) {
 								buttonArray[i][j].setText("");
-								gameGrid[i][j] = null; 
-								System.out.println(attackingPlant.getStringtype() + "is dead.");
-							}if (zombie.getHealth() <= 0) {
+								gameGrid[i][j] = null;
+							}
+							if (zombie.getHealth() <= 0) {
 								zombieDeadCounter++;
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
@@ -114,10 +122,11 @@ public class Action {
 
 				}
 				if (gameGrid[i][j] instanceof Chomper) { // search if plant is a PotatoeMine Object
-					Chomper attackingPlant = new Chomper();
+					
 					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant row to find a zombie
 						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
-
+							Chomper attackingPlant = new Chomper(); // making instance to figure out the
+							attackingPlant = (Chomper) (gameGrid[i][j]);
 							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
 							
 							if (gameGrid[i][index] == gameGrid[i][j+1]) { //if that instance is in the next index of the array 
@@ -132,6 +141,10 @@ public class Action {
 									buttonArray[i][j+1].setText("");
 									gameGrid[i][j+1] = null; // zombie dead
 									System.out.println(zombie.getStringtype() + "is dead.");
+								}
+								if (attackingPlant.getHealth() <= 0) {
+									buttonArray[i][j].setText("");
+									gameGrid[i][j] = null;
 								}
 								
 							}
@@ -148,7 +161,7 @@ public class Action {
 	/**
 	 * behaveZombie - Zombie will move or attack if it is able. Check List - check
 	 * front tile is empty (doesn't matter zombie reaches [i][0] because
-	 * isgameovesr() would check everytime) -check Zombie is movable -yes move -
+	 * isgameover() would check everytime) -check Zombie is movable -yes move -
 	 * check front tile is plant -check Zombie is movable -yes attack - invoke
 	 * ZombieAttack(), replace Plant object to returned plant
 	 * 
@@ -206,6 +219,7 @@ public class Action {
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() <= 0) {
 			System.out.println(attackedPlant.getName() + " is killed by " + o.getName());
+			//attackedPlant = null;
 			
 
 		}

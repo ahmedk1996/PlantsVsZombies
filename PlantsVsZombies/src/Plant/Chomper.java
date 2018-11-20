@@ -10,12 +10,12 @@ public class Chomper extends Plants{
 	public Chomper() {
 		super.setStringtype("C    ");
 		super.setDamage(35);
-		super.setHealth(health);
+		super.setHealth(300);
 		super.setCost(cost);
 		super.setName("Chomper");
 	}
 	public Chomper(int health){
-		this.health = health;
+		super.setHealth(300);
 		super.setDamage(35);
 		super.setStringtype("C    ");
 		super.setName("Chomper");

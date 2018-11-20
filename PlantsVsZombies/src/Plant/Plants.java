@@ -69,7 +69,7 @@ public abstract class Plants {
 	
 
 	public int getHealth() {
-		return health;
+		return this.health;
 	}
 
 	public void setHealth(int health) {
