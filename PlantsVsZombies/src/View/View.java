@@ -243,6 +243,8 @@ public class View extends JFrame {
 		status.setForeground(Color.RED);
 		group.add(buyShooterPlant);
 		group.add(buySunflower);
+		group.add(buyPotatoMine);
+		group.add(buyChomper);
 		gameFrame.setJMenuBar(playMenuBar);
 
 	}
@@ -638,6 +640,22 @@ public class View extends JFrame {
 
 	public JRadioButton getBuyPeaShooter() {
 		return buyShooterPlant;
+	}
+	
+	public JRadioButton getBuyPotatoMine() {
+		return buyPotatoMine;
+	}
+	
+	public void setBuyPotatoMine(JRadioButton potatoMine) {
+		this.buyPotatoMine = potatoMine;
+	}
+	
+	public JRadioButton getBuyChomper() {
+		return buyChomper;
+	}
+	
+	public void setBuyChomper(JRadioButton chomper) {
+		this.buyChomper = chomper;
 	}
 
 	public JRadioButton getBuySunflower() {

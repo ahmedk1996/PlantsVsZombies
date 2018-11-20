@@ -12,8 +12,10 @@ import Model.CoolDown;
 import Model.Game;
 import Model.Layout;
 import Model.Turn;
+import Plant.Chomper;
 import Plant.PlantStore;
 import Plant.Plants;
+import Plant.PotatoMine;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
 import View.View;
@@ -129,6 +131,13 @@ public class Controller implements ActionListener {
 		view.getBuyPeaShooter().setActionCommand("buyShooterPlant");
 		view.getBuySunflower().addActionListener(this);
 		view.getBuySunflower().setActionCommand("buySunflower");
+		
+		//adding action listeners and action commands for the newly added plants
+		view.getBuyPotatoMine().addActionListener(this);
+		view.getBuyPotatoMine().setActionCommand("buyPotatoMine");
+		view.getBuyChomper().addActionListener(this);
+		view.getBuyChomper().setActionCommand("buyChomper");
+		
 		view.getWaveContinue().addActionListener(this);
 		view.getWaveContinue().setActionCommand("simulate");
 		view.getWaveContinue().setEnabled(true);
@@ -267,7 +276,7 @@ public class Controller implements ActionListener {
 			view.getPlay().setEnabled(true);
 			level = 3;
 			
-		} else if (e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower")) {
+		} else if (e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") || e.getActionCommand().equals("buyPotatoMine") || e.getActionCommand().equals("buyChomper")) {
 			view.getPurchase().setEnabled(true);
 
 		} else if (e.getActionCommand().equals("Purchase")) {
@@ -297,6 +306,7 @@ public class Controller implements ActionListener {
 			JButton b = (JButton) e.getSource();
 			System.out
 					.println("clicked column " + b.getClientProperty("column") + ", row " + b.getClientProperty("row"));
+			
 			if (view.getGroup().getSelection().getActionCommand().equals("buySunflower")) {
 				b.setText("SF");
 				view.setEnabledButtons();
@@ -308,6 +318,16 @@ public class Controller implements ActionListener {
 				view.setEnabledButtons();
 				layout.placePlantOnGrid((int) (b.getClientProperty("column")), (int) b.getClientProperty("row"),
 						new ShootingPlant(), layout.getGameGrid());
+			} else if (view.getGroup().getSelection().getActionCommand().equals("buyPotatoMine")) {
+				b.setText("PM");
+				view.setEnabledButtons();
+				layout.placePlantOnGrid((int) (b.getClientProperty("column")), (int) b.getClientProperty("row"),
+						new PotatoMine(), layout.getGameGrid());
+			} else if (view.getGroup().getSelection().getActionCommand().equals("buyChomper")) {
+				b.setText("C");
+				view.setEnabledButtons();
+				layout.placePlantOnGrid((int) (b.getClientProperty("column")), (int) b.getClientProperty("row"),
+						new Chomper(), layout.getGameGrid());
 			}
 			view.getWaveContinue().setEnabled(true);
 			view.setAllEnabledFalse();
@@ -357,6 +377,29 @@ public class Controller implements ActionListener {
 			return 0;
 		}
 
+		else if (view.getGroup().getSelection().getActionCommand().equals("buyPotatoMine")) {
+			Plants pm = new PotatoMine();
+			int updatePoints = ps.validatePurchase(pm, ps.getSunPoints());
+
+			if (updatePoints == -1) {
+				view.getStatus().setText("Not Enough Sun Points");
+				view.setAllEnabledFalse();
+				return 0;
+			} else {
+				if (coolDownList.validatePurchase(pm)) {
+					ps.purchase(pm, ps.getSunPoints());
+					coolDownList.purchasePlant(pm);
+
+					view.updatePointsText(String.valueOf(ps.getSunPoints()));
+					view.getPurchase().setEnabled(false);
+				} else {
+					view.getStatus().setText(
+							"CoolDown is remaining! Wait for " + coolDownList.getPlantQueue(pm).getRemaining());
+					return 0;
+				}
+			}
+
+		}
 		else if (view.getGroup().getSelection().getActionCommand().equals("buyShooterPlant")) {
 			Plants sp = new ShootingPlant();
 			int updatePoints = ps.validatePurchase(sp, ps.getSunPoints());

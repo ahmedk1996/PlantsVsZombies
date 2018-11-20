@@ -1,5 +1,9 @@
 package Plant;
 
-public class Chomper {
+public class Chomper extends Plants{
 
+	
+	public Chomper() {
+		
+	}
 }

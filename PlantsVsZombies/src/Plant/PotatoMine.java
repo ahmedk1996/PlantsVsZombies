@@ -11,13 +11,13 @@ public class PotatoMine extends Plants{
 		super.setDamage(1000);
 		super.setHealth(health);
 		super.setCost(cost);
-		super.setName("PotatoeMine");
+		super.setName("PotatoMine");
 	}
 	public PotatoMine(int health){
 		this.health = health;
-		super.setDamage(25);
+		super.setDamage(1000);
 		super.setStringtype("PM    ");
-		super.setName("PotatoeMine");
+		super.setName("PotatoMine");
 	}
 	public int getCost() {
 		return cost;
