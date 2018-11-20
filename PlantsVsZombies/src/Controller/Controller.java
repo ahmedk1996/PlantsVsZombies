@@ -262,7 +262,7 @@ public class Controller implements ActionListener {
 			ps.setSunPoints(150);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
-			timeLine.addNext(timeStamp());	
+			//timeLine.addNext(timeStamp());	
 		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
 		} else if (e.getActionCommand().equals("easy")) {
@@ -294,13 +294,13 @@ public class Controller implements ActionListener {
 			}
 			view.setEnabledButtons();
 			view.getWaveContinue().setEnabled(false);
-			timeLine.addNext(timeStamp());
+		//	timeLine.addNext(timeStamp());
 		}
 
 		else if (e.getActionCommand().equals("simulate")) {
 			setZombies();
 			coolDownList.turnOver();
-			timeLine.addNext(timeStamp());
+			//timeLine.addNext(timeStamp());
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			
 		} else if (e.getActionCommand().equals("button")) {
@@ -333,11 +333,11 @@ public class Controller implements ActionListener {
 			view.getWaveContinue().setEnabled(true);
 			view.setAllEnabledFalse();
 			view.getGroup().clearSelection();
-			timeLine.addNext(timeStamp());
+			//timeLine.addNext(timeStamp());
 		}else if (e.getActionCommand().equals("Undo")) {
 			// load(Game game, View view, PlantStore ps, Action action, Turn turn, CoolDown c,int stag
-			Controller temp = timeLine.Undo();
-			this.load(temp.getGame(),temp.getView(),temp.getLayout(),temp.getPs(),temp.getAction(),temp.getTurn(),temp.getCoolDownList(),temp.getStageNum());
+			//Controller temp = timeLine.Undo();
+			//this.load(temp.getGame(),temp.getView(),temp.getLayout(),temp.getPs(),temp.getAction(),temp.getTurn(),temp.getCoolDownList(),temp.getStageNum());
 		}else if (e.getActionCommand().equals("Redo")) {
 			
 		}

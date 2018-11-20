@@ -15,6 +15,7 @@ import Model.Action;
 import Model.Layout;
 import Plant.PlantStore;
 import Plant.Plants;
+import Zombie.Zombies;
 /**
  *  The View is a class which extends JFrame and includes getters 
  * and setters for the different types of buttons and menu objects 
@@ -61,28 +62,13 @@ public class View extends JFrame {
 	private JLabel status;
 
 	private JRadioButton buyShooterPlant;
-	private JLabel menu1;
+	private JLabel menu1,msg,sunFlower,sunFlowerCost,Shooter,peaShooter,potatoMine,potatoMineCost,chomper,chomperCost;
 	private JPanel store;
 	private JPanel board;
 	private JSplitPane splitPane;
-	private JLabel msg;
-	private JLabel sunFlower;
-	private JLabel sunFlowerCost;
-	private JLabel Shooter;
 	private JButton waveContinue;
-	private JLabel peaShooter;
-	private JRadioButton buySunflower;
-	private JLabel potatoMine;
-	private JLabel potatoMineCost;
-	private JRadioButton buyPotatoMine;
-	private JLabel chomper;
-	private JLabel chomperCost;
-	private JRadioButton buyChomper;
-
-	public View(int test) {
-
-	}
-
+	private JRadioButton buySunflower,buyPotatoMine,buyChomper;
+	
 	
 	/**
 	 *  Intializes all the contents of the View GUI Frame
@@ -339,6 +325,11 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
+	public void setZombieOnBoard(int randRow,Zombies zombie) {
+		// TODO Auto-generated method stub
+		buttonArray[randRow][6].setText(zombie.getStringtype());
+		buttonArray[randRow][6].setEnabled(false);
+	}
 	public void setWalkingZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
 		buttonArray[randRow][6].setText("Z");

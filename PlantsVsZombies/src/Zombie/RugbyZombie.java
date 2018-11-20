@@ -20,7 +20,7 @@ public class RugbyZombie extends Zombies{
  */
 	
 	public RugbyZombie() {
-		super.setStringtype("RZ   ");
+		super.setStringtype("RZ");
 		super.setSpeed(1);
 		super.setHealth(150);
 		super.setAttackDamage(80);
