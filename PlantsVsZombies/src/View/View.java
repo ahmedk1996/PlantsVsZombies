@@ -432,7 +432,7 @@ public class View extends JFrame {
 	public boolean checkAllZombiesDead() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().equals("Z")) {
+				if (buttonArray[i][j].getText().equals("Z")||buttonArray[i][j].getText().equals("SZ")||buttonArray[i][j].getText().equals("RZ")) {
 					return true;
 				}
 				else {

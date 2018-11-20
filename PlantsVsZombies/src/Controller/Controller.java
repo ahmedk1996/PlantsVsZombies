@@ -266,16 +266,17 @@ public class Controller implements ActionListener {
 		} else if (e.getActionCommand().equals("Help")) {
 			view.helpPrompt();
 		} else if (e.getActionCommand().equals("easy")) {
-			view.getPlay().setEnabled(true);
+			
 			level =1;
+			view.getPlay().setEnabled(true);
 		} else if (e.getActionCommand().equals("med")) {
-			view.getPlay().setEnabled(true);
+			
 			level =2;
-			
-		} else if (e.getActionCommand().equals("hard")) {
 			view.getPlay().setEnabled(true);
-			level = 3;
+		} else if (e.getActionCommand().equals("hard")) {
 			
+			level = 3;
+			view.getPlay().setEnabled(true);
 		} else if (e.getActionCommand().equals("buyShooterPlant") || e.getActionCommand().equals("buySunflower") || e.getActionCommand().equals("buyPotatoMine") || e.getActionCommand().equals("buyChomper")) {
 			view.getPurchase().setEnabled(true);
 
