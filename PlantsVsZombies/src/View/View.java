@@ -79,6 +79,12 @@ public class View extends JFrame {
 	private JButton waveContinue;
 	private JLabel peaShooter;
 	private JRadioButton buySunflower;
+	private JLabel potatoMine;
+	private JLabel potatoMineCost;
+	private JRadioButton buyPotatoMine;
+	private JLabel chomper;
+	private JLabel chomperCost;
+	private JRadioButton buyChomper;
 
 	public View(int test) {
 
@@ -188,7 +194,7 @@ public class View extends JFrame {
 		button = new ArrayList<JButton>();
 		buttonArray = new JButton[5][7];
 		gameFrame.setVisible(true);
-		store.setLayout(new GridLayout(4, 2));
+		store.setLayout(new GridLayout(6, 2));
 
 		menu1 = new JLabel("Welcome to the PVZ Store");
 		store.add(menu1);
@@ -206,8 +212,27 @@ public class View extends JFrame {
 		store.add(Shooter);
 		peaShooter = new JLabel("100 Sun Points");
 		store.add(peaShooter);
+		
 		buyShooterPlant = new JRadioButton();
 		store.add(buyShooterPlant);
+		
+		//text for the potato mine buying options
+		potatoMine = new JLabel("Purchase Potato Mine"); 
+		store.add(potatoMine);
+		potatoMineCost = new JLabel ("To be determined");
+		store.add(potatoMineCost);
+		buyPotatoMine = new JRadioButton();
+		store.add(buyPotatoMine);
+		
+		//text for the Chomper buying options
+		chomper = new JLabel("Purchase Chomper"); 
+		store.add(chomper);
+		chomperCost = new JLabel ("To be determined");
+		store.add(chomperCost);
+		buyChomper = new JRadioButton();
+		store.add(buyChomper);
+		
+		
 		purchase = new JButton("Purchase");
 		store.add(purchase);
 		purchase.setEnabled(false);

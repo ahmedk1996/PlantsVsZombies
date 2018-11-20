@@ -5,6 +5,7 @@ import javax.swing.JButton;
 
 import Plant.PlantStore;
 import Plant.Plants;
+import Plant.PotatoMine;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
 import Zombie.RugbyZombie;
@@ -76,6 +77,29 @@ public class Action {
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
+							}
+							break;
+						}
+
+					}
+
+				}
+				if (gameGrid[i][j] instanceof PotatoMine) { // search if plant is a PotatoeMine Object
+					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant row to find a zombie
+						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
+
+							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
+							
+							if (gameGrid[i][index] == gameGrid[i][j+1]) { //if that instance is in the next index of the array 
+																			//of the potato mine, kill the zombie
+								zombieDeadCounter++;
+								buttonArray[i][index].setText("");
+								gameGrid[i][index] = null; // zombie dead
+								System.out.println(zombie.getStringtype() + "is dead.");
+								
+								buttonArray[i][j].setText("");
+								gameGrid[i][j] = null; //plant destroyed
+								
 							}
 							break;
 						}
