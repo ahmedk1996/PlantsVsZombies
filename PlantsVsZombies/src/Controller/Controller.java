@@ -276,7 +276,7 @@ public class Controller implements ActionListener {
 			}else if(level == 3){
 				view.level3ZombieInfo();
 			}
-			ps.setSunPoints(150);
+			ps.setSunPoints(200);
 			view.getPoints().setText("Points : " + ps.getSunPoints());
 			buttonsInit();
 			//timeLine.addNext(timeStamp());	
