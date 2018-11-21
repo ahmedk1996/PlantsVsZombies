@@ -129,10 +129,15 @@ public class Action {
 						zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 						int healthUpdate = health - attackingPlant.getDamage();
 						System.out.println("Zombie at " + i + " " + j + 1 + " " + "has " + healthUpdate + " health");
-
+						
 						if (attackingPlant.getHealth() <= 0) {
 							buttonArray[i][j].setText("");
 							gameGrid[i][j] = null;
+						}
+						if (zombie.getHealth() <= 0) {
+							zombieDeadCounter++;
+							buttonArray[i][j+1].setText("");
+							gameGrid[i][j+1] = null; // zombie dead
 						}
 
 						break;
