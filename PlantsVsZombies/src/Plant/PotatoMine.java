@@ -3,13 +3,13 @@ package Plant;
 public class PotatoMine extends Plants{
 	
 	private final int cost = 100;
-	private int health = 100;
+	private int health = 50;
 	private static int turn;
 	
 	public PotatoMine() {
 		super.setStringtype("PM    ");
-		super.setDamage(1000);
-		super.setHealth(health);
+		super.setDamage(100);
+		super.setHealth(50);
 		super.setCost(cost);
 		super.setName("PotatoMine");
 	}

@@ -3,14 +3,14 @@ package Plant;
 public class Chomper extends Plants{
 
 	
-	private final int cost = 100;
-	private int health = 300;
+	private final int cost = 150;
+	private int health = 150;
 	private static int turn;
 	
 	public Chomper() {
 		super.setStringtype("C    ");
-		super.setDamage(35);
-		super.setHealth(300);
+		super.setDamage(75);
+		super.setHealth(50);
 		super.setCost(cost);
 		super.setName("Chomper");
 	}

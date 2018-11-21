@@ -181,6 +181,7 @@ public class Controller implements ActionListener {
 	 * @return None
 	 */
 	public void setZombies() {
+
 		boolean nextWave = waves();
 		if (nextWave == true){
 			view.passedStage();
@@ -193,21 +194,37 @@ public class Controller implements ActionListener {
 			game.setZombieCounter(game.getZombieCounter() - 1);
 		}
 		else if (!(game.getZombieCounter() <= 1) && level == 2) {
-			int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
-			int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
-			view.setWalkingZombieOnBoard(row);
-			view.setSprintZombieOnBoard(row2);
+			if (game.getZombieCounter() ==4) {
+				int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
+				view.setSprintZombieOnBoard(row2);
+			}
+			else if (game.getZombieCounter() == 3) {
+				int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+				view.setWalkingZombieOnBoard(row);
+			}
+			else if (game.getZombieCounter() == 2) {
+				int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+				view.setWalkingZombieOnBoard(row);
+			}
+
 			game.setZombieCounter(game.getZombieCounter() - 1);
 		}
 		else if (!(game.getZombieCounter() <= 1) && level == 3) {
-			int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
-			int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
-			int row3 = layout.placeSpawnRugbyZombieOnGrid(layout.getGameGrid());
-			view.setWalkingZombieOnBoard(row);
-			view.setSprintZombieOnBoard(row2);
-			view.setRugbyZombieOnBoard(row3);
+			if (game.getZombieCounter() ==4) {
+				int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
+				view.setSprintZombieOnBoard(row2);
+			}
+			else if (game.getZombieCounter() == 3) {
+				int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
+				view.setWalkingZombieOnBoard(row);
+			}
+			else if (game.getZombieCounter() == 2) {
+				int row3 = layout.placeSpawnRugbyZombieOnGrid(layout.getGameGrid());
+				view.setRugbyZombieOnBoard(row3);
+			}
 			game.setZombieCounter(game.getZombieCounter() - 1);
 		}
+		
 		if (view.checkAllZombiesDead() == false && stageNum ==1 && action.getZombieDeadCounter() == 3){
 			view.gameWon();
 			return;

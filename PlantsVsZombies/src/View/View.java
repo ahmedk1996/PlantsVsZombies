@@ -198,7 +198,7 @@ public class View extends JFrame {
 		//text for the potato mine buying options
 		potatoMine = new JLabel("Purchase Potato Mine"); 
 		store.add(potatoMine);
-		potatoMineCost = new JLabel ("To be determined");
+		potatoMineCost = new JLabel ("50 Sun Points");
 		store.add(potatoMineCost);
 		buyPotatoMine = new JRadioButton();
 		store.add(buyPotatoMine);
@@ -206,7 +206,7 @@ public class View extends JFrame {
 		//text for the Chomper buying options
 		chomper = new JLabel("Purchase Chomper"); 
 		store.add(chomper);
-		chomperCost = new JLabel ("To be determined");
+		chomperCost = new JLabel ("150 Sun Points");
 		store.add(chomperCost);
 		buyChomper = new JRadioButton();
 		store.add(buyChomper);
@@ -309,8 +309,7 @@ public class View extends JFrame {
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText() == "RZ"||buttonArray[i][j].getText() == "SZ"||buttonArray[i][j].getText() == "Z" || buttonArray[i][j].getText() == "PS"
-						|| buttonArray[i][j].getText() == "SF") {
+				if (buttonArray[i][j].getText().length() == 2) {
 					buttonArray[i][j].setEnabled(false);
 				} else {
 					buttonArray[i][j].setEnabled(true);
@@ -411,7 +410,7 @@ public class View extends JFrame {
 	public boolean checkAllZombiesDead() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().equals("Z")||buttonArray[i][j].getText().equals("SZ")||buttonArray[i][j].getText().equals("RZ")) {
+				if (buttonArray[i][j].getText().contains("Z")) {
 					return true;
 				}
 				else {
@@ -451,32 +450,32 @@ public class View extends JFrame {
 	public void moveZombieTextUpOne() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().equals("Z") || buttonArray[i][j].getText().equals("SZ") || buttonArray[i][j].getText().equals("RZ")) {
-					if (buttonArray[i][0].getText().equals("Z") || buttonArray[i][0].getText().equals("RZ") || buttonArray[i][0].getText().equals("SZ")) {
+				if (buttonArray[i][j].getText().contains("Z")) {
+					if (buttonArray[i][0].getText().contains("Z")) {
 						JOptionPane.showMessageDialog(gameFrame, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
 								"Better Luck Next Time!", JOptionPane.WARNING_MESSAGE);
 						waveContinue.setEnabled(false);
 						return;
 					}
-
-					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="Z" ) {
+				
+					if (!(buttonArray[i][j-1].getText().equals(""))) {
 						continue;
 					} else {
-						buttonArray[i][j].setText("");
-						buttonArray[i][j - 1].setText("Z");
+						String text = buttonArray[i][j].getText();
+						if (text == "SZ") {
+							if (!(buttonArray[i][j-2].getText().equals(""))){
+								continue;
+							}
+							buttonArray[i][j - 2].setText(text);
+							buttonArray[i][j].setText("");
+						}
+						else {
+							buttonArray[i][j - 1].setText(text);
+							buttonArray[i][j].setText("");
+						}
+					
 					}
-					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="SZ" ) {
-						continue;
-					} else {
-						buttonArray[i][j].setText("");
-						buttonArray[i][j - 1].setText("SZ");
-					}
-					if (buttonArray[i][j - 1].getText() == "PS" || buttonArray[i][j - 1].getText() == "SF"||buttonArray[i][j - 1].getText() =="RZ" ) {
-						continue;
-					} else {
-						buttonArray[i][j].setText("");
-						buttonArray[i][j - 1].setText("RZ");
-					}
+				
 				}
 			}
 		}

@@ -13,13 +13,14 @@ import Zombie.RugbyZombie;
 import Zombie.SprintZombie;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;
+
 /**
- *  The ShootingPlant is a class which contains all the actions used throughout the 
- * game this includes starting and ending the game.
+ * The ShootingPlant is a class which contains all the actions used throughout
+ * the game this includes starting and ending the game.
  * 
  * @author Group 1
  * @since November 4,2018
-
+ * 
  */
 
 public class Action {
@@ -29,8 +30,9 @@ public class Action {
 	private int health;
 	private int currentTurn;
 	private int zombieDeadCounter;
+
 	public Action() {
-	
+
 	}
 
 	public int getZombieDeadCounter() {
@@ -40,6 +42,7 @@ public class Action {
 	public void setZombieDeadCounter(int zombieDeadCounter) {
 		this.zombieDeadCounter = zombieDeadCounter;
 	}
+
 	/**
 	 * plantShoot which handles the shooting plants abilities.
 	 * 
@@ -66,10 +69,8 @@ public class Action {
 						break;
 					}
 					turn.canSunFlowerGenerate(currentTurn, temp, ps);
-					
-					
-				}
-				if (gameGrid[i][j] instanceof ShootingPlant) { // search if plant is a shooter
+
+				} else if (gameGrid[i][j] instanceof ShootingPlant) { // search if plant is a shooter
 					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant shooter's
 																				// row to find a zombie
 						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
@@ -79,8 +80,9 @@ public class Action {
 							health = zombie.getHealth();
 							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 							int healthUpdate = health - attackingPlant.getDamage();
-							System.out.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
-							
+							System.out
+									.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
+
 							if (attackingPlant.getHealth() <= 0) {
 								buttonArray[i][j].setText("");
 								gameGrid[i][j] = null;
@@ -89,68 +91,51 @@ public class Action {
 								zombieDeadCounter++;
 								buttonArray[i][index].setText("");
 								gameGrid[i][index] = null; // zombie dead
-								
-							
-							} 
-							break;
-						}
 
-					}
-
-				}
-				if (gameGrid[i][j] instanceof PotatoMine) { // search if plant is a PotatoeMine Object
-					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant row to find a zombie
-						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
-
-							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
-							
-							if (gameGrid[i][index] == gameGrid[i][j+1]) { //if that instance is in the next index of the array 
-																			//of the potato mine, kill the zombie
-								zombieDeadCounter++;
-								buttonArray[i][index].setText("");
-								gameGrid[i][index] = null; // zombie dead
-								System.out.println(zombie.getStringtype() + "is dead.");
-								
-								buttonArray[i][j].setText("");
-								gameGrid[i][j] = null; //plant destroyed
-								
 							}
 							break;
 						}
 
 					}
 
-				}
-				if (gameGrid[i][j] instanceof Chomper) { // search if plant is a PotatoeMine Object
-					
-					for (int index = 0; index < gameGrid[i].length; index++) { // iterate through that plant row to find a zombie
-						if (gameGrid[i][index] instanceof Zombies) { // zombies in the same row
-							Chomper attackingPlant = new Chomper(); // making instance to figure out the
-							attackingPlant = (Chomper) (gameGrid[i][j]);
-							zombie = (Zombies) (gameGrid[i][index]); // get instance of zombie
-							
-							if (gameGrid[i][index] == gameGrid[i][j+1]) { //if that instance is in the next index of the array 
-																			//of the chomper plant, attack the zombie
-								
-								health = zombie.getHealth();
-								zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
-								int healthUpdate = health - attackingPlant.getDamage();
-								System.out.println("Zombie at " + i + " " + index + " " + "has " + healthUpdate + " health");
-								if (zombie.getHealth() <= 0) {
-									zombieDeadCounter++;
-									buttonArray[i][j+1].setText("");
-									gameGrid[i][j+1] = null; // zombie dead
-									System.out.println(zombie.getStringtype() + "is dead.");
-								}
-								if (attackingPlant.getHealth() <= 0) {
-									buttonArray[i][j].setText("");
-									gameGrid[i][j] = null;
-								}
-								
-							}
-							break;
+				} else if (gameGrid[i][j] instanceof PotatoMine) { // search if plant is a PotatoeMine Object
+					if (gameGrid[i][j + 1] instanceof Zombies) { // zombies in the same row
+						zombie = (Zombies) (gameGrid[i][j + 1]); // get instance of zombie
+						PotatoMine attackingPlant = new PotatoMine();
+						health = zombie.getHealth();
+						zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
+						int healthUpdate = health - attackingPlant.getDamage();
+						System.out.println("Zombie at " + i + " " + j + 1 + " " + "has " + healthUpdate + " health");
+						gameGrid[i][j] = null;
+						buttonArray[i][j].setText("");
+						if (attackingPlant.getHealth() <= 0) {
+							buttonArray[i][j].setText("");
+							gameGrid[i][j] = null;
+						}
+						if (zombie.getHealth() <= 0) {
+							zombieDeadCounter++;
+							buttonArray[i][j+1].setText("");
+							gameGrid[i][j+1] = null; // zombie dead
+						}
+						break;
+					}
+				} else if (gameGrid[i][j] instanceof Chomper) { // search if plant is a chomper Object
+
+					if (gameGrid[i][j + 1] instanceof Zombies) { // zombies in the same row
+						zombie = (Zombies) (gameGrid[i][j + 1]);
+						Chomper attackingPlant = new Chomper(); // making instance to figure out the
+						attackingPlant = (Chomper) (gameGrid[i][j]);
+						health = zombie.getHealth();
+						zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
+						int healthUpdate = health - attackingPlant.getDamage();
+						System.out.println("Zombie at " + i + " " + j + 1 + " " + "has " + healthUpdate + " health");
+
+						if (attackingPlant.getHealth() <= 0) {
+							buttonArray[i][j].setText("");
+							gameGrid[i][j] = null;
 						}
 
+						break;
 					}
 
 				}
@@ -175,18 +160,28 @@ public class Action {
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) { // J starts at 1 because if it is 0, it will get error.
 				if (gameGrid[i][j] instanceof Zombies) { // checking that is Zombie class
+					
 					Zombies temp = (Zombies) gameGrid[i][j]; // Copying the zombie object
 
 					if (i >= 0 && j == 0) {
 						return 0;
 					}
+					if (temp instanceof SprintZombie) {
+						int row = i;
+						int col = j-2;
+						if (row >= 0 && col == 0) {
+							return 0;
+						}
+						else {
+							gameGrid[i][j-2] = temp;
+							gameGrid[i][j]=null;
+						}
+						
+					}
 					if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 
 						zombieAttack((Zombies) gameGrid[i][j], (Plants) gameGrid[i][j - 1], gameGrid, i, j - 1);
-
-					}
-
-					else {
+					} else {
 						layout.setObject(i, j, null); // empty the previous spot
 						layout.moveZombieUpOne(i, j - 1, temp, gameGrid); // place zombie
 					}
@@ -210,17 +205,22 @@ public class Action {
 	 */
 	public Plants zombieAttack(Zombies z, Plants p, Object[][] gameGrid, int row, int col) {
 		Plants attackedPlant = p;
-		Zombies o = new WalkingZombie();
-		Zombies g = new SprintZombie();
-		Zombies r = new RugbyZombie();
-		attackedPlant.attacked(o.attack());
-		attackedPlant.attacked(g.attack());
-		attackedPlant.attacked(r.attack());
+		/*
+		 * Zombies o = new WalkingZombie(); Zombies g = new SprintZombie(); Zombies r =
+		 * new RugbyZombie(); attackedPlant.attacked(o.attack());
+		 * attackedPlant.attacked(g.attack()); attackedPlant.attacked(r.attack());
+		 */
+		if (z instanceof WalkingZombie) {
+			attackedPlant.attacked(z.attack());
+		} else if (z instanceof SprintZombie) {
+			attackedPlant.attacked(z.attack());
+		} else if (z instanceof RugbyZombie) {
+			attackedPlant.attacked(z.attack());
+		}
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() <= 0) {
-			System.out.println(attackedPlant.getName() + " is killed by " + o.getName());
-			//attackedPlant = null;
-			
+			System.out.println(attackedPlant.getName() + " is killed by " + z.getStringtype());
+			gameGrid[row][col] = null;
 
 		}
 
