@@ -216,7 +216,6 @@ public class Action {
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() <= 0) {
 			System.out.println(attackedPlant.getName() + " is killed by " + z.getStringtype());
-			
 			//gameGrid[row][col] = null;
 
 		}

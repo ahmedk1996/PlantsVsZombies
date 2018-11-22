@@ -10,7 +10,7 @@ public class Chomper extends Plants{
 	public Chomper() {
 		super.setStringtype("C    ");
 		super.setDamage(75);
-		super.setHealth(50);
+		super.setHealth(150);
 		super.setCost(cost);
 		super.setName("Chomper");
 	}
