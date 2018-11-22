@@ -3,7 +3,7 @@ package Model;
 
 import Plant.Plants;
 import Zombie.RugbyZombie;
-import Zombie.SprintZombie;
+import Zombie.TrashZombie;
 import Zombie.WalkingZombie;
 
 /**
@@ -60,9 +60,9 @@ public class Layout {
 		return random;
 	}
 	
-	public int placeSpawnSprintZombieOnGrid(Object[][] gameGrid) {
+	public int placeSpawnTrashZombieOnGrid(Object[][] gameGrid) {
 		int random = (int) (Math.random() * 5 + 0);
-		placeSprintZombieOnGrid(random, 6, new SprintZombie(), gameGrid);
+		placeTrashZombieOnGrid(random, 6, new TrashZombie(), gameGrid);
 		return random;
 	}
 	
@@ -101,9 +101,9 @@ public class Layout {
 		return true;
 	}
 	
-	public boolean placeSprintZombieOnGrid(int row, int col, Object o, Object[][] gameGrid) {
+	public boolean placeTrashZombieOnGrid(int row, int col, Object o, Object[][] gameGrid) {
 		if (gameGrid[row][col] != null) {
-			placeSpawnSprintZombieOnGrid(gameGrid);
+			placeSpawnTrashZombieOnGrid(gameGrid);
 
 		} else {
 			gameGrid[row][col] = o;

@@ -195,8 +195,8 @@ public class Controller implements ActionListener {
 		}
 		else if (!(game.getZombieCounter() <= 1) && level == 2) {
 			if (game.getZombieCounter() ==4) {
-				int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
-				view.setSprintZombieOnBoard(row2);
+				int row2 = layout.placeSpawnTrashZombieOnGrid(layout.getGameGrid());
+				view.setTrashZombieOnBoard(row2);
 			}
 			else if (game.getZombieCounter() == 3) {
 				int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());
@@ -211,8 +211,8 @@ public class Controller implements ActionListener {
 		}
 		else if (!(game.getZombieCounter() <= 1) && level == 3) {
 			if (game.getZombieCounter() ==4) {
-				int row2 = layout.placeSpawnSprintZombieOnGrid(layout.getGameGrid());
-				view.setSprintZombieOnBoard(row2);
+				int row2 = layout.placeSpawnTrashZombieOnGrid(layout.getGameGrid());
+				view.setTrashZombieOnBoard(row2);
 			}
 			else if (game.getZombieCounter() == 3) {
 				int row = layout.placeSpawnWalkingZombieOnGrid(layout.getGameGrid());

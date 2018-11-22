@@ -9,7 +9,7 @@ package Zombie;
  * @since November 4,2018
 
  */
-public class SprintZombie extends Zombies{
+public class TrashZombie extends Zombies{
 	
 /*Initial Status for SprintZombie
  *  speed = 5 tile for 2 turns,
@@ -19,15 +19,15 @@ public class SprintZombie extends Zombies{
  * 
  */
 	
-	public SprintZombie() {
+	public TrashZombie() {
 
-		super.setName("SprintZombie");
-		super.setStringtype("SZ   ");
+		super.setName("TrashZombie");
+		super.setStringtype("TZ   ");
 
-		super.setStringtype("SZ");
+		super.setStringtype("TZ");
 
-		super.setSpeed(5);
-		super.setHealth(100);
+		super.setSpeed(1);
+		super.setHealth(125);
 		super.setAttackDamage(50);
 		super.setWeapon(null);
 	}

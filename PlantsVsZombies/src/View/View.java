@@ -282,13 +282,13 @@ public class View extends JFrame {
 	
 	public void level2ZombieInfo() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies and Sprint Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
+		JOptionPane.showMessageDialog(gameFrame, "Walking Zombies and Trash Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
 				null);
 	}
 	
 	public void level3ZombieInfo() {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(gameFrame, "Walking, Sprint and Rugby Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
+		JOptionPane.showMessageDialog(gameFrame, "Walking, Trash and Rugby Zombies will spawn!", "Spawners", JOptionPane.WARNING_MESSAGE,
 				null);
 	}
 
@@ -349,9 +349,9 @@ public class View extends JFrame {
 	 * 	@param None
 	 * 	@return None
 	 */
-	public void setSprintZombieOnBoard(int randRow) {
+	public void setTrashZombieOnBoard(int randRow) {
 		// TODO Auto-generated method stub
-		buttonArray[randRow][6].setText("SZ");
+		buttonArray[randRow][6].setText("TZ");
 		buttonArray[randRow][6].setEnabled(false);
 	}
 	/**
@@ -433,7 +433,7 @@ public class View extends JFrame {
 		for (int i = 0; i < gameGrid.length; i++) {
 			for (int j = 0; j < gameGrid[0].length; j++) {
 				if (gameGrid[i][j] instanceof Plants) {
-					if (((Plants) gameGrid[i][j]).getHealth() == 0) {
+					if (((Plants) gameGrid[i][j]).getHealth() <= 0) {
 						gameGrid[i][j] = null;
 						buttonArray[i][j].setText("");
 					}
@@ -461,19 +461,9 @@ public class View extends JFrame {
 					if (!(buttonArray[i][j-1].getText().equals(""))) {
 						continue;
 					} else {
-						String text = buttonArray[i][j].getText();
-						if (text == "SZ") {
-							if (!(buttonArray[i][j-2].getText().equals(""))){
-								continue;
-							}
-							buttonArray[i][j - 2].setText(text);
-							buttonArray[i][j].setText("");
-						}
-						else {
+						    String text = buttonArray[i][j].getText();
 							buttonArray[i][j - 1].setText(text);
 							buttonArray[i][j].setText("");
-						}
-					
 					}
 				
 				}

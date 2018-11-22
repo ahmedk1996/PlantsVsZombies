@@ -10,7 +10,7 @@ import Plant.PotatoMine;
 import Plant.ShootingPlant;
 import Plant.Sunflower;
 import Zombie.RugbyZombie;
-import Zombie.SprintZombie;
+import Zombie.TrashZombie;
 import Zombie.WalkingZombie;
 import Zombie.Zombies;
 
@@ -85,6 +85,7 @@ public class Action {
 
 							if (attackingPlant.getHealth() <= 0) {
 								buttonArray[i][j].setText("");
+								
 								gameGrid[i][j] = null;
 							}
 							if (zombie.getHealth() <= 0) {
@@ -132,6 +133,7 @@ public class Action {
 						
 						if (attackingPlant.getHealth() <= 0) {
 							buttonArray[i][j].setText("");
+							
 							gameGrid[i][j] = null;
 						}
 						if (zombie.getHealth() <= 0) {
@@ -171,18 +173,7 @@ public class Action {
 					if (i >= 0 && j == 0) {
 						return 0;
 					}
-					if (temp instanceof SprintZombie) {
-						int row = i;
-						int col = j-2;
-						if (row >= 0 && col == 0) {
-							return 0;
-						}
-						else {
-							gameGrid[i][j-2] = temp;
-							gameGrid[i][j]=null;
-						}
-						
-					}
+					
 					if (gameGrid[i][j - 1] instanceof Plants) { // Attacking the Plant! Using zombieAttack();
 
 						zombieAttack((Zombies) gameGrid[i][j], (Plants) gameGrid[i][j - 1], gameGrid, i, j - 1);
@@ -217,7 +208,7 @@ public class Action {
 		 */
 		if (z instanceof WalkingZombie) {
 			attackedPlant.attacked(z.attack());
-		} else if (z instanceof SprintZombie) {
+		} else if (z instanceof TrashZombie) {
 			attackedPlant.attacked(z.attack());
 		} else if (z instanceof RugbyZombie) {
 			attackedPlant.attacked(z.attack());
@@ -225,7 +216,8 @@ public class Action {
 		System.out.println("Plant has " + attackedPlant.getHealth() + " health");
 		if (attackedPlant.getHealth() <= 0) {
 			System.out.println(attackedPlant.getName() + " is killed by " + z.getStringtype());
-			gameGrid[row][col] = null;
+			
+			//gameGrid[row][col] = null;
 
 		}
 
