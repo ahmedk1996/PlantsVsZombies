@@ -309,7 +309,7 @@ public class View extends JFrame {
 	public void setEnabledButtons() {
 		for (int i = 0; i < buttonArray.length; i++) {
 			for (int j = 0; j < buttonArray[0].length; j++) {
-				if (buttonArray[i][j].getText().length() == 2) {
+				if (!buttonArray[i][j].getText().equals("")) {
 					buttonArray[i][j].setEnabled(false);
 				} else {
 					buttonArray[i][j].setEnabled(true);

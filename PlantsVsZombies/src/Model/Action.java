@@ -129,7 +129,7 @@ public class Action {
 						health = zombie.getHealth();
 						zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 						int healthUpdate = health - attackingPlant.getDamage();
-						System.out.println("Zombie at " + i + " " + j + 1 + " " + "has " + healthUpdate + " health");
+						System.out.println("Zombie at " + i + " " + j + " " + "has " + healthUpdate + " health");
 						
 						if (attackingPlant.getHealth() <= 0) {
 							buttonArray[i][j].setText("");
