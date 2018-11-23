@@ -132,32 +132,32 @@ public class View extends JFrame{
 					Plants temp = (Plants) grid[i][j];
 					if(temp instanceof ShootingPlant) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\repee.png");
+						Icon myIcon = new ImageIcon("Assets/repee.png");
 						buttons[i][j].setIcon(myIcon);
 					}else if(temp instanceof Sunflower) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\resun.png");
+						Icon myIcon = new ImageIcon("Assets/resun.png");
 						buttons[i][j].setIcon(myIcon);
 					}else if(temp instanceof PotatoMine) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\repotato.png");
+						Icon myIcon = new ImageIcon("Assets/repotato.png");
 						buttons[i][j].setIcon(myIcon);
 					}else if(temp instanceof Chomper) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\rechomper.png");
+						Icon myIcon = new ImageIcon("Assets/rechomper.png");
 						buttons[i][j].setIcon(myIcon);
 					}
 				}else if(grid[i][j] instanceof Zombies) {
 					Zombies temp = (Zombies) grid[i][j];
 					if(temp instanceof WalkingZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\rewalking.png");
+						Icon myIcon = new ImageIcon("Assets/rewalking.png");
 						//Image img = ((ImageIcon) myIcon).getImage() ; 
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
 						buttons[i][j].setIcon(myIcon);
 					}else if(temp instanceof SprintZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\resprint.png");
+						Icon myIcon = new ImageIcon("Assets/resprint.png");
 						//Image img = ((ImageIcon) myIcon).getImage() ;  
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
 						buttons[i][j].setIcon(myIcon);
@@ -165,7 +165,7 @@ public class View extends JFrame{
 						//buttons[i][j].setEnabled(false); 
 					}else if(temp instanceof RugbyZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\rerugby.png");
+						Icon myIcon = new ImageIcon("Assets/rerugby.png");
 						//Image img = ((ImageIcon) myIcon).getImage() ;  
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
 						buttons[i][j].setIcon(myIcon);
@@ -174,7 +174,7 @@ public class View extends JFrame{
 					}
 				}else{
 					buttons[i][j].setText("");
-					Icon myIcon = new ImageIcon("C:\\Users\\Hun\\Desktop\\School\\2018 Fall\\SYSC 3110\\Project_temp\\Assets\\regrass.png");
+					Icon myIcon = new ImageIcon("Assets/regrass.png");
 					buttons[i][j].setIcon(myIcon);
 					//buttons[i][j].setIcon(null);
 					buttons[i][j].setEnabled(true);
