@@ -2,6 +2,8 @@ package Model;
 
 import java.io.Serializable;
 
+
+
 import Plants.Chomper;
 import Plants.PotatoMine;
 import Plants.PlantStore;
@@ -13,6 +15,14 @@ import Zombies.SprintZombie;
 import Zombies.WalkingZombie;
 import Zombies.Zombies;
 
+/**
+ * The Action is a class which contains all the actions used throughout
+ * the game this includes starting and ending the game.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class Action implements Serializable {
 
 	//private Layout layout;
@@ -46,6 +56,12 @@ public class Action implements Serializable {
 		return lay;
 	}	
 
+	/**
+	 * updateStatus which handles result of the game if it has been won or not
+	 *
+	 * @param  layout  layout of the game
+	 * @return  Layout    result of the game
+	 */
 	public Layout updateStatus(Layout layout) {
 		if(layout.getStatus() == Status.start) {
 			return layout;
@@ -74,7 +90,7 @@ public class Action implements Serializable {
 	/**
 	 * plantShoot which handles the shooting plants abilities.
 	 *
-	 * @param None
+	 * @param Layout - current layout of the board
 	 * @return None
 	 */
 	public Layout plantShoot(Layout layout) {
@@ -195,8 +211,8 @@ public class Action implements Serializable {
 	 *			-yes attack 
 	 *				- invoke ZombieAttack(), replace Plant object to returned plant 	 *
 	 * 
-	 * @param  None
-	 * @return None
+	 * @param  layout - current layout of the game
+	 * @return Layout - end result of the layout (usally the next state)
 	 */
 	public Layout behaveZombie(Layout layout) {
 		//turn = new Turn();
@@ -259,8 +275,8 @@ public class Action implements Serializable {
 	/** isGameOver
 	 * Returns true or false depending on whether the game is over or not
 	 *
-	 * @param  None
-	 * @return  Boolean
+	 * @param  layout - current layout of the game
+	 * @return  Boolean - true if won, false if no
 	 */
 	public Boolean isGameOver(Layout layout) {
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {

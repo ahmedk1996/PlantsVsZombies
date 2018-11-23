@@ -7,7 +7,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import Model.Game;
-
+/**
+ * The TimeLine class is a class which contains all the actions used to allow the 
+ * user to back and forth in a game (undo/redo)
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class TimeLine {
 	private ArrayList<Game> timeStore;
 	private int currenti;
@@ -82,7 +89,12 @@ public class TimeLine {
 	}
 
 
-
+	/**
+	 * 	Checks if an undo can be made
+	 * 
+	 * 	@param None
+	 * @return boolean - true if yes, false if no
+	 */
 	public boolean isUndoAvailable() {
 		if(currenti-1 < 0) {
 			return false;
@@ -90,6 +102,12 @@ public class TimeLine {
 			return true;
 	}
 	
+	/**
+	 * Checks if an undo has been made. If yes returns true, otherwise false
+	 * 
+	 * 	@param None
+	 * @return boolean - returns true if the redo option is available
+	 */
 	public boolean isRedoAvailable(){
 		if(timeStore.size() > currenti+1) {
 			return true;
@@ -97,12 +115,24 @@ public class TimeLine {
 			return false;
 	}
 
+	/**
+	 * 	Lets the user go back to previous state before his/her move
+	 * 
+	 * 	@param None
+	 * @return Game - new board with previous state
+	 */
 	public Game undo() {
 			Game game = timeStore.get(currenti-1);
 			currenti--;
 			return game;
 	}
 
+	/**
+	 * 	Lets the user go forward if a undo was preivously selected
+	 * 
+	 * 	@param None
+	 * @return Game - new board with forward state
+	 */
 	public Game redo() {
 		if(timeStore.size() > currenti+1) {
 			Game game = timeStore.get(currenti+1);

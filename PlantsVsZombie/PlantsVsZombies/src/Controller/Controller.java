@@ -13,6 +13,14 @@ import Plants.ShootingPlant;
 import Plants.Sunflower;
 import View.View;
 
+/**
+ * The Controller is a class used in the MVC pattern which
+ * will call both game and view in order to update them by the actions from the user.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
 public class Controller implements ActionListener{
 	private View view;
 	private Game game;
@@ -26,10 +34,16 @@ public class Controller implements ActionListener{
 		timeline = new TimeLine();
 	}
 
-
+	/**
+	 * 	Listen for actions that happen on a certain button or label, and deal with it accordingly
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
+	//Initialize the components by adding the respective actionlistners/actioncommands to each action used.
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//listening for level of dificulty
 		if(e.getActionCommand().equals("easy")) {
 			this.game.levelDistinguish(1);
 			//this.game.startLevel(1);
@@ -54,6 +68,7 @@ public class Controller implements ActionListener{
 			updateView();
 			view.promptMessage("\t"+"Level is 'Hard' "+ "\n"+ "Simulate the Game!");
 			timeline = new TimeLine(game);
+			//listening to player options
 		}else if(e.getActionCommand().equals("Help")){
 			view.helpPrompt();
 		}else if (e.getActionCommand().equals("Undo")){
@@ -73,6 +88,7 @@ public class Controller implements ActionListener{
 		}else if (e.getActionCommand().equals("exit")){
 			System.exit(0);
 		}
+		//listening to game buttons
 		else if (e.getActionCommand().equals("simulate")) {
 			simulate();
 		}else if (e.getActionCommand().equals("Purchase")) {
@@ -162,9 +178,23 @@ public class Controller implements ActionListener{
 		}
 	}
 	
+	/**
+	 * 	Saves the state of the game if the user chooses to continue the game later
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void save() {
 		timeline.addNext(this.game);
 	}	
+	
+	/**
+	 * 	Allows the user to go back to his/her previous move and make another move, the board also 
+	 * goes back to the previous position
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void undo() {
 		if(!timeline.isUndoAvailable()) {
 			view.promptMessage("This is very First State, Can't Undo");
@@ -172,6 +202,14 @@ public class Controller implements ActionListener{
 			this.game=timeline.undo();
 		}
 	}
+	
+	/**
+	 * 	Allows the user to go forward in time, if an undo was clicked previously, the board 
+	 * is also affected
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void redo() {
 		if(!timeline.isRedoAvailable()) {
 			view.promptMessage("This is the Last State, Can't Redo");
@@ -180,6 +218,12 @@ public class Controller implements ActionListener{
 		}
 	}
 
+	/**
+	 * 	Allows the user to play the game
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void simulate() {
 		game.simulate();
 		updateView();
@@ -187,6 +231,12 @@ public class Controller implements ActionListener{
 		save();
 	}
 	
+	/**
+	 * 	Lets the user see the GUI of the board with the avaliable options
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void startView() {
 		//view.updatePoints(game.getSunpoint());
 		view.updateInfo("Hope You Enjoy!!");
@@ -195,11 +245,23 @@ public class Controller implements ActionListener{
 		view.disEnableFunctionButtons();
 	}
 	
+	/**
+	 * 	Updates the view when an event has occured
+	 * 
+	 * 	@param None
+	 * @return None
+	 */
 	public void updateView() {
 		view.updatePoints(game.getSunpoint());
 		view.loadlayout(game.getLayout());
 	}
 
+	/**
+	 * 	Checks if the game has been won or if the game is still playable
+	 * 
+	 * 	@param status - if the game has benn won or not
+	 * @return None
+	 */
 	public void checkStatus(Status status) {
 		if (status == Status.win){
 			view.win();
@@ -213,6 +275,12 @@ public class Controller implements ActionListener{
 		}
 	}
 
+	/**
+	 * 	Creates an instance of the controller so it can be played
+	 * 
+	 * 	@param String []arg - arguments the user enters
+	 * @return None
+	 */
 	public static void main(String[] arg) {
 		//Layout layout = new Layout();
 		//	
