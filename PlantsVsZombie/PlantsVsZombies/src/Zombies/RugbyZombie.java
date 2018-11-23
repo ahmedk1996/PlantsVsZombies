@@ -1,8 +1,8 @@
 
 package Zombies;
 /**
- * The WalkingZombie is a class which extends Zombies and uses the methods from zombies.  
- * This type of zombie walks at a slow pace hence the name.
+ * The Rugby is a class which extends Zombies and uses the methods from zombies.  
+ * This type of zombie that is aggresive.
  * Setting an abstract class for both Plants and Zombies allows for high cohesion.
  * 
  * @author Group 1
@@ -11,14 +11,13 @@ package Zombies;
  */
 public class RugbyZombie extends Zombies{
 	
-/*Initial Status for WalkingZombie
- *  speed = 1 tile for 2 turns,
- *  health = 150
- *  attackDamage = 80
- *  Weapon = null;
- * 
- */
-	
+
+	/**
+	 *  Initialize the starting state of the zombie
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public RugbyZombie() {
 
 		super.setName("RugbyZombie");

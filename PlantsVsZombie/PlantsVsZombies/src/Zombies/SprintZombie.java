@@ -11,14 +11,12 @@ package Zombies;
  */
 public class SprintZombie extends Zombies{
 	
-/*Initial Status for SprintZombie
- *  speed = 5 tile for 2 turns,
- *  health = 100
- *  attackDamage = 50
- *  Weapon = null;
- * 
- */
-	
+	/**
+	 *  Initialize the starting state of the zombie
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public SprintZombie() {
 
 		super.setName("SprintZombie");

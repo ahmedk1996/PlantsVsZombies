@@ -18,7 +18,12 @@ public class WalkingZombie extends Zombies{
  *  Weapon = null;
  * 
  */
-	
+	/**
+	 *  Initialize the starting state of the zombie
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public WalkingZombie() {
 
 		super.setName("WalkingZombie");
