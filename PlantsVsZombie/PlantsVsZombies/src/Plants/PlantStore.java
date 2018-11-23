@@ -16,10 +16,6 @@ import Model.Layout;
  */
 public class PlantStore implements Serializable {
 
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Plants price;
 	private  int sunPoints;
@@ -34,17 +30,43 @@ public class PlantStore implements Serializable {
 		this.sunPoints = sunp;
 	}
 	
+	
+	/**
+	 *  gets the users balance
+	 * 
+	 * @param None
+	 * @return int - users balance
+	 */
 	public  int getSunPoints() {
 		return sunPoints;
 	}
 
+	/**
+	 *  sets the users balance
+	 * 
+	 * @param int - users balance
+	 * @return None
+	 */
 	public  void setSunPoints(int sunPoints) {
 		this.sunPoints = sunPoints;
 	}
 
+	/**
+	 *  sets the turn to the next player
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void nextTurn() {
 		coolDown.turnOver();
 	}
+	
+	/**
+	 *  uses the board layout to search for sunplants that produce more points
+	 * 
+	 * @param layout - the current state of the game
+	 * @return None
+	 */
 	public void incrementSunPoints(Layout layout) {
 		int sunPlant = 0;
 		for(int i=0 ; i <layout.getGameGrid().length; i++) {
@@ -57,11 +79,22 @@ public class PlantStore implements Serializable {
 		sunPoints = sunPoints+(sunPlant*50);
 	}
 
-
+	/**
+	 *  gets the plants price
+	 * 
+	 * @param None
+	 * @return Plant - the price of the plant
+	 */
 	public Plants getPrice() {
 		return price;
 	}
 
+	/**
+	 *  sets the price of the desired plant
+	 * 
+	 * @param plant - the new price of the plant
+	 * @return None
+	 */
 	public void setPrice(Plants price) {
 		this.price = price;
 	}
@@ -89,6 +122,13 @@ public class PlantStore implements Serializable {
 	 * 	@currentBalnce - the number of currentBalance currently have
 	 * 	@return none
 	 */
+	
+	/**
+	 *  checks if any plants can be bought from the users current balance
+	 * 
+	 * @param plant - current price of the plant
+	 * @return boolean - true if th eplayer can buy the plant, false otherwise
+	 */
 	public boolean validatePurchase(Plants plant ) {
 		if((sunPoints - plant.getCost()) >= 0){
 			return true;
@@ -97,6 +137,12 @@ public class PlantStore implements Serializable {
 		}
 	}
 	
+	/**
+	 *  Checks if the plant has a cooldown or not
+	 * 
+	 * @param plant- the plant the user is wanting to buy
+	 * @return boolean - true if there is no cooldown, false otherwise
+	 */
 	public boolean validateCoolDown(Plants plant) {
 		return coolDown.validatePurchase(plant);
 	}
@@ -115,7 +161,12 @@ public class PlantStore implements Serializable {
 		return info;
 	}
 
-	
+	/**
+	 *  gets the plants cooldown status
+	 * 
+	 * @param None
+	 * @return Cooldown - returns the status on whos turn it is
+	 */
 	public CoolDown getCoolDown() {
 		return coolDown;
 	}

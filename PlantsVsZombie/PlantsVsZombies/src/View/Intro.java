@@ -3,8 +3,24 @@ package View;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ *  The Intro is a class which just acts as a layer which allows the user to understad what the
+ *  game is about. 
+ * 
+ * 
+ * @author Group 1
+ * @since November 22,2018
+
+ */
+
 public class Intro{
 
+	/**
+	 *  Sets the correct pictures and files on the buttons to show for a pleasent view
+	 * 
+	 * @param String args [] - arguments passed when the main method is launched
+	 * @return None
+	 */
 	public static void main(String[] args) {
 		final JFrame frame = new JFrame("Popup Menu Demo");
 

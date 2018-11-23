@@ -14,10 +14,18 @@ import Plants.PotatoMine;
 import Plants.ShootingPlant;
 import Plants.Sunflower;
 
+/**
+ *  The View is a class which extends JFrame and includes getters 
+ * and setters for the different types of buttons and menu objects 
+ * used to be called in the Controller class.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+
+ */
+
 public class View extends JFrame{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	public JButton[][] buttons;
 	private JSplitPane split;
@@ -32,6 +40,12 @@ public class View extends JFrame{
 	private ButtonGroup group;
 	private JRadioButton buySunflower,buyShooterPlant,buyPotatoMine,buyChomper;
 
+	/**
+	 *  Constructor to initialize the controller and other objects
+	 * 
+	 * @param Controller - the controller that will be listening to events
+	 * @return None
+	 */
 	public View (Controller c) {
 		controller = c;
 		super.setTitle("Plant Vs Zombie");
@@ -73,6 +87,12 @@ public class View extends JFrame{
 		pack();
 	}
 
+	/**
+	 *  Sets the menu bar to display the correct items on the JFrame
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void initiateMenuBar() {
 		playMenuBar = new JMenuBar();
 		
@@ -122,8 +142,12 @@ public class View extends JFrame{
 	}
 
 
-	
-
+	/**
+	 *  used to set the buttons to diplay pictures 
+	 * 
+	 * @param layout - current state of the grid
+	 * @return None
+	 */
 	public void loadlayout(Layout layout) {
 		Object[][] grid = layout.getGameGrid();
 		for(int i =0; i< 5; i++) {
@@ -183,17 +207,28 @@ public class View extends JFrame{
 		}
 		
 	}
-	/*
-	 * Level Buttons
+	
+	/**
+	 *  Once the game has started the user will be able to choose from 3 differnt difficutlties:
 	 * -Easy
 	 * -Intermediate
 	 * -Hard
+	 * 
+	 * @param None
+	 * @return None
 	 */
 	public void enableLevelButtons() {
 		easy.setEnabled(true);
 		inte.setEnabled(true);
 		hard.setEnabled(true);
 	}
+	
+	/**
+	 *  Once the user has selected one of the 3 differnt difficutlties, the option to change will be disabled
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void disableLevel() {
 		easy.setEnabled(false);
 
@@ -203,10 +238,14 @@ public class View extends JFrame{
 
 	}
 
-	/*
-	 * functionButton contains 
+	
+	/**
+	 *  Used to enable ingame buttons like:
 	 * -Purchase
 	 * -Simulate Wave
+	 * 
+	 * @param None
+	 * @return None
 	 */
 	public void enableFunctionButtons() {
 		//enablebuttons();
@@ -214,14 +253,25 @@ public class View extends JFrame{
 		waveContinue.setEnabled(true);
 	}
 	
+	/**
+	 *  Used to disable ingame buttons like:
+	 * -Purchase
+	 * -Simulate Wave
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void disEnableFunctionButtons() {
 		//enableButtons(false);	
 		purchase.setEnabled(false);
 		waveContinue.setEnabled(false);
 	}
 
-	/*
-	 * Grid Buttons
+	/**
+	 *  Used to create the grid with buttons:
+	 * 
+	 * @param boolean - true if button is enabled, false otherwise
+	 * @return None
 	 */
 	public void enableButtons(boolean flag) {
 		for(int i =0; i< 5; i++) {
@@ -231,10 +281,22 @@ public class View extends JFrame{
 		}
 	}
 
+	/**
+	 *  Used to enable purchase buttons like
+	 * 
+	 * @param boolean - true if the button is enabled
+	 * @return None
+	 */
 	public void enablePurchaseButton(boolean flag) {
 		purchase.setEnabled(flag);
 	}
 	
+	/**
+	 *  Used to check status of undo button
+	 * 
+	 * @param boolean - true if the undo button should be avalilable, false otherwise
+	 * @return None
+	 */
 	public void undostatus(boolean flag) {
 		if(flag == true) {
 			undo.setEnabled(true);
@@ -242,6 +304,13 @@ public class View extends JFrame{
 			undo.setEnabled(true);
 		}
 	}
+	
+	/**
+	 *  Used to check status of redo button
+	 * 
+	 * @param boolean - true if the redo button should be avalilable, false otherwise
+	 * @return None
+	 */
 	public void redostatus(boolean flag) {
 		if(flag == true) {
 			redo.setEnabled(true);
@@ -250,7 +319,12 @@ public class View extends JFrame{
 		}
 	}
 	
-	
+	/**
+	 *  Used to display prompts on the screen if the player won the game
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void win() {
 		JOptionPane.showMessageDialog(this.gridPanel, "Congratulations. You beat the Zombies!", "Winner!",
 				JOptionPane.INFORMATION_MESSAGE);
@@ -260,6 +334,12 @@ public class View extends JFrame{
 		}
 	}
 
+	/**
+	 *  Used to display prompts on the screen if the player lost the game
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void loose() {
 		JOptionPane.showMessageDialog(this.gridPanel, "GAME OVER! YOU HAVE FAILED TO PROTECT YOUR GARDEN.",
 				"Try Again!! Next Time!", JOptionPane.INFORMATION_MESSAGE);
@@ -271,18 +351,44 @@ public class View extends JFrame{
 		this.enableLevelButtons();
 
 	}
+	
+	/**
+	 *  Used to update the users ingame balance
+	 * 
+	 * @param int- number of sunpoints the user should have
+	 * @return None
+	 */
 	public void updatePoints(int sunpoint) {
 		points.setText("Sun Points :"+ String.valueOf(sunpoint) + " Points");
 	}
+	
+	/**
+	 *  Used to change font and color of the text
+	 * 
+	 * @param info - what is the text to be changed
+	 * @return None
+	 */
 	public void updateInfo(String info) {
 		status.setText(info);
 		status.setForeground(Color.red);
 	}
 	
+	/**
+	 *  Used to generate a prompt message
+	 * 
+	 * @param message - the desired message that should be in the prompt
+	 * @return None
+	 */
 	public void promptMessage(String message) {
 		JOptionPane.showMessageDialog(this.gridPanel,message, "Message", JOptionPane.INFORMATION_MESSAGE);
 	}
 
+	/**
+	 *  Used to display help and introduction instructions on the screen
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void helpPrompt() {
 		String helpText = "	Help - How to play Plants Vs Zombies.\r\n" + " \r\n"
 				+ "--------------------------------------------------------------------\r\n"
@@ -301,6 +407,12 @@ public class View extends JFrame{
 
 	}
 	
+	/**
+	 *  Used to initiate option controls
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void initiateOptionPanel() {
 		easy = new JButton("Easy");
 		easy.setActionCommand("easy");
@@ -319,6 +431,13 @@ public class View extends JFrame{
 		help.setActionCommand("Help");
 		help.addActionListener(controller);
 	}
+	
+	/**
+	 *  Used to inistaite store controls
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void initiateStorePanel() {
 		JLabel menu1 = new JLabel("Welcome to the PVZ Store");
 
@@ -390,6 +509,12 @@ public class View extends JFrame{
 		storePanel.add(status);
 	}
 
+	/**
+	 *  Used to initiate game grid
+	 * 
+	 * @param None
+	 * @return None
+	 */
 	public void initiateGridPanel() {
 		for(int i =0; i< 5; i++) {
 			for(int j =0 ; j<7 ; j++) {
@@ -402,11 +527,24 @@ public class View extends JFrame{
 			}
 		}
 	}
+	
+	/**
+	 *  Used to get the contents of all the buttons on the game grid
+	 * 
+	 * @param None
+	 * @return JButton [][] - the array of objects in the grid
+	 */
 	public JButton[][] getButtons() {
 		return buttons;
 	}
 
 
+	/**
+	 *  Used to set the buttons of the grid
+	 * 
+	 * @param JButton[][] - the value or state we want to change the button to
+	 * @return None
+	 */
 	public void setButtons(JButton[][] buttons) {
 		this.buttons = buttons;
 	}
@@ -416,30 +554,54 @@ public class View extends JFrame{
 		return group;
 	}
 
-	//public boolean groupSelected() {
-	// buySunflower,buyShooterPlant,buyPotatoMine,buyChomper;
-	//	group.isSelected()
-	//}
-
-
+	
+	/**
+	 *  Used to get the state of the easy button
+	 * 
+	 * @param None
+	 * @return JButton 
+	 */
 	public JButton getEasy() {
 		return easy;
 	}
 
 
-	
+	/**
+	 *  Used to get the object of type sunflower
+	 * 
+	 * @param None
+	 * @return JRadioButton
+	 */
 	public JRadioButton getBuySunflower() {
 		return buySunflower;
 	}
 
+	/**
+	 *  Used to get the object of type ShooterPlant
+	 * 
+	 * @param None
+	 * @return JRadioButton
+	 */
 	public JRadioButton getBuyShooterPlant() {
 		return buyShooterPlant;
 	}
 
+	/**
+	 *  Used to get the object of type PotatoeMine
+	 * 
+	 * @param None
+	 * @return JRadioButton
+	 */
 	public JRadioButton getBuyPotatoMine() {
 		return buyPotatoMine;
 	}
 
+	/**
+	 *  Used to get the object of type Chomper
+	 * 
+	 * @param None
+	 * @return JRadioButton
+	 */
 	public JRadioButton getBuyChomper() {
 		return buyChomper;
 	}
