@@ -24,7 +24,7 @@ public class Chomper extends Plants{
 	 */
 	public Chomper() {
 		super.setStringtype("CP");
-		super.setDamage(35);
+		super.setDamage(100);
 		super.setHealth(300);
 		super.setCost(cost);
 		super.setName("Chomper");
