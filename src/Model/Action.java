@@ -93,26 +93,21 @@ public class Action implements Serializable {
 	public Layout plantShoot(Layout layout) {
 		Zombies zombie;
 		int health;
-		Plants attackingPlant;
+
 		for (int i = 0; i < layout.getGameGrid().length; i++) {
 			for (int j = 0; j < layout.getGameGrid()[0].length; j++) {
 				if (layout.getGameGrid()[i][j] instanceof Sunflower) {
 					Plants temp = (Plants) layout.getGameGrid()[i][j];
 
 				}
-				if (layout.getGameGrid()[i][j] instanceof ShootingPlant
-						|| layout.getGameGrid()[i][j] instanceof Chomper) { // search if plant is a shooter
+				if (layout.getGameGrid()[i][j] instanceof ShootingPlant) { // search if plant is a shooter
 					for (int index = 0; index < layout.getGameGrid()[i].length; index++) { // iterate through that plant
 																							// shooter's
 						// row to find a zombie
 						if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
-							if (layout.getGameGrid()[i][j] instanceof Plants) {
-								attackingPlant = new ShootingPlant(); // making instance to figure out the
-								attackingPlant = (ShootingPlant) (layout.getGameGrid()[i][j]);
-							} else {
-								attackingPlant = new Chomper(); // making instance to figure out the
-								attackingPlant = (Chomper) (layout.getGameGrid()[i][j]);
-							}
+
+							Plants attackingPlant = new ShootingPlant(); // making instance to figure out the
+							attackingPlant = (ShootingPlant) (layout.getGameGrid()[i][j]);
 
 							zombie = (Zombies) (layout.getGameGrid()[i][index]); // get instance of zombie
 							health = zombie.getHealth();
@@ -128,11 +123,11 @@ public class Action implements Serializable {
 
 							System.out.println(
 									"Zombie at " + i + " " + index + " " + "has " + zombie.getHealth() + " health");
-							
+
 						}
 						break;
 					}
-					
+
 				} else if (layout.getGameGrid()[i][j] instanceof PotatoMine) { // search if plant is a PotatoeMine
 																				// Object
 					for (int index = 0; index < layout.getGameGrid()[i].length; index++) { // iterate through that plant
@@ -145,7 +140,6 @@ public class Action implements Serializable {
 																									// is in the next
 																									// index of the
 																									// array
-
 								layout.getGameGrid()[i][index] = null; // zombie dead
 								System.out.println(zombie.getStringtype() + "is dead.");
 
@@ -158,36 +152,37 @@ public class Action implements Serializable {
 					}
 
 				}
-				/*
-				 * else if (layout.getGameGrid()[i][j] instanceof Chomper) { // search if plant
-				 * is a PotatoeMine Object
-				 * 
-				 * for (int index = 0; index < layout.getGameGrid()[i].length; index++) { //
-				 * iterate through that plant row to find a zombie if
-				 * (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same
-				 * row Chomper attackingPlant = new Chomper(); // making instance to figure out
-				 * the attackingPlant = (Chomper) (layout.getGameGrid()[i][j]); zombie =
-				 * (Zombies) (layout.getGameGrid()[i][index]); // get instance of zombie
-				 * 
-				 * if (layout.getGameGrid()[i][index] == layout.getGameGrid()[i][j+1]) { //if
-				 * that instance is in the next index of the array //of the chomper plant,
-				 * attack the zombie
-				 * 
-				 * health = zombie.getHealth(); zombie.setHealth(health -
-				 * attackingPlant.getDamage()); // reduce health int healthUpdate = health -
-				 * attackingPlant.getDamage(); System.out.println("Zombie at " + i + " " + index
-				 * + " " + "has " + healthUpdate + " health"); if (zombie.getHealth() <= 0) {
-				 * 
-				 * layout.getGameGrid()[i][j+1] = null; // zombie dead
-				 * System.out.println(zombie.getStringtype() + "is dead."); } if
-				 * (attackingPlant.getHealth() <= 0) {
-				 * 
-				 * layout.getGameGrid()[i][j] = null; } }
-				 * 
-				 * } } }
-				 */
+
+				else if (layout.getGameGrid()[i][j] instanceof Chomper) { // search if plant
+					// * is a Chomper Object
+
+						int index = j+1;
+						if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
+
+							Plants attackingPlant = new Chomper(); // making instance to figure out the
+							attackingPlant = (Chomper) (layout.getGameGrid()[i][j]);
+							zombie = (Zombies) (layout.getGameGrid()[i][index]); // get instance of zombie
+							health = zombie.getHealth();
+							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
+
+							if (zombie.getHealth() <= 0) {
+
+								layout.getGameGrid()[i][index] = null; // zombie dead
+
+							} else {
+								zombie.getHealth();
+							}
+
+							System.out.println(
+									"Zombie at " + i + " " + index + " " + "has " + zombie.getHealth() + " health");
+
+						}
+						break;
+					}
+				}
+
 			}
-		}
+		
 		return layout;
 	}
 
