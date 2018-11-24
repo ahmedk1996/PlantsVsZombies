@@ -69,14 +69,14 @@ public class View extends JFrame{
 		split.setOrientation(JSplitPane.VERTICAL_SPLIT);  // we want it to split the window verticaly
 
 	
-		storePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
+		storePanel.setSize(200,200);
 		storePanel.setLayout(new GridLayout(6, 2));
 		super.add(storePanel);
 		super.add(gridPanel);
 		// split.setTopComponent(storePanel); 
 		//split.setBottomComponent(gridPanel);  
 		gridPanel.setLayout(new GridLayout(5,7));
-		gridPanel.setSize(750,1000);
+		gridPanel.setSize(500,1000);
 
 		initiateOptionPanel();
 		initiateStorePanel();
@@ -465,7 +465,7 @@ public class View extends JFrame{
 		//text for the potato mine buying options
 		JLabel potatoMine = new JLabel("Purchase Potato Mine"); 
 		storePanel.add(potatoMine);
-		JLabel potatoMineCost = new JLabel ("150 Sun Points");
+		JLabel potatoMineCost = new JLabel ("100 Sun Points");
 		storePanel.add(potatoMineCost);
 		buyPotatoMine = new JRadioButton();
 		buyPotatoMine.addActionListener(controller);

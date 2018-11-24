@@ -38,7 +38,7 @@ public class Chomper extends Plants{
 	 */
 	public Chomper(int health){
 		super.setHealth(300);
-		super.setDamage(35);
+		super.setDamage(100);
 		super.setStringtype("C    ");
 		super.setName("Chomper");
 	}

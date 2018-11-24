@@ -10,7 +10,7 @@ package Plants;
  */
 public class PotatoMine extends Plants{
 	
-	private final int cost = 150;
+	private final int cost = 100;
 	private int health = 100;
 	private static int turn;
 	

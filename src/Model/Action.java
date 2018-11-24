@@ -123,9 +123,8 @@ public class Action implements Serializable {
 
 							System.out.println(
 									"Zombie at " + i + " " + index + " " + "has " + zombie.getHealth() + " health");
-
+							break;
 						}
-						break;
 					}
 
 				} else if (layout.getGameGrid()[i][j] instanceof PotatoMine) { // search if plant is a PotatoeMine
@@ -135,20 +134,25 @@ public class Action implements Serializable {
 						if (layout.getGameGrid()[i][index] instanceof Zombies) { // zombies in the same row
 
 							zombie = (Zombies) (layout.getGameGrid()[i][index]); // get instance of zombie
+							Plants attackingPlant = new PotatoMine(); // making instance to figure out the
+							attackingPlant = (PotatoMine) (layout.getGameGrid()[i][j]);
+							zombie = (Zombies) (layout.getGameGrid()[i][index]); // get instance of zombie
+							health = zombie.getHealth();
+							zombie.setHealth(health - attackingPlant.getDamage()); // reduce health
 
-							if (layout.getGameGrid()[i][index] == layout.getGameGrid()[i][j + 1]) { // if that instance
-																									// is in the next
-																									// index of the
-																									// array
+							if (zombie.getHealth() <= 0) {
+
 								layout.getGameGrid()[i][index] = null; // zombie dead
-								System.out.println(zombie.getStringtype() + "is dead.");
 
-								layout.getGameGrid()[i][j] = null; // plant destroyed
-
+							} else {
+								zombie.getHealth();
 							}
-
+							System.out.println(
+									"Zombie at " + i + " " + index + " " + "has " + zombie.getHealth() + " health");
+							layout.getGameGrid()[i][j] =null;
+							break;
 						}
-
+					
 					}
 
 				}
@@ -175,9 +179,9 @@ public class Action implements Serializable {
 
 							System.out.println(
 									"Zombie at " + i + " " + index + " " + "has " + zombie.getHealth() + " health");
-
+							break;
 						}
-						break;
+						
 					}
 				}
 

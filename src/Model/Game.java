@@ -194,9 +194,9 @@ public class Game implements Serializable  {
 		if(level == 1) {
 			zombieCounter = 4;
 		}else if(level == 2) {
-			zombieCounter = 3;
+			zombieCounter = 2;
 		}else if(level == 3) {
-			zombieCounter = 3;
+			zombieCounter = 2;
 		}
 	}
 

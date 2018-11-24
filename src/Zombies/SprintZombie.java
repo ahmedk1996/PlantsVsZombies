@@ -23,7 +23,7 @@ public class SprintZombie extends Zombies{
 		super.setStringtype("SZ");
 
 		super.setSpeed(5);
-		super.setHealth(100);
+		super.setHealth(150);
 		super.setAttackDamage(50);
 		super.setWeapon(null);
 	}
