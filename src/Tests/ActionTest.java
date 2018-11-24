@@ -1,4 +1,4 @@
-/*package Tests;
+package Tests;
 
 import static org.junit.Assert.*;
 
@@ -7,9 +7,18 @@ import org.junit.Test;
 
 import Model.Action;
 import Model.Layout;
-import Zombie.WalkingZombie;
+import Zombies.WalkingZombie;
 import junit.framework.TestCase;
 
+
+/**
+ * The ActionTest is a test class which tests the bare methods 
+ * to make sure each method is 
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class ActionTest extends TestCase {
 	
 	private Action action;
@@ -63,4 +72,3 @@ public class ActionTest extends TestCase {
 	
 	
 }
-*/
