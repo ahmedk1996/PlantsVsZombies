@@ -17,7 +17,7 @@ Introduction:
 The goal of this milestone is to create a base skeletal version of a typical Plants vs Zombies game. In this milestone we were required to create 1 level of the game allowing the user to but plants from the shop and place them on the board. The desired pattern used is the MVC model. 
 
 Change Log: 
-Milestone 2: Implemented the plantsvszombies project using the MVC design pattern (GUI) and implemented new plants and zombie classes aswell as an undo/redo. This also included creating a test package which retains all the tests for our model side. Moreover we added a higher experience level by adding pictures instead of letters to represent zombies and plants.
+Milestone 3: Implemented the plantsvszombies project using the MVC design pattern (GUI) and implemented new plants and zombie classes aswell as an undo/redo. This also included creating a test package which retains all the tests for our model side. Moreover we added a higher experience level by adding pictures instead of letters to represent zombies and plants.
 
 Design Decisions: Certain design decisions were made and these are mentioned in the class descriptions. A note for users is that there may be some levels that we made challenging (Level: Hard) in order to give the users a fun experience.
 
