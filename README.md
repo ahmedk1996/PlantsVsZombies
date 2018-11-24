@@ -14,7 +14,7 @@ Author(s):
 Regarding group work distribution, in order to keep the workload distributed evenly, each member was assigned a section of the tests (2-3 test classes each), UML, new milestone implementation of redo/undo, adding new plants and zombies aswell as fixes to previous milestone. The fixes that were made from the previous milestone had to do with how the game works.
 
 Introduction:
-The goal of this milestone is to create a base skeletal version of a typical Plants vs Zombies game. In this milestone we were required to create 1 level of the game allowing the user to but plants from the shop and place them on the board. The desired pattern used is the MVC model. 
+The goal of this milestone is to create the implementations of the undo/redo onto the game as well as add several new plants/zombies to the games. The team was able to complete the pre-mentioned requirements.
 
 Change Log: 
 Milestone 3: Implemented the plantsvszombies project using the MVC design pattern (GUI) and implemented new plants and zombie classes aswell as an undo/redo. This also included creating a test package which retains all the tests for our model side. Moreover we added a higher experience level by adding pictures instead of letters to represent zombies and plants.
