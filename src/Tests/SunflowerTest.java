@@ -7,6 +7,15 @@ import org.junit.Test;
 import Plants.Sunflower;
 import junit.framework.TestCase;
 
+/**
+ * The SunflowerTest is a test class which tests the bare methods 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class SunflowerTest extends TestCase{
 
 	@Test

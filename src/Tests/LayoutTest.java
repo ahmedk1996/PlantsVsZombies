@@ -8,6 +8,15 @@ import org.junit.Test;
 import Model.Layout;
 import junit.framework.TestCase;
 
+/**
+ * The LayoutTest is a test class which tests the bare methods 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class LayoutTest extends TestCase {
 
 	private Layout layout;

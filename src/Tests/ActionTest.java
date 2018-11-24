@@ -13,7 +13,8 @@ import junit.framework.TestCase;
 
 /**
  * The ActionTest is a test class which tests the bare methods 
- * to make sure each method is 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
  * 
  * @author Group 1
  * @since November 4,2018

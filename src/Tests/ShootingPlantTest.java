@@ -8,6 +8,15 @@ import org.junit.Test;
 import Plants.ShootingPlant;
 import junit.framework.TestCase;
 
+/**
+ * The ShootingPlantTest is a test class which tests the bare methods 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class ShootingPlantTest extends TestCase{
 
 	@Test

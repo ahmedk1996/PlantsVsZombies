@@ -7,7 +7,15 @@ import org.junit.Test;
 
 import Plants.Chomper;
 import junit.framework.TestCase;
-
+/**
+ * The ChomperTest is a test class which tests the bare methods 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class ChomperTest extends TestCase{
 
 	private Chomper p1;

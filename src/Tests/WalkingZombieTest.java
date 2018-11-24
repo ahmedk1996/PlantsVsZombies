@@ -8,6 +8,16 @@ import org.junit.Test;
 import Zombies.WalkingZombie;
 import junit.framework.TestCase;
 
+
+/**
+ * The WalkingZombieTest is a test class which tests the bare methods 
+ * to make sure each testable method is functioning as its 
+ * supposed to be.
+ * 
+ * @author Group 1
+ * @since November 4,2018
+ * 
+ */
 public class WalkingZombieTest extends TestCase {
 
 	WalkingZombie walkingZ;
