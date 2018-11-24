@@ -156,56 +156,55 @@ public class View extends JFrame{
 					Plants temp = (Plants) grid[i][j];
 					if(temp instanceof ShootingPlant) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\repee.png");
-						buttons[i][j].setIcon(myIcon);
+						Image myIcon = new ImageIcon(this.getClass().getResource("/repee.png")).getImage();
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}else if(temp instanceof Sunflower) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\resun.png");
-						buttons[i][j].setIcon(myIcon);
+						Image myIcon = new ImageIcon(this.getClass().getResource("/resun.png")).getImage();
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}else if(temp instanceof PotatoMine) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\repotato.png");
-						buttons[i][j].setIcon(myIcon);
+						Image myIcon = new ImageIcon(this.getClass().getResource("/repotato.png")).getImage();
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}else if(temp instanceof Chomper) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\rechomper.png");
-						buttons[i][j].setIcon(myIcon);
+						Image myIcon = new ImageIcon(this.getClass().getResource("/rechomper.png")).getImage();
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}
 				}else if(grid[i][j] instanceof Zombies) {
 					Zombies temp = (Zombies) grid[i][j];
 					if(temp instanceof WalkingZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\rewalking.png");
+						Image myIcon = new ImageIcon(this.getClass().getResource("/rewalking.png")).getImage();
 						//Image img = ((ImageIcon) myIcon).getImage() ; 
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
-						buttons[i][j].setIcon(myIcon);
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}else if(temp instanceof SprintZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\resprint.png");
+						Image myIcon = new ImageIcon(this.getClass().getResource("/resprint.png")).getImage();
 						//Image img = ((ImageIcon) myIcon).getImage() ;  
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
-						buttons[i][j].setIcon(myIcon);
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 						//buttons[i][j].disable();
 						//buttons[i][j].setEnabled(false); 
 					}else if(temp instanceof RugbyZombie) {
 						buttons[i][j].setText(temp.getStringtype());
-						Icon myIcon = new ImageIcon("\\Assets\\rerugby.png");
+						Image myIcon = new ImageIcon(this.getClass().getResource("/rerugby.png")).getImage();
 						//Image img = ((ImageIcon) myIcon).getImage() ;  
 						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
-						buttons[i][j].setIcon(myIcon);
+						buttons[i][j].setIcon(new ImageIcon(myIcon));
 						//buttons[i][j].disable();
 						//buttons[i][j].setEnabled(false); 
 					}
 				}else{
 					buttons[i][j].setText("");
-					Icon myIcon = new ImageIcon("\\Assets\\regrass.png");
-					buttons[i][j].setIcon(myIcon);
+					Image myIcon = new ImageIcon(this.getClass().getResource("/regrass.png")).getImage();
+					buttons[i][j].setIcon(new ImageIcon(myIcon));
 					//buttons[i][j].setIcon(null);
 					buttons[i][j].setEnabled(true);
 				}
 			}
 		}
-		
 	}
 	
 	/**
