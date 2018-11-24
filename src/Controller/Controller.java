@@ -32,6 +32,7 @@ public class Controller implements ActionListener{
 		view = new View(this);
 		startView();
 		timeline = new TimeLine();
+		view.enableButtons(false);
 	}
 
 	/**

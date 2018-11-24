@@ -23,7 +23,7 @@ public class PlantStore implements Serializable {
 
 
 	public PlantStore() {
-		sunPoints = 150;
+		sunPoints = 200;
 		coolDown = new CoolDown();
 	}
 	public PlantStore(int sunp) {

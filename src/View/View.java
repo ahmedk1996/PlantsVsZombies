@@ -66,17 +66,17 @@ public class View extends JFrame{
 		//super.add();               // due to the GridLayout, our splitPane will now fill the whole window
 
 		// let's configure our splitPane:
-		//split.setOrientation(JSplitPane.VERTICAL_SPLIT);  // we want it to split the window verticaly
+		split.setOrientation(JSplitPane.VERTICAL_SPLIT);  // we want it to split the window verticaly
 
+	
+		storePanel.setSize(200,200);
+		storePanel.setLayout(new GridLayout(6, 2));
 		super.add(storePanel);
 		super.add(gridPanel);
-		storePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
-		storePanel.setLayout(new GridLayout(6, 2));
-
 		// split.setTopComponent(storePanel); 
 		//split.setBottomComponent(gridPanel);  
 		gridPanel.setLayout(new GridLayout(5,7));
-		gridPanel.setSize(750,1000);
+		gridPanel.setSize(500,1000);
 
 		initiateOptionPanel();
 		initiateStorePanel();
@@ -84,7 +84,7 @@ public class View extends JFrame{
 		initiateMenuBar();
 		setVisible(true);
 		super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		pack();
+	
 	}
 
 	/**
@@ -176,25 +176,20 @@ public class View extends JFrame{
 					if(temp instanceof WalkingZombie) {
 						buttons[i][j].setText(temp.getStringtype());
 						Image myIcon = new ImageIcon(this.getClass().getResource("/rewalking.png")).getImage();
-						//Image img = ((ImageIcon) myIcon).getImage() ; 
-						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
+		
 						buttons[i][j].setIcon(new ImageIcon(myIcon));
 					}else if(temp instanceof SprintZombie) {
 						buttons[i][j].setText(temp.getStringtype());
 						Image myIcon = new ImageIcon(this.getClass().getResource("/resprint.png")).getImage();
-						//Image img = ((ImageIcon) myIcon).getImage() ;  
-						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
+						
 						buttons[i][j].setIcon(new ImageIcon(myIcon));
-						//buttons[i][j].disable();
-						//buttons[i][j].setEnabled(false); 
+					
 					}else if(temp instanceof RugbyZombie) {
 						buttons[i][j].setText(temp.getStringtype());
 						Image myIcon = new ImageIcon(this.getClass().getResource("/rerugby.png")).getImage();
-						//Image img = ((ImageIcon) myIcon).getImage() ;  
-						//Image newimg = img.getScaledInstance( NEW_WIDTH, NEW_HEIGHT,  java.awt.Image.SCALE_SMOOTH ) ; 
+				
 						buttons[i][j].setIcon(new ImageIcon(myIcon));
-						//buttons[i][j].disable();
-						//buttons[i][j].setEnabled(false); 
+					
 					}
 				}else{
 					buttons[i][j].setText("");
@@ -470,7 +465,7 @@ public class View extends JFrame{
 		//text for the potato mine buying options
 		JLabel potatoMine = new JLabel("Purchase Potato Mine"); 
 		storePanel.add(potatoMine);
-		JLabel potatoMineCost = new JLabel ("150 Sun Points");
+		JLabel potatoMineCost = new JLabel ("100 Sun Points");
 		storePanel.add(potatoMineCost);
 		buyPotatoMine = new JRadioButton();
 		buyPotatoMine.addActionListener(controller);
