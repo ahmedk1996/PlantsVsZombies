@@ -22,7 +22,7 @@ public class PotatoMine extends Plants{
 	 */
 	public PotatoMine() {
 		super.setStringtype("PM");
-		super.setDamage(100);
+		super.setDamage(150);
 		super.setHealth(health);
 		super.setCost(cost);
 		super.setName("PotatoMine");
