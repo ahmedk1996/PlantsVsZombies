@@ -1,9 +1,11 @@
-package Controller;
+package Tests;
 
 import java.util.ArrayList;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
-
+import Controller.TimeLine;
 import Model.Game;
 import junit.framework.TestCase;
 
