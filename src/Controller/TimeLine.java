@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import Model.Game;
 /**
@@ -19,7 +20,7 @@ import Model.Game;
  * @since November 4,2018
  * 
  */
-public class TimeLine {
+public class TimeLine implements Serializable{
 	private ArrayList<Game> timeStore;
 	private int currenti;
 

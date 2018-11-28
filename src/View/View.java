@@ -35,7 +35,7 @@ public class View extends JFrame{
 	private Controller controller;
 	private JMenuBar playMenuBar;
 	private JMenu gameMenu,optionMenu;
-	private JMenuItem undo,redo,save,load,newGame,exit;
+	private JMenuItem undo,redo,save,load,newGame,exit,levelBuilder;
 	private JLabel points,status;
 	private ButtonGroup group;
 	private JRadioButton buySunflower,buyShooterPlant,buyPotatoMine,buyChomper;
@@ -129,8 +129,14 @@ public class View extends JFrame{
 		
 		load= new JMenuItem("Load");
 		load.setActionCommand("load");
+		load.setEnabled(false);
 		load.addActionListener(controller);
 		gameMenu.add(load);
+		
+		levelBuilder= new JMenuItem("levelBuilder");
+		levelBuilder.setActionCommand("levelBuilder");
+		load.addActionListener(controller);
+		gameMenu.add(levelBuilder);
 		
 		exit= new JMenuItem("Exit");
 		exit.setActionCommand("exit");
@@ -598,6 +604,11 @@ public class View extends JFrame{
 	 */
 	public JRadioButton getBuyChomper() {
 		return buyChomper;
+	}
+
+	public void enableLoad() {
+		load.setEnabled(true);
+		
 	}
 
 }

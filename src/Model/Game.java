@@ -379,9 +379,16 @@ public class Game implements Serializable  {
 	 * @param unknown
 	 * @param unknown
 	 * @return void
+	 * @throws IOException 
 	 */
-	public void save() {
-
+	public void save() throws IOException {
+		FileOutputStream file = new FileOutputStream("pvz.ser"); 
+        ObjectOutputStream out = new ObjectOutputStream(file); 
+        out.writeObject(this);
+        
+        out.close();
+        file.close();
+        System.out.println("Object has been serialized"); 
 	}
 
 	/**
@@ -390,9 +397,22 @@ public class Game implements Serializable  {
 	 * @param unknown
 	 * @param unknown
 	 * @return void
+	 * @throws ClassNotFoundException 
 	 */
-	public void load() {
-
+	public void load() throws ClassNotFoundException {
+		Game g =null;
+		try {
+			FileInputStream file = new FileInputStream("pvz.ser");
+			ObjectInputStream in = new ObjectInputStream(file);
+			g = (Game)in.readObject();
+			in.close();
+			file.close();
+			System.out.println("Object has been deserialized "); 
+		}
+		catch(IOException ex) 
+        { 
+            System.out.println("IOException is caught"); 
+        }
 	}
 
 	/*

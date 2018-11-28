@@ -2,6 +2,7 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
@@ -83,9 +84,21 @@ public class Controller implements ActionListener{
 			//this.view = new View(this);
 			startView();
 		}else if (e.getActionCommand().equals("save")){
+			try {
+				game.save();
+				view.enableLoad();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}else if (e.getActionCommand().equals("load")){
-			
+			try {
+				game.load();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if (e.getActionCommand().equals("exit")){
 			System.exit(0);
 		}
@@ -176,6 +189,9 @@ public class Controller implements ActionListener{
 					save();
 				}
 			}	
+		}
+		else if (e.getActionCommand().equals("levelBuilder")) {
+			
 		}
 	}
 	
