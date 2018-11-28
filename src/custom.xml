@@ -1,0 +1,16 @@
+<level>
+	<wave>
+		<startTime>5</startTime>
+		<zombies>
+			<zombie>
+				<type>WK</type>
+				<count>4</count>
+			</zombie>
+			
+			<zombie>
+				<type>2</type>
+				<count>10</count>
+			</zombie>
+		</zombies>
+	</wave>
+</level>
