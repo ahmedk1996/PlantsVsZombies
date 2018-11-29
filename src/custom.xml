@@ -8,9 +8,12 @@
 			</zombie>
 			
 			<zombie>
-				<type>2</type>
-				<count>10</count>
+				<type>RZ</type>
+				<count>2</count>
 			</zombie>
+			<zombie>
+				<count>2</count>
+				<type>WK</type></zombie>
 		</zombies>
 	</wave>
 </level>

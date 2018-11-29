@@ -415,15 +415,5 @@ public class Game implements Serializable  {
         }
 	}
 
-	/*
-	public static void main(String args[]) {
-
-		Layout layout = new Layout();
-		PlantStore store = new PlantStore();
-		// We will test wave by after using beginWave = new wave(1);
-		Game game = new Game(layout, store);
-
-		game.promptStart();
-
-	}*/
+	
 }

@@ -6,7 +6,11 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
+import javax.xml.parsers.ParserConfigurationException;
 
+import org.xml.sax.SAXException;
+
+import Model.Builder;
 import Model.Game;
 import Model.Status;
 import Plants.Plants;
@@ -297,11 +301,17 @@ public class Controller implements ActionListener{
 	 * 
 	 * 	@param String []arg - arguments the user enters
 	 * @return None
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws SAXException 
 	 */
-	public static void main(String[] arg) {
+	public static void main(String[] arg) throws SAXException, IOException, ParserConfigurationException {
 		//Layout layout = new Layout();
 		//	
-		Controller c = new Controller();
+		//Controller c = new Controller();
 		//View v = new View(c);
+		Builder b = new Builder();
+		b.readFile();
+		
 	}
 }
