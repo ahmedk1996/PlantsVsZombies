@@ -14,6 +14,15 @@
 			<zombie>
 				<count>2</count>
 				<type>WK</type></zombie>
+			<zombie>
+				<count></count>
+				<type></type></zombie>
 		</zombies>
 	</wave>
+	<wave>
+		<startTime>3</startTime>
+		<zombies>
+			<zombie>
+				<count>3</count>
+				<type>wk</type></zombie></zombies></wave>
 </level>
