@@ -135,7 +135,7 @@ public class View extends JFrame{
 		
 		levelBuilder= new JMenuItem("levelBuilder");
 		levelBuilder.setActionCommand("levelBuilder");
-		load.addActionListener(controller);
+		levelBuilder.addActionListener(controller);
 		gameMenu.add(levelBuilder);
 		
 		exit= new JMenuItem("Exit");
@@ -333,6 +333,11 @@ public class View extends JFrame{
 			System.exit(0);
 		}
 	}
+	
+	public void waveWin() {
+		JOptionPane.showMessageDialog(this.gridPanel, "Congratulations. You finished first Wave! Get Ready for next wave!!", "",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
 
 	/**
 	 *  Used to display prompts on the screen if the player lost the game
@@ -382,6 +387,7 @@ public class View extends JFrame{
 	public void promptMessage(String message) {
 		JOptionPane.showMessageDialog(this.gridPanel,message, "Message", JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 
 	/**
 	 *  Used to display help and introduction instructions on the screen
@@ -611,4 +617,8 @@ public class View extends JFrame{
 		
 	}
 
+	public String getLoadString() {
+		 String fileName = JOptionPane.showInputDialog(controller, "Type file Name:");
+		return fileName;
+	}
 }

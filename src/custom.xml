@@ -1,9 +1,16 @@
 <level>
-	<wave>
+	
+	
+<wave>
+		<startTime>3</startTime>
+		<zombies>
+			<zombie>
+				<count>3</count>
+				<type>WZ</type></zombie></zombies></wave><wave>
 		<startTime>5</startTime>
 		<zombies>
 			<zombie>
-				<type>WK</type>
+				<type>WZ</type>
 				<count>4</count>
 			</zombie>
 			
@@ -13,16 +20,9 @@
 			</zombie>
 			<zombie>
 				<count>2</count>
-				<type>WK</type></zombie>
+				<type>WZ</type></zombie>
 			<zombie>
 				<count></count>
 				<type></type></zombie>
 		</zombies>
-	</wave>
-	<wave>
-		<startTime>3</startTime>
-		<zombies>
-			<zombie>
-				<count>3</count>
-				<type>wk</type></zombie></zombies></wave>
-</level>
+	</wave></level>

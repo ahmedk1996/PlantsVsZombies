@@ -21,22 +21,21 @@ import org.xml.sax.SAXException;
 import Model.Game;
 import java.util.LinkedList;
 public class Builder {
-
-	private Game game;
 	DocumentBuilderFactory dbFactory;
 	org.w3c.dom.Document doc;
 	DocumentBuilder dBuilder;
 	int count = 0;
-	
 	Queue<Object> waveList;
 	List<Object> wave;
-	int time;
+	
 	public Builder() throws SAXException, IOException, ParserConfigurationException {
 
 		// readFile();
 		// game = new Game();
 		waveList = new LinkedList<Object>();
+		wave = new ArrayList<Object>();
 	}
+	
 	public boolean isEmpty() {
 		if(waveList.isEmpty()) {
 			return true;
@@ -48,11 +47,8 @@ public class Builder {
 			return false;
 		}else return true;*/
 	}
-	public int getTime() {
-		return time;
-	}
-	public List<Object> getWave(){
-		List<Object> poll = (List<Object>) waveList.poll();
+	public ArrayList<Object> getWave(){
+		ArrayList<Object> poll = (ArrayList<Object>) waveList.poll();
 		return poll;
 	}
 	
@@ -68,7 +64,8 @@ public class Builder {
 		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 			 
-			this.time = Integer.parseInt(((Element)nList.item(0)).getElementsByTagName("startTime").item(0).getTextContent());
+			Integer time = Integer.parseInt(((Element)nList.item(0)).getElementsByTagName("startTime").item(0).getTextContent());
+			wave.add(time);
 			System.out.println(time);
 			NodeList zombie = ((Element) nList.item(temp)).getElementsByTagName("zombie");
 			
@@ -76,23 +73,23 @@ public class Builder {
 				Node current = zombie.item(i);
 				if (current.getNodeType() == Node.ELEMENT_NODE) {
 			         String zomType = ((Element) current).getElementsByTagName("type").item(0).getTextContent();
-			         wave.add(zomType);
-			         //zombieType.add(zomType);
-			         System.out.println(zomType);
+			         if(!zomType.equals("")){
+			        	 wave.add(zomType);
+			        	 //zombieType.add(zomType);
+			        	 System.out.println(zomType);
+			         }
 			         String zombCount = ((Element) current).getElementsByTagName("count").item(0).getTextContent();
-			         int z = Integer.parseInt(zombCount);
-			         wave.add(z);
-			         //String count = zombCount;
-			         
-			         //zombieCount.add(count);
-			         System.out.println(zombCount);
+			         if(!zombCount.equals("")){
+				         int z = Integer.parseInt(zombCount);
+				         wave.add(z);
+				         System.out.println(zombCount);
+				         }
+			         }
 				}
+			 waveList.add(wave);
+        	 this.wave = new ArrayList<Object>();
 			}
-			waveList.add(wave);
 		}
-
-	}
-	
 
 
 }

@@ -92,7 +92,6 @@ public class TimeLine implements Serializable{
 		return (Game) obj;
 	}
 
-
 	/**
 	 * 	Checks if an undo can be made
 	 * 

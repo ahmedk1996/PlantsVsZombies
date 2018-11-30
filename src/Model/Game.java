@@ -32,21 +32,28 @@ public class Game implements Serializable  {
 	private int level;
 	private int zombieCounter;
 	private List<Object> wave;
+	private Status gameMode = Status.turnMode; // default mode is turnMode.
 
 	public Game() {
 		this.layout = new Layout();
 		this.store = new PlantStore();
 		purchasedPlant = null;
-		wave = null;
+		this.wave= new ArrayList<Object>();
 	}
 
 	public Game(Game game) {
 		this(game.getLayout(),game.getStore(),game.getZombieCounter(),game.getLevel());
 	}
-
+	public Game(Game game,List<Object> wave) {
+		this(game.getLayout(),game.getStore(),game.getZombieCounter(),game.getLevel());
+		this.wave = wave;
+	//	this.layout.setStatus(Status.inProgress);
+		gameMode=Status.customMode;
+	}
 	public Game(List<Object> wave) {
 		this();
-		this.wave= wave;
+		this.wave = wave;
+		gameMode=Status.customMode;
 	}
 
 	public Game (Layout layout , PlantStore store,int zombieCounter,int level) {
@@ -56,15 +63,10 @@ public class Game implements Serializable  {
 		this.level =level;
 	}
 
-	public Game customGame(List<Object> wave){
-		Zombies zombie;
-		zombieCounter = (int) wave.get(0);
-
-	}
 	public void spownZombies(Status gameMode){
 		if(gameMode.equals(Status.customMode)) {
 			Zombies zombie=null;
-			for(int i = 0; i < wave.size()+1;i= i+2) {
+			for(int i = 1; i < wave.size(); i=i+2) {
 				if((int)wave.get(i+1) !=0) {
 					if(wave.get(i).equals("RZ") ||wave.get(i).equals("RugbyZombie")) {
 						zombie = new RugbyZombie();
@@ -80,8 +82,6 @@ public class Game implements Serializable  {
 						wave.set(i+1,counter);
 					}
 					layout.placeSpawnZombieOnGrid(zombie);
-				}else {
-					System.out.print("The Name of the Zombie is Wrong");
 				}
 			}
 		}else{
@@ -100,26 +100,16 @@ public class Game implements Serializable  {
 			}
 		}
 	}
-	public void spownZombies(){
-		/*
-		boolean gamedone = false;
-		if(!(zombieCounter <=1)) {
-			layout.placeSpawnZombieOnGrid(new WalkingZombie());
-		}*/
-		//layout.print();
-		//while(gamedone == false) {
-
-		//layout.print();
-		//store.purchaseStartOfGame(layout , false);
-		//Action action = new Action(this.layout);
-		//layout.setGameGrid(action.startAction().getGameGrid());
-
-		//layout.print();
-	}	
+public void setLayoutStatus(Status status) {
+	this.getLayout().setStatus(status);
+}
+public List<Object> getWave() {
+	return wave;
 }
 
-public Status getWave() {
-	return wave;
+
+public Status getGameMode() {
+	return gameMode;
 }
 
 /**
@@ -243,7 +233,7 @@ public Layout simulate(Status gameMode) {
  */
 public void startLevel(int level) {
 	levelDistinguish(level);
-	spownZombies();
+	spownZombies(this.gameMode);
 	layout.setStatus(Status.inProgress);
 }
 

@@ -32,6 +32,8 @@ public class Controller implements ActionListener{
 	private TimeLine timeline;
 	private Builder customGame =null;
 	private Status gameMode = Status.turnMode;
+
+
 	public Controller() {
 		game = new Game();
 		view = new View(this);
@@ -197,7 +199,7 @@ public class Controller implements ActionListener{
 		else if (e.getActionCommand().equals("levelBuilder")) {
 			try {
 				customGame = new Builder();
-			
+				customGame.readFile();
 				custom();
 				view.disableLevel();
 				view.enableFunctionButtons();
@@ -217,15 +219,19 @@ public class Controller implements ActionListener{
 			}
 		}
 	}
-	
+
 	public void custom() {
-		int customTime = (int)customGame.getTime(); // this will be used when user put the cusotom time to simulate.
+		//	int customTime = (int)customGame.getTime(); // this will be used when user put the cusotom time to simulate.
+
+		List<Object> wave = customGame.getWave();
 		this.gameMode = Status.customMode; // changing the status of this gamemode to customMode 
-		
-		
+		this.game = new Game(wave);
+		//this.view = new View(this);
+		startView();
+
 		//game.customGame(array[0],array[1]], array[2]);
 
-		
+
 	}
 
 	/**
@@ -277,7 +283,7 @@ public class Controller implements ActionListener{
 	public void simulate() {
 		game.simulate(this.gameMode);
 		updateView();
-		checkStatus(game.getLayout().getStatus(),game.getWave());
+		checkStatus(game.getLayout().getStatus());
 		save();
 	}
 
@@ -313,11 +319,11 @@ public class Controller implements ActionListener{
 	 * 	@param status - if the game has benn won or not
 	 * @return None
 	 */
-	public void checkStatus(Status status,Status wave) {
-		if(customGame.isEmpty()) {
+	public void checkStatus(Status status) {
+
+		if(customGame == null || customGame.isEmpty()) {
 			if (status == Status.win){
 				view.win(); // ask want to continue to wave?
-
 				this.game = new Game();
 				view.loadlayout(game.getLayout());
 			}else if(status == Status.loose) {
@@ -325,36 +331,38 @@ public class Controller implements ActionListener{
 				this.game = new Game();
 				view.loadlayout(game.getLayout());
 				view.disEnableFunctionButtons();
-			}else {
-				if (status == Status.win){
-					
-					this.game = new Game();
-					view.loadlayout(game.getLayout());
-				}else if(status == Status.loose) {
-					view.loose();
-					this.game = new Game();
-					view.loadlayout(game.getLayout());
-					view.disEnableFunctionButtons();
-				}
+			}
+		}else {
+			if (status == Status.win){
+				view.waveWin();
+				this.game = new Game(this.game,customGame.getWave());
+				this.game.setLayoutStatus(Status.start);
+				view.loadlayout(game.getLayout());
+			}else if(status == Status.loose) {
+				view.loose();
+				this.game = new Game();
+				view.loadlayout(game.getLayout());
+				view.disEnableFunctionButtons();
 			}
 		}
 	}
-		/**
-		 * 	Creates an instance of the controller so it can be played
-		 * 
-		 * 	@param String []arg - arguments the user enters
-		 * @return None
-		 * @throws ParserConfigurationException 
-		 * @throws IOException 
-		 * @throws SAXException 
-		 */
-		public static void main(String[] arg) throws SAXException, IOException, ParserConfigurationException {
-			//Layout layout = new Layout();
-			//	
-			//Controller c = new Controller();
-			//View v = new View(c);
-			Builder b = new Builder();
-			b.readFile();
 
-		}
+	/**
+	 * 	Creates an instance of the controller so it can be played
+	 * 
+	 * 	@param String []arg - arguments the user enters
+	 * @return None
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws SAXException 
+	 */
+	public static void main(String[] arg) throws SAXException, IOException, ParserConfigurationException {
+		//Layout layout = new Layout();
+		//	
+		Controller c = new Controller();
+		//View v = new View(c);
+		//Builder b = new Builder();
+		//b.readFile();
+
 	}
+}
