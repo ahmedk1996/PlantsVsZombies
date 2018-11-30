@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JToggleButton;
@@ -10,7 +11,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
-import Model.Builder;
 import Model.Game;
 import Model.Status;
 import Plants.Plants;
@@ -30,8 +30,8 @@ public class Controller implements ActionListener{
 	private View view;
 	private Game game;
 	private TimeLine timeline;
-
-
+	private Builder customGame =null;
+	private Status gameMode = Status.turnMode;
 	public Controller() {
 		game = new Game();
 		view = new View(this);
@@ -95,7 +95,7 @@ public class Controller implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 		}else if (e.getActionCommand().equals("load")){
 			try {
 				game.load();
@@ -144,7 +144,7 @@ public class Controller implements ActionListener{
 					moneyFlag = false;
 				}
 				info = game.purchasePlant(plant,moneyFlag,coolDownFlag);
-					
+
 			}else if (view.getBuyPotatoMine().isSelected()) {
 				plant = "PotatoMine";
 				if(game.purchaseValidate(plant)) {
@@ -195,10 +195,39 @@ public class Controller implements ActionListener{
 			}	
 		}
 		else if (e.getActionCommand().equals("levelBuilder")) {
+			try {
+				customGame = new Builder();
 			
+				custom();
+				view.disableLevel();
+				view.enableFunctionButtons();
+				updateView();
+				view.promptMessage("\t"+" Starting the custom Game "+ "\n"+ "Simulate the Game!");
+				timeline = new TimeLine(game);
+				//custom();
+			} catch (SAXException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ParserConfigurationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	
+	public void custom() {
+		int customTime = (int)customGame.getTime(); // this will be used when user put the cusotom time to simulate.
+		this.gameMode = Status.customMode; // changing the status of this gamemode to customMode 
+		
+		
+		//game.customGame(array[0],array[1]], array[2]);
+
+		
+	}
+
 	/**
 	 * 	Saves the state of the game if the user chooses to continue the game later
 	 * 
@@ -208,7 +237,7 @@ public class Controller implements ActionListener{
 	public void save() {
 		timeline.addNext(this.game);
 	}	
-	
+
 	/**
 	 * 	Allows the user to go back to his/her previous move and make another move, the board also 
 	 * goes back to the previous position
@@ -223,7 +252,7 @@ public class Controller implements ActionListener{
 			this.game=timeline.undo();
 		}
 	}
-	
+
 	/**
 	 * 	Allows the user to go forward in time, if an undo was clicked previously, the board 
 	 * is also affected
@@ -246,12 +275,13 @@ public class Controller implements ActionListener{
 	 * @return None
 	 */
 	public void simulate() {
-		game.simulate();
+		game.simulate(this.gameMode);
 		updateView();
-		checkStatus(game.getLayout().getStatus());
+		checkStatus(game.getLayout().getStatus(),game.getWave());
 		save();
 	}
-	
+
+
 	/**
 	 * 	Lets the user see the GUI of the board with the avaliable options
 	 * 
@@ -265,7 +295,7 @@ public class Controller implements ActionListener{
 		view.loadlayout(game.getLayout());
 		view.disEnableFunctionButtons();
 	}
-	
+
 	/**
 	 * 	Updates the view when an event has occured
 	 * 
@@ -283,35 +313,48 @@ public class Controller implements ActionListener{
 	 * 	@param status - if the game has benn won or not
 	 * @return None
 	 */
-	public void checkStatus(Status status) {
-		if (status == Status.win){
-			view.win();
-			this.game = new Game();
-			view.loadlayout(game.getLayout());
-		}else if(status == Status.loose) {
-			view.loose();
-			this.game = new Game();
-			view.loadlayout(game.getLayout());
-			view.disEnableFunctionButtons();
+	public void checkStatus(Status status,Status wave) {
+		if(customGame.isEmpty()) {
+			if (status == Status.win){
+				view.win(); // ask want to continue to wave?
+
+				this.game = new Game();
+				view.loadlayout(game.getLayout());
+			}else if(status == Status.loose) {
+				view.loose();
+				this.game = new Game();
+				view.loadlayout(game.getLayout());
+				view.disEnableFunctionButtons();
+			}else {
+				if (status == Status.win){
+					
+					this.game = new Game();
+					view.loadlayout(game.getLayout());
+				}else if(status == Status.loose) {
+					view.loose();
+					this.game = new Game();
+					view.loadlayout(game.getLayout());
+					view.disEnableFunctionButtons();
+				}
+			}
 		}
 	}
+		/**
+		 * 	Creates an instance of the controller so it can be played
+		 * 
+		 * 	@param String []arg - arguments the user enters
+		 * @return None
+		 * @throws ParserConfigurationException 
+		 * @throws IOException 
+		 * @throws SAXException 
+		 */
+		public static void main(String[] arg) throws SAXException, IOException, ParserConfigurationException {
+			//Layout layout = new Layout();
+			//	
+			//Controller c = new Controller();
+			//View v = new View(c);
+			Builder b = new Builder();
+			b.readFile();
 
-	/**
-	 * 	Creates an instance of the controller so it can be played
-	 * 
-	 * 	@param String []arg - arguments the user enters
-	 * @return None
-	 * @throws ParserConfigurationException 
-	 * @throws IOException 
-	 * @throws SAXException 
-	 */
-	public static void main(String[] arg) throws SAXException, IOException, ParserConfigurationException {
-		//Layout layout = new Layout();
-		//	
-		//Controller c = new Controller();
-		//View v = new View(c);
-		Builder b = new Builder();
-		b.readFile();
-		
+		}
 	}
-}
