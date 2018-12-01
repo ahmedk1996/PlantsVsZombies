@@ -82,6 +82,9 @@ public class Game implements Serializable  {
 						wave.set(i+1,counter);
 					}
 					layout.placeSpawnZombieOnGrid(zombie);
+					if(layout.getStatus() == Status.created) {
+						layout.setStatus(Status.inProgress);
+					}
 				}
 			}
 		}else{

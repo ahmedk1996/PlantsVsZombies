@@ -59,7 +59,7 @@ public class Action implements Serializable {
 	 * @return Layout result of the game
 	 */
 	public Layout updateStatus(Layout layout) {
-		if (layout.getStatus() == Status.start) {
+		if (layout.getStatus() == Status.start ||layout.getStatus() == Status.created) {
 			return layout;
 		} else {
 			for (int i = 0; i < layout.getGameGrid().length; i++) {
