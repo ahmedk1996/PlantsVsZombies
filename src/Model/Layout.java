@@ -26,7 +26,7 @@ public class Layout implements Serializable{
 	private Status status;
 	public Layout() {
 		gameGrid = new Object[5][7];
-		this.status = Status.start;
+		this.status = Status.created;
 	}
 	
 	public Layout(Object[][] gamegrid,Status status) {

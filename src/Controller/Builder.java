@@ -3,6 +3,7 @@ package Controller;
 import java.io.File;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -20,7 +21,7 @@ import org.xml.sax.SAXException;
 
 import Model.Game;
 import java.util.LinkedList;
-public class Builder {
+public class Builder implements Serializable {
 	DocumentBuilderFactory dbFactory;
 	org.w3c.dom.Document doc;
 	DocumentBuilder dBuilder;

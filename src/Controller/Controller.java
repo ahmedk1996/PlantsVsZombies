@@ -3,6 +3,7 @@ package Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -26,11 +27,12 @@ import View.View;
  * @since November 4,2018
 
  */
-public class Controller implements ActionListener{
+public class Controller implements ActionListener,Serializable{
 	private View view;
 	private Game game;
 	private TimeLine timeline;
 	private Builder customGame =null;
+	private ObjectPersistance file;
 	private Status gameMode = Status.turnMode;
 
 
@@ -40,8 +42,8 @@ public class Controller implements ActionListener{
 		startView();
 		timeline = new TimeLine();
 		view.enableButtons(false);
+		file = new ObjectPersistance();
 	}
-
 	/**
 	 * 	Listen for actions that happen on a certain button or label, and deal with it accordingly
 	 * 
@@ -90,20 +92,22 @@ public class Controller implements ActionListener{
 			//this.view = new View(this);
 			startView();
 		}else if (e.getActionCommand().equals("save")){
-			try {
-				game.save();
-				view.enableLoad();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			
+			file.save(this.game);	
+			view.promptMessage("Game File is Save. 'save.obj'");
 
 		}else if (e.getActionCommand().equals("load")){
-			try {
-				game.load();
-			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			Game temp = file.load();
+			this.game = temp;
+			view.promptMessage("Game File is Loaded. Enjoy the Game");
+			if(game.getLayout().getStatus().equals(Status.created)) { // need to check because of the buttonenable
+				startView();
+			}else {
+				
+				view.disableLevel();
+				view.enableFunctionButtons();
+				updateView();
+				
 			}
 		}else if (e.getActionCommand().equals("exit")){
 			System.exit(0);

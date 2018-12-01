@@ -7,41 +7,78 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
+import java.io.Serializable;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import Model.Game;
-
-public class ObjectPersistance {
-	Game game = null;
-	String filename = "time.ser";
-	public void save(Game orig) {
-        // save the object to file
-        FileOutputStream fos = null;
-        ObjectOutputStream out = null;
-        try {
-            fos = new FileOutputStream(filename);
-            out = new ObjectOutputStream(fos);
-            out.writeObject(game);
-
-            out.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+/**
+ * 	
+ * using Serializable 
+ * it saves and load the object file.
+ */
+public class ObjectPersistance implements Serializable {
+	public ObjectPersistance() {		
 	}
+	/**
+	 *It saves the object file 
+	 * 
+	 * 	@param Game 
+	 * @return None
+	 */
+	public void save(Game c) {
+		// save the object to file
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			fos = new FileOutputStream("save.sav");
+			out = new ObjectOutputStream(fos);
+			out.writeObject(c);
+
+			out.close();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	/**
+	 *It load the object file 
+	 * 
+	 * 	@param None 
+	 * @return Game
+	 */
 	
 	public Game load() {
-        // read the object from file
-        // save the object to file
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try {
-            fis = new FileInputStream(filename);
-            in = new ObjectInputStream(fis);
-            game = (Game) in.readObject();
-            in.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return game;
-    }
-	
+		Game con = null;
+		FileInputStream fin = null;
+		ObjectInputStream ois = null;
+		try {
+
+			fin = new FileInputStream("save.sav");
+			ois = new ObjectInputStream(fin);
+			con = (Game) ois.readObject();
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+
+			if (fin != null) {
+				try {
+					fin.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return con;
+	}
+
 }

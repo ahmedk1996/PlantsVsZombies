@@ -129,7 +129,6 @@ public class View extends JFrame{
 		
 		load= new JMenuItem("Load");
 		load.setActionCommand("load");
-		load.setEnabled(false);
 		load.addActionListener(controller);
 		gameMenu.add(load);
 		

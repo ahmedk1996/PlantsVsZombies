@@ -9,5 +9,5 @@ package Model;
 */
 
 public enum Status {
-	win,loose, error,inProgress,start,noMoney,purchased,customMode,turnMode,realtimeMode
+	win,loose, error,created,inProgress,start,noMoney,purchased,customMode,turnMode,realtimeMode
 }

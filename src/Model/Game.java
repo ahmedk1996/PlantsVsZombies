@@ -252,6 +252,7 @@ public void levelDistinguish(int level) {
 	}else if(level == 3) {
 		zombieCounter = 2;
 	}
+	layout.setStatus(Status.start);
 }
 
 /**
