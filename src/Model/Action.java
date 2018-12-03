@@ -1,11 +1,4 @@
-/*
- * Reflection: I think this class was very well done, this class is responsible
- * for actions being performed on the board. All methods in this class help move pieces
- * around on the board.
- * 
- *  We would not change this class or the functionality or responsibility that this class has.
- * 
- */
+
 package Model;
 
 import java.io.Serializable;
@@ -25,6 +18,11 @@ import Zombies.Zombies;
  * The Action is a class which contains all the actions used throughout the game
  * this includes starting and ending the game.
  * 
+ * Reflection: I think this class was very well done, this class is responsible
+ * for actions being performed on the board. All methods in this class help move pieces
+ * around on the board.
+ * 
+ *  We would not change this class or the functionality or responsibility that this class has.
  * @author Group 1
  * @since November 4,2018
  * 

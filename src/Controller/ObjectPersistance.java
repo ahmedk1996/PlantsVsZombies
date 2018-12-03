@@ -14,8 +14,8 @@ import java.io.ObjectInputStream;
 import Model.Game;
 /**
  * 	
-	 * Reflections: We needed to store a copy of the object, send them to another process which runs on the same system.
-	 * Serializable makes storing and sending objects easy which is why we chose it to implement save and load.
+ * Reflections: We needed to store a copy of the object, send them to another process which runs on the same system.
+ * Serializable makes storing and sending objects easy which is why we chose it to implement save and load.
  */
 public class ObjectPersistance implements Serializable {
 	public ObjectPersistance() {		

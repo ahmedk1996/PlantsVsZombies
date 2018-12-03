@@ -1,15 +1,8 @@
-/*
- * Reflections: This class was created for the latest milestone. This 
- * class has a unique responsibility to get information from the user 
- * and put it in an XML file. 
- * 
- * If we had more time, maybe another type of file or a more friendly
- * interface for the user to enter values.
- * 
- */
+
 package Controller;
 
 import java.io.File;
+
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -30,6 +23,15 @@ import org.xml.sax.SAXException;
 
 import Model.Game;
 import java.util.LinkedList;
+/**
+ * Reflections: This class was created for the latest milestone. This 
+ * class has a unique responsibility to get information from the user 
+ * and put it in an XML file. 
+ * 
+ * If we had more time, maybe another type of file or a more friendly
+ * interface for the user to enter values.
+ * 
+ */
 public class Builder implements Serializable {
 	DocumentBuilderFactory dbFactory;
 	org.w3c.dom.Document doc;

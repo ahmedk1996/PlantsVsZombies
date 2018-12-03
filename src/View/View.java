@@ -1,12 +1,4 @@
-/*
- * Reflections: In general, we feel that this class was very well out together. This
- * class has one responsibility and that is to show prompts, and the board along with 
- * purchasable options.
- * 
- * This class has multiple methods that allow the user to see layouts, current Sunpoints balances,
- * and a method to initiate the menu bar.
- * 
- */
+
 package View;
 
 import java.awt.*;
@@ -27,6 +19,13 @@ import Plants.Sunflower;
  *  The View is a class which extends JFrame and includes getters 
  * and setters for the different types of buttons and menu objects 
  * used to be called in the Controller class.
+ * 
+ * Reflections: In general, we feel that this class was very well out together. This
+ * class has one responsibility and that is to show prompts, and the board along with 
+ * purchasable options.
+ * 
+ * This class has multiple methods that allow the user to see layouts, current Sunpoints balances,
+ * and a method to initiate the menu bar.
  * 
  * @author Group 1
  * @since November 4,2018

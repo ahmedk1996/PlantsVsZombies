@@ -1,11 +1,4 @@
-/*
- * Reflection: Our Zombie class is an abstract class that holds a template that all zombies will follow.
- * We chose to keep the class abstract as we didn't want this class to be instantiated.
- * 
- * We think making this class an abstract class was a good design option as it aids other zombie classes to be 
- * used as sub-classes to this one providing us with a little more options when implementing zombie code.
- * 
- */
+
 
 package Zombies;
 import java.io.Serializable;
@@ -16,6 +9,12 @@ import Model.Weapon;
 /**
  * The Zombie is an abstract class which contains all the methods common between all the zombies
  * be it their health or the damage they give for example.
+ * 
+ * Reflection: Our Zombie class is an abstract class that holds a template that all zombies will follow.
+ * We chose to keep the class abstract as we didn't want this class to be instantiated.
+ * 
+ * We think making this class an abstract class was a good design option as it aids other zombie classes to be 
+ * used as sub-classes to this one providing us with a little more options when implementing zombie code.
  * 
  * @author Group 1
  * @since November 4,2018

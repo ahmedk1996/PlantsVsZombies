@@ -1,19 +1,16 @@
-/*
+
+package Model;
+
+/**
+ *  The Weapon  is the weapon for the attacking zombies. It contains the underlying 
+ * model of the weapons health,speed etc. 
+ * 
  * Reflection: This class is responsible for zombie attacking other objects on the
  * board. This class is really well put together as it only has one responsibility.
  * 
  * This class defines methods that will help the zombie attack and set different attributes 
  * for the attacks of zombies. Some methods provide different speeds for attacking zombies,
  * how much damage it does, etc.
- * 
- * 
- * 
- */
-package Model;
-
-/**
- *  The Weapon  is the weapon for the attacking zombies. It contains the underlying 
- * model of the weapons health,speed etc. 
  * 
  * @author Group 1
  * @since November 4,2018

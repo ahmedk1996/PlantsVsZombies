@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 /**
- *  The Intro is a class which just acts as a layer which allows the user to understad what the
+ *  The Intro is a class which just acts as a layer which allows the user to understand what the
  *  game is about. 
  * 
  * 
