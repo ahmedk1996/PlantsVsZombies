@@ -23,7 +23,7 @@ public class PlantStoreTest extends TestCase{
 	@Test
 	public void test() { //this test checks current balance for SunPoints
 		PlantStore ps = new PlantStore();
-		assertEquals("The starting Sunpoints value should be 150", 150, ps.getSunPoints());
+		assertEquals("The starting Sunpoints value should be 200", 200, ps.getSunPoints());
 	}
 	
 	@Test

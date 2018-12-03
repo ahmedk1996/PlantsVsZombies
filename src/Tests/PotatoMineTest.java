@@ -29,7 +29,7 @@ public class PotatoMineTest extends TestCase{
 	@Test
 	public void test() { //test case for testing getCost() method with default constructor
 		
-		assertEquals("Cost of the plant should be 150", 150, p1.getCost());
+		assertEquals("Cost of the plant should be 100", 100, p1.getCost());
 	}
 	
 	@Test
