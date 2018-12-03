@@ -66,7 +66,7 @@ public class SprintZombieTest extends TestCase {
 	
 	@Test
 	public void testGetHealth() {
-		assertEquals("should return 100",100,sprintZ.getHealth());
+		assertEquals("should return 150",150,sprintZ.getHealth());
 	}
 	
 	@Test
