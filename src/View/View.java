@@ -1,3 +1,12 @@
+/*
+ * Reflections: In general, we feel that this class was very well out together. This
+ * class has one responsibility and that is to show prompts, and the board along with 
+ * purchasable options.
+ * 
+ * This class has multiple methods that allow the user to see layouts, current sunpoints balances,
+ * and a method to initiate the menu bar.
+ * 
+ */
 package View;
 
 import java.awt.*;

@@ -1,6 +1,17 @@
+/*
+ * Reflections: Our controller class is what ran the whole Game. This class also
+ * controlled the actions for all the actions the user may perform.
+ * 
+ * If we had more time, I feel like it would have been a wise idea to separate and de-couple the 
+ * two functionalities of the class. Maybe have one class responsible for running the game, and 
+ * another class that is responsible for performing actions when a user clicks something on the view.
+ * 
+ * 
+ */
 package Controller;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.Serializable;
@@ -18,6 +29,7 @@ import Plants.Plants;
 import Plants.ShootingPlant;
 import Plants.Sunflower;
 import View.View;
+
 
 /**
  * The Controller is a class used in the MVC pattern which
