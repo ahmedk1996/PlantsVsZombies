@@ -286,7 +286,7 @@ public String placePlantOnGrid(int row, int col) {
 		return "Please Buy the Plant";
 	}else {
 		layout.placePlantOnGrid(row, col, purchasedPlant);
-		String info = "You placed "+ purchasedPlant.getName() + "at "+ row+ col;
+		String info = "You placed "+ purchasedPlant.getName() + " at "+ row + " " + col;
 		purchasedPlant = null;
 		return info;
 	}
