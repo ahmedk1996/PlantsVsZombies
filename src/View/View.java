@@ -3,7 +3,7 @@
  * class has one responsibility and that is to show prompts, and the board along with 
  * purchasable options.
  * 
- * This class has multiple methods that allow the user to see layouts, current sunpoints balances,
+ * This class has multiple methods that allow the user to see layouts, current Sunpoints balances,
  * and a method to initiate the menu bar.
  * 
  */

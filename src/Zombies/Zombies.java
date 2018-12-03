@@ -1,5 +1,5 @@
 /*
- * Reflection: Our Zombie class is an abstract class that holds a template that all Zombies will follow.
+ * Reflection: Our Zombie class is an abstract class that holds a template that all zombies will follow.
  * We chose to keep the class abstract as we didn't want this class to be instantiated.
  * 
  * We think making this class an abstract class was a good design option as it aids other zombie classes to be 

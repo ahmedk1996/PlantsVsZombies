@@ -1,7 +1,7 @@
 /*
  * Reflections: This class was created for the latest milestone. This 
  * class has a unique responsibility to get information from the user 
- * and put it in an xml file. 
+ * and put it in an XML file. 
  * 
  * If we had more time, maybe another type of file or a more friendly
  * interface for the user to enter values.

@@ -2,7 +2,7 @@
  * Reflection: This class is responsible for zombie attacking other objects on the
  * board. This class is really well put together as it only has one responsibility.
  * 
- * This class defines methods that will help zombie attack and set different attributes 
+ * This class defines methods that will help the zombie attack and set different attributes 
  * for the attacks of zombies. Some methods provide different speeds for attacking zombies,
  * how much damage it does, etc.
  * 

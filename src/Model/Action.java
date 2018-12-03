@@ -1,9 +1,9 @@
 /*
  * Reflection: I think this class was very well done, this class is responsible
  * for actions being performed on the board. All methods in this class help move pieces
- * on the board.
+ * around on the board.
  * 
- *  I would not change this class or the functionality or responsibility that this class has.
+ *  We would not change this class or the functionality or responsibility that this class has.
  * 
  */
 package Model;
