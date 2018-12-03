@@ -4,8 +4,9 @@ package Plants;
 import java.io.Serializable;
 
 /**
- *  The Plant is an abstract class which contains all the methods common between all the plants
- * be it their health or the damage they give for example.
+ * Reflection: The Plant is an abstract class which contains all the methods common between all the plants
+ * be it their health or the damage they give for example. This is a design decision which we 
+ * still support using as it allows for loose coupling.
  * 
  * @author Group 1
  * @since November 4,2018
