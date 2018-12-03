@@ -15,7 +15,8 @@ import Plants.Plants;
  * Queue data-structure is first in and first out. 
  * the functionalities of the queue ex) pop, push fit with automated reduction cool-down. 
  * 
- * We are using Observe pattern to notify every plant CoolDown queue to reduce the cool-down.
+ * Reflections:  We are using Observe pattern to notify every plant CoolDown queue to reduce the cool-down.
+ * This makes subject and observers loosely coupled.
  */
 public class CoolDown extends Observable implements Serializable{
 	/**

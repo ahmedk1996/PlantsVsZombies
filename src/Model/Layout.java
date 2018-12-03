@@ -13,6 +13,10 @@ import Zombies.WalkingZombie;
  * The Layout is a class that contains the methods regarding layout of the game. This includes the setup  
 * so the grid layout.
 * 
+* Reflections: We decided to use a grid Arraylist is because the storage has to be modifiable.
+ * when the user makes new movement after undo then whatever it is already stored before, must be removed and
+ * saves new statement of the game.
+* 
 * @author Group 1
 * @since November 4,2018
 
@@ -62,27 +66,6 @@ public class Layout implements Serializable{
 		}
 	}
 	
-	/*
-	public Layout export() {
-		Object[][] temp;
-		Status ts;
-		for(int i =0;i<gameGrid.length;i++) {
-			for(int j =0;j<gameGrid[0].length;j++) {
-				if(gameGrid[i][j] instanceof Plants) {
-					Plants p = (Plants) gameGrid[i][j];
-					temp[i][j] = p;
-				}else if(gameGrid[i][j] instanceof Zombies) {
-					temp[i][j] = (Zombies) gameGrid[i][j];
-				}else{
-					temp[i][j] = null;
-				}
-			}
-		}
-		ts = this.getStatus();
-		Layout layout = new Layout(); 
-		return temp;
-	}
-	*/
 
 	public Object getGrid() {
 		return gameGrid;

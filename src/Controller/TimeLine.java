@@ -12,7 +12,7 @@ import Model.Game;
  * The TimeLine class is a class which contains all the actions used to allow the 
  * user to back and forth in a game (undo/redo)
  * 
- * The reason why we used data structure, ArrayList is because the storage has to be modifiable.
+ * Reflections: The reason why we used data structure, ArrayList is because the storage has to be modifiable.
  * when the user makes new movement after undo then whatever it is already stored before, must be removed and
  * saves new statement of the game.
  * 

@@ -20,6 +20,9 @@ public class Game implements Serializable  {
 	 * The Game is a class contains the methods regarding starting the game. This includes the setup for it  
 	 * an example of this would be selecting the game difficulty.
 	 * 
+	 * Reflections: We needed to store a copy of the object, send them to another process which runs on the same system.
+	 * Serializable makes storing and sending objects easy which is why we chose it to implement save and load.
+	 * 
 	 * @author Group 1
 	 * @since November 4,2018
 
