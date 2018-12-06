@@ -34,6 +34,7 @@ public class Game implements Serializable  {
 	private Plants purchasedPlant;
 	private int level;
 	private int zombieCounter;
+	private boolean noZombie; // for checking the game status with zombie counter.
 	private List<Object> wave;
 	private Status gameMode = Status.turnMode; // default mode is turnMode.
 
@@ -71,6 +72,7 @@ public class Game implements Serializable  {
 			Zombies zombie=null;
 			for(int i = 1; i < wave.size(); i=i+2) {
 				if((int)wave.get(i+1) !=0) {
+					noZombie= false;
 					if(wave.get(i).equals("RZ") ||wave.get(i).equals("RugbyZombie")) {
 						zombie = new RugbyZombie();
 						int counter = (int)wave.get(i+1) -1;
@@ -88,11 +90,15 @@ public class Game implements Serializable  {
 					if(layout.getStatus() == Status.created) {
 						layout.setStatus(Status.inProgress);
 					}
+				}else {
+					noZombie = true;
 				}
 			}
 		}else{
 			if(zombieCounter == 0) {
+				noZombie= true;
 			}else {
+				noZombie= false;
 				if(level == 1) {
 					layout.placeSpawnZombieOnGrid(new WalkingZombie());
 				}else if(level == 2) {
@@ -223,7 +229,7 @@ public Layout simulate(Status gameMode) {
 		startLevel(level);
 	}else {
 		action = new Action();
-		layout = action.startAction(layout);
+		layout = action.startAction(layout,noZombie);
 		spownZombies(gameMode);
 	}
 	store.nextTurn();
@@ -258,6 +264,7 @@ public void levelDistinguish(int level) {
 	}else if(level == 3) {
 		zombieCounter = 2;
 	}
+	noZombie= false;
 	layout.setStatus(Status.start);
 }
 

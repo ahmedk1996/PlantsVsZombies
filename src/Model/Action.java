@@ -50,11 +50,11 @@ public class Action implements Serializable {
 	 * @param gameTurn the current turn
 	 * @return result of the game
 	 */
-	public Layout startAction(Layout layout) {
+	public Layout startAction(Layout layout,boolean zombieleft) {
 		// this.currentTurn = gameTurn;
 		Layout lay = plantShoot(layout);
 		lay = behaveZombie(layout);
-		lay = updateStatus(layout);
+		lay = updateStatus(layout,zombieleft);
 		return lay;
 	}
 
@@ -64,7 +64,7 @@ public class Action implements Serializable {
 	 * @param layout layout of the game
 	 * @return Layout result of the game
 	 */
-	public Layout updateStatus(Layout layout) {
+	public Layout updateStatus(Layout layout,boolean zombieLeft) {
 		if (layout.getStatus() == Status.start ||layout.getStatus() == Status.created) {
 			return layout;
 		} else {
@@ -74,13 +74,18 @@ public class Action implements Serializable {
 					return layout;
 				}
 			}
-			for (int i = 0; i < layout.getGameGrid().length; i++) {
-				for (int j = 0; j < layout.getGameGrid()[0].length; j++) {
-					if (layout.getGameGrid()[i][j] instanceof Zombies) {
-						layout.setStatus(Status.inProgress);
-						// this.status= Status.inProgress;
-						// break;
-						return layout;
+			if(!zombieLeft) {
+				layout.setStatus(Status.inProgress);
+				return layout;
+			}else {
+				for (int i = 0; i < layout.getGameGrid().length; i++) {
+					for (int j = 0; j < layout.getGameGrid()[0].length; j++) {
+						if (layout.getGameGrid()[i][j] instanceof Zombies) {
+							layout.setStatus(Status.inProgress);
+							// this.status= Status.inProgress;
+							// break;
+							return layout;
+						}
 					}
 				}
 			}
